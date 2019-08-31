@@ -26,6 +26,8 @@ library(stringi)
 library(nlme)
 library(car)
 library(agricolae)
+library(googlesheets)
+library(gsheet)
 
 # DATA_DIR               <- "data/"
 # OUTPUT_DIR		         <- "outputs/"

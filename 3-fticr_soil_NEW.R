@@ -9,9 +9,9 @@ source("0-packages.R")
 ## step 1: load and merge the files ----
 # data are split into (a) metadata and (b) sample data
 
-fticr_soil_meta = read_csv("FTICR_INPUT_SOIL_META.csv")
-fticr_soil_data = read_csv("FTICR_INPUT_SOIL_DATA.csv")
-corekey = read.csv("COREKEY.csv")
+fticr_soil_meta = read_csv("data/FTICR_INPUT_SOIL_META.csv")
+fticr_soil_data = read_csv("data/FTICR_INPUT_SOIL_DATA.csv")
+corekey = read.csv("data/COREKEY.csv")
 
 # remove unnecessary columns from meta
 
@@ -50,10 +50,8 @@ fticr_soil_gather2 = fticr_soil_gather2[!(fticr_soil_gather2$reps<3),]
 #write.csv(fticr_soil_gather,"fticr_soil_gather.csv")
 
 ### OUTPUT
-write.csv(fticr_soil_gather2,"fticr_soil_longform.csv")
-
-## experimenting with output folders
-# write_csv(fticr_soil_gather2, path = "data_output/fticr_soil_longform.csv")
+# write.csv(fticr_soil_gather2,"fticr_soil_longform.csv")
+write_csv(fticr_soil_gather2, path = "fticr/fticr_soil_longform.csv")
 
 #
 ## step 3: relative abundance ---- 
@@ -83,7 +81,8 @@ corenames = data.frame(fticr_soil_groups_wide[,c(1:3)])
 fticr_soil_relabundance = cbind(corenames,fticr_soil_abundance2)
 
 ### OUTPUT
-write.csv(fticr_soil_relabundance,"fticr_soil_relabund_cores.csv")
+# write.csv(fticr_soil_relabundance,"fticr_soil_relabund_cores.csv")
+write_csv(fticr_soil_relabundance,path = "fticr/fticr_soil_relabund_cores.csv")
 
 ## relative abundance by treatment/site
 fticr_soil_relabundance_long = fticr_soil_relabundance %>% 
@@ -107,7 +106,8 @@ fticr_soil_relabundance_summarytable %>%
 fticr_soil_relabundance_summarytable$total="1"
 
 ### OUTPUT
-write.csv(fticr_soil_relabundance_summarytable,"fticr_soil_relabundance_groups.csv")
+# write.csv(fticr_soil_relabundance_summarytable,"fticr_soil_relabundance_groups.csv")
+write_csv(fticr_soil_relabundance_summarytable,path = "fticr/fticr_soil_relabundance_groups.csv")
 
 #
 
@@ -266,7 +266,7 @@ fticr_soil_new2 = (fticr_soil_new2) %>%
 fticr_soil_new3 = merge(fticr_soil_meta,fticr_soil_new2, by = "Mass")
 
 ## OUTPUT
-write_csv(fticr_soil_new3, "fticr_soil_newmolecules.csv")
+write_csv(fticr_soil_new3, path = "fticr/fticr_soil_newmolecules.csv")
 
 
 #
@@ -280,7 +280,7 @@ fticr_soil_unique = fticr_soil_new %>%
 fticr_soil_unique2 = merge(fticr_soil_meta, fticr_soil_unique, by = "Mass")
 
 ## OUTPUT
-write_csv(fticr_soil_unique2, "fticr_soil_uniquemolecules.csv")
+write_csv(fticr_soil_unique2, path = "fticr/fticr_soil_uniquemolecules.csv")
 
 #
 ## step 5: HC, OC data for van krevelen ----
@@ -293,9 +293,11 @@ fticr_soil_gather2 %>%
   mutate(OtoC_ratio = round(OtoC_ratio,2))  %>% 
   mutate(intensity = round(intensity,2))  ->
   fticr_soil_hcoc
+## R message: Adding missing grouping variables: `treatment`, `site`
 
 ### OUTPUT
-write.csv(fticr_soil_hcoc,"fticr_soil_hcoc.csv")
+# write.csv(fticr_soil_hcoc,"fticr_soil_hcoc.csv")
+write_csv(fticr_soil_hcoc,path = "fticr/fticr_soil_hcoc.csv")
 
 #
 
@@ -306,7 +308,8 @@ fticr_soil_gather2 %>%
   fticr_soil_nosc
 
 ### OUTPUT
-write.csv(fticr_soil_nosc,"fticr_soil_nosc.csv")
+# write.csv(fticr_soil_nosc,"fticr_soil_nosc.csv")
+write_csv(fticr_soil_nosc,path = "fticr/fticr_soil_nosc.csv")
 
 #
 
@@ -321,7 +324,8 @@ fticr_soil_gather2 %>%
   fticr_soil_kendrick
 
 ### OUTPUT
-write.csv(fticr_soil_kendrick,"fticr_soil_kendrick.csv")
+# write.csv(fticr_soil_kendrick,"fticr_soil_kendrick.csv")
+write_csv(fticr_soil_kendrick,path = "fticr/fticr_soil_kendrick.csv")
 
 #
 
@@ -338,7 +342,8 @@ setDT(fticr_soil_melt)[variable=="C1"|variable=="C2"|variable=="C3"|variable=="C
 setDT(fticr_soil_aromatic)[AI_Mod>0.5, aromatic := "aromatic"]
 
 ### OUTPUT
-write.csv(fticr_soil_aromatic,"fticr_soil_aromatic.csv")
+# write.csv(fticr_soil_aromatic,"fticr_soil_aromatic.csv")
+write_csv(fticr_soil_aromatic,path = "fticr/fticr_soil_aromatic.csv")
 
 fticr_soil_aromatic %>% 
   group_by(site, treatment, core, aromatic) %>% 
@@ -350,8 +355,8 @@ fticr_soil_aromatic_counts = summarySE(fticr_soil_aromatic, measurevar = "arom_c
 fticr_soil_aromatic_counts = fticr_soil_aromatic_counts[complete.cases(fticr_soil_aromatic_counts),]
 
 ### OUTPUT
-write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
-
+# write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
+write_csv(fticr_soil_aromatic_counts,path = "fticr/fticr_soil_aromatic_counts.csv")
 
 #
 
