@@ -3,3 +3,4 @@
 ## `data` input data files
 
 ## `fticr` (a) output files from the FTICR script; (b) FTICR graphs 
+use these files as inputs for the graphs, to avoid grief
