@@ -13,6 +13,12 @@ fticr_soil_meta = read_csv("data/FTICR_INPUT_SOIL_META.csv")
 fticr_soil_data = read_csv("data/FTICR_INPUT_SOIL_DATA.csv")
 corekey = read.csv("data/COREKEY.csv")
 
+### need to use google sheets instead of csv files
+# fticr_soil_data = gsheet2tbl("drive.google.com/file/d/13gofVxF40vrMGn3joIdSgJ23KFOLbBoj")
+# data = https://drive.google.com/file/d/13gofVxF40vrMGn3joIdSgJ23KFOLbBoj/view?usp=sharing
+# meta = https://drive.google.com/file/d/1u0IviOr0emtt_S1MY_PKRi863CibSIFE/view?usp=sharing
+
+
 # remove unnecessary columns from meta
 
 fticr_soil_meta = fticr_soil_meta[,!colnames(fticr_soil_meta)%in%
