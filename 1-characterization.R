@@ -10,7 +10,7 @@ source("0-packages.R")
 
 ### input files
 
-soil_character = read_excel("soil_character.xlsx")
+soil_character = read_excel("data/soil_character.xlsx")
 names(soil_character)
 
 #converting variables to numeric form
@@ -109,7 +109,7 @@ hsd_clay
 ##
 
 ## 3. pore size ----
-pores = read_excel("pore_size.xlsx")
+pores = read_excel("data/pore_size.xlsx")
 names(pores)
 
 #creating frequency distribution tables for each site
@@ -177,7 +177,7 @@ save_plot("poresizedist2.tiff", gg_pore_distrib, base_aspect_ratio = 2)
 
 
 ## 4. water retention curves ----
-water_retention = read_excel("water_retention.xlsx")
+water_retention = read_excel("data/water_retention.xlsx")
 names(water_retention)
 attach(water_retention)
 
