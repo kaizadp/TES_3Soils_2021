@@ -281,29 +281,29 @@ write_csv(fticr_pore_relabundance_summarytable,path = "fticr/fticr_pore_relabund
 
 # subset only select columns from fticr_soil_gather2
 
-fticr_soil_gather2 %>% 
-  select("core","Mass","HtoC_ratio","OtoC_ratio","intensity") %>% 
-  mutate(HtoC_ratio = round(HtoC_ratio,2)) %>%   
-  mutate(OtoC_ratio = round(OtoC_ratio,2))  %>% 
+fticr_pore_gather2 %>% 
+  select("core","site","treatment","tension","Mass","HC","OC","intensity") %>% 
+  mutate(HC = round(HC,2)) %>%   
+  mutate(OC = round(OC,2))  %>% 
   mutate(intensity = round(intensity,2))  ->
-  fticr_soil_hcoc
-## R message: Adding missing grouping variables: `treatment`, `site`
+  fticr_pore_hcoc
+## R message: Adding missing grouping variables: `treatment`, `site` -- happened for soil but not for pores. weird
 
 ### OUTPUT
 # write.csv(fticr_soil_hcoc,"fticr_soil_hcoc.csv")
-write_csv(fticr_soil_hcoc,path = "fticr/fticr_soil_hcoc.csv")
+write_csv(fticr_pore_hcoc,path = "fticr/fticr_pore_hcoc.csv")
 
 #
 
 ## step 6: NOSC data ----
-fticr_soil_gather2 %>% 
-  select("core","Mass","NOSC","intensity") %>% 
+fticr_pore_gather2 %>% 
+  select("core","site","treatment","tension","Mass","NOSC","intensity") %>% 
   mutate(NOSC = round(NOSC,4)) ->
-  fticr_soil_nosc
+  fticr_pore_nosc
 
 ### OUTPUT
 # write.csv(fticr_soil_nosc,"fticr_soil_nosc.csv")
-write_csv(fticr_soil_nosc,path = "fticr/fticr_soil_nosc.csv")
+write_csv(fticr_pore_nosc,path = "fticr/fticr_pore_nosc.csv")
 
 #
 
