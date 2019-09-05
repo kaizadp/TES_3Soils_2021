@@ -324,75 +324,29 @@ write_csv(fticr_soil_kendrick,path = "fticr/fticr_soil_kendrick.csv")
 #
 
 ## step 8: aromatic peaks ----
-fticr_soil_gather2 %>% 
-  select("core","Mass","AI","AI_Mod","intensity") %>% 
-  mutate(AI = round(AI,4)) %>% 
-  mutate(AI_Mod = round(AI_Mod,4)) %>% 
+fticr_pore_gather2 %>% 
+  select("core","site","treatment","tension","Mass","AImod","intensity") %>% 
+  mutate(AImod = round(AImod,4)) %>% 
   mutate(intensity = round(intensity,2))->
-  fticr_soil_aromatic
+  fticr_pore_aromatic
 
-setDT(fticr_soil_melt)[variable=="C1"|variable=="C2"|variable=="C3"|variable=="C4"|variable=="C5" ,treatment := "Time Zero"]
-
-setDT(fticr_soil_aromatic)[AI_Mod>0.5, aromatic := "aromatic"]
+setDT(fticr_pore_aromatic)[AImod>0.5, aromatic := "aromatic"]
 
 ### OUTPUT
 # write.csv(fticr_soil_aromatic,"fticr_soil_aromatic.csv")
-write_csv(fticr_soil_aromatic,path = "fticr/fticr_soil_aromatic.csv")
+write_csv(fticr_pore_aromatic,path = "fticr/fticr_pore_aromatic.csv")
 
-fticr_soil_aromatic %>% 
-  group_by(site, treatment, core, aromatic) %>% 
+fticr_pore_aromatic %>% 
+  group_by(site, treatment, core, tension,aromatic) %>% 
   dplyr::mutate(arom_core_counts = n()) ->
-  fticr_soil_aromatic
+  fticr_pore_aromatic
 
 # summary by treatment. then remove NA to keep only aromatic counts
-fticr_soil_aromatic_counts = summarySE(fticr_soil_aromatic, measurevar = "arom_core_counts", groupvars = c("aromatic","site","treatment"))
-fticr_soil_aromatic_counts = fticr_soil_aromatic_counts[complete.cases(fticr_soil_aromatic_counts),]
+fticr_pore_aromatic_counts = summarySE(fticr_pore_aromatic, measurevar = "arom_core_counts", groupvars = c("aromatic","site","treatment","tension"))
+fticr_pore_aromatic_counts = fticr_pore_aromatic[complete.cases(fticr_pore_aromatic),]
 
 ### OUTPUT
 # write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
-write_csv(fticr_soil_aromatic_counts,path = "fticr/fticr_soil_aromatic_counts.csv")
+write_csv(fticr_pore_aromatic_counts,path = "fticr/fticr_pore_aromatic_counts.csv")
 
 #
-
-## MOVE TO NEW SCRIPT step 8b: aromatic peaks - summary ----
-
-
-
-ggplot(fticr_soil_aromatic_counts, aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
-  geom_bar(stat="summary",width=0.1,position=position_dodge(0.7),size=1)+
-  geom_errorbar(aes(ymin=`arom_core_counts`-se, ymax=`arom_core_counts`+se),width=0.3,position=position_dodge(0.7),color="black",size=1)
-  
-
-#
-## MOVE TO NEW SCRIPT step 5: van krevelen plots ----
-
-#
-## MOVE TO NEW SCRIPT step 7: NOSC plots ----
-
-ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="CPCRW",], aes(x = NOSC, fill = treatment))+
-  geom_histogram(binwidth = 0.25, color = "black")+
-  xlim(-2.5, 2.5)
-
-ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="DWP",], aes(x = NOSC, fill = treatment))+
-  geom_histogram(binwidth = 0.25, color = "black")
-
-ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="SR",], aes(x = NOSC, fill = treatment))+
-  geom_histogram(binwidth = 0.25, color = "black")
-
-#
-
-## MOVE TO NEW SCRIPT step 9: plot kendrick ----
-
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="CPCRW" & 
-                             fticr_soil_kendrick$treatment=="drought" | fticr_soil_kendrick$treatment=="saturation"|fticr_soil_kendrick$treatment=="field moist",], 
-       aes(x = kmass, y = kdefect, color = treatment, shape = treatment))+
-  geom_point(size=0.5)
-
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="DWP",], aes(x = kmass, y = kdefect, color = treatment))+
-  geom_point(size=1)
-
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="SR",], aes(x = kmass, y = kdefect, color = treatment))+
-  geom_point(size=1)
-#
-
-
