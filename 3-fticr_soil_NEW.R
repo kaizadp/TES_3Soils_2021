@@ -347,12 +347,13 @@ setDT(fticr_soil_aromatic)[AI_Mod>0.5, aromatic := "aromatic"]
 
 ### OUTPUT
 # write.csv(fticr_soil_aromatic,"fticr_soil_aromatic.csv")
-write_csv(fticr_soil_aromatic,path = "fticr/fticr_soil_aromatic.csv")
 
 fticr_soil_aromatic %>% 
   group_by(site, treatment, core, aromatic) %>% 
   dplyr::mutate(arom_core_counts = n()) ->
   fticr_soil_aromatic
+
+write_csv(fticr_soil_aromatic,path = "fticr/fticr_soil_aromatic.csv")
 
 # summary by treatment. then remove NA to keep only aromatic counts
 fticr_soil_aromatic_counts = summarySE(fticr_soil_aromatic, measurevar = "arom_core_counts", groupvars = c("aromatic","site","treatment"))
