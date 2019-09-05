@@ -12,60 +12,274 @@ source("0-packages.R")
 ## 1: aromatic peaks - summary ----
 fticr_soil_aromatic = read_csv("fticr/fticr_soil_aromatic.csv")
 
-ggplot(fticr_soil_aromatic[fticr_soil_aromatic$aromatic=="aromatic",], aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
-  #geom_bar(stat="summary",width=0.1,position=position_dodge(0.7),size=1)+
-  #geom_errorbar(aes(ymin=`arom_core_counts`-se, ymax=`arom_core_counts`+se),width=0.3,position=position_dodge(0.7),color="black",size=1)+
-  geom_boxplot(fill = "white")
- # geom_point()
+ggplot(fticr_soil_aromatic[fticr_soil_aromatic$aromatic=="aromatic",], 
+       aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
+  geom_boxplot(fill = "white")+
+  theme_bw()
 
 
 #
 ## 2: NOSC plots ----
 fticr_soil_nosc = read_csv("fticr/fticr_soil_nosc.csv")
 
-ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="CPCRW",], aes(x = NOSC, fill = treatment))+
+gg_nosc_c = 
+  ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="CPCRW" &!fticr_soil_nosc$treatment=="baseline",], 
+         aes(x = NOSC, fill = treatment))+
   geom_histogram(binwidth = 0.25, color = "black")+
   xlim(-2.5, 2.5)+
+  ylim(0,25000)+
+  theme(legend.position = "top")+
   ggtitle("CPCRW")
 
-ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="DWP",], aes(x = NOSC, fill = treatment))+
+gg_nosc_d = 
+  ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="DWP" &!fticr_soil_nosc$treatment=="baseline",], 
+         aes(x = NOSC, fill = treatment))+
   geom_histogram(binwidth = 0.25, color = "black")+
-  ggtitle("DWP")
+  xlim(-2.5, 2.5)+
+  theme(legend.position = "none")+
+  ylim(0,25000)+ggtitle("DWP")
 
-ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="SR",], aes(x = NOSC, fill = treatment))+
+gg_nosc_s = 
+  ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="SR" &!fticr_soil_nosc$treatment=="baseline",], 
+         aes(x = NOSC, fill = treatment))+
   geom_histogram(binwidth = 0.25, color = "black")+
-  ggtitle("SR")
+  xlim(-2.5, 2.5)+
+  theme(legend.position = "none")+
+  ylim(0,25000)+ggtitle("SR")
+
+gg_nosc_combined = plot_grid(gg_nosc_c,gg_nosc_d,gg_nosc_s, ncol = 3, align = "h", axis = "bt");gg_nosc_combined
+save_plot("output/fticr_nosc.tiff", gg_nosc_combined, 
+          base_width = 20, base_height = 7)
 
 #
 
 ## 3: plot kendrick ----
-
 fticr_soil_kendrick = read_csv("fticr/fticr_soil_kendrick.csv")
 
 ## plotting kmd with only three treatments
 
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="CPCRW" & 
-                             fticr_soil_kendrick$treatment=="drought" | fticr_soil_kendrick$treatment=="saturation"|fticr_soil_kendrick$treatment=="field moist",], 
+gg_kendrick_c=
+  ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="CPCRW" & 
+                             fticr_soil_kendrick$treatment=="drought" | 
+                             fticr_soil_kendrick$treatment=="saturation"|
+                             fticr_soil_kendrick$treatment=="field moist",], 
        aes(x = kmass, y = kdefect, color = treatment))+
   geom_point(size=0.5)+
+  xlim(200,900)+
+  ylim(0,1)+
+  theme_bw()+
+  theme(legend.position = "top",
+        legend.title = element_blank())+
   ggtitle("CPCRW")
 
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="DWP"& 
-                             fticr_soil_kendrick$treatment=="drought" | fticr_soil_kendrick$treatment=="saturation"|fticr_soil_kendrick$treatment=="field moist",], 
+
+gg_kendrick_d=
+  ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="DWP"& 
+                             fticr_soil_kendrick$treatment=="drought" | 
+                             fticr_soil_kendrick$treatment=="saturation"|
+                             fticr_soil_kendrick$treatment=="field moist",], 
        aes(x = kmass, y = kdefect, color = treatment))+
   geom_point(size=0.5)+
+  xlim(200,900)+
+  ylim(0,1)+
+  theme_bw()+
+  theme(legend.position = "top",
+        legend.title = element_blank())+
   ggtitle("DWP")
 
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="SR" & 
+
+gg_kendrick_s=
+  ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="SR" & 
                              fticr_soil_kendrick$treatment=="drought" | fticr_soil_kendrick$treatment=="saturation"|fticr_soil_kendrick$treatment=="field moist",], 
        aes(x = kmass, y = kdefect, color = treatment))+
   geom_point(size=0.5)+
+  xlim(200,900)+
+  ylim(0,1)+
+  theme_bw()+
+  theme(legend.position = "top",
+        legend.title = element_blank())+
   ggtitle("SR")
+
+gg_kendrick_combined = plot_grid(gg_kendrick_c,gg_kendrick_d,gg_kendrick_s,
+                                 ncol = 3, align = "h", axis = "bt")
+
+save_plot("output/fticr_kendrick.tiff", gg_kendrick_combined, 
+          base_width = 20, base_height = 7)
+
 #
 
 
 
 
 ## 4: van krevelen plots ----
+fticr_soil_hcoc = read_csv("fticr/fticr_soil_hcoc.csv")
 
-#
+# 4a. baseline plot ----
+gg_vankrev_base = 
+  ggplot(fticr_soil_hcoc[fticr_soil_hcoc$treatment=="baseline",],
+       aes(x = OtoC_ratio, y = HtoC_ratio, color = site))+
+  xlab("O/C")+
+  ylab("H/C")+
+  theme_bw()+
+  theme(
+    legend.title = element_blank()
+    )+
+  geom_point()+
+  ggtitle("baseline")
+
+gg_vankrev_base_marginal=ggMarginal(gg_vankrev_base,groupColour = TRUE,groupFill = TRUE)
+save_plot("output/fticr_vankrev_baseline.tiff", gg_vankrev_base_marginal, base_width = 10, base_height = 10)
+
+
+
+# 4b. treatment plots ----
+gg_vankrev_c=
+  ggplot(fticr_soil_hcoc[fticr_soil_hcoc$site=="CPCRW" & 
+                         fticr_soil_hcoc$treatment=="drought" | 
+                         fticr_soil_hcoc$treatment=="saturation"|
+                         fticr_soil_hcoc$treatment=="field moist",], 
+       aes(x = OtoC_ratio, y = HtoC_ratio, color = treatment))+
+  geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("CPCRW")+
+  theme_bw()+
+  theme(
+    legend.position = "top",
+    legend.title = element_blank()
+  )
+
+
+gg_vankrev_d=
+  ggplot(fticr_soil_hcoc[fticr_soil_hcoc$site=="DWP" & 
+                         fticr_soil_hcoc$treatment=="drought" | 
+                         fticr_soil_hcoc$treatment=="saturation"|
+                         fticr_soil_hcoc$treatment=="field moist",], 
+       aes(x = OtoC_ratio, y = HtoC_ratio, color = treatment))+
+  geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("DWP")+
+  theme_bw()+
+  theme(
+    legend.position = "top",
+    legend.title = element_blank()
+  )
+
+
+gg_vankrev_s=
+  ggplot(fticr_soil_hcoc[fticr_soil_hcoc$site=="SR" & 
+                         fticr_soil_hcoc$treatment=="drought" | 
+                         fticr_soil_hcoc$treatment=="saturation"|
+                         fticr_soil_hcoc$treatment=="field moist",], 
+       aes(x = OtoC_ratio, y = HtoC_ratio, color = treatment))+
+  geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("SR")+
+  theme_bw()+
+  theme(
+    legend.position = "top",
+    legend.title = element_blank()
+  )
+
+gg_vankrev_c_marginal=ggMarginal(gg_vankrev_c,groupColour = TRUE,groupFill = TRUE)
+gg_vankrev_d_marginal=ggMarginal(gg_vankrev_d,groupColour = TRUE,groupFill = TRUE)
+gg_vankrev_s_marginal=ggMarginal(gg_vankrev_s,groupColour = TRUE,groupFill = TRUE)
+
+gg_vankrev_combined = plot_grid(gg_vankrev_c_marginal, gg_vankrev_d_marginal,gg_vankrev_s_marginal,
+                                ncol = 3, align = "h", axis = "bt"); gg_vankrev_combined
+
+save_plot("output/fticr_vankrev_treatments.tiff", gg_vankrev_combined, base_width = 20, base_height = 7)
+
+# 4c. new molecules ----
+fticr_soil_newmolecules = read_csv("fticr/fticr_soil_newmolecules.csv")
+
+gg_vankrev_newmolecules = 
+  ggplot(
+  fticr_soil_newmolecules[
+    fticr_soil_newmolecules$newmolecules=="new" & 
+      fticr_soil_newmolecules$site=="SR" &
+      fticr_soil_newmolecules$treatment=="field.moist"|
+      fticr_soil_newmolecules$treatment=="saturation"|
+      fticr_soil_newmolecules$treatment=="drought",],
+       aes(x = OtoC_ratio, y = HtoC_ratio, color = treatment))+
+  geom_point()+
+  ggtitle("new molecules")
+
+gg_vankrev_newmolecules_marginal=ggMarginal(gg_vankrev_newmolecules,groupColour = TRUE,groupFill = TRUE)
+
+gg_vankrev_lostmolecules = 
+  ggplot(
+    fticr_soil_newmolecules[
+      fticr_soil_newmolecules$newmolecules=="lost" & 
+        fticr_soil_newmolecules$site=="SR" &
+        fticr_soil_newmolecules$treatment=="field.moist"|
+        fticr_soil_newmolecules$treatment=="saturation"|
+        fticr_soil_newmolecules$treatment=="drought",],
+    aes(x = OtoC_ratio, y = HtoC_ratio, color = treatment))+
+  geom_point()+
+  ggtitle("SR lost molecules")
+
+gg_vankrev_lostmolecules_marginal=ggMarginal(gg_vankrev_lostmolecules,groupColour = TRUE,groupFill = TRUE)
+
+save_plot("output/fticr_vankrev_newmolecules.tiff", gg_vankrev_newmolecules_marginal, base_width = 10, base_height = 10)
+save_plot("output/fticr_vankrev_lostmolecules.tiff", gg_vankrev_lostmolecules_marginal, base_width = 10, base_height = 10)
+
+
+# 4d. unique molecules ----
+fticr_soil_uniquemolecules = read_csv("fticr/fticr_soil_uniquemolecules.csv")
+
+gg_vankrev_unique_c = 
+  ggplot(fticr_soil_uniquemolecules[fticr_soil_uniquemolecules$site=="CPCRW" &
+                                      fticr_soil_uniquemolecules$unique=="field_moist"|
+                                      fticr_soil_uniquemolecules$unique=="saturation"|
+                                      fticr_soil_uniquemolecules$unique=="drought",],
+         aes(x = OtoC_ratio, y = HtoC_ratio, color = unique))+
+  geom_point()+
+  theme_bw()+
+  theme(
+    legend.position = "top",
+    legend.title = element_blank())+
+  ggtitle("CPCRW unique")
+
+
+gg_vankrev_unique_d = 
+  ggplot(fticr_soil_uniquemolecules[fticr_soil_uniquemolecules$site=="DWP" &
+                                      fticr_soil_uniquemolecules$unique=="field_moist"|
+                                      fticr_soil_uniquemolecules$unique=="saturation"|
+                                      fticr_soil_uniquemolecules$unique=="drought",],
+         aes(x = OtoC_ratio, y = HtoC_ratio, color = unique))+
+  geom_point()+
+  theme_bw()+
+  theme(
+    legend.position = "none")+
+  ggtitle("DWP unique")
+
+
+gg_vankrev_unique_s = 
+  ggplot(fticr_soil_uniquemolecules[fticr_soil_uniquemolecules$site=="SR" &
+                                    fticr_soil_uniquemolecules$unique=="field_moist"|
+                                    fticr_soil_uniquemolecules$unique=="saturation"|
+                                    fticr_soil_uniquemolecules$unique=="drought",],
+       aes(x = OtoC_ratio, y = HtoC_ratio, color = unique))+
+  geom_point()+
+  theme_bw()+
+  theme(
+    legend.position = "none")+
+  ggtitle("SR unique")
+
+gg_vankrev_unique_c_marginal=ggMarginal(gg_vankrev_unique_c,groupColour = TRUE,groupFill = TRUE)
+gg_vankrev_unique_d_marginal=ggMarginal(gg_vankrev_unique_d,groupColour = TRUE,groupFill = TRUE)
+gg_vankrev_unique_s_marginal=ggMarginal(gg_vankrev_unique_s,groupColour = TRUE,groupFill = TRUE)
+
+gg_vankrev_unique_combined = plot_grid(gg_vankrev_unique_c_marginal,
+                                       gg_vankrev_unique_d_marginal,
+                                       gg_vankrev_unique_s_marginal,
+                                       ncol = 3, align = "h", axis = "bt")
+
+save_plot("output/fticr_vankrev_uniquemolecules.tiff", 
+          gg_vankrev_unique_combined, base_width = 20, base_height = 7)
+
+
+
