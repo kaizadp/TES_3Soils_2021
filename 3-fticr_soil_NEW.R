@@ -343,8 +343,6 @@ fticr_soil_gather2 %>%
   mutate(intensity = round(intensity,2))->
   fticr_soil_aromatic
 
-setDT(fticr_soil_melt)[variable=="C1"|variable=="C2"|variable=="C3"|variable=="C4"|variable=="C5" ,treatment := "Time Zero"]
-
 setDT(fticr_soil_aromatic)[AI_Mod>0.5, aromatic := "aromatic"]
 
 ### OUTPUT
