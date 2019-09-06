@@ -308,8 +308,7 @@ fticr_pore_gather_trtsummary_c2 %>%
   fticr_pore_gather_trtsummary_c2
 
 # eighth, create a new column for unique molecules
-setDT(fticr_pore_gather_trtsummary_c2)[time.zero.saturation==1 & saturation==0 & drought==0 & field.moist==0, unique := "time_zero_sat"]
-fticr_pore_gather_trtsummary_c2[time.zero.saturation==0 & saturation==1 & drought==0 & field.moist==0, unique := "saturation"]
+setDT(fticr_pore_gather_trtsummary_c2)[time.zero.saturation==0 & saturation==1 & drought==0 & field.moist==0, unique := "saturation"]
 fticr_pore_gather_trtsummary_c2[time.zero.saturation==0 & saturation==0 & drought==1 & field.moist==0, unique := "drought"]
 fticr_pore_gather_trtsummary_c2[time.zero.saturation==0 & saturation==0 & drought==0 & field.moist==1, unique := "field_moist"]
 
@@ -344,8 +343,7 @@ fticr_pore_gather_trtsummary_d2 %>%
   fticr_pore_gather_trtsummary_d2
 
 #
-setDT(fticr_pore_gather_trtsummary_d2)[time.zero.saturation==1 & saturation==0 & drought==0 & field.moist==0, unique := "time_zero_sat"]
-fticr_pore_gather_trtsummary_d2[time.zero.saturation==0 & saturation==1 & drought==0 & field.moist==0, unique := "saturation"]
+setDT(fticr_pore_gather_trtsummary_d2)[time.zero.saturation==0 & saturation==1 & drought==0 & field.moist==0, unique := "saturation"]
 fticr_pore_gather_trtsummary_d2[time.zero.saturation==0 & saturation==0 & drought==1 & field.moist==0, unique := "drought"]
 fticr_pore_gather_trtsummary_d2[time.zero.saturation==0 & saturation==0 & drought==0 & field.moist==1, unique := "field_moist"]
 
@@ -380,8 +378,7 @@ fticr_pore_gather_trtsummary_s2 %>%
   fticr_pore_gather_trtsummary_s2
 
 #
-setDT(fticr_pore_gather_trtsummary_s2)[time.zero.saturation==1 & saturation==0 & drought==0 & field.moist==0, unique := "time_zero_sat"]
-fticr_pore_gather_trtsummary_s2[time.zero.saturation==0 & saturation==1 & drought==0 & field.moist==0, unique := "saturation"]
+setDT(fticr_pore_gather_trtsummary_s2)[time.zero.saturation==0 & saturation==1 & drought==0 & field.moist==0, unique := "saturation"]
 fticr_pore_gather_trtsummary_s2[time.zero.saturation==0 & saturation==0 & drought==1 & field.moist==0, unique := "drought"]
 fticr_pore_gather_trtsummary_s2[time.zero.saturation==0 & saturation==0 & drought==0 & field.moist==1, unique := "field_moist"]
 

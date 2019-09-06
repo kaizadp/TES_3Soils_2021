@@ -305,93 +305,225 @@ save_plot("output/fticr_pore_vankrev_treatments.tiff", gg_pore_vankrev_combined,
           base_width = 7, base_height = 15)
 
 # 4c. new molecules ----
-fticr_soil_newmolecules = read_csv("fticr/fticr_soil_newmolecules.csv")
+fticr_pore_newmolecules = read_csv("fticr/fticr_pore_newmolecules.csv")
 
-gg_vankrev_newmolecules = 
+# new molecules
+gg_pore_vankrev_newmolecules_c=
   ggplot(
-  fticr_soil_newmolecules[
-    fticr_soil_newmolecules$newmolecules=="new" & 
-      fticr_soil_newmolecules$site=="SR" &
-      fticr_soil_newmolecules$treatment=="field.moist"|
-      fticr_soil_newmolecules$treatment=="saturation"|
-      fticr_soil_newmolecules$treatment=="drought",],
-       aes(x = OtoC_ratio, y = HtoC_ratio, color = treatment))+
+  fticr_pore_newmolecules[
+    fticr_pore_newmolecules$newmolecules=="new" & 
+      fticr_pore_newmolecules$site=="CPCRW",],
+       aes(x = OC, y = HC, color = treatment))+
+  facet_wrap(~tension)+
   geom_point()+
-  ggtitle("new molecules")
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("new molecules: CPCRW")+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
 
-gg_vankrev_newmolecules_marginal=ggMarginal(gg_vankrev_newmolecules,groupColour = TRUE,groupFill = TRUE)
-
-gg_vankrev_lostmolecules = 
+gg_pore_vankrev_newmolecules_d=
   ggplot(
-    fticr_soil_newmolecules[
-      fticr_soil_newmolecules$newmolecules=="lost" & 
-        fticr_soil_newmolecules$site=="SR" &
-        fticr_soil_newmolecules$treatment=="field.moist"|
-        fticr_soil_newmolecules$treatment=="saturation"|
-        fticr_soil_newmolecules$treatment=="drought",],
-    aes(x = OtoC_ratio, y = HtoC_ratio, color = treatment))+
+  fticr_pore_newmolecules[
+    fticr_pore_newmolecules$newmolecules=="new" & 
+      fticr_pore_newmolecules$site=="DWP",],
+  aes(x = OC, y = HC, color = treatment))+
+  facet_wrap(~tension)+
   geom_point()+
-  ggtitle("SR lost molecules")
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("new molecules: DWP")+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
 
-gg_vankrev_lostmolecules_marginal=ggMarginal(gg_vankrev_lostmolecules,groupColour = TRUE,groupFill = TRUE)
+gg_pore_vankrev_newmolecules_s=
+  ggplot(
+  fticr_pore_newmolecules[
+    fticr_pore_newmolecules$newmolecules=="new" & 
+      fticr_pore_newmolecules$site=="SR",],
+  aes(x = OC, y = HC, color = treatment))+
+  facet_wrap(~tension)+
+  geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("new molecules: SR")+
+  theme_bw()+
+  theme(
+    legend.position = "bottom",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
 
-save_plot("output/fticr_vankrev_newmolecules.tiff", gg_vankrev_newmolecules_marginal, base_width = 10, base_height = 10)
-save_plot("output/fticr_vankrev_lostmolecules.tiff", gg_vankrev_lostmolecules_marginal, base_width = 10, base_height = 10)
+
+gg_pore_vankrev_newmolecules = plot_grid(gg_pore_vankrev_newmolecules_c,
+                                         gg_pore_vankrev_newmolecules_d,
+                                         gg_pore_vankrev_newmolecules_s,
+                                         nrow = 3, align = "hv", axis = "bt")  
+
+save_plot("output/fticr_pore_vankrev_newmolecules.tiff", gg_pore_vankrev_newmolecules, 
+          base_width = 6, base_height = 12)
+
+
+# lost molecules
+
+gg_pore_vankrev_lostmolecules_c=
+  ggplot(
+    fticr_pore_newmolecules[
+      fticr_pore_newmolecules$newmolecules=="lost" & 
+        fticr_pore_newmolecules$site=="CPCRW",],
+    aes(x = OC, y = HC, color = treatment))+
+  facet_wrap(~tension)+
+  geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("lost molecules: CPCRW")+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
+
+gg_pore_vankrev_lostmolecules_d=
+  ggplot(
+    fticr_pore_newmolecules[
+      fticr_pore_newmolecules$newmolecules=="lost" & 
+        fticr_pore_newmolecules$site=="DWP",],
+    aes(x = OC, y = HC, color = treatment))+
+  facet_wrap(~tension)+
+  geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("lost molecules: DWP")+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
+
+gg_pore_vankrev_lostmolecules_s=
+  ggplot(
+    fticr_pore_newmolecules[
+      fticr_pore_newmolecules$newmolecules=="lost" & 
+        fticr_pore_newmolecules$site=="SR",],
+    aes(x = OC, y = HC, color = treatment))+
+  facet_wrap(~tension)+
+  geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("lost molecules: SR")+
+  theme_bw()+
+  theme(
+    legend.position = "bottom",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
+
+
+gg_pore_vankrev_lostmolecules = plot_grid(gg_pore_vankrev_lostmolecules_c,
+                                         gg_pore_vankrev_lostmolecules_d,
+                                         gg_pore_vankrev_lostmolecules_s,
+                                         nrow = 3, align = "hv", axis = "bt")  
+
+save_plot("output/fticr_pore_vankrev_lostmolecules.tiff", gg_pore_vankrev_lostmolecules, 
+          base_width = 6, base_height = 12)
+
 
 
 # 4d. unique molecules ----
-fticr_soil_uniquemolecules = read_csv("fticr/fticr_soil_uniquemolecules.csv")
+fticr_pore_uniquemolecules = read_csv("fticr/fticr_pore_uniquemolecules.csv")
 
-gg_vankrev_unique_c = 
-  ggplot(fticr_soil_uniquemolecules[fticr_soil_uniquemolecules$site=="CPCRW" &
-                                      fticr_soil_uniquemolecules$unique=="field_moist"|
-                                      fticr_soil_uniquemolecules$unique=="saturation"|
-                                      fticr_soil_uniquemolecules$unique=="drought",],
-         aes(x = OtoC_ratio, y = HtoC_ratio, color = unique))+
+gg_pore_vankrev_unique_c=
+  ggplot(fticr_pore_uniquemolecules[fticr_pore_uniquemolecules$site=="CPCRW",],
+         aes(x = OC, y = HC, color = unique))+
+  facet_wrap(~tension)+
   geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("unique:CPCRW")+
   theme_bw()+
   theme(
-    legend.position = "top",
-    legend.title = element_blank())+
-  ggtitle("CPCRW unique")
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
 
 
-gg_vankrev_unique_d = 
-  ggplot(fticr_soil_uniquemolecules[fticr_soil_uniquemolecules$site=="DWP" &
-                                      fticr_soil_uniquemolecules$unique=="field_moist"|
-                                      fticr_soil_uniquemolecules$unique=="saturation"|
-                                      fticr_soil_uniquemolecules$unique=="drought",],
-         aes(x = OtoC_ratio, y = HtoC_ratio, color = unique))+
+gg_pore_vankrev_unique_d=
+  ggplot(fticr_pore_uniquemolecules[fticr_pore_uniquemolecules$site=="DWP",],
+       aes(x = OC, y = HC, color = unique))+
+  facet_wrap(~tension)+
   geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("unique: DWP")+
   theme_bw()+
   theme(
-    legend.position = "none")+
-  ggtitle("DWP unique")
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
 
-
-gg_vankrev_unique_s = 
-  ggplot(fticr_soil_uniquemolecules[fticr_soil_uniquemolecules$site=="SR" &
-                                    fticr_soil_uniquemolecules$unique=="field_moist"|
-                                    fticr_soil_uniquemolecules$unique=="saturation"|
-                                    fticr_soil_uniquemolecules$unique=="drought",],
-       aes(x = OtoC_ratio, y = HtoC_ratio, color = unique))+
+gg_pore_vankrev_unique_s=
+  ggplot(fticr_pore_uniquemolecules[fticr_pore_uniquemolecules$site=="SR",],
+       aes(x = OC, y = HC, color = unique))+
+  facet_wrap(~tension)+
   geom_point()+
+  xlim(0,1.25)+
+  ylim(0,3)+
+  ggtitle("unique: SR")+
   theme_bw()+
   theme(
-    legend.position = "none")+
-  ggtitle("SR unique")
+    legend.position = "bottom",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
 
-#gg_vankrev_unique_c_marginal=ggMarginal(gg_vankrev_unique_c,groupColour = TRUE,groupFill = TRUE)
-#gg_vankrev_unique_d_marginal=ggMarginal(gg_vankrev_unique_d,groupColour = TRUE,groupFill = TRUE)
-#gg_vankrev_unique_s_marginal=ggMarginal(gg_vankrev_unique_s,groupColour = TRUE,groupFill = TRUE)
 
-gg_vankrev_unique_combined = plot_grid(gg_vankrev_unique_c_marginal,
-                                       gg_vankrev_unique_d_marginal,
-                                       gg_vankrev_unique_s_marginal,
-                                       ncol = 3, align = "h", axis = "bt")
 
-save_plot("output/fticr_vankrev_uniquemolecules.tiff", 
-          gg_vankrev_unique_combined, base_width = 20, base_height = 7)
+gg_pore_vankrev_unique = plot_grid(gg_pore_vankrev_unique_c,
+                                   gg_pore_vankrev_unique_d,
+                                   gg_pore_vankrev_unique_s,
+                                       nrow = 3, align = "hv", axis = "bt")
+
+save_plot("output/fticr_pore_vankrev_uniquemolecules.tiff", 
+          gg_pore_vankrev_unique, base_width = 6, base_height = 12)
 
 
 
