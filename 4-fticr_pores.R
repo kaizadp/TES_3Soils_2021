@@ -274,9 +274,184 @@ write_csv(fticr_pore_relabundance_summarytable,path = "fticr/fticr_pore_relabund
 
 
 ## step 4: molecules added/lost ----
-## step 4b: unique molecules 
-### ??? DO WE WANT TO DO THESE? it will become way too complex and not sure if it is giving us anything of value.
+
+# first, combine all cores within each treatment
+fticr_pore_gather_trtsummary = summarySE(fticr_pore_gather2, measurevar = "intensity", groupvars = c("site", "treatment","tension", "Mass"))
+
+# second, split the file into three, for the three sites
+fticr_pore_gather_trtsummary_c = fticr_pore_gather_trtsummary[fticr_pore_gather_trtsummary$site=="CPCRW",1:5]
+fticr_pore_gather_trtsummary_d = fticr_pore_gather_trtsummary[fticr_pore_gather_trtsummary$site=="DWP",1:5]
+fticr_pore_gather_trtsummary_s = fticr_pore_gather_trtsummary[fticr_pore_gather_trtsummary$site=="SR",1:5]
+
+# third, make a new column that is binary for presence (1) and absence (0). if N>0, a molecule is present
+setDT(fticr_pore_gather_trtsummary_c)[N>0, presence := "1"]  
+
+# fourth, split the treatment column into five separate columns. this will make further calculations easier.
+fticr_pore_gather_trtsummary_c2 = dcast(fticr_pore_gather_trtsummary_c, Mass+tension ~ treatment, value.var = "presence")
+
+# fifth, replace all NA with 0 for subsequent subtraction
+fticr_pore_gather_trtsummary_c2 %>% 
+  replace(.,is.na(.),0) ->
+  fticr_pore_gather_trtsummary_c2
+
+# sixth, convert all columns into numeric and transform this mess into a dataframe. the mutate functions (next) will not work if it is not a dataframe. fml
+fticr_pore_gather_trtsummary_c2[,3:6] = sapply(fticr_pore_gather_trtsummary_c2[,3:6], as.numeric)
+fticr_pore_gather_trtsummary_c2 = data.frame(fticr_pore_gather_trtsummary_c2)
+
+# seventh, create new columns for molecules added/lost for each treatment. subtract all treatments from baseline
+### THERE ARE NO BASELINE DATA IN THIS DATASET. SO SUBTRACT TZSATURATION INSTEAD OF BASELINE.
+# +1 = new molecule, -1 = lost molecule, 0 = molecule present or absent in treatment&baseline
+fticr_pore_gather_trtsummary_c2 %>% 
+  mutate(drought_new = drought - time.zero.saturation) %>% 
+  mutate(saturation_new = saturation - time.zero.saturation) %>% 
+  mutate(fieldmoist_new = field.moist - time.zero.saturation) ->
+  fticr_pore_gather_trtsummary_c2
+
+# eighth, create a new column for unique molecules
+setDT(fticr_pore_gather_trtsummary_c2)[time.zero.saturation==1 & saturation==0 & drought==0 & field.moist==0, unique := "time_zero_sat"]
+fticr_pore_gather_trtsummary_c2[time.zero.saturation==0 & saturation==1 & drought==0 & field.moist==0, unique := "saturation"]
+fticr_pore_gather_trtsummary_c2[time.zero.saturation==0 & saturation==0 & drought==1 & field.moist==0, unique := "drought"]
+fticr_pore_gather_trtsummary_c2[time.zero.saturation==0 & saturation==0 & drought==0 & field.moist==1, unique := "field_moist"]
+
+# ninth, add 'site' column for when we bind later
+fticr_pore_gather_trtsummary_c2$site="CPCRW"
+
+
+## repeat all steps with DWP
+
+# 
+setDT(fticr_pore_gather_trtsummary_d)[N>0, presence := "1"]  
+
 #
+fticr_pore_gather_trtsummary_d2 = dcast(fticr_pore_gather_trtsummary_d, Mass+tension ~ treatment, value.var = "presence")
+
+#
+fticr_pore_gather_trtsummary_d2 %>% 
+  replace(.,is.na(.),0) ->
+  fticr_pore_gather_trtsummary_d2
+
+#
+fticr_pore_gather_trtsummary_d2[,3:6] = sapply(fticr_pore_gather_trtsummary_d2[,3:6], as.numeric)
+fticr_pore_gather_trtsummary_d2 = data.frame(fticr_pore_gather_trtsummary_d2)
+
+#
+### THERE ARE NO BASELINE DATA IN THIS DATASET. SO SUBTRACT TZSATURATION INSTEAD OF BASELINE.
+# +1 = new molecule, -1 = lost molecule, 0 = molecule present or absent in treatment&baseline
+fticr_pore_gather_trtsummary_d2 %>% 
+  mutate(drought_new = drought - time.zero.saturation) %>% 
+  mutate(saturation_new = saturation - time.zero.saturation) %>% 
+  mutate(fieldmoist_new = field.moist - time.zero.saturation) ->
+  fticr_pore_gather_trtsummary_d2
+
+#
+setDT(fticr_pore_gather_trtsummary_d2)[time.zero.saturation==1 & saturation==0 & drought==0 & field.moist==0, unique := "time_zero_sat"]
+fticr_pore_gather_trtsummary_d2[time.zero.saturation==0 & saturation==1 & drought==0 & field.moist==0, unique := "saturation"]
+fticr_pore_gather_trtsummary_d2[time.zero.saturation==0 & saturation==0 & drought==1 & field.moist==0, unique := "drought"]
+fticr_pore_gather_trtsummary_d2[time.zero.saturation==0 & saturation==0 & drought==0 & field.moist==1, unique := "field_moist"]
+
+#
+fticr_pore_gather_trtsummary_d2$site="DWP"
+
+
+## repeat all steps with SR
+
+# 
+setDT(fticr_pore_gather_trtsummary_s)[N>0, presence := "1"]  
+
+#
+fticr_pore_gather_trtsummary_s2 = dcast(fticr_pore_gather_trtsummary_s, Mass+tension ~ treatment, value.var = "presence")
+
+#
+fticr_pore_gather_trtsummary_s2 %>% 
+  replace(.,is.na(.),0) ->
+  fticr_pore_gather_trtsummary_s2
+
+#
+fticr_pore_gather_trtsummary_s2[,3:6] = sapply(fticr_pore_gather_trtsummary_s2[,3:6], as.numeric)
+fticr_pore_gather_trtsummary_s2 = data.frame(fticr_pore_gather_trtsummary_s2)
+
+#
+### THERE ARE NO BASELINE DATA IN THIS DATASET. SO SUBTRACT TZSATURATION INSTEAD OF BASELINE.
+# +1 = new molecule, -1 = lost molecule, 0 = molecule present or absent in treatment&baseline
+fticr_pore_gather_trtsummary_s2 %>% 
+  mutate(drought_new = drought - time.zero.saturation) %>% 
+  mutate(saturation_new = saturation - time.zero.saturation) %>% 
+  mutate(fieldmoist_new = field.moist - time.zero.saturation) ->
+  fticr_pore_gather_trtsummary_s2
+
+#
+setDT(fticr_pore_gather_trtsummary_s2)[time.zero.saturation==1 & saturation==0 & drought==0 & field.moist==0, unique := "time_zero_sat"]
+fticr_pore_gather_trtsummary_s2[time.zero.saturation==0 & saturation==1 & drought==0 & field.moist==0, unique := "saturation"]
+fticr_pore_gather_trtsummary_s2[time.zero.saturation==0 & saturation==0 & drought==1 & field.moist==0, unique := "drought"]
+fticr_pore_gather_trtsummary_s2[time.zero.saturation==0 & saturation==0 & drought==0 & field.moist==1, unique := "field_moist"]
+
+#
+fticr_pore_gather_trtsummary_s2$site="SR"
+
+
+
+
+### now, combine all three dataframes
+
+fticr_pore_new = rbind (fticr_pore_gather_trtsummary_c2,fticr_pore_gather_trtsummary_d2,fticr_pore_gather_trtsummary_s2)
+
+## remove the presence/absence columns, they are now unnecessary
+fticr_pore_new = data.frame(fticr_pore_new[,-c(3:6)])
+fticr_pore_new[,3:5] = sapply(fticr_pore_new[,3:5], as.factor)
+
+## recode 1, -1 to presence and absence. do this in new columnns
+## this dataframe now has the original numeric coding for new/lost, the new character coding for new/lost, and a column for unique molecules in each treatment
+
+fticr_pore_new %>% 
+  mutate(drought = case_when(
+    drought_new=="1"~"new",
+    drought_new=="-1"~"lost")) %>% 
+  mutate(saturation = case_when(
+    saturation_new=="1"~"new",
+    saturation_new=="-1"~"lost")) %>%
+  mutate(field.moist = case_when(
+    fieldmoist_new=="1"~"new",
+    fieldmoist_new=="-1"~"lost"))  ->
+  fticr_pore_new
+
+## subset only the character coding columns for new/lost 
+fticr_pore_new %>% 
+  select("Mass","site","tension","saturation","field.moist","drought")->
+  fticr_pore_new2
+
+## melt/gather into long-form. make new columns for treatment and newmolecules
+fticr_pore_new2 = (fticr_pore_new2) %>% 
+  gather(treatment, newmolecules,saturation:drought)
+
+## remove NA
+fticr_pore_new2 = fticr_pore_new2[complete.cases(fticr_pore_new2),]
+
+## merge the file with the metadata
+
+fticr_pore_new3 = merge(fticr_pore_meta,fticr_pore_new2, by = "Mass")
+
+## OUTPUT
+write_csv(fticr_pore_new3, path = "fticr/fticr_pore_newmolecules.csv")
+
+
+#
+## step 4b: unique molecules ----
+
+fticr_pore_unique = fticr_pore_new %>% 
+  select("Mass","site","tension","unique")
+
+## remove NA
+fticr_pore_unique = fticr_pore_unique[complete.cases(fticr_pore_unique),]
+
+## merge the file with metadata
+
+fticr_pore_unique2 = merge(fticr_pore_meta, fticr_pore_unique, by = "Mass")
+
+## OUTPUT
+write_csv(fticr_pore_unique2, path = "fticr/fticr_pore_uniquemolecules.csv")
+
+
+
 ## step 5: HC, OC data for van krevelen ----
 
 # subset only select columns from fticr_soil_gather2
