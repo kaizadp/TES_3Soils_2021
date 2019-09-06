@@ -10,7 +10,10 @@ source("0-packages.R")
 ## do NOT source scripts 3 & 4.
 
 ## 1: aromatic peaks - summary ----
-fticr_pore_aromatic = read_csv("fticr/fticr_pore_aromatic.csv")
+fticr_pore_aromatic = read_csv("fticr/fticr_pore_aromatic_counts.csv")
+
+fticr_pore_aromatic_core_counts = summarySE()
+
 
 fticr_pore_aromatic %>% 
   mutate(treatment = factor(treatment,
@@ -21,7 +24,9 @@ gg_pore_aromaticpeaks_50=
   ggplot(fticr_pore_aromatic[
     fticr_pore_aromatic$tension=="50 kPa" ,], 
        aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
-  geom_boxplot(fill = "white")+
+  geom_boxplot(position = "dodge", fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
+  geom_dotplot(binaxis = "y",position = position_dodge(0.75), stackdir = "center", 
+               dotsize = 0.3, color = "black")+
   ylab("aromatic peaks")+
   ylim(0,350)+
   geom_vline(xintercept = 1.5)+
@@ -41,7 +46,9 @@ gg_pore_aromaticpeaks_1=
   ggplot(fticr_pore_aromatic[
   fticr_pore_aromatic$tension=="1.5 kPa" ,], 
   aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
-  geom_boxplot(fill = "white")+
+  geom_boxplot(position = "dodge", fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
+  geom_dotplot(binaxis = "y",position = position_dodge(0.75), 
+               stackdir = "center", dotsize = 0.3, color = "black")+
   ylab("aromatic peaks")+
   ylim(0,350)+
   geom_vline(xintercept = 1.5)+
@@ -66,7 +73,7 @@ save_plot("output/fticr_pore_aromaticpeaks.tiff", gg_pore_aromaticpeaks,
 
 
 #
-## 2: NOSC plots ----
+## 2a: NOSC plots overlaid ----
 fticr_pore_nosc = read_csv("fticr/fticr_pore_nosc.csv")
 
 fticr_pore_nosc %>% 
@@ -76,15 +83,15 @@ fticr_pore_nosc %>%
 
 gg_pore_nosc_c=
   ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="CPCRW" &!fticr_pore_nosc$treatment=="baseline",], 
-         aes(x = NOSC, fill = treatment))+
-  geom_histogram(binwidth = 0.25, color = "black")+
+         aes(x = NOSC, fill = treatment, color = treatment))+
+  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+ # position = "identity" makes it overlaid. position = "dodge" makes them staggered
   facet_wrap(~tension)+
   xlim(-2.5, 2.5)+
-  ylim(0,10000)+
+  ylim(0,4000)+
   ggtitle("CPCRW")+
   theme_bw()+
   theme(
-    legend.position = "none",
+    legend.position = "top",
     legend.title=element_blank(),
     legend.text=element_text(size=12),
     panel.border=element_rect(color="black",fill = NA, size=1.5),
@@ -135,7 +142,117 @@ save_plot("output/fticr_pore_nosc.tiff", gg_pore_nosc_combined,
           base_width = 7, base_height = 10)
 
 #
+## 2b: NOSC plots boxplot ----
+fticr_pore_nosc = read_csv("fticr/fticr_pore_nosc.csv")
 
+fticr_pore_nosc %>% 
+  mutate(treatment = factor(treatment,
+                            levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
+  fticr_pore_nosc
+
+gg_pore_nosc_boxplot = ggplot(fticr_pore_nosc[!fticr_pore_nosc$treatment=="baseline",], 
+       aes(x = site,y = NOSC, fill = treatment, color = treatment))+
+  #geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
+  geom_boxplot(width = 0.5, position = position_dodge(0.7), fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
+  geom_vline(xintercept = 1.5)+
+  geom_vline(xintercept = 2.5)+
+  #geom_dotplot(binaxis = "y",position = position_dodge(0.75), stackdir = "center", dotsize = 0.3, color = "black")+
+  facet_wrap(~tension)+
+  #xlim(-2.5, 2.5)+
+  #ylim(0,4000)+
+  #ggtitle("CPCRW")+
+  theme_bw()+
+  theme(
+    legend.position = "top",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
+
+save_plot("output/fticr_pore_nosc_boxplot.tiff", gg_pore_nosc_boxplot, 
+          base_width = 15, base_height = 5)
+
+#
+
+## 2c: NOSC plots individual treatment ----
+fticr_pore_nosc = read_csv("fticr/fticr_pore_nosc.csv")
+
+fticr_pore_nosc %>% 
+  mutate(treatment = factor(treatment,
+                            levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
+  fticr_pore_nosc
+
+gg_pore_nosc_c_trt=
+  ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="CPCRW" &!fticr_pore_nosc$treatment=="baseline",], 
+       aes(x = NOSC, fill = treatment, color = treatment))+
+  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
+  facet_grid(treatment~tension)+ #facet with two variables
+  xlim(-2.5, 2.5)+
+  ylim(0,4000)+
+  ggtitle("CPCRW")+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
+
+
+gg_pore_nosc_d_trt=
+  ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="DWP" &!fticr_pore_nosc$treatment=="baseline",], 
+         aes(x = NOSC, fill = treatment, color = treatment))+
+  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
+  facet_grid(treatment~tension)+
+  xlim(-2.5, 2.5)+
+  ylim(0,4000)+
+  ggtitle("DWP")+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
+
+
+gg_pore_nosc_s_trt=
+  ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="SR" &!fticr_pore_nosc$treatment=="baseline",], 
+         aes(x = NOSC, fill = treatment, color = treatment))+
+  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
+  facet_grid(treatment~tension)+
+  xlim(-2.5, 2.5)+
+  ylim(0,4000)+
+  ggtitle("SR")+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
+
+save_plot("output/fticr_pore_nosc_cpcrw.tiff", gg_pore_nosc_c_trt, 
+          base_width = 7, base_height = 10)
+save_plot("output/fticr_pore_nosc_dwp.tiff", gg_pore_nosc_d_trt, 
+          base_width = 7, base_height = 10)
+save_plot("output/fticr_pore_nosc_sr.tiff", gg_pore_nosc_s_trt, 
+          base_width = 7, base_height = 10)
+
+
+#
 ## 3: plot kendrick ----
 fticr_pore_kendrick = read_csv("fticr/fticr_pore_kendrick.csv")
 

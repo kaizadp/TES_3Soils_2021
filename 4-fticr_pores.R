@@ -528,8 +528,8 @@ fticr_pore_aromatic = fticr_pore_aromatic[complete.cases(fticr_pore_aromatic),]
 write_csv(fticr_pore_aromatic,path = "fticr/fticr_pore_aromatic.csv")
 
 # summary by treatment. then remove NA to keep only aromatic counts
-fticr_pore_aromatic_counts = summarySE(fticr_pore_aromatic, measurevar = "arom_core_counts", groupvars = c("aromatic","site","treatment","tension"))
-fticr_pore_aromatic_counts = fticr_pore_aromatic[complete.cases(fticr_pore_aromatic),]
+fticr_pore_aromatic_counts = summarySE(fticr_pore_aromatic, measurevar = "arom_core_counts", groupvars = c("core","aromatic","site","treatment","tension"))
+fticr_pore_aromatic_counts = fticr_pore_aromatic_counts[complete.cases(fticr_pore_aromatic_counts),]
 
 ### OUTPUT
 # write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
