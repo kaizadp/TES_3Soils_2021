@@ -141,9 +141,8 @@ fticr_pore_kendrick = read_csv("fticr/fticr_pore_kendrick.csv")
 
 ## plotting kmd with only three treatments
 
-gg_kendrick_c
-
-ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="CPCRW"&
+gg_pore_kendrick_c= 
+  ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="CPCRW"&
                              !fticr_pore_kendrick$treatment=="time zero saturation",], 
        aes(x = kmass, y = kdefect, color = treatment))+
   geom_point(size=0.5)+
@@ -163,7 +162,8 @@ ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="CPCRW"&
     axis.title=element_text(size=14,color="black",face="bold")
   )
 
-ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="DWP"&
+gg_pore_kendrick_d= 
+  ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="DWP"&
                              !fticr_pore_kendrick$treatment=="time zero saturation",], 
        aes(x = kmass, y = kdefect, color = treatment))+
   geom_point(size=0.5)+
@@ -183,7 +183,8 @@ ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="DWP"&
     axis.title=element_text(size=14,color="black",face="bold")
   )
 
-ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="SR"&
+gg_pore_kendrick_s= 
+  ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="SR"&
                              !fticr_pore_kendrick$treatment=="time zero saturation",], 
        aes(x = kmass, y = kdefect, color = treatment))+
   geom_point(size=0.5)+
@@ -204,15 +205,13 @@ ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="SR"&
   )
 
 
+gg_pore_kendrick = plot_grid(gg_pore_kendrick_c,
+                             gg_pore_kendrick_d,
+                             gg_pore_kendrick_s,
+                             nrow = 3, align = "hv", axis = "bt")
 
-
-
-
-gg_kendrick_combined = plot_grid(gg_kendrick_c,gg_kendrick_d,gg_kendrick_s,
-                                 ncol = 3, align = "h", axis = "bt")
-
-save_plot("output/fticr_kendrick.tiff", gg_kendrick_combined, 
-          base_width = 20, base_height = 7)
+save_plot("output/fticr_pore_kendrick.tiff", gg_pore_kendrick, 
+          base_width = 5, base_height = 10)
 
 #
 

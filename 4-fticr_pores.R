@@ -497,7 +497,7 @@ iupac_ch2 = 14.01565
 
 fticr_pore_kendrick %>% 
   mutate(kmass = Mass*nominal_ch2/iupac_ch2) %>% 
-  mutate(kmd = as.integer(Mass) - kmass) ->
+  mutate(kdefect = as.integer(Mass) - kmass) ->
   fticr_pore_kendrick
 
 ### OUTPUT
