@@ -480,18 +480,29 @@ write_csv(fticr_pore_nosc,path = "fticr/fticr_pore_nosc.csv")
 #
 
 ## step 7: kendrick mass data ----
-# subset
+# subset relevant columns, and then create new columns for kendrickmass and kendrickmassdefect
 
-#fticr_pore_gather2 %>% 
-  select("core","Mass","kmass","kdefect","intensity") %>% 
-  mutate(kmass = round(kmass,2)) %>% 
-  mutate(kdefect = round(kdefect,4)) %>% 
+fticr_pore_gather2 %>% 
+  select(core,site,treatment,tension,Mass,intensity) %>% 
   mutate(intensity = round(intensity,2))  ->
+  fticr_pore_kendrick
+
+
+# kendrick mass = Mass * 14.00000/14.01565
+# kendrick mass defect = nominal mass - kendrick mass.  (nominal mass = integer of mass)
+# https://en.wikipedia.org/wiki/Kendrick_mass
+
+nominal_ch2 = 14.00000
+iupac_ch2 = 14.01565
+
+fticr_pore_kendrick %>% 
+  mutate(kmass = Mass*nominal_ch2/iupac_ch2) %>% 
+  mutate(kmd = as.integer(Mass) - kmass) ->
   fticr_pore_kendrick
 
 ### OUTPUT
 # write.csv(fticr_soil_kendrick,"fticr_soil_kendrick.csv")
-write_csv(fticr_soil_kendrick,path = "fticr/fticr_soil_kendrick.csv")
+write_csv(fticr_pore_kendrick,path = "fticr/fticr_pore_kendrick.csv")
 
 #
 

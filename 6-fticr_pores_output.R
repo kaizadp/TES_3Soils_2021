@@ -139,57 +139,74 @@ save_plot("output/fticr_pore_nosc.tiff", gg_pore_nosc_combined,
 ## 3: plot kendrick ----
 fticr_pore_kendrick = read_csv("fticr/fticr_pore_kendrick.csv")
 
-fticr_soil_kendrick %>% 
-  mutate(treatment = factor(treatment,
-                            levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
-  fticr_soil_kendrick
-
-
 ## plotting kmd with only three treatments
 
 gg_kendrick_c
 
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="CPCRW" & 
-                             fticr_soil_kendrick$treatment=="drought" | 
-                             fticr_soil_kendrick$treatment=="saturation"|
-                             fticr_soil_kendrick$treatment=="field moist",], 
+ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="CPCRW"&
+                             !fticr_pore_kendrick$treatment=="time zero saturation",], 
        aes(x = kmass, y = kdefect, color = treatment))+
   geom_point(size=0.5)+
   facet_wrap(~tension)+
   xlim(200,900)+
   ylim(0,1)+
-  theme_bw()+
   theme(legend.position = "top",
         legend.title = element_blank())+
-  ggtitle("CPCRW")
+  ggtitle("CPCRW")+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
 
-
-gg_kendrick_d=
-  ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="DWP"& 
-                             fticr_soil_kendrick$treatment=="drought" | 
-                             fticr_soil_kendrick$treatment=="saturation"|
-                             fticr_soil_kendrick$treatment=="field moist",], 
+ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="DWP"&
+                             !fticr_pore_kendrick$treatment=="time zero saturation",], 
        aes(x = kmass, y = kdefect, color = treatment))+
   geom_point(size=0.5)+
+  facet_wrap(~tension)+
   xlim(200,900)+
   ylim(0,1)+
-  theme_bw()+
   theme(legend.position = "top",
         legend.title = element_blank())+
-  ggtitle("DWP")
+  ggtitle("DWP")+
+  theme_bw()+
+  theme(
+    legend.position = "none",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
 
-
-gg_kendrick_s=
-  ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="SR" & 
-                             fticr_soil_kendrick$treatment=="drought" | fticr_soil_kendrick$treatment=="saturation"|fticr_soil_kendrick$treatment=="field moist",], 
+ggplot(fticr_pore_kendrick[fticr_pore_kendrick$site=="SR"&
+                             !fticr_pore_kendrick$treatment=="time zero saturation",], 
        aes(x = kmass, y = kdefect, color = treatment))+
   geom_point(size=0.5)+
+  facet_wrap(~tension)+
   xlim(200,900)+
   ylim(0,1)+
-  theme_bw()+
   theme(legend.position = "top",
         legend.title = element_blank())+
-  ggtitle("SR")
+  ggtitle("SR")+
+  theme_bw()+
+  theme(
+    legend.position = "bottom",
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",fill = NA, size=1.5),
+    axis.text=element_text(size=12,color="black"),
+    axis.title=element_text(size=14,color="black",face="bold")
+  )
+
+
+
+
+
 
 gg_kendrick_combined = plot_grid(gg_kendrick_c,gg_kendrick_d,gg_kendrick_s,
                                  ncol = 3, align = "h", axis = "bt")
