@@ -8,14 +8,14 @@ source("0-packages.R")
 
 ## step 1: load the files ----
 
-fticr_porewater = read_csv("data/FTICR_INPUT_SOILPORE.csv")
+fticr_porewater = read_csv("data/FTICR_INPUT_SOILPORE.csv.zip")
 corekey = read.csv("data/COREKEY.csv")
 
 ### need to use google sheets instead of csv files
 # https://drive.google.com/file/d/1dMjnCnMUYa5XY2ypVjz2HBQKx7E0YJY1/view?usp=sharing
 # use report sn3
 
-write_csv(fticr_porewater, path = "fticr/fticr_porewater.csv")
+# write_csv(fticr_porewater, path = "fticr/fticr_porewater.csv")
 
 #
 ## step 2: clean and process ----
@@ -173,7 +173,7 @@ fticr_pore_gather %>%
   mutate(core = substr(variable,start=3,stop=7)) %>% 
   mutate(tension = case_when(
     tension_2=="1"~"1.5 kPa",
-    tension_2=="50"~"50 kPa")) ->
+    tension_2=="5"~"50 kPa")) ->
   fticr_pore_gather
 
 fticr_pore_gather %>% 
@@ -310,12 +310,12 @@ write_csv(fticr_pore_nosc,path = "fticr/fticr_pore_nosc.csv")
 ## step 7: kendrick mass data ----
 # subset
 
-fticr_soil_gather2 %>% 
+#fticr_pore_gather2 %>% 
   select("core","Mass","kmass","kdefect","intensity") %>% 
   mutate(kmass = round(kmass,2)) %>% 
   mutate(kdefect = round(kdefect,4)) %>% 
   mutate(intensity = round(intensity,2))  ->
-  fticr_soil_kendrick
+  fticr_pore_kendrick
 
 ### OUTPUT
 # write.csv(fticr_soil_kendrick,"fticr_soil_kendrick.csv")
@@ -332,14 +332,17 @@ fticr_pore_gather2 %>%
 
 setDT(fticr_pore_aromatic)[AImod>0.5, aromatic := "aromatic"]
 
-### OUTPUT
-# write.csv(fticr_soil_aromatic,"fticr_soil_aromatic.csv")
-write_csv(fticr_pore_aromatic,path = "fticr/fticr_pore_aromatic.csv")
-
 fticr_pore_aromatic %>% 
   group_by(site, treatment, core, tension,aromatic) %>% 
   dplyr::mutate(arom_core_counts = n()) ->
   fticr_pore_aromatic
+
+## remove the non-aromatic peaks
+fticr_pore_aromatic = fticr_pore_aromatic[complete.cases(fticr_pore_aromatic),]
+
+### OUTPUT
+# write.csv(fticr_soil_aromatic,"fticr_soil_aromatic.csv")
+write_csv(fticr_pore_aromatic,path = "fticr/fticr_pore_aromatic.csv")
 
 # summary by treatment. then remove NA to keep only aromatic counts
 fticr_pore_aromatic_counts = summarySE(fticr_pore_aromatic, measurevar = "arom_core_counts", groupvars = c("aromatic","site","treatment","tension"))

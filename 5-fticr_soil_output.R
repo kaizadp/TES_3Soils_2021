@@ -12,10 +12,27 @@ source("0-packages.R")
 ## 1: aromatic peaks - summary ----
 fticr_soil_aromatic = read_csv("fticr/fticr_soil_aromatic.csv")
 
-ggplot(fticr_soil_aromatic[fticr_soil_aromatic$aromatic=="aromatic",], 
+fticr_soil_aromatic %>% 
+  mutate(treatment = factor(treatment,
+                            levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
+  fticr_soil_aromatic
+
+gg_aromaticpeaks = ggplot(fticr_soil_aromatic[fticr_soil_aromatic$aromatic=="aromatic",], 
        aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
   geom_boxplot(fill = "white")+
-  theme_bw()
+  ylab("aromatic peaks")+
+  geom_vline(xintercept = 1.5)+
+  geom_vline(xintercept = 2.5)+
+  theme_bw()+
+  theme(
+    legend.title=element_blank(),
+    legend.text=element_text(size=12),
+    panel.border=element_rect(color="black",size=1.5),
+    axis.text=element_text(size=12,color="black"),axis.title=element_text(size=14,color="black",face="bold")
+    )
+save_plot("output/fticr_aromaticpeaks.tiff", gg_aromaticpeaks, 
+          base_width = 12, base_height = 10)
+
 
 
 #
@@ -107,8 +124,6 @@ save_plot("output/fticr_kendrick.tiff", gg_kendrick_combined,
           base_width = 20, base_height = 7)
 
 #
-
-
 
 
 ## 4: van krevelen plots ----

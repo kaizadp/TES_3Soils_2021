@@ -8,16 +8,10 @@ source("0-packages.R")
 
 ## step 1: load and merge the files ----
 # data are split into (a) metadata and (b) sample data
-
-fticr_soil_meta = read_csv("data/FTICR_INPUT_SOIL_META.csv")
-fticr_soil_data = read_csv("data/FTICR_INPUT_SOIL_DATA.csv")
+# read_cvs reads the zipped files without extracting
+fticr_soil_meta = read_csv("data/FTICR_INPUT_SOIL_META.csv.zip")
+fticr_soil_data = read_csv("data/FTICR_INPUT_SOIL_DATA.csv.zip")
 corekey = read.csv("data/COREKEY.csv")
-
-### need to use google sheets instead of csv files
-# fticr_soil_data = gsheet2tbl("drive.google.com/file/d/13gofVxF40vrMGn3joIdSgJ23KFOLbBoj")
-# data = https://drive.google.com/file/d/13gofVxF40vrMGn3joIdSgJ23KFOLbBoj/view?usp=sharing
-# meta = https://drive.google.com/file/d/1u0IviOr0emtt_S1MY_PKRi863CibSIFE/view?usp=sharing
-
 
 # remove unnecessary columns from meta
 
@@ -353,6 +347,7 @@ fticr_soil_aromatic %>%
   dplyr::mutate(arom_core_counts = n()) ->
   fticr_soil_aromatic
 
+fticr_soil_aromatic = fticr_soil_aromatic[complete.cases(fticr_soil_aromatic),]
 write_csv(fticr_soil_aromatic,path = "fticr/fticr_soil_aromatic.csv")
 
 # summary by treatment. then remove NA to keep only aromatic counts
@@ -364,46 +359,3 @@ fticr_soil_aromatic_counts = fticr_soil_aromatic_counts[complete.cases(fticr_soi
 write_csv(fticr_soil_aromatic_counts,path = "fticr/fticr_soil_aromatic_counts.csv")
 
 #
-
-## MOVE TO NEW SCRIPT step 8b: aromatic peaks - summary ----
-
-
-
-ggplot(fticr_soil_aromatic_counts, aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
-  geom_bar(stat="summary",width=0.1,position=position_dodge(0.7),size=1)+
-  geom_errorbar(aes(ymin=`arom_core_counts`-se, ymax=`arom_core_counts`+se),width=0.3,position=position_dodge(0.7),color="black",size=1)
-  
-
-#
-## MOVE TO NEW SCRIPT step 5: van krevelen plots ----
-
-#
-## MOVE TO NEW SCRIPT step 7: NOSC plots ----
-
-ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="CPCRW",], aes(x = NOSC, fill = treatment))+
-  geom_histogram(binwidth = 0.25, color = "black")+
-  xlim(-2.5, 2.5)
-
-ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="DWP",], aes(x = NOSC, fill = treatment))+
-  geom_histogram(binwidth = 0.25, color = "black")
-
-ggplot(fticr_soil_nosc[fticr_soil_nosc$site=="SR",], aes(x = NOSC, fill = treatment))+
-  geom_histogram(binwidth = 0.25, color = "black")
-
-#
-
-## MOVE TO NEW SCRIPT step 9: plot kendrick ----
-
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="CPCRW" & 
-                             fticr_soil_kendrick$treatment=="drought" | fticr_soil_kendrick$treatment=="saturation"|fticr_soil_kendrick$treatment=="field moist",], 
-       aes(x = kmass, y = kdefect, color = treatment, shape = treatment))+
-  geom_point(size=0.5)
-
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="DWP",], aes(x = kmass, y = kdefect, color = treatment))+
-  geom_point(size=1)
-
-ggplot(fticr_soil_kendrick[fticr_soil_kendrick$site=="SR",], aes(x = kmass, y = kdefect, color = treatment))+
-  geom_point(size=1)
-#
-
-
