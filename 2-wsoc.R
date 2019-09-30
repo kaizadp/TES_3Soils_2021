@@ -199,7 +199,7 @@ write.csv(wsoc_pore_summary, file="wsoc_pores_summary.csv")
 #
 
 ## WSOC concentrations -- soils ---- ----
-wsoc_soils = read_excel("3Soils_WSOC_CN_PoreCore_soils.xlsx")
+wsoc_soils = read_excel("data/3Soils_WSOC_CN_PoreCore_soils.xlsx")
 names(wsoc_soils)
 wsoc_soils$wsoc_mg_g = wsoc_soils$`WSOC mgCg-1soil`
 wsoc_soils$Treatment = factor(wsoc_soils$Treatment,
@@ -214,7 +214,7 @@ wsoc_soils$Treatment = factor(wsoc_soils$Treatment,
 
 wsoc_soils_rmisc = summarySE(wsoc_soils,measurevar = "wsoc_mg_g",groupvars = c("Site","Treatment"),na.rm = TRUE)
 wsoc_soils_rmisc = wsoc_soils_rmisc[complete.cases(wsoc_soils_rmisc),]
-wsoc_soils_rmisc$WSOC_mg_g = paste(round(wsoc_soils_rmisc$wsoc_mg_g,3),"\u00B1",round(wsoc_soils_rmisc$se,3))
+wsoc_soils_rmisc$WSOC_mg_g = paste(round(wsoc_soils_rmisc$wsoc_mg_g,2),"\u00B1",round(wsoc_soils_rmisc$se,2))
 #\u00b1 is plus-minus
 
 wsoc_soils_summary = dcast(wsoc_soils_rmisc,Treatment~Site,value.var = "WSOC_mg_g") 
