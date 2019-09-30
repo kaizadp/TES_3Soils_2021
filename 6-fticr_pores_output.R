@@ -20,6 +20,7 @@ fticr_pore_aromatic %>%
                             levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
   fticr_pore_aromatic
 
+## splitting by peaks 
 gg_pore_aromaticpeaks_50=
   ggplot(fticr_pore_aromatic[
     fticr_pore_aromatic$tension=="50 kPa" ,], 
