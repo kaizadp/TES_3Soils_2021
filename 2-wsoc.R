@@ -7,7 +7,7 @@ source("0-packages.R")
 
 
 ## WSOC concentrations -- pores ####
-wsoc_pores = read_excel("3Soils_WSOC_CN_PoreCore.xlsx")
+wsoc_pores = read_excel("data/3Soils_WSOC_CN_PoreCore.xlsx")
 names(wsoc_pores)
 
 wsoc_pores$wsoc = wsoc_pores$`Water Soluble Organic Carbon (mg/L)`
@@ -41,7 +41,8 @@ gg_wsoc_pores_cpcrw = ggplot(wsoc_rmisc_cpcrw,
   geom_point(data = wsoc_cpcrw,aes(x = Treatment, y = wsoc),color = "black",position = position_dodge(0.6))+
   
   labs (y = expression (bold ("WSOC, mg L"^-1),
-                        x = expression (bold (" "))))+
+                        x = expression (bold (""))))+
+  xlab("")+
   ylim(0,350)+
   
   annotate("text", label = "B", x = 0.85, y = 70 ,size=4,fontface="bold")+ 
@@ -65,7 +66,7 @@ gg_wsoc_pores_cpcrw = ggplot(wsoc_rmisc_cpcrw,
   theme (plot.title = element_text(hjust = 0.05,size = 14))+
   theme (axis.text=element_text(size=14,face="bold",color="black"),
          axis.title=element_text(size=14,face="bold",color="black")); gg_wsoc_pores_cpcrw
-save_plot("wsoc_cpcrw.tiff", gg_wsoc_pores_cpcrw, base_aspect_ratio = 2)
+save_plot("output/wsoc_cpcrw.tiff", gg_wsoc_pores_cpcrw, base_height = 10, base_width = 10)
 
 gg_wsoc_pores_dwp = ggplot(wsoc_rmisc_dwp, 
                      aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
@@ -76,6 +77,7 @@ gg_wsoc_pores_dwp = ggplot(wsoc_rmisc_dwp,
   
   labs (y = expression (bold ("WSOC, mg L"^-1),
                         x = expression (bold (" "))))+
+  xlab("")+
   ylim(0,350)+
   
   annotate("text", label = "A", x = 0.85, y = 170 ,size=4,fontface="bold")+ 
@@ -99,7 +101,7 @@ gg_wsoc_pores_dwp = ggplot(wsoc_rmisc_dwp,
   theme (plot.title = element_text(hjust = 0.05,size = 14))+
   theme (axis.text=element_text(size=14,face="bold",color="black"),
          axis.title=element_text(size=14,face="bold",color="black")); gg_wsoc_pores_dwp
-save_plot("wsoc_dwp.tiff", gg_wsoc_pores_dwp, base_aspect_ratio = 2)
+save_plot("wsoc_dwp.tiff", gg_wsoc_pores_dwp, base_height = 10, base_width = 10)
 
 
 gg_wsoc_pores_sr = ggplot(wsoc_rmisc_sr, 
@@ -110,6 +112,7 @@ gg_wsoc_pores_sr = ggplot(wsoc_rmisc_sr,
   
   labs (y = expression (bold ("WSOC, mg L"^-1),
                         x = expression (bold (" "))))+
+  xlab("")+
   ylim(0,350)+
   
   annotate("text", label = "B", x = 0.85, y = 20 ,size=4,fontface="bold")+ 
@@ -133,10 +136,10 @@ gg_wsoc_pores_sr = ggplot(wsoc_rmisc_sr,
   theme (plot.title = element_text(hjust = 0.05,size = 14))+
   theme (axis.text=element_text(size=14,face="bold",color="black"),
          axis.title=element_text(size=14,face="bold",color="black")); gg_wsoc_pores_sr
-save_plot("wsoc_sr.tiff", gg_wsoc_pores_sr,base_aspect_ratio = 2)
+save_plot("wsoc_sr.tiff", gg_wsoc_pores_sr,base_height = 10, base_width = 10)
 
-porewater = plot_grid(gg_wsoc_pores_cpcrw,gg_wsoc_pores_dwp,gg_wsoc_pores_sr,nrow=2,ncol=2,align="hv");porewater
-save_plot("wsoc_pores.tiff",porewater, base_width =12, base_height = 12)
+porewater = plot_grid(gg_wsoc_pores_cpcrw,gg_wsoc_pores_dwp,gg_wsoc_pores_sr,nrow=2,ncol=2,align="hv", axis = "bt");porewater
+save_plot("output/wsoc_pores.tiff",porewater, base_width =12, base_height = 12)
 
 
 plot_grid(gg_wsoc_pores_cpcrw,gg_wsoc_pores_dwp, gg_wsoc_pores_sr,
