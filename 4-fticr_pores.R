@@ -233,7 +233,7 @@ fticr_pore_groups_wide %>%
 ## relative abundance:
 # split the dataset into (a) just the abundance values for easy calculations, and (b) the core key. Then combine again.
 fticr_pore_groups_wide[,-c(1:4)] %>% 
-  sapply('/', fticr_pore_groups_wide$total)->
+  sapply('/', fticr_pore_groups_wide$total/100)->
   fticr_pore_abundance
 
 fticr_pore_abundance2 = data.frame(fticr_pore_abundance)
