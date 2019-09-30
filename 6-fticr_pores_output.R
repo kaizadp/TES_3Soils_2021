@@ -12,9 +12,6 @@ source("0-packages.R")
 ## 1: aromatic peaks - summary ----
 fticr_pore_aromatic = read_csv("fticr/fticr_pore_aromatic_counts.csv")
 
-fticr_pore_aromatic_core_counts = summarySE()
-
-
 fticr_pore_aromatic %>% 
   mutate(treatment = factor(treatment,
                             levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
@@ -67,10 +64,38 @@ gg_pore_aromaticpeaks_1=
 
 gg_pore_aromaticpeaks = plot_grid(gg_pore_aromaticpeaks_1, gg_pore_aromaticpeaks_50,
                                   ncol = 2, align = "hv", axis = "bt")
-  
-save_plot("output/fticr_pore_aromaticpeaks.tiff", gg_pore_aromaticpeaks, 
-          base_width = 20, base_height = 10)
 
+## doing facet
+gg_pore_aromaticpeaks = ggplot(fticr_pore_aromatic, 
+  aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
+  geom_boxplot(position = "dodge", fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
+  geom_dotplot(binaxis = "y",position = position_dodge(0.75), 
+               stackdir = "center", dotsize = 0.3, color = "black")+
+  ylab("aromatic peaks")+
+  xlab("")+
+  ylim(0,350)+
+  geom_vline(xintercept = 1.5)+
+  geom_vline(xintercept = 2.5)+
+  facet_wrap(~tension)+
+  
+  theme_bw()+
+  theme(
+    #panel.grid=element_blank(),
+        legend.position="top",
+        strip.background = element_rect(colour="white", fill="white"), #facet formatting
+        panel.spacing.x = unit(1.5, "lines"), #facet spacing for x axis
+        strip.text.x = element_text(size=12, face="bold"), #facet labels
+        strip.text.y = element_text(size=12, face="bold"), #facet labels
+        legend.title=element_blank(),
+        legend.text=element_text(size=12),
+        panel.border=element_rect(color="black",size=1.5),
+        axis.text=element_text(size=12,color="black"),
+        axis.title=element_text(size=14,color="black",face="bold"))
+
+save_plot("output/fticr_pore_aromaticpeaks.tiff", gg_pore_aromaticpeaks, 
+          base_width = 12, base_height = 7)
+
+##
 
 
 #
