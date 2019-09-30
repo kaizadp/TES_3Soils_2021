@@ -189,7 +189,7 @@ wsoc_pore_hsd_c_1.5 = HSD.test(amod_c_1.5,"Treatment",group = TRUE)
 
 ### WSOC concentrations -- pores -- summary table ----
 wsoc_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
-wsoc_rmisc$wsoc_mg_L = paste(round(wsoc_rmisc$wsoc,3),"\u00B1",round(wsoc_rmisc$se,3))
+wsoc_rmisc$wsoc_mg_L = paste(round(wsoc_rmisc$wsoc,2),"\u00B1",round(wsoc_rmisc$se,2))
 #\u00b1 is plus-minus
 wsoc_pore_summary = dcast(wsoc_rmisc,Treatment~Site+Suction,value.var = "wsoc_mg_L") 
 write.csv(wsoc_pore_summary, file="wsoc_pores_summary.csv")

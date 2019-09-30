@@ -492,6 +492,18 @@ fticr_pore_gather2 %>%
 # write.csv(fticr_soil_nosc,"fticr_soil_nosc.csv")
 write_csv(fticr_pore_nosc,path = "fticr/fticr_pore_nosc.csv")
 
+# NOSC summary - mean
+fticr_pore_nosc_summary = summarySE(fticr_pore_nosc, measurevar = "NOSC", groupvars = c("tension","site","treatment"), na.rm = TRUE)
+fticr_pore_nosc_summary$nosc = paste(round(fticr_pore_nosc_summary$NOSC,2),"\u00B1",round(fticr_pore_nosc_summary$se,2))
+fticr_pore_nosc_summarytable = dcast(fticr_pore_nosc_summary, treatment~tension+site,value.var = "nosc")
+
+# NOSC summary - median
+fticr_pore_nosc %>% 
+  dplyr::group_by(tension, site, treatment) %>% 
+  dplyr::summarise(nosc_median = median(NOSC))->
+  fticr_pore_nosc_median
+fticr_pore_nosc_median_summarytable = dcast(fticr_pore_nosc_median, treatment~tension+site,value.var = "nosc_median")
+
 #
 
 ## step 7: kendrick mass data ----
