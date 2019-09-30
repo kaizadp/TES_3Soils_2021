@@ -660,3 +660,38 @@ save_plot("output/fticr_pore_vankrev_uniquemolecules.tiff",
 
 
 
+
+#
+## 5: relative abundance bar graphs ----
+# use file fticr_pore_relabundance_summary
+# first, remove the `total` row
+fticr_pore_relabund_summary2 = fticr_pore_relabundance_summary[!fticr_pore_relabundance_summary$group=="total",]
+
+# set Other as last factor
+old.lvl = levels(factor(fticr_pore_relabund_summary2$group))
+fticr_pore_relabund_summary2$group = factor(fticr_pore_relabund_summary2$group, 
+                                            levels=c(sort(old.lvl[old.lvl!="Other"]), "Other"))
+
+gg_pore_relabund = 
+ggplot(fticr_pore_relabund_summary2, aes(x = treatment, y = relabund, fill = group))+
+  geom_bar(stat = "summary")+
+  facet_grid(tension~site)+
+  #scale_fill_brewer(palette = "Dark2")+
+  scale_fill_viridis_d(option = "inferno")+
+  xlab("")+
+  ylab("% relative abundance")+
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        legend.position="top",
+        strip.background = element_rect(colour="white", fill="white"), #facet formatting
+        panel.spacing.x = unit(1.5, "lines"), #facet spacing for x axis
+        strip.text.x = element_text(size=12, face="bold"), #facet labels
+        strip.text.y = element_text(size=12, face="bold"), #facet labels
+        legend.title=element_blank(),
+        legend.text=element_text(size=12),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.border=element_rect(color="black",size=1),
+        axis.text=element_text(size=12,color="black"),
+        axis.title=element_text(size=14,color="black",face="bold"))
+
+save_plot("output/fticr_pore_relabund.tiff", gg_pore_relabund,  base_height = 7, base_width = 7)
