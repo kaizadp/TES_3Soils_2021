@@ -149,6 +149,8 @@ fticr_pore_meta$NOSC = with(fticr_pore_meta, 4-(((4*C)+H-(3*N)-(2*O)-(2*S))/C))
 fticr_pore_meta$HC = with(fticr_pore_meta, H/C)
 fticr_pore_meta$OC = with(fticr_pore_meta, O/C)
 
+### OUTPUT
+write_csv(fticr_pore_meta, path = "fticr/fticr_pore_meta.csv")
 
 # melt/gather. transform from wide to long form
 ## using "gather" in the name despite using melt, to keep it consistent with the fticr_soil script
@@ -231,7 +233,7 @@ fticr_pore_groups_wide %>%
 ## relative abundance:
 # split the dataset into (a) just the abundance values for easy calculations, and (b) the core key. Then combine again.
 fticr_pore_groups_wide[,-c(1:4)] %>% 
-  sapply('/', fticr_pore_groups_wide$total)->
+  sapply('/', fticr_pore_groups_wide$total/100)->
   fticr_pore_abundance
 
 fticr_pore_abundance2 = data.frame(fticr_pore_abundance)
