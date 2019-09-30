@@ -11,7 +11,7 @@ source("0-packages.R")
 fticr_porewater = read_csv("data/FTICR_INPUT_SOILPORE.csv.zip")
 corekey = read.csv("data/COREKEY.csv")
 
-### need to use google sheets instead of csv files
+# this is the link to the google drive file
 # https://drive.google.com/file/d/1dMjnCnMUYa5XY2ypVjz2HBQKx7E0YJY1/view?usp=sharing
 # use report sn3
 
