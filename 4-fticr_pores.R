@@ -236,10 +236,10 @@ fticr_pore_groups_wide[,-c(1:4)] %>%
   sapply('/', fticr_pore_groups_wide$total/100)->
   fticr_pore_abundance
 
-fticr_pore_abundance2 = data.frame(fticr_pore_abundance)
+fticr_pore_abundance = data.frame(fticr_pore_abundance)
 corenames = data.frame(fticr_pore_groups_wide[,c(1:4)])
 
-fticr_pore_relabundance = cbind(corenames,fticr_pore_abundance2)
+fticr_pore_relabundance = cbind(corenames,fticr_pore_abundance)
 
 ### OUTPUT
 # write.csv(fticr_soil_relabundance,"fticr_soil_relabund_cores.csv")
@@ -251,10 +251,11 @@ fticr_pore_relabundance_long = fticr_pore_relabundance %>%
 
 
 fticr_pore_relabundance_summary = summarySE(fticr_pore_relabundance_long, measurevar = "relabund", groupvars = c("site","treatment","group","tension"),na.rm = TRUE)
-fticr_pore_relabundance_summary$relativeabundance = paste((round(fticr_pore_relabundance_summary$relabund,3)),
+fticr_pore_relabundance_summary$relativeabundance = paste((round(fticr_pore_relabundance_summary$relabund,2)),
                                                            "\u00B1",
-                                                           round(fticr_pore_relabundance_summary$se,3))
+                                                           round(fticr_pore_relabundance_summary$se,2))
 
+## option1
 fticr_pore_relabundance_summarytable = dcast(fticr_pore_relabundance_summary,site+treatment+tension~group,value.var = "relativeabundance") 
 
 # move Unnamed and total columns to the end
@@ -265,12 +266,24 @@ fticr_pore_relabundance_summarytable %>%
   fticr_pore_relabundance_summarytable
 
 # remove +/- SE values for the total column
-fticr_pore_relabundance_summarytable$total="1"
+fticr_pore_relabundance_summarytable$total="100"
 ## ## some cells have +/- 0. probably because n=1 for those. (??!!) double-check. 
 
 ### OUTPUT
 # write.csv(fticr_soil_relabundance_summarytable,"fticr_soil_relabundance_groups.csv")
 write_csv(fticr_pore_relabundance_summarytable,path = "fticr/fticr_pore_relabundance_groups.csv")
+
+
+## option2
+# relativeabundance for the total rows is 100 +/- 0. set it to 100
+setDT(fticr_pore_relabundance_summary)[group=="total", relativeabundance := "100"]
+
+# cast the table in a different manner, with groups as rows
+fticr_pore_relabundance_summarytable2 = dcast(fticr_pore_relabundance_summary,
+                                              group~tension+site+treatment,value.var = "relativeabundance") 
+write_csv(fticr_pore_relabundance_summarytable2,path = "fticr/fticr_pore_relabundance_groups2.csv")
+
+
 
 #
 
