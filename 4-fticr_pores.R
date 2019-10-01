@@ -288,6 +288,38 @@ write_csv(fticr_pore_relabundance_summarytable2,path = "fticr/fticr_pore_relabun
 #
 
 
+## step 3-2: count peaks ----
+
+# summarizing by groups
+fticr_pore_gather2 %>% 
+  group_by(tension,site,treatment,Class) %>% 
+  dplyr::summarize(peaks = n()) %>% # get count of each group/class for each tension-site-treatment
+  group_by(tension,site,treatment) %>% 
+  dplyr::mutate(total = sum(peaks)) -> # then create a new column for sum of all peaks for each tension-site-treatment
+  fticr_pore_peaks
+
+# we need to combine the total value into the existing groups column
+fticr_pore_peaks %>% 
+  spread(Class,peaks) %>% # first, convert into wide-form, so each group is a column
+  select(-total,total) %>% # move total to the end
+  gather(Class,peaks_count,AminoSugar:total)-> # combine all the groups+total into a single column
+  fticr_pore_peaks2
+
+# now we need to format into a better table
+# first, move total to the end
+old.lvl = levels(factor(fticr_pore_peaks2$Class))
+fticr_pore_peaks2$Class = factor(fticr_pore_peaks2$Class, 
+                                            levels=c(sort(old.lvl[old.lvl!="total"]), "total"))
+
+
+fticr_pore_peaks2 %>% 
+  dcast(Class~tension+site+treatment, value.var = "peaks_count")->
+  fticr_pore_peaks3
+
+### OUTPUT
+write_csv(fticr_pore_peaks3,path = "fticr/fticr_pore_peakscount.csv")
+
+#
 ## step 4: molecules added/lost ----
 
 # first, combine all cores within each treatment
