@@ -23,6 +23,7 @@ wsoc_pores$Treatment = factor(wsoc_pores$Treatment,
                                          "Saturated",
                                          "Drought"))
 
+## making separate plots for sites 
 #creating summary
 wsoc_rmisc_cpcrw=summarySE(wsoc_pores[wsoc_pores$Site=="CPCRW",],measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
 wsoc_rmisc_dwp=summarySE(wsoc_pores[wsoc_pores$Site=="DWP",],measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
@@ -146,6 +147,35 @@ plot_grid(gg_wsoc_pores_cpcrw,gg_wsoc_pores_dwp, gg_wsoc_pores_sr,
           ncol=2,nrow=2,align="hv")
 
 ##
+## redoing plots with facet
+wsoc_pores_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
+
+ggplot(wsoc_pores_rmisc,
+       aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
+  geom_bar(stat="summary",width=0.5,position=position_dodge(0.6),color="black",size=1)+
+  geom_errorbar(aes(ymin=`wsoc`-se, ymax=`wsoc`+se),width=0.2,position=position_dodge(0.6),color="black",size=1)+
+  geom_point(data = wsoc_sr,aes(x = Treatment, y = wsoc),color = "black",position = position_dodge(0.6))+
+  
+  labs (y = expression (bold ("WSOC, mg L"^-1),
+                        x = expression (bold (" "))))+
+  xlab("")+
+  facet_wrap(~Site)+
+  ylim(0,350)+
+  
+  theme_bw()+
+  theme(panel.border=element_rect(color="black",size=1.5))+
+  theme (legend.position = "none")+
+  theme (legend.key = element_rect(size = 3))+
+  theme (legend.title = element_blank())+
+  theme (legend.text=element_text(size=12))+
+  theme (legend.key = element_rect(size = 1),
+         legend.key.size = unit(1.5, 'lines'))+
+  ggtitle ("SR")+
+  theme (plot.title = element_text(hjust = 0.05,size = 14))+
+  theme (axis.text=element_text(size=14,face="bold",color="black"),
+         axis.title=element_text(size=14,face="bold",color="black"))
+
+  save_plot("wsoc_sr.tiff", gg_wsoc_pores_sr,base_height = 10, base_width = 10)
 
 
 #
@@ -188,10 +218,11 @@ wsoc_pore_hsd_c_1.5 = HSD.test(amod_c_1.5,"Treatment",group = TRUE)
 
 
 ### WSOC concentrations -- pores -- summary table ----
-wsoc_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
-wsoc_rmisc$wsoc_mg_L = paste(round(wsoc_rmisc$wsoc,2),"\u00B1",round(wsoc_rmisc$se,2))
+#wsoc_pores_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
+
+wsoc_pores_rmisc$wsoc_mg_L = paste(round(wsoc_pores_rmisc$wsoc,2),"\u00B1",round(wsoc_pores_rmisc$se,2))
 #\u00b1 is plus-minus
-wsoc_pore_summary = dcast(wsoc_rmisc,Treatment~Site+Suction,value.var = "wsoc_mg_L") 
+wsoc_pore_summary = dcast(wsoc_rmisc,Treatment~Suction+Site,value.var = "wsoc_mg_L") 
 write.csv(wsoc_pore_summary, file="wsoc_pores_summary.csv")
 
 
