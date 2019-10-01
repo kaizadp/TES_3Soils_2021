@@ -464,6 +464,39 @@ write_csv(fticr_pore_unique2, path = "fticr/fticr_pore_uniquemolecules.csv")
 
 
 
+
+## step 4b-2: unique molecules relative abundance ----
+
+# summarizing by groups
+fticr_pore_unique2 %>% 
+  group_by(tension,site, unique,Class) %>% 
+  dplyr::summarize(peaks_count = n()) ->
+  fticr_pore_unique_peaks
+
+fticr_pore_unique_peaks %>% 
+  dcast(Class~tension+site+unique, value.var = "peaks_count") %>% 
+  replace(.,is.na(.),0)->
+  fticr_pore_unique_peaks2
+
+
+### OUTPUT
+write_csv(fticr_pore_unique_peaks2,path = "fticr/fticr_pore_unique_peakscount.csv")
+
+
+## option2
+# relativeabundance for the total rows is 100 +/- 0. set it to 100
+setDT(fticr_pore_relabundance_summary)[group=="total", relativeabundance := "100"]
+
+# cast the table in a different manner, with groups as rows
+fticr_pore_relabundance_summarytable2 = dcast(fticr_pore_relabundance_summary,
+                                              group~tension+site+treatment,value.var = "relativeabundance") 
+write_csv(fticr_pore_relabundance_summarytable2,path = "fticr/fticr_pore_relabundance_groups2.csv")
+
+
+
+
+
+
 ## step 5: HC, OC data for van krevelen ----
 
 # subset only select columns from fticr_soil_gather2
