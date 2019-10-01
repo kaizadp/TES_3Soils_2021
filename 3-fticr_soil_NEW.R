@@ -90,9 +90,9 @@ fticr_soil_relabundance_long = fticr_soil_relabundance %>%
 
 
 fticr_soil_relabundance_summary = summarySE(fticr_soil_relabundance_long, measurevar = "relabund", groupvars = c("site","treatment","group"),na.rm = TRUE)
-fticr_soil_relabundance_summary$relativeabundance = paste((round(fticr_soil_relabundance_summary$relabund,3)),
+fticr_soil_relabundance_summary$relativeabundance = paste((round(fticr_soil_relabundance_summary$relabund,2)),
                                                            "\u00B1",
-                                                           round(fticr_soil_relabundance_summary$se,3))
+                                                           round(fticr_soil_relabundance_summary$se,2))
 
 fticr_soil_relabundance_summarytable = dcast(fticr_soil_relabundance_summary,site+treatment~group,value.var = "relativeabundance") 
 
@@ -110,6 +110,21 @@ fticr_soil_relabundance_summarytable$total="100"
 write_csv(fticr_soil_relabundance_summarytable,path = "fticr/fticr_soil_relabundance_groups.csv")
 
 #
+
+## option2
+# relativeabundance for the total rows is 100 +/- 0. set it to 100
+setDT(fticr_soil_relabundance_summary)[group=="total", relativeabundance := "100"]
+
+# set total as last factor
+old.lvl = levels(factor(fticr_soil_relabundance_summary$group))
+fticr_soil_relabundance_summary$group = factor(fticr_soil_relabundance_summary$group, 
+                                            levels=c(sort(old.lvl[old.lvl!="total"]), "total"))
+
+
+# cast the table in a different manner, with groups as rows
+fticr_soil_relabundance_summarytable2 = dcast(fticr_soil_relabundance_summary,
+                                              group~site+treatment,value.var = "relativeabundance") 
+write_csv(fticr_soil_relabundance_summarytable2,path = "fticr/fticr_soil_relabundance_groups2.csv")
 
 
 ## step 4: molecules added/lost ----
