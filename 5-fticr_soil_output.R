@@ -298,3 +298,40 @@ save_plot("output/fticr_vankrev_uniquemolecules.tiff",
 
 
 
+
+
+#
+## 5: relative abundance bar graphs ----
+# use file fticr_pore_relabundance_summary
+# first, remove the `total` row
+fticr_soil_relabund_summary2 = fticr_soil_relabundance_summary[!fticr_soil_relabundance_summary$group=="total",]
+
+# set Unnamed as last factor
+old.lvl = levels(factor(fticr_soil_relabund_summary2$group))
+fticr_soil_relabund_summary2$group = factor(fticr_soil_relabund_summary2$group, 
+                                            levels=c(sort(old.lvl[old.lvl!="Unnamed"]), "Unnamed"))
+
+gg_soil_relabund = 
+  ggplot(fticr_soil_relabund_summary2, aes(x = treatment, y = relabund, fill = group))+
+  geom_bar(stat = "summary")+
+  facet_wrap(~site)+
+  #scale_fill_brewer(palette = "Dark2")+
+  scale_fill_viridis_d(option = "inferno")+
+  xlab("")+
+  ylab("% relative abundance")+
+  ggtitle("soil")+
+  theme_bw()+
+  theme(panel.grid=element_blank(),
+        legend.position="top",
+        strip.background = element_rect(colour="white", fill="white"), #facet formatting
+        panel.spacing.x = unit(1.5, "lines"), #facet spacing for x axis
+        strip.text.x = element_text(size=12, face="bold"), #facet labels
+        strip.text.y = element_text(size=12, face="bold"), #facet labels
+        legend.title=element_blank(),
+        legend.text=element_text(size=12),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.border=element_rect(color="black",size=1),
+        axis.text=element_text(size=12,color="black"),
+        axis.title=element_text(size=14,color="black",face="bold"))
+
+save_plot("output/fticr_soil_relabund.tiff", gg_soil_relabund,  base_height = 6, base_width = 7)
