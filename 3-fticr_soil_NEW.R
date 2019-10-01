@@ -72,7 +72,7 @@ fticr_soil_groups_wide %>%
 
 ## relative abundance
 fticr_soil_groups_wide[,-c(1:3)] %>% 
-  sapply('/', fticr_soil_groups_wide$total)->
+  sapply('/', fticr_soil_groups_wide$total/100)->
   fticr_soil_abundance
 
 fticr_soil_abundance2 = data.frame(fticr_soil_abundance)
@@ -103,7 +103,7 @@ fticr_soil_relabundance_summarytable %>%
   fticr_soil_relabundance_summarytable
 
 # remove +/- SE values for the total column
-fticr_soil_relabundance_summarytable$total="1"
+fticr_soil_relabundance_summarytable$total="100"
 
 ### OUTPUT
 # write.csv(fticr_soil_relabundance_summarytable,"fticr_soil_relabundance_groups.csv")
