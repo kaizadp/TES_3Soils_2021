@@ -465,7 +465,7 @@ write_csv(fticr_pore_unique2, path = "fticr/fticr_pore_uniquemolecules.csv")
 
 
 
-## step 4b-2: unique molecules relative abundance ----
+## step 4b-2: unique molecules peaks ----
 
 # summarizing by groups
 fticr_pore_unique2 %>% 
