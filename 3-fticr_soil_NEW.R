@@ -123,7 +123,7 @@ fticr_soil_relabundance_summary$group = factor(fticr_soil_relabundance_summary$g
 
 # cast the table in a different manner, with groups as rows
 fticr_soil_relabundance_summarytable2 = dcast(fticr_soil_relabundance_summary,
-                                              group~site+treatment,value.var = "relativeabundance") 
+                                              site+group~treatment,value.var = "relativeabundance") 
 write_csv(fticr_soil_relabundance_summarytable2,path = "fticr/fticr_soil_relabundance_groups2.csv")
 
 
