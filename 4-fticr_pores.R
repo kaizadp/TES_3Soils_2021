@@ -628,3 +628,76 @@ fticr_pore_aromatic_counts = fticr_pore_aromatic_counts[complete.cases(fticr_por
 write_csv(fticr_pore_aromatic_counts,path = "fticr/fticr_pore_aromatic_counts.csv")
 
 #
+
+
+# ----
+# ----
+## stats: relative abundance ----
+# use file `fticr_pore_relabundance_long`
+# lme
+library(lme4)
+lme_relabund_c50_carb = lme(relabund~treatment, random = ~1|core,
+                            data = fticr_pore_relabundance_long[fticr_pore_relabundance_long$site=="CPCRW"&
+                                                                  fticr_pore_relabundance_long$tension=="50 kPa"&
+                                                                  fticr_pore_relabundance_long$group=="Carb",],na.action=na.omit)
+
+# aov and HSD
+aov_relabund_c50_carb = aov(relabund~treatment,
+                            data = fticr_pore_relabundance_long[fticr_pore_relabundance_long$site=="CPCRW"&
+                                                                  fticr_pore_relabundance_long$tension=="50 kPa"&
+                                                                  fticr_pore_relabundance_long$group=="Carb",],na.action=na.omit)
+h = HSD.test(aov_relabund_c50_carb,"treatment",group = TRUE)
+
+
+int_c_50 = with(wsoc_pores[Site=="CPCRW"&Suction=="50 kPa",],interaction(Treatment,Suction))
+amod_c_50 = aov(wsoc~Treatment,data = wsoc_pores[Site=="CPCRW"&Suction=="50 kPa",])
+wsoc_pore_hsd_c_50 = HSD.test(amod_c_50,"Treatment",group = TRUE)
+
+# Creating unique vectors of classifications
+uniq.site = unique(fticr_pore_relabundance_long$site)
+uniq.tens = unique(fticr_pore_relabundance_long$tension)
+uniq.comp = unique(fticr_pore_relabundance_long$group)
+uniq.treat = unique(fticr_pore_relabundance_long$treat)
+
+# Creating dummy data frame to store data
+lme.results = data.frame(Comparison = rep(NA, length(uniq.site)*length(uniq.tens)*length(uniq.comp)*((length(uniq.treat)*(length(uniq.treat)-1))/2)), 
+                                          F.stat = NA,
+                      P.value = NA, stringsAsFactors = F)
+k=1 # Counter
+
+for(curr.site in uniq.site){
+  for(curr.tens in uniq.tens){
+    for(curr.comp in uniq.comp){
+      if(curr.comp == "total"){
+        print("Skipping due to compound class") # Skipping total compound class classifications
+      } else {
+        
+        # Creating initial temporary dataset
+        temp = fticr_pore_relabundance_long[which(fticr_pore_relabundance_long$site %in% curr.site &
+                                                    fticr_pore_relabundance_long$tension %in% curr.tens &
+                                                    fticr_pore_relabundance_long$group %in% curr.comp),]
+        
+        for(i in 1:(length(uniq.treat)-1)){
+          for(j in (i+1):length(uniq.treat)){
+            treat.temp = temp[which(temp$treatment %in% uniq.treat[i] | temp$treatment %in% uniq.treat[j]),] # Subsetting data
+            
+            lme.temp = lme(relabund~treatment, random = ~1|core, data = treat.temp) # Running lme
+            ano = anova(lme.temp) # ANOVA on mixed model
+            
+            # Storing anova results
+            lme.results$Comparison[k] = paste(curr.site, curr.tens, curr.comp, "-", uniq.treat[i], "->", uniq.treat[j])
+            lme.results$F.stat[k] = ano$`F-value`[2]
+            lme.results$P.value[k] = ano$`p-value`[2]
+            
+            k = k + 1
+          }
+        }
+      }
+    }
+  }
+}
+
+lme.results = lme.results[-which(lme.results$P.value > 0.05),]  
+
+
+
