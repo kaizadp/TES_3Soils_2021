@@ -661,6 +661,7 @@ wsoc_pore_hsd_c_50 = HSD.test(amod_c_50,"Treatment",group = TRUE)
 ######################
 ######################
 ######################
+# this portion was done by Bob
 # Creating unique vectors of classifications
 uniq.site = unique(fticr_pore_relabundance_long$site)
 uniq.tens = unique(fticr_pore_relabundance_long$tension)
@@ -710,45 +711,13 @@ for(curr.site in uniq.site){
 
 lme.results = lme.results[-which(lme.results$P.value > 0.05),]  
 
-
+# KP tried to do this portion
 # overall comparison
 
 lme.results2 = data.frame(Comparison = rep(NA, length(uniq.site)*length(uniq.tens)*length(uniq.comp)), 
                          F.stat = NA,
                          P.value = NA, stringsAsFactors = F)
 k=1 # Counter
-
-for(curr.site in uniq.site){
-  for(curr.tens in uniq.tens){
-    for(curr.comp in uniq.comp){
-      if(curr.comp == "total"){
-        print("Skipping due to compound class") # Skipping total compound class classifications
-      } else {
-        
-        # Creating initial temporary dataset
-        temp = fticr_pore_relabundance_long[which(fticr_pore_relabundance_long$site %in% curr.site &
-                                                    fticr_pore_relabundance_long$tension %in% curr.tens &
-                                                    fticr_pore_relabundance_long$group %in% curr.comp),]
-        
-        for(i in 1:(length(uniq.treat)-1)){
-          for(j in (i+1):length(uniq.treat)){
-            treat.temp = temp[which(temp$treatment %in% uniq.treat[i] | temp$treatment %in% uniq.treat[j]),] # Subsetting data
-            
-            lme.temp = lme(relabund~treatment, random = ~1|core, data = treat.temp) # Running lme
-            ano = anova(lme.temp) # ANOVA on mixed model
-            
-            # Storing anova results
-            lme.results$Comparison[k] = paste(curr.site, curr.tens, curr.comp, "-", uniq.treat[i], "->", uniq.treat[j])
-            lme.results$F.stat[k] = ano$`F-value`[2]
-            lme.results$P.value[k] = ano$`p-value`[2]
-            
-            k = k + 1
-          }
-        }
-      }
-    }
-  }
-}
 
 for (a in 1:length(uniq.site)) {
   for (b in 1:length(uniq.tens)) {
@@ -774,6 +743,9 @@ for (a in 1:length(uniq.site)) {
     
   }
   
+
+# trying to get just p-values in dplyr, but failing. 
+# unable to group the lme
 
 fticr_pore_relabundance_long %>% 
   dplyr::group_by(tension, site) %>% 
