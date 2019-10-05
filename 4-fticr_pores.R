@@ -657,7 +657,7 @@ wsoc_pore_hsd_c_50 = HSD.test(amod_c_50,"Treatment",group = TRUE)
 uniq.site = unique(fticr_pore_relabundance_long$site)
 uniq.tens = unique(fticr_pore_relabundance_long$tension)
 uniq.comp = unique(fticr_pore_relabundance_long$group)
-uniq.treat = unique(fticr_pore_relabundance_long$treat)
+uniq.treat = unique(fticr_pore_relabundance_long$treatment)
 
 # Creating dummy data frame to store data
 lme.results = data.frame(Comparison = rep(NA, length(uniq.site)*length(uniq.tens)*length(uniq.comp)*((length(uniq.treat)*(length(uniq.treat)-1))/2)), 
@@ -665,6 +665,7 @@ lme.results = data.frame(Comparison = rep(NA, length(uniq.site)*length(uniq.tens
                       P.value = NA, stringsAsFactors = F)
 k=1 # Counter
 
+# pairwise comparison
 for(curr.site in uniq.site){
   for(curr.tens in uniq.tens){
     for(curr.comp in uniq.comp){
@@ -698,6 +699,7 @@ for(curr.site in uniq.site){
 }
 
 lme.results = lme.results[-which(lme.results$P.value > 0.05),]  
+
 
 
 
