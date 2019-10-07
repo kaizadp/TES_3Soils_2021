@@ -3,6 +3,8 @@
 ## `data` 
 input data files
 
+FTICR files are zipped. *Do not unzip, they are too big for GitHub.*
+
 ## `fticr` 
 (a) output files from the FTICR script; (b) FTICR graphs 
 
