@@ -35,8 +35,20 @@ wsoc_sr = wsoc_pores[wsoc_pores$Site=="SR",]
 
 #plot
 
+theme_kp <- function() {  # this for all the elements common across plots
+  theme_bw() %+replace%
+    theme(legend.position = "none",
+          legend.key = element_rect(size = 3),
+          legend.title = element_blank(),
+          legend.text = element_text(size = 12),
+          legend.key.size = unit(1.5, 'lines'),
+          plot.title = element_text(hjust = 0.05, size = 14),
+          axis.text = element_text(size = 14, face = "bold", color = "black"),
+          axis.title = element_text(size = 14, face = "bold", color = "black"))
+}
+
 gg_wsoc_pores_cpcrw = ggplot(wsoc_rmisc_cpcrw, 
-                       aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
+                             aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
   geom_bar(stat="summary",width=0.5,position=position_dodge(0.6),color="black",size=1)+
   geom_errorbar(aes(ymin=`wsoc`-sd, ymax=`wsoc`+sd),width=0.2,position=position_dodge(0.6),color="black",size=1)+
   geom_point(data = wsoc_cpcrw,aes(x = Treatment, y = wsoc),color = "black",position = position_dodge(0.6))+
@@ -55,22 +67,17 @@ gg_wsoc_pores_cpcrw = ggplot(wsoc_rmisc_cpcrw,
   annotate("text", label = "AB", x = 3.85, y = 300 ,size=4,fontface="bold")+ 
   annotate("text", label = "A", x = 4.15, y = 345 ,size=4,fontface="bold")+ 
   
-  theme_bw()+
-  theme(panel.border=element_rect(color="black",size=1.5))+
-  theme (legend.position = c(0.2,0.8))+
-  theme (legend.key = element_rect(size = 3))+
-  theme (legend.title = element_blank())+
-  theme (legend.text=element_text(size=12))+
-  theme (legend.key = element_rect(size = 2),
-         legend.key.size = unit(2, 'lines'))+
-  ggtitle ("CPCRW")+
-  theme (plot.title = element_text(hjust = 0.05,size = 14))+
-  theme (axis.text=element_text(size=14,face="bold",color="black"),
-         axis.title=element_text(size=14,face="bold",color="black")); gg_wsoc_pores_cpcrw
+  theme_kp() + 
+  theme (legend.position = c(0.2, 0.8),
+         legend.key = element_rect(size = 2),
+         legend.key.size = unit(2, 'lines')) +
+  ggtitle ("CPCRW")
+
+print(gg_wsoc_pores_cpcrw)
 save_plot("output/wsoc_cpcrw.tiff", gg_wsoc_pores_cpcrw, base_height = 10, base_width = 10)
 
 gg_wsoc_pores_dwp = ggplot(wsoc_rmisc_dwp, 
-                     aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
+                           aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
   geom_bar(stat="summary",width=0.5,position=position_dodge(0.6),color="black",size=1)+
   geom_errorbar(aes(ymin=`wsoc`-sd, ymax=`wsoc`+sd),width=0.2,position=position_dodge(0.6),color="black",size=1)+
   geom_point(data = wsoc_dwp,aes(x = Treatment, y = wsoc),color = "black",position = position_dodge(0.6))+
@@ -106,7 +113,7 @@ save_plot("wsoc_dwp.tiff", gg_wsoc_pores_dwp, base_height = 10, base_width = 10)
 
 
 gg_wsoc_pores_sr = ggplot(wsoc_rmisc_sr, 
-                    aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
+                          aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
   geom_bar(stat="summary",width=0.5,position=position_dodge(0.6),color="black",size=1)+
   geom_errorbar(aes(ymin=`wsoc`-sd, ymax=`wsoc`+sd),width=0.2,position=position_dodge(0.6),color="black",size=1)+
   geom_point(data = wsoc_sr,aes(x = Treatment, y = wsoc),color = "black",position = position_dodge(0.6))+
@@ -175,7 +182,7 @@ ggplot(wsoc_pores_rmisc,
   theme (axis.text=element_text(size=14,face="bold",color="black"),
          axis.title=element_text(size=14,face="bold",color="black"))
 
-  save_plot("wsoc_sr.tiff", gg_wsoc_pores_sr,base_height = 10, base_width = 10)
+save_plot("wsoc_sr.tiff", gg_wsoc_pores_sr,base_height = 10, base_width = 10)
 
 
 #
