@@ -22,7 +22,20 @@ corekey = read.csv("data/COREKEY.csv")
 
 # 2a: remove unnecessary columns. LOTS of unnecessary columns. fml. #### 
 # This uses a seemingly arbitrary list that's experiment-specific. Kind of sucky
-drops <- readLines("data/fticr_columns_to_drop.txt")
+# Create a file with the list of columns to drop. 
+# use the sample meta file for this. retain SampleType `sample` and `as`. (I don't know what `as`` is.)
+
+pore_sample_meta = read.csv("data/FTICR_INPUT_SOILPORE_meta.csv")
+
+pore_sample_meta %>% 
+  filter(!Sample_Type=="sample") %>% 
+  filter(!Sample_Type=="as") %>% 
+  dplyr::rename(code = `X21T_CCS.2_Day8_1.C11_11Jan18_Leopard_Infuse.qb`) -> # rename the f-ing column. WTAF is this column name. Checked -- it's not because a row was moved up. 
+  pore_sample_meta
+
+write.csv(pore_sample_meta$code, "data/fticr_columns_to_drop2.txt", row.names = FALSE, quote = FALSE)
+
+drops <- readLines("data/fticr_columns_to_drop2.txt")
 fticr_porewater[names(fticr_porewater) %in% drops] <- NULL
 
 # clean up sample names because WTF 
@@ -34,9 +47,10 @@ lengths <- sapply(matches, function(x) attr(x, "match.length"))
 names <- substr(names(fticr_porewater), matches_n, matches_n + lengths - 1)
 names(fticr_porewater)[matches_n > 0] <- names[matches_n > 0]
 
-
-names(fticr_porewater)
-
+# remove addiitonal unnecessary names that couldn't be automated above
+fticr_porewater %>% 
+  select(-`C13`,-`3use`,-`Error_ppm`)->
+  fticr_porewater
 
 ## split porewater file into metadata and sample data. ----
 ## sample data split by pore size (50 kPa and 1.5 kPa). 
