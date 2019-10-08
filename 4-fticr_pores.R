@@ -21,109 +21,18 @@ corekey = read.csv("data/COREKEY.csv")
 ## step 2: clean and process ----
 
 # 2a: remove unnecessary columns. LOTS of unnecessary columns. fml. #### 
-fticr_porewater=select(fticr_porewater, -c(`C13`,
-                                           `3use`,
-                                           `Error_ppm`,
-                                           `21T_CCS-2_Day1_1-D7_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day1_1-S23_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day1_5-C7_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day1_5-S17-b_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day1_SRFAII_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day1_SRFAII-1_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day1_SRFAII-2_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day10_1-D7-rr_400scans`,
-                                           `21T_CCS-2_Day10_5-C11_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day10_5-C7-rr_400scans`,
-                                           `21T_CCS-2_Day10_SRFAII_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day2_1-C7_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day2_1-S23_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day2_5-D10_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day2_5-S17_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day2_SRFAII_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day2_SRFAII_end_04Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day3_1-C7-a_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day3_1-D7_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day3_5-C7_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day3_5-D10_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day3_SRFAII_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day3_SRFAII-1_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day3_SRFAII-2_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day3-rr_SRFAII_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day4_1-D7_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day4_1-S23_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day4_5-C7-a_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day4_5-D10_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day4_5-S17_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day4_SRFAII_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day5_1-C7_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day5_1-S23_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day5_5-D10_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day5_5-S17_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day5_SRFAII_08Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day6_1-C7_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day6_1-D7_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day6_5-C7_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day6_5-D10_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day6_5-D14_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day6_SRFAII_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day6_SRFAII-1_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day6_SRFAII-2_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day7_1-D7-rr_400scans`,
-                                           `21T_CCS-2_Day7_1-S23-1_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day7_5-C7_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day7_5-S17_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day7_SRFAII_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_1-C11_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_1-C16_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_1-C20_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_1-C7_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_1-S23_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_1-S23_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_5-C16_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_5-D10_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_5-S11_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_5-S17_11Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_5-S17-rr_400scans`,
-                                           `21T_CCS-2_Day8_SRFAII_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_SRFAII-1_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day8_SRFAII-2_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_1-C7_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_1-C7-rr_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_1-D15-rr_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_1-D7_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_5-C24_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_5-C7_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_5-D10_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_5-D10-rr_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_SRFAII_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_SRFAII-1_15Jan18_Leopard_Infuse-qb`,
-                                           `21T_CCS-2_Day9_SRFAII-2_15Jan18_Leopard_Infuse-qb`)
-)
+# This uses a seemingly arbitrary list that's experiment-specific. Kind of sucky
+drops <- readLines("data/fticr_columns_to_drop.txt")
+fticr_porewater[names(fticr_porewater) %in% drops] <- NULL
 
-
-# cleaning up sample names because WTF 
-# removing strings in increments
-names(fticr_porewater) = gsub("21T_CCS-2_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day1_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day2_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day3_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day4_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day5_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day6_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day7_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day8_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day9_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("Day10_", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("_04Jan18_Leopard_Infuse-qb", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("_08Jan18_Leopard_Infuse-qb", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("_11Jan18_Leopard_Infuse-qb", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("_15Jan18_Leopard_Infuse-qb", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("-rr", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("-rr_400scans", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("_400scans", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("-a", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("-b", "", names(fticr_porewater))
-names(fticr_porewater) = gsub("-2", "", names(fticr_porewater))
+# clean up sample names because WTF 
+# find the sample code (letter followed by 1-2 numbers)
+matches <- regexec("[A-Z][0-9]{1,2}", names(fticr_porewater))
+matches_n <- unlist(matches)
+lengths <- sapply(matches, function(x) attr(x, "match.length"))
+# extract the part of the name we want and change
+names <- substr(names(fticr_porewater), matches_n, matches_n + lengths - 1)
+names(fticr_porewater)[matches_n > 0] <- names[matches_n > 0]
 
 
 names(fticr_porewater)
