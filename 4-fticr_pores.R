@@ -26,8 +26,8 @@ drops <- readLines("data/fticr_columns_to_drop.txt")
 fticr_porewater[names(fticr_porewater) %in% drops] <- NULL
 
 # clean up sample names because WTF 
-# find the sample code (letter followed by 1-2 numbers)
-matches <- regexec("[A-Z][0-9]{1,2}", names(fticr_porewater))
+# find the sample code (1 number followed by hyphen followed by letter followed by 1-2 numbers)
+matches <- regexec("[0-9]-[A-Z][0-9]{1,2}", names(fticr_porewater))
 matches_n <- unlist(matches)
 lengths <- sapply(matches, function(x) attr(x, "match.length"))
 # extract the part of the name we want and change
