@@ -707,9 +707,34 @@ fticr_pore_relabundance_long[!fticr_pore_relabundance_long$group=="total",] %>%
   group_by(site, tension, group) %>% 
   do(fit_mod(.))  ->
   option3
+
+
+# trying option 3 for TukeyHSD
+fit_mod_hsd <- function(dat) {
+  a <-aov(relabund ~ treatment, data = dat)
+  h <-HSD.test(a,"treatment")
+#create a tibble with one column for each treatment
+#the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
+    tibble(drt = h$groups[1,2], 
+         sat = h$groups[2,2],
+         tzsat = h$groups[3,2],
+         fm = h$groups[4,2])
+}
+fticr_pore_relabundance_long[!fticr_pore_relabundance_long$group=="total",] %>% 
+  group_by(site, tension, group) %>% 
+  do(fit_mod_hsd(.))  ->
+  option3_hsd
+
   
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
     
