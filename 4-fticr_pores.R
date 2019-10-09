@@ -178,23 +178,24 @@ fticr_pore_relabundance_summary$relativeabundance = paste((round(fticr_pore_rela
                                                            "\u00B1",
                                                            round(fticr_pore_relabundance_summary$se,2))
 
-## option1
-fticr_pore_relabundance_summarytable = dcast(fticr_pore_relabundance_summary,site+treatment+tension~group,value.var = "relativeabundance") 
+
+## option1: don't like this way of table formatting. use option2 below
+#fticr_pore_relabundance_summarytable = dcast(fticr_pore_relabundance_summary,site+treatment+tension~group,value.var = "relativeabundance") 
 
 # move Unnamed and total columns to the end
 # "Unnamed" is "Other" for pores
-fticr_pore_relabundance_summarytable %>% 
-  select(-Other,Other) %>% 
-  select(-total,total) ->
-  fticr_pore_relabundance_summarytable
+#fticr_pore_relabundance_summarytable %>% 
+#  select(-Other,Other) %>% 
+#  select(-total,total) ->
+#  fticr_pore_relabundance_summarytable
 
 # remove +/- SE values for the total column
-fticr_pore_relabundance_summarytable$total="100"
+#fticr_pore_relabundance_summarytable$total="100"
 ## ## some cells have +/- 0. probably because n=1 for those. (??!!) double-check. 
 
 ### OUTPUT
 # write.csv(fticr_soil_relabundance_summarytable,"fticr_soil_relabundance_groups.csv")
-write_csv(fticr_pore_relabundance_summarytable,path = "fticr/fticr_pore_relabundance_groups.csv")
+#write_csv(fticr_pore_relabundance_summarytable,path = "fticr/fticr_pore_relabundance_groups.csv")
 
 
 ## option2
@@ -206,6 +207,36 @@ fticr_pore_relabundance_summarytable2 = dcast(fticr_pore_relabundance_summary,
                                               group~tension+site+treatment,value.var = "relativeabundance") 
 write_csv(fticr_pore_relabundance_summarytable2,path = "fticr/fticr_pore_relabundance_groups2.csv")
 
+## stats for the rel_abund summary table
+
+fit_hsd_relabund <- function(dat) {
+  a <-aov(relabund ~ treatment, data = dat)
+  h <-HSD.test(a,"treatment")
+  #create a tibble with one column for each treatment
+  #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
+  tibble(`drought` = h$groups["drought",2], 
+         `saturation` = h$groups["saturation",2],
+         `time zero saturation` = h$groups["time zero saturation",2],
+         `field moist` = h$groups["field moist",2])
+}
+fticr_pore_relabundance_long[!fticr_pore_relabundance_long$group=="total",] %>% 
+  group_by(site, tension, group) %>% 
+  do(fit_hsd_relabund(.))  ->
+  pore_relabund_hsd
+
+pore_relabund_hsd %>% 
+  gather(treatment, hsd, 4:7)-> #gather columns 4-7 (treatment levels)
+  pore_relabund_hsd2
+
+# now merge this with `fticr_pore_relabundance_summary`
+
+fticr_pore_relabundance_summary2 = merge(fticr_pore_relabundance_summary, pore_relabund_hsd2, by = c("tension","site","group","treatment"))
+fticr_pore_relabundance_summary2$relativeabundance = paste(fticr_pore_relabundance_summary2$relativeabundance," ",fticr_pore_relabundance_summary2$hsd)
+
+fticr_pore_relabundance_summary2table2 = dcast(fticr_pore_relabundance_summary2,
+                                              group~tension+site+treatment,value.var = "relativeabundance") 
+
+write_csv(fticr_pore_relabundance_summary2table2,path = "fticr/fticr_pore_relabundance_groups2_hsd.csv")
 
 
 #
@@ -733,8 +764,31 @@ fticr_pore_relabundance_long[!fticr_pore_relabundance_long$group=="total",] %>%
 
 
 
+ano <-aov(lme(relabund ~ treatment, random = ~1|core, data = fticr_pore_relabundance_long[fticr_pore_relabundance_long$site=="CPCRW"&fticr_pore_relabundance_long$tension=="50 kPa",]))
+TukeyHSD(ano)
+class(TukeyHSD(ano))
+
+a = aov(relabund ~ treatment, data = fticr_pore_relabundance_long[fticr_pore_relabundance_long$site=="CPCRW"
+                                                                  &fticr_pore_relabundance_long$tension=="50 kPa"&
+                                                                    fticr_pore_relabundance_long$group=="Carb",])
+h = HSD.test(a,"treatment",group = TRUE);h    
+h$groups
+names(h$groups)
+names(h)
+h$comparison
+h$means
+
+
+mc = glht(a, mcp(treatment="Tukey"))
+summary(mc)
+
+
+
+rownames(h$groups)
+
+h$groups["drought",2]
 
 
 
 
-    
+
