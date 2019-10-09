@@ -676,3 +676,40 @@ fticr_pore_relabundance_long %>%
 
 #    dplyr::summarise(p_value = anova(lme(relabund~treatment, random = ~1|core))$`p-value`[2])->
   fticr_pore_relabund_pvalue
+
+## trying out lm/lme with BBL  
+#option 1
+  m <- lm(relabund~treatment * site + treatment * tension + treatment * group, 
+          data = fticr_pore_relabundance_long)
+TukeyHSD(aov(m))
+# this gives pairwise comparisons for all the combinations. way too complicated
+# also lm vs. lme
+  
+  
+#option 2
+library(broom)
+fticr_pore_relabundance_long %>% 
+    group_by(site, tension, group) %>% 
+    do(mod = lm(relabund ~ treatment, data = .)) %>% 
+    broom::tidy(mod)->
+  option2
+# this compares each treatment level to drought, not what we're looking for
+
+  
+#option 3
+# this works
+# does lme of rel_abund ~ treatment for each site/tension/group
+fit_mod <- function(dat) {
+  ano <-anova(lme(relabund ~ treatment, random = ~1|core, data = dat))
+  tibble(F = ano$`F-value`[2], P = round(ano$`p-value`[2],4))
+}
+fticr_pore_relabundance_long[!fticr_pore_relabundance_long$group=="total",] %>% 
+  group_by(site, tension, group) %>% 
+  do(fit_mod(.))  ->
+  option3
+  
+  
+  
+  
+  
+    
