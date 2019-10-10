@@ -22,8 +22,9 @@ corekey = read.csv("data/COREKEY.csv")
 
 ## 2a: remove unnecessary columns. LOTS of unnecessary columns. fml. #### 
 # This uses a seemingly arbitrary list that's experiment-specific. Kind of sucky
+
 # Create a file with the list of columns to drop. 
-# use the sample meta file for this. retain SampleType `sample` and `as`. (I don't know what `as`` is.)
+# use the sample meta file for this. retain SampleType `sample` and `as`. (I don't know what `as` is.)
 
 pore_sample_meta = read.csv("data/FTICR_INPUT_SOILPORE_meta.csv")
 
@@ -40,6 +41,8 @@ fticr_porewater[names(fticr_porewater) %in% drops] <- NULL
 
 # clean up sample names because WTF 
 # find the sample code (1 number followed by hyphen followed by letter followed by 1-2 numbers)
+# example of sample code: 5_C10: core C10 from CPCRW, -50 kPa porewater
+
 matches <- regexec("[0-9]-[A-Z][0-9]{1,2}", names(fticr_porewater))
 matches_n <- unlist(matches)
 lengths <- sapply(matches, function(x) attr(x, "match.length"))
@@ -180,22 +183,22 @@ fticr_pore_relabundance_summary$relativeabundance = paste((round(fticr_pore_rela
 
 
 ## option1: don't like this way of table formatting. use option2 below
-#fticr_pore_relabundance_summarytable = dcast(fticr_pore_relabundance_summary,site+treatment+tension~group,value.var = "relativeabundance") 
-
-# move Unnamed and total columns to the end
-# "Unnamed" is "Other" for pores
-#fticr_pore_relabundance_summarytable %>% 
-#  select(-Other,Other) %>% 
-#  select(-total,total) ->
-#  fticr_pore_relabundance_summarytable
-
-# remove +/- SE values for the total column
-#fticr_pore_relabundance_summarytable$total="100"
-## ## some cells have +/- 0. probably because n=1 for those. (??!!) double-check. 
-
-### OUTPUT
-# write.csv(fticr_soil_relabundance_summarytable,"fticr_soil_relabundance_groups.csv")
-#write_csv(fticr_pore_relabundance_summarytable,path = "fticr/fticr_pore_relabundance_groups.csv")
+          #fticr_pore_relabundance_summarytable = dcast(fticr_pore_relabundance_summary,site+treatment+tension~group,value.var = "relativeabundance") 
+          
+          # move Unnamed and total columns to the end
+          # "Unnamed" is "Other" for pores
+          #fticr_pore_relabundance_summarytable %>% 
+          #  select(-Other,Other) %>% 
+          #  select(-total,total) ->
+          #  fticr_pore_relabundance_summarytable
+          
+          # remove +/- SE values for the total column
+          #fticr_pore_relabundance_summarytable$total="100"
+          ## ## some cells have +/- 0. probably because n=1 for those. (??!!) double-check. 
+          
+          ### OUTPUT
+          # write.csv(fticr_soil_relabundance_summarytable,"fticr_soil_relabundance_groups.csv")
+          #write_csv(fticr_pore_relabundance_summarytable,path = "fticr/fticr_pore_relabundance_groups.csv")
 
 
 ## option2
@@ -204,10 +207,14 @@ setDT(fticr_pore_relabundance_summary)[group=="total", relativeabundance := "100
 
 # cast the table in a different manner, with groups as rows
 fticr_pore_relabundance_summarytable2 = dcast(fticr_pore_relabundance_summary,
-                                              group~tension+site+treatment,value.var = "relativeabundance") 
-write_csv(fticr_pore_relabundance_summarytable2,path = "fticr/fticr_pore_relabundance_groups2.csv")
+                                              group~tension+site+treatment,
+                                              value.var = "relativeabundance") 
 
+# write_csv(fticr_pore_relabundance_summarytable2, path = "fticr/fticr_pore_relabundance_groups2.csv")
+
+#
 ## 3.2 stats for the rel_abund summary table ----
+# create a function to calculate aov and hsd. this function can then be used for rel_abund for each site/tension/group
 
 fit_hsd_relabund <- function(dat) {
   a <-aov(relabund ~ treatment, data = dat)
@@ -219,6 +226,7 @@ fit_hsd_relabund <- function(dat) {
          `time zero saturation` = h$groups["time zero saturation",2],
          `field moist` = h$groups["field moist",2])
 }
+
 fticr_pore_relabundance_long[!fticr_pore_relabundance_long$group=="total",] %>% 
   group_by(site, tension, group) %>% 
   do(fit_hsd_relabund(.))  ->
@@ -237,7 +245,6 @@ fticr_pore_relabundance_summary2table2 = dcast(fticr_pore_relabundance_summary2,
                                               group~tension+site+treatment,value.var = "relativeabundance") 
 
 write_csv(fticr_pore_relabundance_summary2table2,path = "fticr/fticr_pore_relabundance_groups2_hsd.csv")
-
 
 #
 
