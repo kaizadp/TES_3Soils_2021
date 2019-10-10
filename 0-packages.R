@@ -57,3 +57,17 @@ theme_kp <- function() {  # this for all the elements common across plots
 
 # DATA_DIR               <- "data/"
 # OUTPUT_DIR		         <- "outputs/"
+
+
+## CREATE OUTPUT FILES
+FTICR_PORE_META <- "fticr/fticr_pore_meta.csv"
+FTICR_PORE_LONG <- "fticr/fticr_pore_longform.csv"
+FTICR_PORE_RELABUND <- "fticr/fticr_pore_relabundance_groups2_hsd.csv"
+FTICR_PORE_PEAKS <- "fticr/fticr_pore_peakscount.csv"
+FTICR_PORE_UNIQUE <- "fticr/fticr_pore_uniquemolecules.csv"
+FTICR_PORE_UNIQUE_PEAKS <- "fticr/fticr_pore_unique_peakscount.csv"
+FTICR_PORE_HCOC <- "fticr/fticr_pore_hcoc.csv"
+FTICR_PORE_NOSC <- "fticr/fticr_pore_nosc.csv"
+FTICR_PORE_AROMATIC <- "fticr/fticr_pore_aromatic_counts.csv"
+
+

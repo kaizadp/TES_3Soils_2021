@@ -76,7 +76,7 @@ fticr_pore_meta$HC = with(fticr_pore_meta, H/C)
 fticr_pore_meta$OC = with(fticr_pore_meta, O/C)
 
 ### OUTPUT
-write_csv(fticr_pore_meta, path = "fticr/fticr_pore_meta.csv")
+write_csv(fticr_pore_meta, FTICR_PORE_META)
 
 # melt/gather. transform from wide to long form
 ## using "gather" in the name despite using melt, to keep it consistent with the fticr_soil script
@@ -128,7 +128,7 @@ fticr_pore_gather2 = fticr_pore_gather2[!(fticr_pore_gather2$reps<3),]
 # write.csv(fticr_soil_gather,"fticr_soil_gather.csv")
 
 ### OUTPUT
-write_csv(fticr_pore_gather2, path = "fticr/fticr_pore_longform.csv")
+write_csv(fticr_pore_gather2, FTICR_PORE_LONG)
 
 #
 ## step 3: relative abundance ---- 
@@ -244,7 +244,8 @@ fticr_pore_relabundance_summary2$relativeabundance = paste(fticr_pore_relabundan
 fticr_pore_relabundance_summary2table2 = dcast(fticr_pore_relabundance_summary2,
                                               group~tension+site+treatment,value.var = "relativeabundance") 
 
-write_csv(fticr_pore_relabundance_summary2table2,path = "fticr/fticr_pore_relabundance_groups2_hsd.csv")
+### OUTPUT
+write_csv(fticr_pore_relabundance_summary2,FTICR_PORE_RELABUND)
 
 #
 
@@ -278,7 +279,7 @@ fticr_pore_peaks2 %>%
   fticr_pore_peaks3
 
 ### OUTPUT
-write_csv(fticr_pore_peaks3,path = "fticr/fticr_pore_peakscount.csv")
+write_csv(fticr_pore_peaks2,FTICR_PORE_PEAKS)
 
 
 
@@ -455,7 +456,7 @@ fticr_pore_unique = fticr_pore_unique[complete.cases(fticr_pore_unique),]
 fticr_pore_unique2 = merge(fticr_pore_meta, fticr_pore_unique, by = "Mass")
 
 ## OUTPUT
-write_csv(fticr_pore_unique2, path = "fticr/fticr_pore_uniquemolecules.csv")
+write_csv(fticr_pore_unique2, FTICR_PORE_UNIQUE)
 
 
 
@@ -475,7 +476,7 @@ fticr_pore_unique_peaks %>%
 
 
 ### OUTPUT
-write_csv(fticr_pore_unique_peaks2,path = "fticr/fticr_pore_unique_peakscount.csv")
+write_csv(fticr_pore_unique_peaks,FTICR_PORE_UNIQUE_PEAKS)
 
 
 ## option2
@@ -506,7 +507,7 @@ fticr_pore_gather2 %>%
 
 ### OUTPUT
 # write.csv(fticr_soil_hcoc,"fticr_soil_hcoc.csv")
-write_csv(fticr_pore_hcoc,path = "fticr/fticr_pore_hcoc.csv")
+write_csv(fticr_pore_hcoc, FTICR_PORE_HCOC)
 
 #
 
@@ -518,7 +519,7 @@ fticr_pore_gather2 %>%
 
 ### OUTPUT
 # write.csv(fticr_soil_nosc,"fticr_soil_nosc.csv")
-write_csv(fticr_pore_nosc,path = "fticr/fticr_pore_nosc.csv")
+write_csv(fticr_pore_nosc, FTICR_PORE_NOSC)
 
 # NOSC summary - mean
 fticr_pore_nosc_summary = summarySE(fticr_pore_nosc, measurevar = "NOSC", groupvars = c("tension","site","treatment"), na.rm = TRUE)
@@ -589,6 +590,7 @@ fticr_pore_aromatic_counts = fticr_pore_aromatic_counts[complete.cases(fticr_por
 ### OUTPUT
 # write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
 write_csv(fticr_pore_aromatic_counts,path = "fticr/fticr_pore_aromatic_counts.csv")
+write_csv(fticr_pore_aromatic_counts,FTICR_PORE_AROMATIC)
 
 #
 
