@@ -255,7 +255,7 @@ fticr_pore_gather2 %>%
 # we need to combine the total value into the existing groups column
 fticr_pore_peaks %>% 
   spread(Class,peaks) %>% # first, convert into wide-form, so each group is a column
-  select(-total,total) %>% # move total to the end
+  dplyr::select(-total,total) %>% # move total to the end
   gather(Class,peaks_count,AminoSugar:total)-> # combine all the groups+total into a single column
   fticr_pore_peaks2
 
@@ -272,6 +272,8 @@ fticr_pore_peaks2 %>%
 
 ### OUTPUT
 write_csv(fticr_pore_peaks3,path = "fticr/fticr_pore_peakscount.csv")
+
+
 
 #
 ## step 4: molecules added/lost ----
