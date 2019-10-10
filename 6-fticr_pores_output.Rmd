@@ -270,6 +270,7 @@ fticr_pore_peaks2 %>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
+
 ## relative abundance
 
 ```{r relabund_50, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
