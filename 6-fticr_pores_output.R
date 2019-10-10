@@ -10,12 +10,12 @@ source("0-packages.R")
 ## do NOT source scripts 3 & 4.
 
 ## 1: aromatic peaks - summary ----
-fticr_pore_aromatic = read_csv("fticr/fticr_pore_aromatic_counts.csv")
+fticr_pore_aromatic_counts = read_csv("fticr/fticr_pore_aromatic_counts.csv")
 
-fticr_pore_aromatic %>% 
+fticr_pore_aromatic_counts %>% 
   mutate(treatment = factor(treatment,
                             levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
-  fticr_pore_aromatic
+  fticr_pore_aromatic_counts
 
 ## splitting by peaks 
 gg_pore_aromaticpeaks_50=
@@ -66,7 +66,7 @@ gg_pore_aromaticpeaks = plot_grid(gg_pore_aromaticpeaks_1, gg_pore_aromaticpeaks
                                   ncol = 2, align = "hv", axis = "bt")
 
 ## doing facet
-gg_pore_aromaticpeaks = ggplot(fticr_pore_aromatic, 
+gg_pore_aromaticpeaks = ggplot(fticr_pore_aromatic_counts, 
   aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
   geom_boxplot(position = "dodge", fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
   geom_dotplot(binaxis = "y",position = position_dodge(0.75), 
@@ -82,7 +82,7 @@ gg_pore_aromaticpeaks = ggplot(fticr_pore_aromatic,
   theme(
     #panel.grid=element_blank(),
         legend.position="top",
-        strip.background = element_rect(colour="white", fill="white"), #facet formatting
+        #strip.background = element_rect(colour="white", fill="white"), #facet formatting
         panel.spacing.x = unit(1.5, "lines"), #facet spacing for x axis
         strip.text.x = element_text(size=12, face="bold"), #facet labels
         strip.text.y = element_text(size=12, face="bold"), #facet labels
@@ -369,6 +369,7 @@ fticr_pore_hcoc %>%
 
 # 4a. baseline plot ----
 ## don't do for pores
+# Oct-10 why not?
 gg_vankrev_base
 
 ggplot(fticr_pore_hcoc[fticr_pore_hcoc$treatment=="baseline",],
@@ -721,3 +722,9 @@ ggplot(fticr_pore_relabund_summary2, aes(x = treatment, y = relabund, fill = gro
         axis.title=element_text(size=14,color="black",face="bold"))
 
 save_plot("output/fticr_pore_relabund.tiff", gg_pore_relabund,  base_height = 7, base_width = 7)
+
+
+readme = rmarkdown::render(
+  knitr_in("README.Rmd"),
+  output_file = file_out("README.md"),
+  quiet = TRUE)
