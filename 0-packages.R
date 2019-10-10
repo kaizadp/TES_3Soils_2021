@@ -29,5 +29,20 @@ library(agricolae)
 library(googlesheets)
 library(gsheet)
 
+# create a custom ggplot theme
+theme_kp <- function() {  # this for all the elements common across plots
+  theme_bw() %+replace%
+    theme(legend.position = "top",
+          legend.key = element_rect(size = 3),
+          legend.title = element_blank(),
+          legend.text = element_text(size = 12),
+          legend.key.size = unit(1.5, 'lines'),
+          plot.title = element_text(hjust = 0.05, size = 14),
+          axis.text = element_text(size = 14, face = "bold", color = "black"),
+          axis.title = element_text(size = 14, face = "bold", color = "black"))
+}
+
+
+
 # DATA_DIR               <- "data/"
 # OUTPUT_DIR		         <- "outputs/"
