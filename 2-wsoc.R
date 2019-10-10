@@ -186,7 +186,7 @@ attach(wsoc_pores)
 wsoc_pore_hsd = HSD.test(aov(lme_trt_pore),trt = "Treatment")
 
 ## HSD
-fit_hsd_wsoc_pore <- function(dat) {
+fit_hsd_wsoc <- function(dat) {
   a <-aov(wsoc ~ Treatment, data = dat)
   h <-HSD.test(a,"Treatment")
   #create a tibble with one column for each treatment
@@ -199,7 +199,7 @@ fit_hsd_wsoc_pore <- function(dat) {
 
 wsoc_pores %>% 
   group_by(Site, Suction) %>% 
-  do(fit_hsd_wsoc_pore(.))  ->
+  do(fit_hsd_wsoc(.))  ->
   wsoc_pores_hsd
 
 wsoc_pores_hsd %>% 
@@ -247,28 +247,40 @@ wsoc_soils_rmisc = wsoc_soils_rmisc[complete.cases(wsoc_soils_rmisc),]
 wsoc_soils_rmisc$WSOC_mg_g = paste(round(wsoc_soils_rmisc$wsoc_mg_g,2),"\u00B1",round(wsoc_soils_rmisc$se,2))
 #\u00b1 is plus-minus
 
-wsoc_soils_summary = dcast(wsoc_soils_rmisc,Treatment~Site,value.var = "WSOC_mg_g") 
-write.csv(wsoc_soils_summary, file="wsoc_soils_summary.csv")
-#
-#
-### WSOC concentrations -- soils -- stats ----
+#hsd
+
+fit_hsd_wsoc_soil <- function(dat) {
+  a <-aov(wsoc_mg_g ~ Treatment, data = dat)
+  h <-HSD.test(a,"Treatment")
+  #create a tibble with one column for each treatment
+  #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
+  tibble(`Drought` = h$groups["Drought",2], 
+         `Saturated` = h$groups["Saturated",2],
+         `Time Zero` = h$groups["Time Zero",2],
+         `Field Moist` = h$groups["Field Moist",2])
+}
+
 wsoc_soils = wsoc_soils[complete.cases(wsoc_soils),]
+wsoc_soils %>% 
+  group_by(Site) %>% 
+  do(fit_hsd_wsoc_soil(.))  ->
+  wsoc_soils_hsd
 
-wsoc_soils_lme = lme(wsoc_mg_g ~ Treatment*Site, random = ~1|CoreNo,data = wsoc_soils)
-Anova(wsoc_soils_lme, data = wsoc_soils)
-capture.output(Anova(wsoc_soils_lme),file = "wsoc_soils_Anova.txt")
+wsoc_soils_hsd %>% 
+  gather(Treatment, hsd, 2:5)-> #gather columns 4-7 (treatment levels)
+  wsoc_soils_hsd2
 
-wsoc_soils_aov = aov(wsoc_soils_lme, data = wsoc_soils)
-wsoc_soils_hsd_trt = HSD.test(wsoc_soils_aov,trt = "Site")
+# merge the summary table with the hsd table
+wsoc_soils_rmisc2 = merge(wsoc_soils_rmisc, wsoc_soils_hsd2, by = c("Site","Treatment"))
 
-wsoc_soils_aov_c = aov(wsoc_mg_g~Treatment,data = wsoc_soils[wsoc_soils$Site=="CPCRW",])
-wsoc_soils_hsd_c = HSD.test(wsoc_soils_aov_c,trt="Treatment"); wsoc_soils_hsd_c
+# combine the wsoc and hsd columns
+wsoc_soils_rmisc2 %>% 
+  mutate(wsoc_hsd = paste(WSOC_mg_g," ",hsd)) %>% 
+  select(-sd,-se,-ci,-hsd)->
+  wsoc_soils_summary
 
-wsoc_soils_aov_d = aov(wsoc_mg_g~Treatment,data = wsoc_soils[wsoc_soils$Site=="DWP",])
-wsoc_soils_hsd_d = HSD.test(wsoc_soils_aov_d,trt="Treatment"); wsoc_soils_hsd_d
-
-wsoc_soils_aov_s = aov(wsoc_mg_g~Treatment,data = wsoc_soils[wsoc_soils$Site=="SR",])
-wsoc_soils_hsd_s = HSD.test(wsoc_soils_aov_s,trt="Treatment"); wsoc_soils_hsd_s
+###output
+write.csv(wsoc_soils_summary, WSOC_SOIL)
 
 #
 

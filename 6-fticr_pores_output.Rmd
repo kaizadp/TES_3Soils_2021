@@ -9,7 +9,13 @@ output: bookdown::html_document2
 ```{r setup, include=FALSE, echo=FALSE}
 source("0-packages.R")
 
-#input files
+# input files
+# WSOC
+wsoc_pore = read.csv(WSOC_PORE)# <- "processed/wsoc_pore_summary.csv"
+
+
+
+# FTICR
 pore_aromatic = read.csv(FTICR_PORE_AROMATIC)# <- "fticr/fticr_pore_aromatic_counts.csv"
 pore_meta = read.csv(FTICR_PORE_META)# <- "fticr/fticr_pore_meta.csv"
 pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
@@ -20,6 +26,25 @@ pore_unique_peaks = read.csv(FTICR_PORE_UNIQUE_PEAKS)# <- "fticr/fticr_pore_uniq
 pore_hcoc = read.csv(FTICR_PORE_HCOC)# <- "fticr/fticr_pore_hcoc.csv"
 pore_nosc = read.csv(FTICR_PORE_NOSC)# <- "fticr/fticr_pore_nosc.csv"
 ```
+
+
+# WSOC table  
+## soils
+## pores
+```{r wsoc_pore, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+wsoc_pore %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(Suction, Site),
+                val = paste(wsoc_hsd)) %>% 
+  select(Treatment,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+
+
+## soils, pores combined
+
 
 
 # FTICR Pores -- figures
@@ -245,7 +270,7 @@ ggplot(pore_nosc[pore_nosc$site=="SR" &!pore_nosc$treatment=="baseline",],
 
 # FTICR Pores -- tables
 ## peaks
-```{r peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa", }
+```{r peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
 pore_peaks %>% 
   ungroup %>% 
     filter(tension=="50 kPa") %>% 
