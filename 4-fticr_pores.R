@@ -20,7 +20,7 @@ corekey = read.csv("data/COREKEY.csv")
 #
 ## step 2: clean and process ----
 
-# 2a: remove unnecessary columns. LOTS of unnecessary columns. fml. #### 
+## 2a: remove unnecessary columns. LOTS of unnecessary columns. fml. #### 
 # This uses a seemingly arbitrary list that's experiment-specific. Kind of sucky
 # Create a file with the list of columns to drop. 
 # use the sample meta file for this. retain SampleType `sample` and `as`. (I don't know what `as`` is.)
@@ -584,6 +584,5 @@ fticr_pore_aromatic_counts = fticr_pore_aromatic_counts[complete.cases(fticr_por
 write_csv(fticr_pore_aromatic_counts,path = "fticr/fticr_pore_aromatic_counts.csv")
 
 #
-
 
 
