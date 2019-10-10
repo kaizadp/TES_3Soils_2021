@@ -54,8 +54,6 @@ ggplot(pore_aromatic,
   theme_bw()+
   theme_kp()
 
-print(gg_pore_aromaticpeaks, base_width = 12, base_height = 7)
-
 ```
 
 ## native SOM
