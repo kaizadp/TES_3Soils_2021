@@ -51,7 +51,7 @@ fticr_soil_gather2 = fticr_soil_gather2[!(fticr_soil_gather2$reps<3),]
 
 ### OUTPUT
 # write.csv(fticr_soil_gather2,"fticr_soil_longform.csv")
-write_csv(fticr_soil_gather2, path = "fticr/fticr_soil_longform.csv")
+write_csv(fticr_soil_gather2, FTICR_SOIL_LONG)
 
 #
 ## step 3: relative abundance ---- 
@@ -82,7 +82,7 @@ fticr_soil_relabundance = cbind(corenames,fticr_soil_abundance2)
 
 ### OUTPUT
 # write.csv(fticr_soil_relabundance,"fticr_soil_relabund_cores.csv")
-write_csv(fticr_soil_relabundance,path = "fticr/fticr_soil_relabund_cores.csv")
+# write_csv(fticr_soil_relabundance,path = "fticr/fticr_soil_relabund_cores.csv")
 
 ## relative abundance by treatment/site
 fticr_soil_relabundance_long = fticr_soil_relabundance %>% 
@@ -94,22 +94,23 @@ fticr_soil_relabundance_summary$relativeabundance = paste((round(fticr_soil_rela
                                                            "\u00B1",
                                                            round(fticr_soil_relabundance_summary$se,2))
 
-fticr_soil_relabundance_summarytable = dcast(fticr_soil_relabundance_summary,site+treatment~group,value.var = "relativeabundance") 
 
-# move Unnamed and total columns to the end
-fticr_soil_relabundance_summarytable %>% 
-  select(-Unnamed,Unnamed) %>% 
-  select(-total,total) ->
-  fticr_soil_relabundance_summarytable
-
-# remove +/- SE values for the total column
-fticr_soil_relabundance_summarytable$total="100"
-
-### OUTPUT
-# write.csv(fticr_soil_relabundance_summarytable,"fticr_soil_relabundance_groups.csv")
-write_csv(fticr_soil_relabundance_summarytable,path = "fticr/fticr_soil_relabundance_groups.csv")
-
-#
+# OPTION1: UNNECESSARY NOW
+    # fticr_soil_relabundance_summarytable = dcast(fticr_soil_relabundance_summary,site+treatment~group,value.var = "relativeabundance") 
+    
+    # move Unnamed and total columns to the end
+    # fticr_soil_relabundance_summarytable %>% 
+    #  select(-Unnamed,Unnamed) %>% 
+    #  select(-total,total) ->
+    #  fticr_soil_relabundance_summarytable
+    
+    # remove +/- SE values for the total column
+    # fticr_soil_relabundance_summarytable$total="100"
+    
+    ### OUTPUT
+    # write.csv(fticr_soil_relabundance_summarytable,"fticr_soil_relabundance_groups.csv")
+    # write_csv(fticr_soil_relabundance_summarytable,path = "fticr/fticr_soil_relabundance_groups.csv")
+  
 
 ## option2
 # relativeabundance for the total rows is 100 +/- 0. set it to 100
@@ -121,10 +122,45 @@ fticr_soil_relabundance_summary$group = factor(fticr_soil_relabundance_summary$g
                                             levels=c(sort(old.lvl[old.lvl!="total"]), "total"))
 
 
-# cast the table in a different manner, with groups as rows
-fticr_soil_relabundance_summarytable2 = dcast(fticr_soil_relabundance_summary,
-                                              site+group~treatment,value.var = "relativeabundance") 
-write_csv(fticr_soil_relabundance_summarytable2,path = "fticr/fticr_soil_relabundance_groups2.csv")
+    # cast the table in a different manner, with groups as rows
+    # fticr_soil_relabundance_summarytable2 = dcast(fticr_soil_relabundance_summary,
+    #                                              site+group~treatment,value.var = "relativeabundance") 
+
+
+## HSD 
+fit_hsd_relabund <- function(dat) {
+  a <-aov(relabund ~ treatment, data = dat)
+  h <-HSD.test(a,"treatment")
+  #create a tibble with one column for each treatment
+  #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
+  tibble(`drought` = h$groups["drought",2], 
+         `saturation` = h$groups["saturation",2],
+         `time zero saturation` = h$groups["time zero saturation",2],
+         `field moist` = h$groups["field moist",2],
+         `baseline` = h$groups["baseline",2])
+}
+
+fticr_soil_relabundance_long[!fticr_soil_relabundance_long$group=="total",] %>% 
+  group_by(site, group) %>% 
+  do(fit_hsd_relabund(.))  ->
+  soil_relabund_hsd
+
+soil_relabund_hsd %>% 
+  gather(treatment, hsd, 3:7)-> #gather columns 4-7 (treatment levels)
+  soil_relabund_hsd2
+
+# now merge this with `fticr_soil_relabundance_summary`
+
+fticr_soil_relabundance_summary2 = merge(fticr_soil_relabundance_summary, soil_relabund_hsd2, by = c("site","group","treatment"))
+
+# combine hsd and values and thenremove unnecessary columns
+fticr_soil_relabundance_summary2 %>% 
+  mutate(relabund_hsd = paste(relativeabundance," ",hsd)) %>% 
+  select(-sd,-se,-ci,-hsd)->
+  fticr_soil_relabundance_summary2
+
+### OUTPUT
+write_csv(fticr_soil_relabundance_summary2, FTICR_SOIL_RELABUND)
 
 
 ## step 4: molecules added/lost ----
@@ -294,8 +330,9 @@ fticr_soil_unique = fticr_soil_new %>%
 
 fticr_soil_unique2 = merge(fticr_soil_meta, fticr_soil_unique, by = "Mass")
 
-## OUTPUT
-write_csv(fticr_soil_unique2, path = "fticr/fticr_soil_uniquemolecules.csv")
+### OUTPUT
+write_csv(fticr_soil_unique2, FTICR_SOIL_UNIQUE)
+
 
 #
 ## step 5: HC, OC data for van krevelen ----
@@ -312,7 +349,7 @@ fticr_soil_gather2 %>%
 
 ### OUTPUT
 # write.csv(fticr_soil_hcoc,"fticr_soil_hcoc.csv")
-write_csv(fticr_soil_hcoc,path = "fticr/fticr_soil_hcoc.csv")
+write_csv(fticr_soil_hcoc, FTICR_SOIL_HCOC)
 
 #
 
@@ -324,7 +361,7 @@ fticr_soil_gather2 %>%
 
 ### OUTPUT
 # write.csv(fticr_soil_nosc,"fticr_soil_nosc.csv")
-write_csv(fticr_soil_nosc,path = "fticr/fticr_soil_nosc.csv")
+write_csv(fticr_soil_nosc, FTICR_SOIL_NOSC)
 
 #
 
@@ -371,6 +408,6 @@ fticr_soil_aromatic_counts = fticr_soil_aromatic_counts[complete.cases(fticr_soi
 
 ### OUTPUT
 # write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
-write_csv(fticr_soil_aromatic_counts,path = "fticr/fticr_soil_aromatic_counts.csv")
+write_csv(fticr_soil_aromatic_counts, FTICR_SOIL_AROMATIC)
 
 #

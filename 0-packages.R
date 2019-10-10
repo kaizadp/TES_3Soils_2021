@@ -75,4 +75,17 @@ FTICR_PORE_HCOC <- "fticr/fticr_pore_hcoc.csv"
 FTICR_PORE_NOSC <- "fticr/fticr_pore_nosc.csv"
 FTICR_PORE_AROMATIC <- "fticr/fticr_pore_aromatic_counts.csv"
 
+# FTICR_SOIL
+FTICR_SOIL_LONG <- "fticr/fticr_soil_longform.csv"
+FTICR_SOIL_RELABUND <- "fticr/fticr_soil_relabundance_hsd.csv"
+FTICR_SOIL_UNIQUE <- "fticr/fticr_soil_uniquemolecules.csv" 
+FTICR_SOIL_HCOC <- "fticr/fticr_soil_hcoc.csv"
+FTICR_SOIL_NOSC <- "fticr/fticr_soil_nosc.csv"
+FTICR_SOIL_AROMATIC <- "fticr/fticr_soil_aromatic_counts.csv"
+
+
+
+
+
+
 
