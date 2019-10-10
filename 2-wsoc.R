@@ -23,7 +23,7 @@ wsoc_pores$Treatment = factor(wsoc_pores$Treatment,
                                          "Saturated",
                                          "Drought"))
 
-## making separate plots for sites 
+## making separate plots for sites ----
 #creating summary
 wsoc_rmisc_cpcrw=summarySE(wsoc_pores[wsoc_pores$Site=="CPCRW",],measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
 wsoc_rmisc_dwp=summarySE(wsoc_pores[wsoc_pores$Site=="DWP",],measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
@@ -34,18 +34,6 @@ wsoc_dwp = wsoc_pores[wsoc_pores$Site=="DWP",]
 wsoc_sr = wsoc_pores[wsoc_pores$Site=="SR",]
 
 #plot
-
-theme_kp <- function() {  # this for all the elements common across plots
-  theme_bw() %+replace%
-    theme(legend.position = "none",
-          legend.key = element_rect(size = 3),
-          legend.title = element_blank(),
-          legend.text = element_text(size = 12),
-          legend.key.size = unit(1.5, 'lines'),
-          plot.title = element_text(hjust = 0.05, size = 14),
-          axis.text = element_text(size = 14, face = "bold", color = "black"),
-          axis.title = element_text(size = 14, face = "bold", color = "black"))
-}
 
 gg_wsoc_pores_cpcrw = ggplot(wsoc_rmisc_cpcrw, 
                              aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
@@ -154,7 +142,7 @@ plot_grid(gg_wsoc_pores_cpcrw,gg_wsoc_pores_dwp, gg_wsoc_pores_sr,
           ncol=2,nrow=2,align="hv")
 
 ##
-## redoing plots with facet
+## redoing plots with facet ----
 wsoc_pores_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
 
 ggplot(wsoc_pores_rmisc,
