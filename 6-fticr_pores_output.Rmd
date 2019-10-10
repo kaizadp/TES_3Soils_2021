@@ -10,21 +10,28 @@ output: bookdown::html_document2
 source("0-packages.R")
 
 #input files
-aromatic = read.csv(FTICR_PORE_AROMATIC)
-
+pore_aromatic = read.csv(FTICR_PORE_AROMATIC)# <- "fticr/fticr_pore_aromatic_counts.csv"
+pore_meta = read.csv(FTICR_PORE_META)# <- "fticr/fticr_pore_meta.csv"
+pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
+pore_relabund = read.csv(FTICR_PORE_RELABUND)# <- "fticr/fticr_pore_relabundance_groups2_hsd.csv"
+pore_peaks = read.csv(FTICR_PORE_PEAKS)# <- "fticr/fticr_pore_peakscount.csv"
+pore_unique = read.csv(FTICR_PORE_UNIQUE)# <- "fticr/fticr_pore_uniquemolecules.csv"
+pore_unique_peaks = read.csv(FTICR_PORE_UNIQUE_PEAKS)# <- "fticr/fticr_pore_unique_peakscount.csv"
+pore_hcoc = read.csv(FTICR_PORE_HCOC)# <- "fticr/fticr_pore_hcoc.csv"
+pore_nosc = read.csv(FTICR_PORE_NOSC)# <- "fticr/fticr_pore_nosc.csv"
 ```
 
 
 # Pores -- figures
 ## aromatic peaks
 ```{r aromatic, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="aromatic peaks", fig.width=12, fig.height=7}
-aromatic %>% 
+pore_aromatic %>% 
   mutate(treatment = factor(treatment,
                             levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
-  aromatic
+  pore_aromatic
 
 ## doing facet
-ggplot(aromatic, 
+ggplot(pore_aromatic, 
   aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
   geom_boxplot(position = "dodge", fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
   geom_dotplot(binaxis = "y",position = position_dodge(0.75), 
@@ -54,7 +61,7 @@ print(gg_pore_aromaticpeaks, base_width = 12, base_height = 7)
 ## native SOM
 ```{r vk_baseline, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for TZSat pores",fig.width=10, fig.height=7}
 
-ggplot(FTICR_PORE_HCOC[FTICR_PORE_HCOC$treatment=="time zero saturation",],
+ggplot(pore_hcoc[pore_hcoc$treatment=="time zero saturation",],
        aes(x = OC, y = HC, color = site))+
   geom_point(alpha = 0.1)+
   scale_color_brewer(palette = "Set1")+
@@ -78,11 +85,11 @@ ggplot(FTICR_PORE_HCOC[FTICR_PORE_HCOC$treatment=="time zero saturation",],
 
 ## treatment effect
 ```{r vk_treatments, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for treatments",fig.width=10, fig.height=7}
-fticr_pore_hcoc %>% 
+pore_hcoc %>% 
   mutate(treatment = factor(treatment, levels = c("time zero saturation","field moist","drought","saturation")))->
-           fticr_pore_hcoc2
+           pore_hcoc2
 
-ggplot(fticr_pore_hcoc2[!fticr_pore_hcoc2$treatment=="time zero saturation",], # remove baseline 
+ggplot(pore_hcoc2[!pore_hcoc2$treatment=="time zero saturation",], # remove baseline 
          aes(x = OC, y = HC, color = treatment))+
   geom_point(alpha = 0.1)+
   scale_color_brewer(palette = "Dark2")+
@@ -113,11 +120,11 @@ ggplot(fticr_pore_hcoc2[!fticr_pore_hcoc2$treatment=="time zero saturation",], #
 ## treatment effect -- unique molecules
 ```{r vk_unique, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for uniqiue peaks",fig.width=10, fig.height=7}
 # set level of factors
-fticr_pore_unique2 %>% 
+pore_unique %>% 
   mutate(unique = factor(unique, levels = c("field_moist","drought","saturation")))->
-           fticr_pore_unique2
+           pore_unique
 
-ggplot(fticr_pore_unique2,
+ggplot(pore_unique,
          aes(x = OC, y = HC, color = unique))+
   geom_point(alpha = 0.4)+
   scale_color_brewer(palette = "Dark2")+
@@ -144,14 +151,14 @@ ggplot(fticr_pore_unique2,
 ```{r rel_abund, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Relative abundance",fig.width=9, fig.height=9}
 # use file fticr_pore_relabundance_summary
 # first, remove the `total` row
-fticr_pore_relabund_summary2 = fticr_pore_relabundance_summary[!fticr_pore_relabundance_summary$group=="total",]
+pore_relabund = pore_relabund[!pore_relabund$group=="total",]
 
 # set Other as last factor
-old.lvl = levels(factor(fticr_pore_relabund_summary2$group))
-fticr_pore_relabund_summary2$group = factor(fticr_pore_relabund_summary2$group, 
+old.lvl = levels(factor(pore_relabund$group))
+pore_relabund$group = factor(pore_relabund$group, 
                                             levels=c(sort(old.lvl[old.lvl!="Other"]), "Other"))
 
-ggplot(fticr_pore_relabund_summary2, aes(x = treatment, y = relabund, fill = group))+
+ggplot(pore_relabund, aes(x = treatment, y = relabund, fill = group))+
   geom_bar(stat = "summary", width = 0.9)+
   #scale_fill_brewer(palette = "Dark2")+
   scale_fill_viridis_d(option = "inferno")+
@@ -169,13 +176,13 @@ ggplot(fticr_pore_relabund_summary2, aes(x = treatment, y = relabund, fill = gro
 
 ## treatment effect -- NOSC
 ```{r NOSC_c, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for CPCRW",fig.width=11, fig.height=6}
-fticr_pore_nosc %>% 
+pore_nosc %>% 
   mutate(treatment = factor(treatment,
                             levels = c("baseline","time zero saturation", "field moist","drought","saturation")))->
-  fticr_pore_nosc
+  pore_nosc
 
 #CPCRW
-ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="CPCRW" &!fticr_pore_nosc$treatment=="baseline",], 
+ggplot(pore_nosc[pore_nosc$site=="CPCRW" &!pore_nosc$treatment=="baseline",], 
        aes(x = NOSC, fill = treatment, color = treatment))+
   geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
   #scale_fill_brewer(palette = "Dark2")+
@@ -195,13 +202,8 @@ ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="CPCRW" &!fticr_pore_nosc$treatment
 ```
 
 ```{r NOSC_d, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for DWP",fig.width=11, fig.height=6}
-fticr_pore_nosc %>% 
-  mutate(treatment = factor(treatment,
-                            levels = c("baseline","time zero saturation", "field moist","drought","saturation")))->
-  fticr_pore_nosc
-
 #DWP
-ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="DWP" &!fticr_pore_nosc$treatment=="baseline",], 
+ggplot(pore_nosc[pore_nosc$site=="DWP" &!pore_nosc$treatment=="baseline",], 
        aes(x = NOSC, fill = treatment, color = treatment))+
   geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
   #scale_fill_brewer(palette = "Dark2")+
@@ -221,13 +223,9 @@ ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="DWP" &!fticr_pore_nosc$treatment==
 ```
 
 ```{r NOSC_s, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for SR",fig.width=11, fig.height=6}
-fticr_pore_nosc %>% 
-  mutate(treatment = factor(treatment,
-                            levels = c("baseline","time zero saturation", "field moist","drought","saturation")))->
-  fticr_pore_nosc
 
 #SR
-ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="SR" &!fticr_pore_nosc$treatment=="baseline",], 
+ggplot(pore_nosc[pore_nosc$site=="SR" &!pore_nosc$treatment=="baseline",], 
        aes(x = NOSC, fill = treatment, color = treatment))+
   geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
   #scale_fill_brewer(palette = "Dark2")+
@@ -250,8 +248,7 @@ ggplot(fticr_pore_nosc[fticr_pore_nosc$site=="SR" &!fticr_pore_nosc$treatment=="
 # Pores -- tables
 ## peaks
 ```{r peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa", }
-#fticr_pore_peaks2
-fticr_pore_peaks2 %>% 
+pore_peaks %>% 
   ungroup %>% 
     filter(tension=="50 kPa") %>% 
 dplyr::mutate(sp = paste(site, treatment),
@@ -261,10 +258,8 @@ dplyr::mutate(sp = paste(site, treatment),
   knitr::kable(align = "r")
 ```
 
-
 ```{r peaks_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 1.5 kPa"}
-#fticr_pore_peaks2
-fticr_pore_peaks2 %>% 
+pore_peaks %>% 
   ungroup %>% 
   filter(tension=="1.5 kPa") %>% 
   dplyr::mutate(sp = paste(site, treatment),
@@ -277,9 +272,7 @@ fticr_pore_peaks2 %>%
 ## relative abundance
 
 ```{r relabund_50, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
-#fticr_pore_relabundance_summary2
-
-fticr_pore_relabundance_summary2%>% 
+pore_relabund%>% 
   ungroup %>% 
   filter(tension=="50 kPa") %>% 
   dplyr::mutate(sp = paste(site, treatment),
@@ -291,9 +284,7 @@ fticr_pore_relabundance_summary2%>%
 total = 100%
 
 ```{r relabund_5, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 1.5 kPa"}
-#fticr_pore_relabundance_summary2
-
-fticr_pore_relabundance_summary2%>% 
+pore_relabund%>% 
   ungroup %>% 
   filter(tension=="1.5 kPa") %>% 
   dplyr::mutate(sp = paste(site, treatment),
