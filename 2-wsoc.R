@@ -22,7 +22,7 @@ wsoc_pores$Treatment = factor(wsoc_pores$Treatment,
                                          "Field Moist",
                                          "Saturated",
                                          "Drought"))
-
+#
 ## making separate plots for sites ----
 #creating summary
 wsoc_rmisc_cpcrw=summarySE(wsoc_pores[wsoc_pores$Site=="CPCRW",],measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
@@ -210,15 +210,48 @@ amod_c_1.5 = aov(wsoc~Treatment,data = wsoc_pores[Site=="CPCRW"&Suction=="1.5 kP
 wsoc_pore_hsd_c_1.5 = HSD.test(amod_c_1.5,"Treatment",group = TRUE)
 
 
+## HSD
+fit_hsd_wsoc_pore <- function(dat) {
+  a <-aov(wsoc ~ Treatment, data = dat)
+  h <-HSD.test(a,"Treatment")
+  #create a tibble with one column for each treatment
+  #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
+  tibble(`Drought` = h$groups["Drought",2], 
+         `Saturated` = h$groups["Saturated",2],
+         `Time Zero` = h$groups["Time Zero",2],
+         `Field Moist` = h$groups["Field Moist",2])
+}
 
+wsoc_pores %>% 
+  group_by(Site, Suction) %>% 
+  do(fit_hsd_wsoc_pore(.))  ->
+  wsoc_pores_hsd
+
+wsoc_pores_hsd %>% 
+  gather(Treatment, hsd, 3:6)-> #gather columns 4-7 (treatment levels)
+  wsoc_pores_hsd2
 
 ### WSOC concentrations -- pores -- summary table ----
-#wsoc_pores_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
-
+wsoc_pores_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
 wsoc_pores_rmisc$wsoc_mg_L = paste(round(wsoc_pores_rmisc$wsoc,2),"\u00B1",round(wsoc_pores_rmisc$se,2))
 #\u00b1 is plus-minus
-wsoc_pore_summary = dcast(wsoc_rmisc,Treatment~Suction+Site,value.var = "wsoc_mg_L") 
-write.csv(wsoc_pore_summary, file="wsoc_pores_summary.csv")
+
+
+# merge the summary table with the hsd table
+wsoc_pores_rmisc2 = merge(wsoc_pores_rmisc, wsoc_pores_hsd2, by = c("Site","Suction","Treatment"))
+
+# combine the wsoc and hsd columns
+wsoc_pores_rmisc2 %>% 
+  mutate(wsoc_hsd = paste(wsoc_mg_L," ",hsd)) %>% 
+  select(-sd,-se,-ci,-hsd)->
+  wsoc_pores_summary
+
+### OUTPUT
+write.csv(wsoc_pores_summary, WSOC_PORE)
+
+
+#wsoc_pore_summary = dcast(wsoc_rmisc,Treatment~Suction+Site,value.var = "wsoc_mg_L") 
+#write.csv(wsoc_pore_summary, file="wsoc_pores_summary.csv")
 
 
 ##
