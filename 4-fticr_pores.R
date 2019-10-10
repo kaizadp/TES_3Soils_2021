@@ -153,7 +153,7 @@ fticr_pore_groups_wide %>%
   mutate(total = rowSums(.[5:13])) ->
   fticr_pore_groups_wide
 
-## relative abundance:
+## 3.1 relative abundance: ----
 # split the dataset into (a) just the abundance values for easy calculations, and (b) the core key. Then combine again.
 fticr_pore_groups_wide[,-c(1:4)] %>% 
   sapply('/', fticr_pore_groups_wide$total/100)->
@@ -207,7 +207,7 @@ fticr_pore_relabundance_summarytable2 = dcast(fticr_pore_relabundance_summary,
                                               group~tension+site+treatment,value.var = "relativeabundance") 
 write_csv(fticr_pore_relabundance_summarytable2,path = "fticr/fticr_pore_relabundance_groups2.csv")
 
-## stats for the rel_abund summary table
+## 3.2 stats for the rel_abund summary table ----
 
 fit_hsd_relabund <- function(dat) {
   a <-aov(relabund ~ treatment, data = dat)
