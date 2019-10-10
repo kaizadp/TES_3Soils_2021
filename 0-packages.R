@@ -61,7 +61,7 @@ theme_kp <- function() {  # this for all the elements common across plots
 
 ## CREATE OUTPUT FILES
 # WSOC
-
+WSOC_PORE <- "processed/wsoc_pore_summary.csv"
 
 # FTICR_PORE
 FTICR_PORE_META <- "fticr/fticr_pore_meta.csv"

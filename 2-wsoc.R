@@ -185,31 +185,6 @@ capture.output(Anova(lme_trt_pore),file = "pore_wsoc_anova.txt")
 attach(wsoc_pores)
 wsoc_pore_hsd = HSD.test(aov(lme_trt_pore),trt = "Treatment")
 
-# HSD for CPCRW
-int_c = with(wsoc_pores[Site=="CPCRW",],interaction(Treatment,Suction))
-amod_c = aov(log(wsoc)~int_c,data = wsoc_pores[Site=="CPCRW",])
-wsoc_pore_hsd_c = HSD.test(amod_c,"int_c",group = TRUE)
-
-# HSD for DWP
-int_d = with(wsoc_pores[Site=="DWP",],interaction(Treatment,Suction))
-amod_d = aov(wsoc~int_d,data = wsoc_pores[Site=="DWP",])
-wsoc_pore_hsd_d = HSD.test(amod_d,"int_d",group = TRUE)
-
-# HSD for SR
-int_s = with(wsoc_pores[Site=="SR",],interaction(Treatment,Suction))
-amod_s = aov(log(wsoc)~int_s,data = wsoc_pores[Site=="SR",])
-wsoc_pore_hsd_s = HSD.test(amod_s,"int_s",group = TRUE)
-
-# HSD for CPCRW_50 and CPCRW_1.5
-int_c_50 = with(wsoc_pores[Site=="CPCRW"&Suction=="50 kPa",],interaction(Treatment,Suction))
-amod_c_50 = aov(wsoc~Treatment,data = wsoc_pores[Site=="CPCRW"&Suction=="50 kPa",])
-wsoc_pore_hsd_c_50 = HSD.test(amod_c_50,"Treatment",group = TRUE)
-
-int_c_1.5 = with(wsoc_pores[Site=="CPCRW"&Suction=="1.5 kPa",],interaction(Treatment,Suction))
-amod_c_1.5 = aov(wsoc~Treatment,data = wsoc_pores[Site=="CPCRW"&Suction=="1.5 kPa",])
-wsoc_pore_hsd_c_1.5 = HSD.test(amod_c_1.5,"Treatment",group = TRUE)
-
-
 ## HSD
 fit_hsd_wsoc_pore <- function(dat) {
   a <-aov(wsoc ~ Treatment, data = dat)
@@ -248,10 +223,6 @@ wsoc_pores_rmisc2 %>%
 
 ### OUTPUT
 write.csv(wsoc_pores_summary, WSOC_PORE)
-
-
-#wsoc_pore_summary = dcast(wsoc_rmisc,Treatment~Suction+Site,value.var = "wsoc_mg_L") 
-#write.csv(wsoc_pore_summary, file="wsoc_pores_summary.csv")
 
 
 ##
