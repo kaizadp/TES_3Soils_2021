@@ -1,0 +1,664 @@
+---
+title: "3soils_markdown"
+author: "Kaizad Patel"
+date: "10/10/2019"
+output: word_document
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+source("0-packages.R")
+
+# input files
+#   CHARAC
+charac = read.csv(CHARACTERIZATION)# <- "processed/soil_characterization.csv"
+pore = read.csv(PORE_DISTRIBUTION)# <- "processed/pore_distribution.csv"
+
+# WSOC
+wsoc_pore = read.csv(WSOC_PORE)# <- "processed/wsoc_pore_summary.csv"
+wsoc_soil = read.csv(WSOC_SOIL)# <- "processed/wsoc_soils_summary.csv"
+
+# FTICR_PORE
+pore_aromatic = read.csv(FTICR_PORE_AROMATIC)# <- "fticr/fticr_pore_aromatic_counts.csv"
+pore_meta = read.csv(FTICR_PORE_META)# <- "fticr/fticr_pore_meta.csv"
+pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
+pore_relabund = read.csv(FTICR_PORE_RELABUND)# <- "fticr/fticr_pore_relabundance_groups2_hsd.csv"
+pore_peaks = read.csv(FTICR_PORE_PEAKS)# <- "fticr/fticr_pore_peakscount.csv"
+pore_unique = read.csv(FTICR_PORE_UNIQUE)# <- "fticr/fticr_pore_uniquemolecules.csv"
+pore_unique_peaks = read.csv(FTICR_PORE_UNIQUE_PEAKS)# <- "fticr/fticr_pore_unique_peakscount.csv"
+pore_hcoc = read.csv(FTICR_PORE_HCOC)# <- "fticr/fticr_pore_hcoc.csv"
+pore_nosc = read.csv(FTICR_PORE_NOSC)# <- "fticr/fticr_pore_nosc.csv"
+
+#FTICR_SOIL
+soil_aromatic = read.csv(FTICR_SOIL_AROMATIC)# <- "fticr/fticr_soil_aromatic_counts.csv"
+soil_nosc = read.csv(FTICR_SOIL_NOSC)# <- "fticr/fticr_soil_nosc.csv"
+soil_hcoc = read.csv(FTICR_SOIL_HCOC)# <- "fticr/fticr_soil_hcoc.csv"
+soil_unique = read.csv(FTICR_SOIL_UNIQUE)# <- "fticr/fticr_soil_uniquemolecules.csv" 
+soil_relabund = read.csv(FTICR_SOIL_RELABUND)# <- "fticr/fticr_soil_relabundance_hsd.csv"
+soil_peaks = read.csv(FTICR_SOIL_PEAKS)# <- "fticr/fticr_soil_peakscount.csv"
+soil_unique_peaks = read.csv(FTICR_SOIL_UNIQUE_PEAKS)# <- "fticr/fticr_soil_unique_peakscount.csv"
+
+
+```
+# Soil characterization
+## summary table
+```{r charac, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
+charac %>% 
+  mutate(variable = factor(variable, levels = c("TC_perc", "TN_perc", "TOC_perc", "WSOC_mg_g",
+                                                "Ca_meq100g", "Mg_meq100g",
+                                                "pH", "EC_dS_m", 
+                                                "Sand_perc", "Silt_perc", "Clay_perc"))) %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(site),
+                val = paste(summary_hsd)) %>% 
+  select(variable,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+## pore distribution
+```{r pores, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="pore size distribution",fig.path = "images/"}
+ ggplot(pore,aes(x = pore_size, y=freq,color = site))+
+  geom_line(size = 1)+
+  scale_color_brewer(palette = "Set2")+
+  #geom_density(adjust=0.5)+
+  
+  labs (y = expression (bold ("distribution, %"),
+                        x = expression (bold ("pore size" ))))+
+  theme_bw()+
+  theme_kp()
+
+```
+
+## water retention curves
+
+```{r wrc, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="water retention curve", fig.width=5, fig.height=5,,fig.path = "images/"}
+
+water_retention = read_excel("data/water_retention.xlsx")
+
+# van genuchten plots
+ggplot()+
+  geom_line(data = water_retention,aes(x = Tension_c, y = CPCRW_water_VG, color = "CPCRW"), size=1)+
+  geom_line(data = water_retention,aes(x = Tension_d, y = DWP_water_VG,color = "DWP"), size=1)+
+  geom_line(data = water_retention,aes(x = Tension_s, y = SR_water_VG,color = "SR"), size=1)+
+  
+  annotate("text", label = "DWP, fine sand", x = 25, y = 0.03,size=4,fontface="bold")+ 
+  annotate("text", label = "CPCRW, silt loam", x = 75, y = 0.13,size=4,fontface="bold")+ 
+  annotate("text", label = "SR, silty clay loam", x = 55, y = 0.3,size=4,fontface="bold")+ 
+  
+  labs (y = expression (bold ("volumetric moisture content")),
+        x = expression (bold ("tension, kPa" )))+
+  ylim(0,0.6)+
+  theme_bw()+
+  theme_kp()+
+  theme (legend.position = "none")
+
+```
+
+
+
+# WSOC tables  
+## soils
+mg/g soil
+```{r wsoc_soil, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+wsoc_soil %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(Site),
+                val = paste(wsoc_hsd)) %>% 
+  select(Treatment,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+---
+## pores
+mg/L
+```{r wsoc_pore, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+wsoc_pore %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(Suction, Site),
+                val = paste(wsoc_hsd)) %>% 
+  select(Treatment,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+---
+## soils, pores combined
+*need pore water volume collected*
+```{r wsoc, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+# create a "suction" column in the soil file and code all as "soil".
+
+wsoc_soil %>% 
+  mutate(Suction = "Soil")->
+  wsoc_soil
+
+```
+---
+
+# FTICR Pores -- figures
+## native SOM
+```{r vk_baseline, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for TZSat pores",fig.width=10, fig.height=7,,fig.path = "images/"}
+
+ggplot(pore_hcoc[pore_hcoc$treatment=="time zero saturation",],
+       aes(x = OC, y = HC, color = site))+
+  geom_point(alpha = 0.1)+
+  scale_color_brewer(palette = "Set1")+
+  
+  xlab("O/C")+
+  ylab("H/C")+
+  xlim(0,1.27)+
+  ylim(0,2.7)+
+  
+  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
+
+  facet_grid(tension~site)+
+  
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+```
+
+## treatment effect -- all peaks
+```{r vk_treatments, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for treatments",fig.width=10, fig.height=7,,fig.path = "images/"}
+pore_hcoc %>% 
+  mutate(treatment = factor(treatment, levels = c("time zero saturation","field moist","drought","saturation")))->
+           pore_hcoc2
+
+ggplot(pore_hcoc2[!pore_hcoc2$treatment=="time zero saturation",], # remove baseline 
+         aes(x = OC, y = HC, color = treatment))+
+  geom_point(alpha = 0.1)+
+  scale_color_brewer(palette = "Dark2")+
+  
+  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
+
+  xlab("O/C")+
+  ylab("H/C")+
+  xlim(0,1.27)+
+  ylim(0,2.7)+
+  
+  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
+
+  facet_grid(tension~site)+
+  
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+
+```
+
+## treatment effect -- unique peaks
+```{r vk_unique, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for unique peaks",fig.width=10, fig.height=7,fig.path = "images/"}
+# set level of factors
+pore_unique %>% 
+  mutate(unique = factor(unique, levels = c("field_moist","drought","saturation")))->
+           pore_unique
+
+ggplot(pore_unique,
+         aes(x = OC, y = HC, color = unique))+
+  geom_point(alpha = 0.4)+
+  scale_color_brewer(palette = "Dark2")+
+
+  xlab("O/C")+
+  ylab("H/C")+
+  xlim(0,1.27)+
+  ylim(0,2.7)+
+  
+  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
+
+  facet_grid(tension~site)+
+  
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+
+```
+
+## treatment effect -- relative abundance
+
+```{r rel_abund, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Relative abundance",fig.width=9, fig.height=9,fig.path = "images/"}
+# use file fticr_pore_relabundance_summary
+# first, remove the `total` row
+pore_relabund = pore_relabund[!pore_relabund$group=="total",]
+
+# set Other as last factor
+old.lvl = levels(factor(pore_relabund$group))
+pore_relabund$group = factor(pore_relabund$group, 
+                                            levels=c(sort(old.lvl[old.lvl!="Other"]), "Other"))
+
+ggplot(pore_relabund, aes(x = treatment, y = relabund, fill = group))+
+  geom_bar(stat = "summary", width = 0.9)+
+  #scale_fill_brewer(palette = "Dark2")+
+  scale_fill_viridis_d(option = "inferno")+
+  
+  xlab("")+
+  ylab("% relative abundance")+
+  
+  facet_grid(tension~site)+
+  
+  theme_bw()+
+  theme_kp()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+## treatment effect -- NOSC
+
+```{r NOSC_c, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for CPCRW",fig.width=11, fig.height=6,fig.path = "images/"}
+pore_nosc %>% 
+  mutate(treatment = factor(treatment,
+                            levels = c("baseline","time zero saturation", "field moist","drought","saturation")))->
+  pore_nosc
+
+#CPCRW
+ggplot(pore_nosc[pore_nosc$site=="CPCRW" &!pore_nosc$treatment=="baseline",], 
+       aes(x = NOSC, fill = treatment, color = treatment))+
+  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  #scale_fill_brewer(palette = "Dark2")+
+  scale_color_brewer(palette = "Dark2")+
+  scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  scale_color_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
+
+  xlim(-2.5, 2.5)+
+  ylim(0,3000)+
+  ggtitle("CPCRW")+
+  
+  facet_grid(tension~treatment)+ #facet with two variables
+  
+  theme_bw()+
+  theme_kp()
+```
+
+```{r NOSC_d, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for DWP",fig.width=11, fig.height=6,fig.path = "images/"}
+#DWP
+ggplot(pore_nosc[pore_nosc$site=="DWP" &!pore_nosc$treatment=="baseline",], 
+       aes(x = NOSC, fill = treatment, color = treatment))+
+  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  #scale_fill_brewer(palette = "Dark2")+
+  scale_color_brewer(palette = "Dark2")+
+  scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  scale_color_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
+
+  xlim(-2.5, 2.5)+
+  ylim(0,3000)+
+  ggtitle("DWP")+
+  
+  facet_grid(tension~treatment)+ #facet with two variables
+  
+  theme_bw()+
+  theme_kp()
+```
+
+```{r NOSC_s, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for SR",fig.width=11, fig.height=6,fig.path = "images/"}
+
+#SR
+ggplot(pore_nosc[pore_nosc$site=="SR" &!pore_nosc$treatment=="baseline",], 
+       aes(x = NOSC, fill = treatment, color = treatment))+
+  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  #scale_fill_brewer(palette = "Dark2")+
+  scale_color_brewer(palette = "Dark2")+
+  scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  scale_color_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
+
+  xlim(-2.5, 2.5)+
+  ylim(0,3000)+
+  ggtitle("SR")+
+  
+  facet_grid(tension~treatment)+ #facet with two variables
+  
+  theme_bw()+
+  theme_kp()
+```
+
+
+## aromatic peaks
+```{r aromatic, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="aromatic peaks", fig.width=12, fig.height=7,fig.path = "images/"}
+pore_aromatic %>% 
+  mutate(treatment = factor(treatment,
+                            levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
+  pore_aromatic
+
+## doing facet
+ggplot(pore_aromatic, 
+  aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
+  geom_boxplot(position = "dodge", fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
+  geom_dotplot(binaxis = "y",position = position_dodge(0.75), 
+               stackdir = "center", dotsize = 0.4, color = "black")+
+  
+  #scale_fill_viridis_d(option = "magma")+
+  #scale_color_viridis_d(option = "magma")+
+
+  scale_fill_brewer(palette = "Dark2")+
+  scale_color_brewer(palette = "Dark2")+
+
+  ylab("aromatic peaks")+
+  xlab("")+
+  ylim(0,350)+
+  geom_vline(xintercept = 1.5)+
+  geom_vline(xintercept = 2.5)+
+  
+  facet_wrap(~tension)+
+  
+  theme_bw()+
+  theme_kp()
+
+```
+
+# FTICR Pores -- tables
+## peaks
+```{r peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+pore_peaks %>% 
+  ungroup %>% 
+    filter(tension=="50 kPa") %>% 
+dplyr::mutate(sp = paste(site, treatment),
+                val = paste(peaks_count)) %>% 
+  select(Class,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+```{r peaks_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 1.5 kPa"}
+pore_peaks %>% 
+  ungroup %>% 
+  filter(tension=="1.5 kPa") %>% 
+  dplyr::mutate(sp = paste(site, treatment),
+                val = paste(peaks_count)) %>% 
+  select(Class,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+## unique peaks
+```{r uniquepeaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+old.lvl = levels(factor(pore_unique_peaks$Class))
+pore_unique_peaks$Class = factor(pore_unique_peaks$Class, 
+                                            levels=c(sort(old.lvl[old.lvl!="total"]), "total"))
+
+pore_unique_peaks%>% 
+  ungroup %>%
+  filter(tension=="50 kPa") %>% 
+  dplyr::mutate(sp = paste(site,unique),
+                val = paste(peaks_count)) %>% 
+  select(Class,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+```{r uniquepeaks_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+pore_unique_peaks%>% 
+  ungroup %>%
+  filter(tension=="1.5 kPa") %>% 
+  dplyr::mutate(sp = paste(site,unique),
+                val = paste(peaks_count)) %>% 
+  select(Class,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+## relative abundance
+
+```{r relabund_50, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
+pore_relabund%>% 
+  ungroup %>% 
+  filter(tension=="50 kPa") %>% 
+  dplyr::mutate(sp = paste(site, treatment),
+                val = paste(relativeabundance)) %>% 
+  select(group,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+total = 100%
+
+```{r relabund_5, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 1.5 kPa"}
+pore_relabund%>% 
+  ungroup %>% 
+  filter(tension=="1.5 kPa") %>% 
+  dplyr::mutate(sp = paste(site, treatment),
+                val = paste(relativeabundance)) %>% 
+  select(group,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+total = 100%
+
+
+
+---
+
+---
+# FTICR Soil -- figures 
+## native SOM
+```{r soil_vk_baseline, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for baseline soil",fig.width=12, fig.height=5,fig.path = "images/"}
+
+ggplot(soil_hcoc[soil_hcoc$treatment=="baseline",],
+       aes(x = OC, y = HC, color = site))+
+  geom_point(alpha = 0.1)+
+  scale_color_brewer(palette = "Set1")+
+  
+  xlab("O/C")+
+  ylab("H/C")+
+  xlim(0,1.27)+
+  ylim(0,2.7)+
+  
+  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
+
+  facet_grid(~site)+
+  
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+```
+
+## treatment effect -- all peaks
+```{r soil_vk_treatments, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for treatments",fig.width=12, fig.height=5,fig.path = "images/"}
+soil_hcoc %>% 
+  mutate(treatment = factor(treatment, levels = c("baseline","time zero saturation","field moist","drought","saturation")))->
+           soil_hcoc2
+
+ggplot(soil_hcoc2[soil_hcoc2$treatment=="field moist"|
+                    soil_hcoc2$treatment=="drought"|
+                     soil_hcoc2$treatment=="saturation",], # remove baseline 
+         aes(x = OC, y = HC, color = treatment))+
+  geom_point(alpha = 0.1)+
+  scale_color_brewer(palette = "Dark2")+
+  
+  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
+
+  xlab("O/C")+
+  ylab("H/C")+
+  xlim(0,1.27)+
+  ylim(0,2.7)+
+  
+  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
+
+  facet_grid(~site)+
+  
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+
+```
+
+## treatment effect -- unique peaks
+```{r soil_vk_unique, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for unique peaks",fig.width=12, fig.height=5,fig.path = "images/"}
+# set level of factors
+soil_unique %>% 
+  mutate(unique = factor(unique, levels = c("field_moist","drought","saturation")))->
+           soil_unique
+
+ggplot(soil_unique,
+         aes(x = OC, y = HC, color = unique))+
+  geom_point(alpha = 0.4)+
+  scale_color_brewer(palette = "Dark2", na.translate=F)+
+
+  xlab("O/C")+
+  ylab("H/C")+
+  xlim(0,1.27)+
+  ylim(0,2.7)+
+  
+  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
+  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
+
+  facet_grid(~site)+
+  
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+
+```
+
+## treatment effect -- relative abundance
+```{r soiL_rel_abund, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Relative abundance",fig.width=9, fig.height=7,fig.path = "images/"}
+# use file fticr_pore_relabundance_summary
+# first, remove the `total` row
+soil_relabund = soil_relabund[!soil_relabund$group=="total",]
+
+# set Other as last factor
+old.lvl = levels(factor(soil_relabund$group))
+soil_relabund$group = factor(soil_relabund$group, 
+                                            levels=c(sort(old.lvl[old.lvl!="Unnamed"]), "Unnamed"))
+
+ggplot(soil_relabund, aes(x = treatment, y = relabund, fill = group))+
+  geom_bar(stat = "summary", width = 0.9)+
+  #scale_fill_brewer(palette = "Dark2")+
+  scale_fill_viridis_d(option = "inferno")+
+  
+  xlab("")+
+  ylab("% relative abundance")+
+  
+  facet_grid(~site)+
+  
+  theme_bw()+
+  theme_kp()+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+## NOSC
+```{r soil_NOSC_c, echo=FALSE, fig.cap="NOSC for CPCRW", fig.height=6, fig.width=11, message=FALSE, warning=FALSE,fig.path = "images/"}
+soil_nosc %>% 
+  mutate(treatment = factor(treatment,
+                            levels = c("baseline","time zero saturation", "field moist","drought","saturation")))->
+  soil_nosc
+
+ggplot(soil_nosc, 
+       aes(x = NOSC, fill = treatment, color = treatment))+
+  geom_histogram(binwidth = 0.10, position = "identity", alpha = 0.2)+
+  scale_fill_brewer(palette = "Dark2")+
+  scale_color_brewer(palette = "Dark2")+
+  # scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  #  scale_color_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
+
+  xlim(-2.5, 2.5)+
+  ylim(0,3000)+
+
+  facet_grid(site~treatment)+ #facet with two variables
+  
+  theme_bw()+
+  theme_kp()
+```
+
+## aromatic peaks
+```{r soil_aromatic, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="aromatic peaks", fig.width=12, fig.height=7,fig.path = "images/"}
+soil_aromatic %>% 
+  mutate(treatment = factor(treatment,
+                            levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
+  soil_aromatic
+
+ggplot(soil_aromatic, 
+  aes(x = site, y = arom_core_counts, color = treatment, fill = treatment))+
+  geom_boxplot(position = "dodge", fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
+  geom_dotplot(binaxis = "y",position = position_dodge(0.75), 
+               stackdir = "center", dotsize = 0.4, color = "black")+
+  
+  #scale_fill_viridis_d(option = "magma")+
+  #scale_color_viridis_d(option = "magma")+
+
+  scale_fill_brewer(palette = "Dark2")+
+  scale_color_brewer(palette = "Dark2")+
+
+  ylab("aromatic peaks")+
+  xlab("")+
+  geom_vline(xintercept = 1.5)+
+  geom_vline(xintercept = 2.5)+
+  
+  theme_bw()+
+  theme_kp()
+
+```
+
+
+---
+
+# FTICR Soil -- tables 
+## relative abundance
+```{r soil_relabund_table, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
+soil_relabund%>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(site, treatment),
+                val = paste(relabund_hsd)) %>% 
+  select(group,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+---
+## peaks
+```{r soil_peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+soil_peaks %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(site, treatment),
+                val = paste(peaks_count)) %>% 
+  select(Class,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+---
+## unique peaks
+```{r soil_uniquepeaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+old.lvl = levels(factor(soil_unique_peaks$Class))
+soil_unique_peaks$Class = factor(soil_unique_peaks$Class, 
+                                            levels=c(sort(old.lvl[old.lvl!="total"]), "total"))
+
+soil_unique_peaks%>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(unique),
+                val = paste(peaks_count)) %>% 
+  select(site, Class,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+
+
+
+
+
+
+
+
+
+

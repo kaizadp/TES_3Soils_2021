@@ -25,7 +25,8 @@ soil_character$`Silt_perc` = as.numeric(soil_character$`Silt_perc`)
 soil_character$`Clay_perc` = as.numeric(soil_character$`Clay_perc`)
 
 
-# creating summary table
+# creating summary table----
+# option 1 ----
 soil_char2 = 
   dplyr::mutate(soil_character,
                 soil_factor = factor(soil_character$Soil,
@@ -56,55 +57,69 @@ write.csv(soil_char_table, file = "soil_charac_summary.csv")
 
 ##
 
+# option 2 ----
+
+# select only those rows we want for the characterization summary
+# manual step
+
+soil_character %>% 
+  dplyr::rename(site=Soil) %>% 
+  select(site,
+         TC_perc, TN_perc, TOC_perc, WSOC_mg_g,
+         Ca_meq100g, Mg_meq100g,
+         pH, EC_dS_m, 
+         Sand_perc, Silt_perc, Clay_perc)->
+  soil_character2  
+
+# gather
+soil_character2 %>% 
+  gather(variable, value, 2:12) %>% 
+  mutate(value = round(value,2)) %>% 
+  mutate(variable = factor(variable, levels = c("TC_perc", "TN_perc", "TOC_perc", "WSOC_mg_g",
+                                                "Ca_meq100g", "Mg_meq100g",
+                                                "pH", "EC_dS_m", 
+                                                "Sand_perc", "Silt_perc", "Clay_perc"))) %>% 
+  drop_na()->
+  soil_character2_long
+
+soil_character2_long %>% 
+  group_by(site, variable) %>% 
+  dplyr::summarise(mean = mean(value),
+                   se = sd(value)/sqrt(n())) %>% 
+  dplyr::mutate(summary = paste(round(mean,2), "\u00B1",round(se,2)))->
+  soil_character_summary
+
 ## 2. characterization -- stats ----
 
-### test for normaility
+fit_hsd <- function(dat) {
+  a <-aov(value ~ site, data = dat)
+  h <-HSD.test(a,"site")
+  #create a tibble with one column for each treatment
+  #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
+  tibble(`SR` = h$groups["SR",2], 
+         `CPCRW` = h$groups["CPCRW",2],
+         `DWP` = h$groups["DWP",2])
+}
 
+soil_character2_long %>% 
+  group_by(variable) %>% 
+  do(fit_hsd(.))  ->
+  soil_charac_hsd
 
-### anova and hsd
+soil_charac_hsd %>% 
+  gather(site, hsd, 2:4)-> #gather columns 4-7 (treatment levels)
+  soil_charac_hsd2
 
-a_tc = aov(TC_perc~Soil,data = soil_character)
-hsd_tc = HSD.test(a_tc,trt = "Soil")
+# merge `summary` and `hsd`
+soil_character_summary2 = merge(soil_character_summary, soil_charac_hsd2, by = c("site", "variable"))
 
-a_tn = aov(TN_perc~Soil,data = soil_character)
-hsd_tn = HSD.test(a_tn,trt = "Soil")
-hsd_tn
+soil_character_summary2 %>% 
+  mutate(summary_hsd = paste(summary," ",hsd)) %>% 
+  select(-hsd)->
+  soil_character_summary2
 
-a_toc = aov(TOC_perc~Soil,data = soil_character)
-hsd_toc = HSD.test(a_toc,trt = "Soil")
-hsd_toc
-
-a_wsoc = aov(WSOC_mg_g~Soil,data = soil_character)
-hsd_wsoc = HSD.test(a_wsoc,trt = "Soil")
-hsd_wsoc
-
-a_ca = aov(Ca_meq100g~Soil,data = soil_character)
-hsd_ca = HSD.test(a_ca,trt = "Soil")
-hsd_ca
-
-a_mg = aov(Mg_meq100g~Soil,data = soil_character)
-hsd_mg = HSD.test(a_mg,trt = "Soil")
-hsd_mg
-
-a_pH = aov(pH~Soil,data = soil_character)
-hsd_pH = HSD.test(a_pH,trt = "Soil")
-hsd_pH
-
-a_ec = aov(EC_dS_m~Soil,data = soil_character)
-hsd_ec = HSD.test(a_ec,trt = "Soil")
-hsd_ec
-
-a_sand = aov(Sand_perc~Soil,data = soil_character)
-hsd_sand = HSD.test(a_sand,trt = "Soil")
-hsd_sand
-
-a_silt = aov(Silt_perc~Soil,data = soil_character)
-hsd_silt = HSD.test(a_silt,trt = "Soil")
-hsd_silt
-
-a_clay = aov(Clay_perc~Soil,data = soil_character)
-hsd_clay = HSD.test(a_clay,trt = "Soil")
-hsd_clay
+### OUTPUT
+write.csv(soil_character_summary2, CHARACTERIZATION)
 
 ##
 
@@ -152,6 +167,10 @@ write.csv(combined_pore_perc_freq,"pore_size_perc_freq2.csv")
 #melting the three sites into a single column
 pores_melt = melt(combined_pore_perc_freq,id = "pore_size")
 names(pores_melt) = c("pore_size","site","freq")
+
+###OUTPUT
+write.csv(pores_melt,PORE_DISTRIBUTION)
+
 
 #plotting the frequency distribution
 gg_pore_distrib = ggplot(pores_melt,aes(x = pore_size, y=freq,color = site))+

@@ -60,6 +60,10 @@ theme_kp <- function() {  # this for all the elements common across plots
 
 
 ## CREATE OUTPUT FILES
+# CHARACTERIZATION
+CHARACTERIZATION <- "processed/soil_characterization.csv"
+PORE_DISTRIBUTION <- "processed/pore_distribution.csv"
+  
 # WSOC
 WSOC_PORE <- "processed/wsoc_pore_summary.csv"
 WSOC_SOIL <- "processed/wsoc_soils_summary.csv"
