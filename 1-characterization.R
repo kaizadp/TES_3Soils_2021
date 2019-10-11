@@ -172,96 +172,11 @@ names(pores_melt) = c("pore_size","site","freq")
 write.csv(pores_melt,PORE_DISTRIBUTION)
 
 
-#plotting the frequency distribution -- NOT DOING THIS ANY MORE. MAKING FIGURES IN MARKDOWN
-gg_pore_distrib = ggplot(pores_melt,aes(x = pore_size, y=freq,color = site))+
-  geom_line(size = 1)+
-  #geom_density(adjust=0.5)+
-  
-  labs (y = expression (bold ("distribution, %"),
-                        x = expression (bold ("pore size" ))))+
-  theme_bw()+
-  theme (legend.position = c(0.7,0.7))+
-  theme (legend.key = element_rect(size = 3))+
-  theme (legend.title = element_blank())+
-  theme (legend.text=element_text(size=12))+
-  theme (legend.key = element_rect(size = 2),
-         legend.key.size = unit(2, 'lines'))+
-  ggtitle ("pore size distribution")+
-  theme (plot.title = element_text(hjust = 0.05,size = 14))+
-  theme (axis.text=element_text(size=14,face="bold",color="black"),
-         axis.title=element_text(size=14,face="bold",color="black")); gg_pore_distrib
-#save_plot("poresizedist2.tiff", gg_pore_distrib, base_aspect_ratio = 2)
-
+#plotting the frequency distribution -- NOT DOING THIS ANY MORE. MAKING FIGURES IN MARKDOWN 
 ##
 
 
-## 4. water retention curves ----
-water_retention = read_excel("data/water_retention.xlsx")
-names(water_retention)
-attach(water_retention)
-
-# van genuchten plots
-gg_water_retention_vg = ggplot()+
-  geom_line(data = water_retention,aes(x = Tension_c, y = CPCRW_water_VG, color = "CPCRW"), size=1)+
-  geom_line(data = water_retention,aes(x = Tension_d, y = DWP_water_VG,color = "DWP"), size=1)+
-  geom_line(data = water_retention,aes(x = Tension_s, y = SR_water_VG,color = "SR"), size=1)+
-  
-  # geom_point(data = water_retention,aes(x = Tension_c, y = CPCRW_water_measured))+
-  # geom_point(data = water_retention,aes(x = Tension_d, y = DWP_water_measured))+
-  # geom_point(data = water_retention,aes(x = Tension_s, y = SR_water_measured))
-  
-  annotate("text", label = "DWP, fine sand", x = 25, y = 0.03,size=4,fontface="bold")+ 
-  annotate("text", label = "CPCRW, silt loam", x = 75, y = 0.13,size=4,fontface="bold")+ 
-  annotate("text", label = "SR, silty clay loam", x = 55, y = 0.3,size=4,fontface="bold")+ 
-  
-  labs (y = expression (bold ("volumetric moisture content"),
-                        x = expression (bold ("tension, kPa" ))))+
-  ylim(0,0.7)+
-  theme_bw()+
-  theme (legend.position = "none")+
-  theme (legend.key = element_rect(size = 3))+
-  theme (legend.title = element_blank())+
-  theme (legend.text=element_text(size=12))+
-  theme (legend.key = element_rect(size = 2),
-         legend.key.size = unit(2, 'lines'))+
-  #  ggtitle ("water retention curves: Van Genuchten")+
-  theme (plot.title = element_text(hjust = 0.05,size = 14))+
-  theme (axis.text=element_text(size=14,face="bold",color="black"),
-         axis.title=element_text(size=14,face="bold",color="black")); gg_water_retention_vg
-
-save_plot("water_retention_vangenuch.tiff", gg_water_retention_vg, base_width = 5, base_height = 4)
-
-# retc curves
-gg_water_retention_retc = ggplot()+
- 
-   geom_line(data = water_retention,aes(x = Tension_c, y = CPCRW_water_RETC, color = "CPCRW"))+
-   geom_line(data = water_retention,aes(x = Tension_d, y = DWP_water_RETC,color = "DWP"))+
-   geom_line(data = water_retention,aes(x = Tension_s, y = SR_water_RETC,color = "SR"))+
-  
-  # geom_point(data = water_retention,aes(x = Tension_c, y = CPCRW_water_measured))+
-  # geom_point(data = water_retention,aes(x = Tension_d, y = DWP_water_measured))+
-  # geom_point(data = water_retention,aes(x = Tension_s, y = SR_water_measured))
-  
-  annotate("text", label = "DWP, fine sand", x = 25, y = 0.03,size=4,fontface="bold")+ 
-  annotate("text", label = "CPCRW, silt loam", x = 75, y = 0.13,size=4,fontface="bold")+ 
-  annotate("text", label = "SR, silty clay loam", x = 55, y = 0.3,size=4,fontface="bold")+ 
-  
-  labs (y = expression (bold ("volumetric moisture content"),
-                        x = expression (bold ("tension, kPa" ))))+
-  ylim(0,0.7)+
-  theme_bw()+
-  theme (legend.position = "none")+
-  theme (legend.key = element_rect(size = 3))+
-  theme (legend.title = element_blank())+
-  theme (legend.text=element_text(size=12))+
-  theme (legend.key = element_rect(size = 2),
-         legend.key.size = unit(2, 'lines'))+
-  #  ggtitle ("water retention curves: Van Genuchten")+
-  theme (plot.title = element_text(hjust = 0.05,size = 14))+
-  theme (axis.text=element_text(size=14,face="bold",color="black"),
-         axis.title=element_text(size=14,face="bold",color="black")); gg_water_retention_retc
-
-save_plot("water_retention_retc.tiff", gg_water_retention_retc, base_width = 5, base_height = 4)
+## 4. water retention curves ---- -- NOT DOING THIS ANY MORE. MAKING FIGURES IN MARKDOWN ----
 
 ##
 ##
