@@ -138,9 +138,6 @@ porewater = plot_grid(gg_wsoc_pores_cpcrw,gg_wsoc_pores_dwp,gg_wsoc_pores_sr,nro
 save_plot("output/wsoc_pores.tiff",porewater, base_width =12, base_height = 12)
 
 
-plot_grid(gg_wsoc_pores_cpcrw,gg_wsoc_pores_dwp, gg_wsoc_pores_sr,
-          ncol=2,nrow=2,align="hv")
-
 ##
 ## redoing plots with facet ----
 # REMOVED SCRIPT, MOVED TO MARKDOWN
