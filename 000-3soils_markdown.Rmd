@@ -266,7 +266,7 @@ pore_nosc %>%
 #CPCRW
 ggplot(pore_nosc[pore_nosc$site=="CPCRW" &!pore_nosc$treatment=="baseline",], 
        aes(x = NOSC, fill = treatment, color = treatment))+
-  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  geom_histogram(binwidth = 0.10, position = "identity", alpha = 0.2)+
   #scale_fill_brewer(palette = "Dark2")+
   scale_color_brewer(palette = "Dark2")+
   scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
@@ -364,6 +364,7 @@ ggplot(pore_aromatic,
 # FTICR Pores -- tables
 ## peaks
 ```{r peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+print("50 kPa")
 pore_peaks %>% 
   ungroup %>% 
     filter(tension=="50 kPa") %>% 
@@ -375,6 +376,7 @@ dplyr::mutate(sp = paste(site, treatment),
 ```
 
 ```{r peaks_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 1.5 kPa"}
+print("1.5 kPa")
 pore_peaks %>% 
   ungroup %>% 
   filter(tension=="1.5 kPa") %>% 
@@ -392,7 +394,7 @@ pore_peaks %>%
 old.lvl = levels(factor(pore_unique_peaks$Class))
 pore_unique_peaks$Class = factor(pore_unique_peaks$Class, 
                                             levels=c(sort(old.lvl[old.lvl!="total"]), "total"))
-
+print("50 kPa")
 pore_unique_peaks%>% 
   ungroup %>%
   filter(tension=="50 kPa") %>% 
@@ -404,6 +406,7 @@ pore_unique_peaks%>%
 ```
 
 ```{r uniquepeaks_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+print("1.5 kPa")
 pore_unique_peaks%>% 
   ungroup %>%
   filter(tension=="1.5 kPa") %>% 
@@ -417,12 +420,13 @@ pore_unique_peaks%>%
 ## relative abundance
 
 ```{r relabund_50, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
+print("50 kPa")
 pore_relabund%>% 
   ungroup %>% 
   filter(tension=="50 kPa") %>% 
-  dplyr::mutate(sp = paste(site, treatment),
+  dplyr::mutate(sp = paste(treatment),
                 val = paste(relativeabundance)) %>% 
-  select(group,sp, val) %>% 
+  select(site, group,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
@@ -431,13 +435,14 @@ total = 100%
 
 ---
 
-```{r relabund_5, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 1.5 kPa"}
+```{r relabund_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 1.5 kPa"}
+print("1.5 kPa")
 pore_relabund%>% 
   ungroup %>% 
   filter(tension=="1.5 kPa") %>% 
-  dplyr::mutate(sp = paste(site, treatment),
+  dplyr::mutate(sp = paste(treatment),
                 val = paste(relativeabundance)) %>% 
-  select(group,sp, val) %>% 
+  select(site, group,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
@@ -638,9 +643,9 @@ ggplot(soil_aromatic,
 ```{r soil_relabund_table, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
 soil_relabund%>% 
   ungroup %>% 
-  dplyr::mutate(sp = paste(site, treatment),
+  dplyr::mutate(sp = paste(treatment),
                 val = paste(relabund_hsd)) %>% 
-  select(group,sp, val) %>% 
+  select(site, group,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
@@ -651,9 +656,9 @@ soil_relabund%>%
 ```{r soil_peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
 soil_peaks %>% 
   ungroup %>% 
-  dplyr::mutate(sp = paste(site, treatment),
+  dplyr::mutate(sp = paste(treatment),
                 val = paste(peaks_count)) %>% 
-  select(Class,sp, val) %>% 
+  select(site, Class,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
