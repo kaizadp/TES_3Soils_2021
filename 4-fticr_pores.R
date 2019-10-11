@@ -465,18 +465,24 @@ write_csv(fticr_pore_unique2, FTICR_PORE_UNIQUE)
 
 # summarizing by groups
 fticr_pore_unique2 %>% 
-  group_by(tension,site, unique,Class) %>% 
-  dplyr::summarize(peaks_count = n()) ->
+  dplyr::group_by(tension,site, unique,Class) %>% 
+  dplyr::summarize(peaks_count = n())  %>% 
+  group_by(tension,site,unique) %>% 
+  dplyr::mutate(total = sum(peaks_count))->
   fticr_pore_unique_peaks
 
 fticr_pore_unique_peaks %>% 
-  dcast(Class~tension+site+unique, value.var = "peaks_count") %>% 
-  replace(.,is.na(.),0)->
+  spread(Class,peaks_count) %>% # first, convert into wide-form, so each group is a column
+  dplyr::select(-total,total) %>% # move total to the end
+  gather(Class,peaks_count,AminoSugar:total)-> # combine all the groups+total into a single column
   fticr_pore_unique_peaks2
+
+fticr_pore_unique_peaks2 = fticr_pore_unique_peaks2[complete.cases(fticr_pore_unique_peaks2),]
+
 
 
 ### OUTPUT
-write_csv(fticr_pore_unique_peaks,FTICR_PORE_UNIQUE_PEAKS)
+write_csv(fticr_pore_unique_peaks2,FTICR_PORE_UNIQUE_PEAKS)
 
 
 ## option2

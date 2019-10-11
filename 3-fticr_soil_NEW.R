@@ -17,6 +17,10 @@ corekey = read.csv("data/COREKEY.csv")
 
 fticr_soil_meta = fticr_soil_meta[,!colnames(fticr_soil_meta)%in%
                                     c("C13","Error_ppm", "Candidates", "GFE", "bs1_class","bs2_class")]
+fticr_soil_meta %>% 
+  dplyr::rename(OC = OtoC_ratio,
+                HC = HtoC_ratio)->
+  fticr_soil_meta
 
 # merge metadata with sample data
 # ¿¿¿ do this later instead?
@@ -162,6 +166,27 @@ fticr_soil_relabundance_summary2 %>%
 ### OUTPUT
 write_csv(fticr_soil_relabundance_summary2, FTICR_SOIL_RELABUND)
 
+
+## peaks ----
+fticr_soil_gather2 %>% 
+  group_by(site,treatment,Class) %>% 
+  dplyr::summarize(peaks = n()) %>% # get count of each group/class for each tension-site-treatment
+  group_by(site,treatment) %>% 
+  dplyr::mutate(total = sum(peaks)) -> # then create a new column for sum of all peaks for each tension-site-treatment
+  fticr_soil_peaks
+
+# we need to combine the total value into the existing groups column
+fticr_soil_peaks %>% 
+  spread(Class,peaks) %>% # first, convert into wide-form, so each group is a column
+  dplyr::select(-total,total) %>% # move total to the end
+  gather(Class,peaks_count,AminoSugar:total)-> # combine all the groups+total into a single column
+  fticr_soil_peaks2
+
+
+### OUTPUT
+write_csv(fticr_soil_peaks2,FTICR_SOIL_PEAKS)
+
+#
 
 ## step 4: molecules added/lost ----
 ## to determine which molecules were created or lost due to the treatments
@@ -325,6 +350,7 @@ write_csv(fticr_soil_new3, path = "fticr/fticr_soil_newmolecules.csv")
 
 fticr_soil_unique = fticr_soil_new %>% 
   select("Mass","site","unique")
+  
 
 ## merge the file with metadata
 
@@ -335,14 +361,36 @@ write_csv(fticr_soil_unique2, FTICR_SOIL_UNIQUE)
 
 
 #
+#
+## unique peaks ----
+fticr_soil_unique2 %>% 
+  group_by(site, unique,Class) %>% 
+  dplyr::summarize(peaks_count = n()) %>% 
+  group_by(site,unique) %>% 
+  dplyr::mutate(total = sum(peaks_count))->
+  fticr_soil_unique_peaks
+
+fticr_soil_unique_peaks %>% 
+  spread(Class,peaks_count) %>% # first, convert into wide-form, so each group is a column
+  dplyr::select(-total,total) %>% # move total to the end
+  gather(Class,peaks_count,AminoSugar:total)-> # combine all the groups+total into a single column
+  fticr_soil_unique_peaks2
+
+fticr_soil_unique_peaks2 = fticr_soil_unique_peaks2[complete.cases(fticr_soil_unique_peaks2),]
+
+### OUTPUT
+write_csv(fticr_soil_unique_peaks2,FTICR_SOIL_UNIQUE_PEAKS)
+
+
+#
 ## step 5: HC, OC data for van krevelen ----
 
 # subset only select columns from fticr_soil_gather2
 
 fticr_soil_gather2 %>% 
-  select("core","Mass","HtoC_ratio","OtoC_ratio","intensity") %>% 
-  mutate(HtoC_ratio = round(HtoC_ratio,2)) %>%   
-  mutate(OtoC_ratio = round(OtoC_ratio,2))  %>% 
+  select("core","Mass","HC","OC","intensity") %>% 
+  mutate(HC = round(HC,2)) %>%   
+  mutate(OC = round(OC,2))  %>% 
   mutate(intensity = round(intensity,2))  ->
   fticr_soil_hcoc
 ## R message: Adding missing grouping variables: `treatment`, `site`
@@ -403,7 +451,7 @@ fticr_soil_aromatic = fticr_soil_aromatic[complete.cases(fticr_soil_aromatic),]
 write_csv(fticr_soil_aromatic,path = "fticr/fticr_soil_aromatic.csv")
 
 # summary by treatment. then remove NA to keep only aromatic counts
-fticr_soil_aromatic_counts = summarySE(fticr_soil_aromatic, measurevar = "arom_core_counts", groupvars = c("aromatic","site","treatment"))
+fticr_soil_aromatic_counts = summarySE(fticr_soil_aromatic, measurevar = "arom_core_counts", groupvars = c("core","aromatic","site","treatment"))
 fticr_soil_aromatic_counts = fticr_soil_aromatic_counts[complete.cases(fticr_soil_aromatic_counts),]
 
 ### OUTPUT

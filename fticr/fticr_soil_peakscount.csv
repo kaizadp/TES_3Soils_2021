@@ -1,0 +1,151 @@
+site,treatment,Class,peaks_count
+CPCRW,baseline,AminoSugar,1894
+CPCRW,drought,AminoSugar,1513
+CPCRW,field moist,AminoSugar,1884
+CPCRW,saturation,AminoSugar,2236
+CPCRW,time zero saturation,AminoSugar,2057
+DWP,baseline,AminoSugar,2661
+DWP,drought,AminoSugar,1579
+DWP,field moist,AminoSugar,983
+DWP,saturation,AminoSugar,1621
+DWP,time zero saturation,AminoSugar,2277
+SR,baseline,AminoSugar,873
+SR,drought,AminoSugar,2016
+SR,field moist,AminoSugar,2290
+SR,saturation,AminoSugar,2278
+SR,time zero saturation,AminoSugar,1588
+CPCRW,baseline,Carb,2138
+CPCRW,drought,Carb,1704
+CPCRW,field moist,Carb,2249
+CPCRW,saturation,Carb,2624
+CPCRW,time zero saturation,Carb,2499
+DWP,baseline,Carb,3609
+DWP,drought,Carb,1784
+DWP,field moist,Carb,1271
+DWP,saturation,Carb,2198
+DWP,time zero saturation,Carb,3018
+SR,baseline,Carb,1348
+SR,drought,Carb,2382
+SR,field moist,Carb,2871
+SR,saturation,Carb,2949
+SR,time zero saturation,Carb,1874
+CPCRW,baseline,ConHC,5087
+CPCRW,drought,ConHC,6271
+CPCRW,field moist,ConHC,6303
+CPCRW,saturation,ConHC,5136
+CPCRW,time zero saturation,ConHC,5145
+DWP,baseline,ConHC,4429
+DWP,drought,ConHC,6301
+DWP,field moist,ConHC,3182
+DWP,saturation,ConHC,6658
+DWP,time zero saturation,ConHC,6885
+SR,baseline,ConHC,5186
+SR,drought,ConHC,7470
+SR,field moist,ConHC,5489
+SR,saturation,ConHC,5899
+SR,time zero saturation,ConHC,6485
+CPCRW,baseline,Lignin,12092
+CPCRW,drought,Lignin,13273
+CPCRW,field moist,Lignin,13956
+CPCRW,saturation,Lignin,12754
+CPCRW,time zero saturation,Lignin,12219
+DWP,baseline,Lignin,11551
+DWP,drought,Lignin,12105
+DWP,field moist,Lignin,6612
+DWP,saturation,Lignin,12358
+DWP,time zero saturation,Lignin,13708
+SR,baseline,Lignin,8067
+SR,drought,Lignin,14737
+SR,field moist,Lignin,14305
+SR,saturation,Lignin,14504
+SR,time zero saturation,Lignin,11664
+CPCRW,baseline,Lipid,3244
+CPCRW,drought,Lipid,3647
+CPCRW,field moist,Lipid,4531
+CPCRW,saturation,Lipid,4826
+CPCRW,time zero saturation,Lipid,4248
+DWP,baseline,Lipid,3387
+DWP,drought,Lipid,5272
+DWP,field moist,Lipid,2858
+DWP,saturation,Lipid,5515
+DWP,time zero saturation,Lipid,5210
+SR,baseline,Lipid,3042
+SR,drought,Lipid,4370
+SR,field moist,Lipid,5540
+SR,saturation,Lipid,5525
+SR,time zero saturation,Lipid,4852
+CPCRW,baseline,Protein,5093
+CPCRW,drought,Protein,5028
+CPCRW,field moist,Protein,5689
+CPCRW,saturation,Protein,6193
+CPCRW,time zero saturation,Protein,5747
+DWP,baseline,Protein,5274
+DWP,drought,Protein,6270
+DWP,field moist,Protein,3450
+DWP,saturation,Protein,5483
+DWP,time zero saturation,Protein,6107
+SR,baseline,Protein,3097
+SR,drought,Protein,6081
+SR,field moist,Protein,6493
+SR,saturation,Protein,6813
+SR,time zero saturation,Protein,5373
+CPCRW,baseline,Tannin,2386
+CPCRW,drought,Tannin,2325
+CPCRW,field moist,Tannin,2313
+CPCRW,saturation,Tannin,2317
+CPCRW,time zero saturation,Tannin,2180
+DWP,baseline,Tannin,2560
+DWP,drought,Tannin,1564
+DWP,field moist,Tannin,870
+DWP,saturation,Tannin,1955
+DWP,time zero saturation,Tannin,2232
+SR,baseline,Tannin,1334
+SR,drought,Tannin,2297
+SR,field moist,Tannin,2031
+SR,saturation,Tannin,2104
+SR,time zero saturation,Tannin,1934
+CPCRW,baseline,Unnamed,1340
+CPCRW,drought,Unnamed,1458
+CPCRW,field moist,Unnamed,1609
+CPCRW,saturation,Unnamed,1508
+CPCRW,time zero saturation,Unnamed,1362
+DWP,baseline,Unnamed,1396
+DWP,drought,Unnamed,1438
+DWP,field moist,Unnamed,720
+DWP,saturation,Unnamed,1558
+DWP,time zero saturation,Unnamed,1692
+SR,baseline,Unnamed,840
+SR,drought,Unnamed,1777
+SR,field moist,Unnamed,1521
+SR,saturation,Unnamed,1580
+SR,time zero saturation,Unnamed,1665
+CPCRW,baseline,UnsatHC,1438
+CPCRW,drought,UnsatHC,2024
+CPCRW,field moist,UnsatHC,2113
+CPCRW,saturation,UnsatHC,1932
+CPCRW,time zero saturation,UnsatHC,1795
+DWP,baseline,UnsatHC,1526
+DWP,drought,UnsatHC,2146
+DWP,field moist,UnsatHC,994
+DWP,saturation,UnsatHC,2480
+DWP,time zero saturation,UnsatHC,2370
+SR,baseline,UnsatHC,1465
+SR,drought,UnsatHC,2333
+SR,field moist,UnsatHC,2725
+SR,saturation,UnsatHC,2736
+SR,time zero saturation,UnsatHC,2512
+CPCRW,baseline,total,34712
+CPCRW,drought,total,37243
+CPCRW,field moist,total,40647
+CPCRW,saturation,total,39526
+CPCRW,time zero saturation,total,37252
+DWP,baseline,total,36393
+DWP,drought,total,38459
+DWP,field moist,total,20940
+DWP,saturation,total,39826
+DWP,time zero saturation,total,43499
+SR,baseline,total,25252
+SR,drought,total,43463
+SR,field moist,total,43265
+SR,saturation,total,44388
+SR,time zero saturation,total,37947

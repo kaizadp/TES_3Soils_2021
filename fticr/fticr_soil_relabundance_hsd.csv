@@ -1,0 +1,136 @@
+site,group,treatment,N,relabund,relativeabundance,relabund_hsd
+CPCRW,AminoSugar,baseline,5,2.692304047824344,2.69 ± 0.32,2.69 ± 0.32   ab
+CPCRW,AminoSugar,drought,5,1.4764625544533116,1.48 ± 0.12,1.48 ± 0.12   b
+CPCRW,AminoSugar,field moist,5,2.1929369477458405,2.19 ± 0.48,2.19 ± 0.48   ab
+CPCRW,AminoSugar,saturation,5,3.3734695771114116,3.37 ± 0.34,3.37 ± 0.34   a
+CPCRW,AminoSugar,time zero saturation,5,2.9433840282743335,2.94 ± 0.35,2.94 ± 0.35   a
+CPCRW,Carb,baseline,5,10.815844644539075,10.82 ± 1.88,10.82 ± 1.88   ab
+CPCRW,Carb,drought,5,4.172890494451901,4.17 ± 0.92,4.17 ± 0.92   b
+CPCRW,Carb,field moist,5,9.598988423698671,9.6 ± 2.33,9.6 ± 2.33   ab
+CPCRW,Carb,saturation,5,10.784113943670615,10.78 ± 1.06,10.78 ± 1.06   ab
+CPCRW,Carb,time zero saturation,5,13.531401898583958,13.53 ± 1.87,13.53 ± 1.87   a
+CPCRW,ConHC,baseline,5,6.44608971074727,6.45 ± 0.92,6.45 ± 0.92   a
+CPCRW,ConHC,drought,5,8.285266380937966,8.29 ± 1.21,8.29 ± 1.21   a
+CPCRW,ConHC,field moist,5,7.074453533078001,7.07 ± 0.6,7.07 ± 0.6   a
+CPCRW,ConHC,saturation,5,6.009334892764644,6.01 ± 0.53,6.01 ± 0.53   a
+CPCRW,ConHC,time zero saturation,5,5.460925431031147,5.46 ± 0.63,5.46 ± 0.63   a
+CPCRW,Lignin,baseline,5,36.23657475125805,36.24 ± 0.71,36.24 ± 0.71   b
+CPCRW,Lignin,drought,5,56.167964278798436,56.17 ± 3.13,56.17 ± 3.13   a
+CPCRW,Lignin,field moist,5,45.49948677401192,45.5 ± 5.07,45.5 ± 5.07   ab
+CPCRW,Lignin,saturation,5,35.470962305957215,35.47 ± 1.45,35.47 ± 1.45   b
+CPCRW,Lignin,time zero saturation,5,32.94211283282709,32.94 ± 2.75,32.94 ± 2.75   b
+CPCRW,Lipid,baseline,5,24.654010133384595,24.65 ± 3.11,24.65 ± 3.11   a
+CPCRW,Lipid,drought,5,10.112422431880907,10.11 ± 1.93,10.11 ± 1.93   b
+CPCRW,Lipid,field moist,5,16.345578361006144,16.35 ± 3.94,16.35 ± 3.94   ab
+CPCRW,Lipid,saturation,5,22.365347223587477,22.37 ± 0.85,22.37 ± 0.85   ab
+CPCRW,Lipid,time zero saturation,5,24.318492030916794,24.32 ± 3.62,24.32 ± 3.62   a
+CPCRW,Protein,baseline,5,11.590522451629592,11.59 ± 1,11.59 ± 1   a
+CPCRW,Protein,drought,5,11.91073818217785,11.91 ± 1.2,11.91 ± 1.2   a
+CPCRW,Protein,field moist,5,11.1825385344101,11.18 ± 0.5,11.18 ± 0.5   a
+CPCRW,Protein,saturation,5,14.689703739733277,14.69 ± 1.18,14.69 ± 1.18   a
+CPCRW,Protein,time zero saturation,5,13.63074473357121,13.63 ± 1.63,13.63 ± 1.63   a
+CPCRW,Tannin,baseline,5,4.791825817741297,4.79 ± 0.45,4.79 ± 0.45   a
+CPCRW,Tannin,drought,5,5.918733126105407,5.92 ± 0.29,5.92 ± 0.29   a
+CPCRW,Tannin,field moist,5,4.610396050342105,4.61 ± 0.52,4.61 ± 0.52   a
+CPCRW,Tannin,saturation,5,4.573257632798661,4.57 ± 0.25,4.57 ± 0.25   a
+CPCRW,Tannin,time zero saturation,5,4.438515693258505,4.44 ± 0.94,4.44 ± 0.94   a
+CPCRW,Unnamed,baseline,5,2.079571848649652,2.08 ± 0.34,2.08 ± 0.34   ab
+CPCRW,Unnamed,drought,5,1.1163729835890652,1.12 ± 0.07,1.12 ± 0.07   b
+CPCRW,Unnamed,field moist,5,2.499086360810429,2.5 ± 0.42,2.5 ± 0.42   a
+CPCRW,Unnamed,saturation,5,1.8037881143143328,1.8 ± 0.23,1.8 ± 0.23   ab
+CPCRW,Unnamed,time zero saturation,5,1.9089302956603753,1.91 ± 0.18,1.91 ± 0.18   ab
+CPCRW,UnsatHC,baseline,5,0.6932565942261303,0.69 ± 0.07,0.69 ± 0.07   a
+CPCRW,UnsatHC,drought,5,0.8391495676051618,0.84 ± 0.09,0.84 ± 0.09   a
+CPCRW,UnsatHC,field moist,5,0.9965350148967875,1 ± 0.12,1 ± 0.12   a
+CPCRW,UnsatHC,saturation,5,0.9300225700623648,0.93 ± 0.08,0.93 ± 0.08   a
+CPCRW,UnsatHC,time zero saturation,5,0.8254930558765832,0.83 ± 0.06,0.83 ± 0.06   a
+DWP,AminoSugar,baseline,4,6.489708085403791,6.49 ± 0.45,6.49 ± 0.45   a
+DWP,AminoSugar,drought,5,1.8211535223645672,1.82 ± 0.18,1.82 ± 0.18   b
+DWP,AminoSugar,field moist,4,2.0542377740786733,2.05 ± 0.13,2.05 ± 0.13   b
+DWP,AminoSugar,saturation,5,1.7378839276271225,1.74 ± 0.2,1.74 ± 0.2   b
+DWP,AminoSugar,time zero saturation,5,2.7531235755663634,2.75 ± 0.24,2.75 ± 0.24   b
+DWP,Carb,baseline,4,19.77155440547962,19.77 ± 0.65,19.77 ± 0.65   a
+DWP,Carb,drought,5,6.383579379335426,6.38 ± 0.94,6.38 ± 0.94   c
+DWP,Carb,field moist,4,9.319401832262473,9.32 ± 0.53,9.32 ± 0.53   c
+DWP,Carb,saturation,5,8.995393795555522,9 ± 1.02,9 ± 1.02   c
+DWP,Carb,time zero saturation,5,14.215787184217412,14.22 ± 1.66,14.22 ± 1.66   b
+DWP,ConHC,baseline,4,7.266186689739227,7.27 ± 0.47,7.27 ± 0.47   a
+DWP,ConHC,drought,5,10.051501747596499,10.05 ± 0.47,10.05 ± 0.47   a
+DWP,ConHC,field moist,4,9.139611489887281,9.14 ± 0.97,9.14 ± 0.97   a
+DWP,ConHC,saturation,5,10.537712276137064,10.54 ± 1.27,10.54 ± 1.27   a
+DWP,ConHC,time zero saturation,5,9.76646338113203,9.77 ± 0.37,9.77 ± 0.37   a
+DWP,Lignin,baseline,4,28.56778601821928,28.57 ± 1.26,28.57 ± 1.26   a
+DWP,Lignin,drought,5,34.54193646276651,34.54 ± 1.86,34.54 ± 1.86   a
+DWP,Lignin,field moist,4,29.335102010132115,29.34 ± 2.83,29.34 ± 2.83   a
+DWP,Lignin,saturation,5,35.61665768342367,35.62 ± 2.3,35.62 ± 2.3   a
+DWP,Lignin,time zero saturation,5,31.763300808169973,31.76 ± 4.2,31.76 ± 4.2   a
+DWP,Lipid,baseline,4,10.425113567583853,10.43 ± 0.35,10.43 ± 0.35   b
+DWP,Lipid,drought,5,23.733435820943715,23.73 ± 2.62,23.73 ± 2.62   a
+DWP,Lipid,field moist,4,23.707726489955444,23.71 ± 2.24,23.71 ± 2.24   a
+DWP,Lipid,saturation,5,19.371794576491574,19.37 ± 2.09,19.37 ± 2.09   ab
+DWP,Lipid,time zero saturation,5,17.52349578027104,17.52 ± 3.12,17.52 ± 3.12   ab
+DWP,Protein,baseline,4,14.596669398773825,14.6 ± 1.09,14.6 ± 1.09   ab
+DWP,Protein,drought,5,15.609639643061868,15.61 ± 0.61,15.61 ± 0.61   ab
+DWP,Protein,field moist,4,18.518198418169174,18.52 ± 1.89,18.52 ± 1.89   a
+DWP,Protein,saturation,5,13.292464903742346,13.29 ± 1.26,13.29 ± 1.26   b
+DWP,Protein,time zero saturation,5,13.402783153705151,13.4 ± 0.76,13.4 ± 0.76   b
+DWP,Tannin,baseline,4,7.4282038440021685,7.43 ± 0.33,7.43 ± 0.33   a
+DWP,Tannin,drought,5,3.1069739979854076,3.11 ± 0.47,3.11 ± 0.47   b
+DWP,Tannin,field moist,4,2.5827750808272745,2.58 ± 0.7,2.58 ± 0.7   b
+DWP,Tannin,saturation,5,3.524443485397209,3.52 ± 0.41,3.52 ± 0.41   b
+DWP,Tannin,time zero saturation,5,4.055131893469289,4.06 ± 0.23,4.06 ± 0.23   b
+DWP,Unnamed,baseline,4,3.92144476661304,3.92 ± 0.08,3.92 ± 0.08   a
+DWP,Unnamed,drought,5,3.2121982622773895,3.21 ± 0.33,3.21 ± 0.33   a
+DWP,Unnamed,field moist,4,3.7746224900102603,3.77 ± 0.18,3.77 ± 0.18   a
+DWP,Unnamed,saturation,5,4.183665334924477,4.18 ± 0.1,4.18 ± 0.1   a
+DWP,Unnamed,time zero saturation,5,4.47490510809426,4.47 ± 0.5,4.47 ± 0.5   a
+DWP,UnsatHC,baseline,4,1.5333332241851971,1.53 ± 0.29,1.53 ± 0.29   a
+DWP,UnsatHC,drought,5,1.5395811636686234,1.54 ± 0.24,1.54 ± 0.24   a
+DWP,UnsatHC,field moist,4,1.5683244146773094,1.57 ± 0.16,1.57 ± 0.16   a
+DWP,UnsatHC,saturation,5,2.739984016701012,2.74 ± 0.41,2.74 ± 0.41   a
+DWP,UnsatHC,time zero saturation,5,2.0450091153744774,2.05 ± 0.33,2.05 ± 0.33   a
+SR,AminoSugar,baseline,5,2.8160618080246427,2.82 ± 0.26,2.82 ± 0.26   b
+SR,AminoSugar,drought,5,3.450415725719258,3.45 ± 0.32,3.45 ± 0.32   ab
+SR,AminoSugar,field moist,5,4.160831144146763,4.16 ± 0.16,4.16 ± 0.16   a
+SR,AminoSugar,saturation,5,3.3714424768643614,3.37 ± 0.1,3.37 ± 0.1   ab
+SR,AminoSugar,time zero saturation,5,3.163891355356474,3.16 ± 0.27,3.16 ± 0.27   b
+SR,Carb,baseline,5,11.717912508334742,11.72 ± 1.38,11.72 ± 1.38   ab
+SR,Carb,drought,5,15.54562432274618,15.55 ± 1.14,15.55 ± 1.14   a
+SR,Carb,field moist,5,12.38221803953111,12.38 ± 0.83,12.38 ± 0.83   ab
+SR,Carb,saturation,5,12.802865343395304,12.8 ± 0.78,12.8 ± 0.78   ab
+SR,Carb,time zero saturation,5,10.392818697688826,10.39 ± 0.75,10.39 ± 0.75   b
+SR,ConHC,baseline,5,13.76720821006071,13.77 ± 0.89,13.77 ± 0.89   a
+SR,ConHC,drought,5,10.452596996461018,10.45 ± 0.75,10.45 ± 0.75   ab
+SR,ConHC,field moist,5,7.437090741211319,7.44 ± 1.61,7.44 ± 1.61   b
+SR,ConHC,saturation,5,7.591963310690105,7.59 ± 1.09,7.59 ± 1.09   b
+SR,ConHC,time zero saturation,5,9.715831699757116,9.72 ± 0.69,9.72 ± 0.69   ab
+SR,Lignin,baseline,5,26.79729648838247,26.8 ± 2.15,26.8 ± 2.15   b
+SR,Lignin,drought,5,36.40085312926701,36.4 ± 2.72,36.4 ± 2.72   a
+SR,Lignin,field moist,5,34.18783793537406,34.19 ± 1.33,34.19 ± 1.33   ab
+SR,Lignin,saturation,5,33.55020760637947,33.55 ± 1.68,33.55 ± 1.68   ab
+SR,Lignin,time zero saturation,5,26.8757715717656,26.88 ± 1.05,26.88 ± 1.05   b
+SR,Lipid,baseline,5,23.95696757589641,23.96 ± 3.3,23.96 ± 3.3   a
+SR,Lipid,drought,5,10.454635159413332,10.45 ± 1.02,10.45 ± 1.02   b
+SR,Lipid,field moist,5,15.644380196957375,15.64 ± 1.3,15.64 ± 1.3   ab
+SR,Lipid,saturation,5,15.053373489202182,15.05 ± 0.78,15.05 ± 0.78   ab
+SR,Lipid,time zero saturation,5,23.018642097316658,23.02 ± 3.09,23.02 ± 3.09   a
+SR,Protein,baseline,5,12.489193956188592,12.49 ± 1.39,12.49 ± 1.39   a
+SR,Protein,drought,5,14.270549252018494,14.27 ± 1.97,14.27 ± 1.97   a
+SR,Protein,field moist,5,18.223942715246736,18.22 ± 2.84,18.22 ± 2.84   a
+SR,Protein,saturation,5,19.195371399315455,19.2 ± 1.84,19.2 ± 1.84   a
+SR,Protein,time zero saturation,5,17.122443906285625,17.12 ± 1.06,17.12 ± 1.06   a
+SR,Tannin,baseline,5,2.737789309657485,2.74 ± 0.26,2.74 ± 0.26   a
+SR,Tannin,drought,5,3.3300655492106923,3.33 ± 0.46,3.33 ± 0.46   a
+SR,Tannin,field moist,5,2.639257714306252,2.64 ± 0.26,2.64 ± 0.26   a
+SR,Tannin,saturation,5,2.943035124544949,2.94 ± 0.22,2.94 ± 0.22   a
+SR,Tannin,time zero saturation,5,2.6812711655330266,2.68 ± 0.15,2.68 ± 0.15   a
+SR,Unnamed,baseline,5,1.7190958796038676,1.72 ± 0.12,1.72 ± 0.12   bc
+SR,Unnamed,drought,5,2.484159513242294,2.48 ± 0.14,2.48 ± 0.14   a
+SR,Unnamed,field moist,5,1.3268888558642533,1.33 ± 0.13,1.33 ± 0.13   c
+SR,Unnamed,saturation,5,1.4911730370458045,1.49 ± 0.2,1.49 ± 0.2   bc
+SR,Unnamed,time zero saturation,5,2.0284100772922633,2.03 ± 0.2,2.03 ± 0.2   ab
+SR,UnsatHC,baseline,5,3.99847426385108,4 ± 0.29,4 ± 0.29   a
+SR,UnsatHC,drought,5,3.611100351921715,3.61 ± 0.74,3.61 ± 0.74   a
+SR,UnsatHC,field moist,5,3.9975526573621347,4 ± 0.33,4 ± 0.33   a
+SR,UnsatHC,saturation,5,4.000568212562368,4 ± 0.8,4 ± 0.8   a
+SR,UnsatHC,time zero saturation,5,5.000919429004413,5 ± 0.73,5 ± 0.73   a
