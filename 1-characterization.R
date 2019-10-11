@@ -26,7 +26,7 @@ soil_character$`Clay_perc` = as.numeric(soil_character$`Clay_perc`)
 
 
 # creating summary table----
-# option 1 ----
+# option 1 don't do ----
 soil_char2 = 
   dplyr::mutate(soil_character,
                 soil_factor = factor(soil_character$Soil,
@@ -51,13 +51,13 @@ soil_char_summary =
 
 soil_char_table = summary_table(dplyr::group_by(soil_char2,Soil),soil_char_summary)
 
-print(soil_char_table,
-      cnames = c("CPCRW","DWP","SR"))
-write.csv(soil_char_table, file = "soil_charac_summary.csv")
+# print(soil_char_table,
+#      cnames = c("CPCRW","DWP","SR"))
+# write.csv(soil_char_table, file = "soil_charac_summary.csv")
 
 ##
 
-# option 2 ----
+# option 2 do this----
 
 # select only those rows we want for the characterization summary
 # manual step
@@ -162,7 +162,7 @@ combined_pore_perc_freq = data.frame(combined_pore_freq$scores,
                                      combined_pore_freq$Perc_Freq.y,
                                      combined_pore_freq$Perc_Freq)
 names(combined_pore_perc_freq) = c("pore_size","cpcrw","dwp","sr")
-write.csv(combined_pore_perc_freq,"pore_size_perc_freq2.csv")
+write.csv(combined_pore_perc_freq,"processed/pore_size_perc_freq2.csv")
 
 #melting the three sites into a single column
 pores_melt = melt(combined_pore_perc_freq,id = "pore_size")
@@ -172,7 +172,7 @@ names(pores_melt) = c("pore_size","site","freq")
 write.csv(pores_melt,PORE_DISTRIBUTION)
 
 
-#plotting the frequency distribution
+#plotting the frequency distribution -- NOT DOING THIS ANY MORE. MAKING FIGURES IN MARKDOWN
 gg_pore_distrib = ggplot(pores_melt,aes(x = pore_size, y=freq,color = site))+
   geom_line(size = 1)+
   #geom_density(adjust=0.5)+
@@ -190,7 +190,7 @@ gg_pore_distrib = ggplot(pores_melt,aes(x = pore_size, y=freq,color = site))+
   theme (plot.title = element_text(hjust = 0.05,size = 14))+
   theme (axis.text=element_text(size=14,face="bold",color="black"),
          axis.title=element_text(size=14,face="bold",color="black")); gg_pore_distrib
-save_plot("poresizedist2.tiff", gg_pore_distrib, base_aspect_ratio = 2)
+#save_plot("poresizedist2.tiff", gg_pore_distrib, base_aspect_ratio = 2)
 
 ##
 

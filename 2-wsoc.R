@@ -181,7 +181,7 @@ wsoc_pores = wsoc_pores[complete.cases(wsoc_pores),]
 
 #overall LME site/treatment/suction
 lme_trt_pore=lme(log(wsoc)~Site*Treatment*Suction,random=~1|CoreNo,data=wsoc_pores);Anova(lme_trt_pore)
-capture.output(Anova(lme_trt_pore),file = "pore_wsoc_anova.txt")
+#capture.output(Anova(lme_trt_pore),file = "pore_wsoc_anova.txt")
 attach(wsoc_pores)
 wsoc_pore_hsd = HSD.test(aov(lme_trt_pore),trt = "Treatment")
 
