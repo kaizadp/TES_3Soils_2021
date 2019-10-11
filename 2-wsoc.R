@@ -143,35 +143,7 @@ plot_grid(gg_wsoc_pores_cpcrw,gg_wsoc_pores_dwp, gg_wsoc_pores_sr,
 
 ##
 ## redoing plots with facet ----
-wsoc_pores_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
-
-ggplot(wsoc_pores_rmisc,
-       aes(x = Treatment, y = wsoc,color = Suction,fill=Suction))+
-  geom_bar(stat="summary",width=0.5,position=position_dodge(0.6),color="black",size=1)+
-  geom_errorbar(aes(ymin=`wsoc`-se, ymax=`wsoc`+se),width=0.2,position=position_dodge(0.6),color="black",size=1)+
-  geom_point(data = wsoc_sr,aes(x = Treatment, y = wsoc),color = "black",position = position_dodge(0.6))+
-  
-  labs (y = expression (bold ("WSOC, mg L"^-1),
-                        x = expression (bold (" "))))+
-  xlab("")+
-  facet_wrap(~Site)+
-  ylim(0,350)+
-  
-  theme_bw()+
-  theme(panel.border=element_rect(color="black",size=1.5))+
-  theme (legend.position = "none")+
-  theme (legend.key = element_rect(size = 3))+
-  theme (legend.title = element_blank())+
-  theme (legend.text=element_text(size=12))+
-  theme (legend.key = element_rect(size = 1),
-         legend.key.size = unit(1.5, 'lines'))+
-  ggtitle ("SR")+
-  theme (plot.title = element_text(hjust = 0.05,size = 14))+
-  theme (axis.text=element_text(size=14,face="bold",color="black"),
-         axis.title=element_text(size=14,face="bold",color="black"))
-
-save_plot("wsoc_sr.tiff", gg_wsoc_pores_sr,base_height = 10, base_width = 10)
-
+# REMOVED SCRIPT, MOVED TO MARKDOWN
 
 #
 ### WSOC concentrations -- pores -- stats ----
