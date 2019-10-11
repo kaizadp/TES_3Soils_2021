@@ -54,7 +54,7 @@ charac %>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
-
+---
 ## pore distribution
 ```{r pores, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="pore size distribution",fig.path = "images/"}
  ggplot(pore,aes(x = pore_size, y=freq,color = site))+
@@ -68,7 +68,7 @@ charac %>%
   theme_kp()
 
 ```
-
+---
 ## water retention curves
 
 ```{r wrc, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="water retention curve", fig.width=5, fig.height=5,,fig.path = "images/"}
@@ -94,7 +94,7 @@ ggplot()+
 
 ```
 
-
+---
 
 # WSOC tables  
 ## soils
@@ -158,7 +158,7 @@ ggplot(pore_hcoc[pore_hcoc$treatment=="time zero saturation",],
   theme_bw()+
   theme_kp()
 ```
-
+---
 ## treatment effect -- all peaks
 ```{r vk_treatments, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for treatments",fig.width=10, fig.height=7,,fig.path = "images/"}
 pore_hcoc %>% 
@@ -193,6 +193,8 @@ ggplot(pore_hcoc2[!pore_hcoc2$treatment=="time zero saturation",], # remove base
 
 ```
 
+---
+
 ## treatment effect -- unique peaks
 ```{r vk_unique, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for unique peaks",fig.width=10, fig.height=7,fig.path = "images/"}
 # set level of factors
@@ -222,6 +224,8 @@ ggplot(pore_unique,
   theme_kp()
 
 ```
+
+---
 
 ## treatment effect -- relative abundance
 
@@ -322,6 +326,7 @@ ggplot(pore_nosc[pore_nosc$site=="SR" &!pore_nosc$treatment=="baseline",],
   theme_kp()
 ```
 
+---
 
 ## aromatic peaks
 ```{r aromatic, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="aromatic peaks", fig.width=12, fig.height=7,fig.path = "images/"}
@@ -380,6 +385,8 @@ pore_peaks %>%
   knitr::kable(align = "r")
 ```
 
+---
+
 ## unique peaks
 ```{r uniquepeaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
 old.lvl = levels(factor(pore_unique_peaks$Class))
@@ -419,7 +426,10 @@ pore_relabund%>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
+
 total = 100%
+
+---
 
 ```{r relabund_5, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 1.5 kPa"}
 pore_relabund%>% 
@@ -431,13 +441,12 @@ pore_relabund%>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
+
 total = 100%
 
-
-
+---
 ---
 
----
 # FTICR Soil -- figures 
 ## native SOM
 ```{r soil_vk_baseline, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for baseline soil",fig.width=12, fig.height=5,fig.path = "images/"}
@@ -463,6 +472,8 @@ ggplot(soil_hcoc[soil_hcoc$treatment=="baseline",],
   theme_bw()+
   theme_kp()
 ```
+
+---
 
 ## treatment effect -- all peaks
 ```{r soil_vk_treatments, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for treatments",fig.width=12, fig.height=5,fig.path = "images/"}
@@ -500,6 +511,8 @@ ggplot(soil_hcoc2[soil_hcoc2$treatment=="field moist"|
 
 ```
 
+---
+
 ## treatment effect -- unique peaks
 ```{r soil_vk_unique, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for unique peaks",fig.width=12, fig.height=5,fig.path = "images/"}
 # set level of factors
@@ -530,6 +543,8 @@ ggplot(soil_unique,
 
 ```
 
+---
+
 ## treatment effect -- relative abundance
 ```{r soiL_rel_abund, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Relative abundance",fig.width=9, fig.height=7,fig.path = "images/"}
 # use file fticr_pore_relabundance_summary
@@ -557,6 +572,8 @@ ggplot(soil_relabund, aes(x = treatment, y = relabund, fill = group))+
 
 ```
 
+---
+
 ## NOSC
 ```{r soil_NOSC_c, echo=FALSE, fig.cap="NOSC for CPCRW", fig.height=6, fig.width=11, message=FALSE, warning=FALSE,fig.path = "images/"}
 soil_nosc %>% 
@@ -581,6 +598,8 @@ ggplot(soil_nosc,
   theme_bw()+
   theme_kp()
 ```
+
+---
 
 ## aromatic peaks
 ```{r soil_aromatic, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="aromatic peaks", fig.width=12, fig.height=7,fig.path = "images/"}
@@ -625,7 +644,9 @@ soil_relabund%>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
+
 ---
+
 ## peaks
 ```{r soil_peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
 soil_peaks %>% 
@@ -636,7 +657,9 @@ soil_peaks %>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
+
 ---
+
 ## unique peaks
 ```{r soil_uniquepeaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
 old.lvl = levels(factor(soil_unique_peaks$Class))
