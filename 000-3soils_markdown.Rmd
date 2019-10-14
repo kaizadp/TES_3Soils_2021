@@ -242,7 +242,9 @@ pore_relabund$group = factor(pore_relabund$group,
 # set order of groups. all simple together and all complex together.
 
 pore_relabund %>% 
-  mutate(group = factor(group, levels = c("AminoSugar", "Carb","Lipid","Protein","ConHC","Lignin","Tannin","UnsatHC","Other")))->
+  mutate(group = factor(group, levels = 
+                          c("AminoSugar", "Carb","Lipid","Protein","UnsatHC",
+                            "ConHC","Lignin","Tannin","Other")))->
            pore_relabund
 
 
@@ -573,7 +575,8 @@ soil_relabund$group = factor(soil_relabund$group,
 
 soil_relabund %>% 
   mutate(group = factor(group, levels =
-                          c("AminoSugar","Carb","Lipid","Protein","ConHC","Lignin","Tannin","UnsatHC","Unnamed")))->
+                          c("AminoSugar","Carb","Lipid","Protein","UnsatHC",
+                            "ConHC","Lignin","Tannin","Unnamed")))->
            soil_relabund
 
 
