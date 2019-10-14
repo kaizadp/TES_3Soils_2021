@@ -239,6 +239,15 @@ old.lvl = levels(factor(pore_relabund$group))
 pore_relabund$group = factor(pore_relabund$group, 
                                             levels=c(sort(old.lvl[old.lvl!="Other"]), "Other"))
 
+# set order of groups. all simple together and all complex together.
+
+pore_relabund %>% 
+  mutate(group = factor(group, levels = c("AminoSugar", "Carb","Lipid","Protein","ConHC","Lignin","Tannin","UnsatHC","Other")))->
+           pore_relabund
+
+
+
+
 ggplot(pore_relabund, aes(x = treatment, y = relabund, fill = group))+
   geom_bar(stat = "summary", width = 0.9)+
   #scale_fill_brewer(palette = "Dark2")+
@@ -560,6 +569,13 @@ soil_relabund = soil_relabund[!soil_relabund$group=="total",]
 old.lvl = levels(factor(soil_relabund$group))
 soil_relabund$group = factor(soil_relabund$group, 
                                             levels=c(sort(old.lvl[old.lvl!="Unnamed"]), "Unnamed"))
+
+
+soil_relabund %>% 
+  mutate(group = factor(group, levels =
+                          c("AminoSugar","Carb","Lipid","Protein","ConHC","Lignin","Tannin","UnsatHC","Unnamed")))->
+           soil_relabund
+
 
 ggplot(soil_relabund, aes(x = treatment, y = relabund, fill = group))+
   geom_bar(stat = "summary", width = 0.9)+
