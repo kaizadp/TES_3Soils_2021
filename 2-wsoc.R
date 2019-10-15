@@ -290,3 +290,37 @@ porewater_subset %>%
 
 write.csv(porewatersubsetlong,"processed/porewater_subset.csv")
 
+## NOW that the file has been edited in Excel, reupload it here
+porewatersubset2 = read.csv("processed/porewater_subset.csv")
+
+porewatersubset2 %>% 
+  select(-X) %>% 
+  filter(!empty==0&!full==0) %>% 
+# create a new column to note missing weights  
+  mutate(notes2 = case_when(empty == "no weight recorded"~"empty:no weight recorded",
+                            full == "no weight recorded"~"full:no weight recorded")) %>% 
+# make the weight columns numeric
+  dplyr::mutate(empty = as.numeric(as.character(empty)),
+                full = as.numeric(as.character(full))) %>% 
+# for missing empty weight, take average of all the others
+  mutate(empty_corr = if_else(is.na(empty),mean(empty, na.rm=TRUE),empty)) %>% 
+  dplyr::mutate(empty_corr = round(empty_corr,2),
+                porewater_g = full-empty_corr) %>% 
+# now create a column for total volume  
+  group_by(Site, Core, suction) %>% 
+#  dplyr::summarise(totalvolume_g = sum(porewater_g, na.rm = TRUE))->
+# summarise creates a new summary table
+# to view the totals in the same original table, comment that out and use the `mutate` function below
+  dplyr::mutate(totalvolume_g = sum(porewater_g, na.rm = TRUE),
+                totalvolume_g = na_if(totalvolume_g,0))->
+  porewatersubset3
+
+porewatersubset3 %>% 
+  group_by(Site, Core, suction) %>% 
+  dplyr::summarise(totalvolume_g = sum(porewater_g, na.rm = TRUE)) %>% 
+  dplyr::mutate(totalvolume_g = na_if(totalvolume_g,0)) %>%
+  dplyr::rename(totalvolume_mL = totalvolume_g,
+         tension=suction)->
+  porewater_weight
+
+### COMBINE THIS WITH THE MG/L FILE
