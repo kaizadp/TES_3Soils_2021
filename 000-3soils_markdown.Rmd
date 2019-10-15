@@ -1,9 +1,15 @@
 ---
 title: "3soils_markdown"
 author: "Kaizad Patel"
-date: "10/10/2019"
+date: "10/15/2019"
 output: word_document
 ---
+
+This is the RMarkdown file for the 3Soils experiment. Tables and figures for molecular results.
+For formatted tables, see the Word document titled `000-3soils_markdown_YYYYMMDD.docx`.
+
+
+
 
 ```{r setup, include=FALSE, echo=FALSE}
 source("0-packages.R")
