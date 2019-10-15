@@ -5,7 +5,7 @@
 
 source("0-packages.R")
 
-
+#
 ## WSOC concentrations -- pores ####
 wsoc_pores = read_excel("data/3Soils_WSOC_CN_PoreCore.xlsx")
 names(wsoc_pores)
@@ -254,3 +254,39 @@ write.csv(wsoc_soils_summary, WSOC_SOIL)
 #
 
 #
+## calculating porewater volume ----
+porewater = read.csv("data/Porewater_weights.csv")
+names(porewater)
+
+# select only the relevant columns
+# these columns are formatted HORRIBLY. redo
+# split into two dataframes, one for empty weights and one for full weights. format and then combine
+
+porewater %>% 
+  dplyr::rename(Core=`Core.`) %>% 
+  select(Site, Core, starts_with("X"))->
+  porewater_subset
+
+porewater_subset %>% 
+# gather all into columns "type" and "weight"
+  gather(type, weight,3:12) %>% 
+# add columns for suction, empty/full, and vial number
+# vial number is by default 1, and for "extra vials", 2
+  dplyr::mutate(suction = case_when(grepl("15mb", type) ~ "1.5 kPa",
+                             grepl("150mb", type) ~ "15 kPa",
+                             grepl("500mb",type) ~ "50 kPa"),
+         emptyfull = case_when(grepl("empty",type) ~ "empty",
+                               grepl("full", type) ~ "full"),
+         vial_num = if_else(grepl("_extra",type),"2","1")) %>%
+# remove the column "type", because tat will f-up the next spread
+  select(-type) %>% 
+# spread, to get two separate columns for empty vs. full
+  spread(emptyfull, weight)->
+  porewatersubsetlong
+
+## some cells in this file have multiple entries together, which I cannot/ dont want to fix in R.
+## download as a csv, fix this in Excel, and then re-upload here.
+## cells with multiple entries will be split into multiple rows, with vial numbers 2,3,4,...
+
+write.csv(porewatersubsetlong,"processed/porewater_subset.csv")
+
