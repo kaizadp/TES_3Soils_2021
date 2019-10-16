@@ -22,40 +22,43 @@ fticr_soil_meta %>%
                 HC = HtoC_ratio)->
   fticr_soil_meta
 
+
+## make a subset for just HCOC
+fticr_soil_meta %>% 
+  select(Mass, Class, HC, OC)->
+  fticr_meta_hcoc
+
 # merge metadata with sample data
-# ¿¿¿ do this later instead?
-fticr_soil = merge(fticr_soil_meta,fticr_soil_data,by = "Mass")
+# ¿¿¿ do this later instead? YES
+# fticr_soil = merge(fticr_soil_meta,fticr_soil_data,by = "Mass")
 
 #
 ## step 2: clean and process ----
 
-# remove "unassigned" molecules
-fticr_soil = fticr_soil[!(fticr_soil$Class=="Unassigned"),]
-
+fticr_soil_data %>% 
 # melt/gather. transform from wide to long form
-fticr_soil_gather = fticr_soil %>% 
-  gather(core, intensity, C1:S25) ## core = name of new categ column, intensity = name of values column, C1:C25 are columns that are collapsed
-
+  gather(core, intensity, C1:S25) %>% ## core = name of new categ column, intensity = name of values column, C1:C25 are columns that are collapsed
 # remove all samples with zero intensity
-fticr_soil_gather = fticr_soil_gather[!(fticr_soil_gather$intensity=="0"),]
-
+ filter(!intensity=="0") %>% 
 # merge with the core key file
-fticr_soil_gather = merge(corekey,fticr_soil_gather,by = "core")
-
-
-fticr_soil_gather %>% 
+  left_join(corekey,by = "core") %>% 
+## now we need to filter only those peaks seen in 3 or more replicates
+# create a summary table with replicates
   group_by(Mass,treatment,site) %>% 
-  dplyr::mutate(reps = n()) ->
-  fticr_soil_gather2
+  dplyr::summarize(reps = n()) %>% 
+# remove peaks seen in < 3 replicates 
+    filter(reps>2) %>% 
+# merge with hcoc file
+    left_join(fticr_meta_hcoc, by = "Mass") %>% 
+# remove "unassigned" molecules
+  filter(!Class=="Unassigned")  ->
+    fticr_soil_gather2
+## leaving this file named ...gather2 because a lot of subsequent code depends on this. 
 
-### remove peaks seen in < 3 replicates 
-fticr_soil_gather2 = fticr_soil_gather2[!(fticr_soil_gather2$reps<3),]
-
-#write.csv(fticr_soil_gather,"fticr_soil_gather.csv")
 
 ### OUTPUT
 # write.csv(fticr_soil_gather2,"fticr_soil_longform.csv")
-write_csv(fticr_soil_gather2, FTICR_SOIL_LONG)
+write.csv(fticr_soil_gather2, FTICR_SOIL_LONG, row.names = "")
 
 #
 ## step 3: relative abundance ---- 
