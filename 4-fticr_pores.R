@@ -250,6 +250,58 @@ write_csv(fticr_pore_relabundance_summary2,FTICR_PORE_RELABUND)
 #
 
 
+#
+## 3.3 stats for the rel_abund summarry table -- Dunnett ----
+## Dunnett's Test compares all levels to a single control treatment
+## we want to compare drought, saturation, field moist against TZsaturation
+library(multcomp)
+library(DescTools)
+
+fit_dunnett_relabund <- function(dat) {
+  d <-DescTools::DunnettTest(relabund~treatment, control = "time zero saturation", data = dat)
+  #create a tibble with one column for each treatment
+  # column 4 has the pvalue
+  t = tibble(`drought` = d$`time zero saturation`["drought-time zero saturation",4], 
+         `saturation` = d$`time zero saturation`["saturation-time zero saturation",4],
+         `field moist` = d$`time zero saturation`["field moist-time zero saturation",4])
+  # we need to convert significant p values to asterisks
+  # since the values are in a single row, it is tricky
+  t %>% 
+  # first, gather all p-values into a single column, pval
+    gather(trt, pval, 1:3) %>% 
+  # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+    mutate(p = if_else(pval<0.05, "*","")) %>% 
+  # remove the pval column
+    dplyr::select(-pval) %>% 
+  # spread the p (asterisks) column bnack into the three columns
+    spread(trt, p)  ->
+    t
+}
+
+fticr_pore_relabundance_long[!fticr_pore_relabundance_long$group=="total",] %>% 
+  group_by(site, tension, group) %>% 
+  do(fit_dunnett_relabund(.))  ->
+  pore_relabund_dunnett
+
+pore_relabund_dunnett %>% 
+  gather(treatment, dunnett, 4:6)-> #gather columns 4-7 (treatment levels)
+  pore_relabund_dunnett2
+
+# now merge this with `fticr_pore_relabundance_summary`
+
+fticr_pore_relabundance_summary %>% 
+  left_join(pore_relabund_dunnett2,by = c("tension","site","group","treatment"), all.x = TRUE) %>% 
+  replace(.,is.na(.),"") %>% 
+  dplyr::mutate(relativeabundance = paste(relativeabundance,dunnett)) %>% 
+  dplyr::select(-se,-sd, -ci, -dunnett,-N,)->
+  fticr_pore_relabundance_summary2
+
+### OUTPUT
+write_csv(fticr_pore_relabundance_summary2,FTICR_PORE_RELABUND)
+
+
+
+
 ## step 3-2: count peaks ----
 
 # summarizing by groups
