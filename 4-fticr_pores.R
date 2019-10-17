@@ -254,8 +254,6 @@ write_csv(fticr_pore_relabundance_summary2,FTICR_PORE_RELABUND)
 ## 3.3 stats for the rel_abund summarry table -- Dunnett ----
 ## Dunnett's Test compares all levels to a single control treatment
 ## we want to compare drought, saturation, field moist against TZsaturation
-library(multcomp)
-library(DescTools)
 
 fit_dunnett_relabund <- function(dat) {
   d <-DescTools::DunnettTest(relabund~treatment, control = "time zero saturation", data = dat)
