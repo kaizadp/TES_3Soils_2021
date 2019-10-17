@@ -213,7 +213,7 @@ fticr_pore_relabundance_summarytable2 = dcast(fticr_pore_relabundance_summary,
 # write_csv(fticr_pore_relabundance_summarytable2, path = "fticr/fticr_pore_relabundance_groups2.csv")
 
 #
-## 3.2 stats for the rel_abund summary table ----
+## 3.2 stats for the rel_abund summary table -- HSD ----
 # create a function to calculate aov and hsd. this function can then be used for rel_abund for each site/tension/group
 
 fit_hsd_relabund <- function(dat) {

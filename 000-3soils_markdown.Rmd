@@ -202,6 +202,9 @@ ggplot(pore_hcoc2[!pore_hcoc2$treatment=="time zero saturation",], # remove base
 ---
 
 ## treatment effect -- unique peaks
+unique in each treatment compared to all, including TZsaturation
+these are peaks that were uniquely **added** during a given treatment
+
 ```{r vk_unique, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for unique peaks",fig.width=10, fig.height=7,fig.path = "images/"}
 # set level of factors
 pore_unique %>% 
