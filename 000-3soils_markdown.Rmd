@@ -388,9 +388,9 @@ print("50 kPa")
 pore_peaks %>% 
   ungroup %>% 
     filter(tension=="50 kPa") %>% 
-dplyr::mutate(sp = paste(site, treatment),
+  dplyr::mutate(sp = paste(site, treatment),
                 val = paste(peaks_count)) %>% 
-  select(Class,sp, val) %>% 
+  dplyr::select(Class,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
@@ -446,7 +446,7 @@ pore_relabund%>%
   filter(tension=="50 kPa") %>% 
   dplyr::mutate(sp = paste(treatment),
                 val = paste(relativeabundance)) %>% 
-  select(site, group,sp, val) %>% 
+  dplyr::select(site, group,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
