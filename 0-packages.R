@@ -28,6 +28,8 @@ library(car)
 library(agricolae)
 library(googlesheets)
 library(gsheet)
+library(multcomp)
+library(DescTools)
 
 # create a custom ggplot theme
 theme_kp <- function() {  # this for all the elements common across plots
