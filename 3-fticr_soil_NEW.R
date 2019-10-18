@@ -77,7 +77,7 @@ write.csv(fticr_soil_raw_long, FTICR_SOIL_RAW_LONG, row.names = FALSE)
 ## step 3: relative abundance ---- 
 
 # summarizing by groups
-fticr_soil_gather2 %>% 
+fticr_soil_raw_long %>% 
   group_by(site, treatment,Class,core) %>% 
   dplyr::summarize(compounds = sum(intensity)) ->
   fticr_soil_groups
@@ -109,11 +109,12 @@ fticr_soil_relabundance_long = fticr_soil_relabundance %>%
   gather(group, relabund, AminoSugar:total)
 
 
-fticr_soil_relabundance_summary = summarySE(fticr_soil_relabundance_long, measurevar = "relabund", groupvars = c("site","treatment","group"),na.rm = TRUE)
+fticr_soil_relabundance_summary = summarySE(fticr_soil_relabundance_long, 
+                                            measurevar = "relabund", 
+                                            groupvars = c("site","treatment","group"),na.rm = TRUE)
 fticr_soil_relabundance_summary$relativeabundance = paste((round(fticr_soil_relabundance_summary$relabund,2)),
                                                            "\u00B1",
                                                            round(fticr_soil_relabundance_summary$se,2))
-
 
 # OPTION1: UNNECESSARY NOW
     # fticr_soil_relabundance_summarytable = dcast(fticr_soil_relabundance_summary,site+treatment~group,value.var = "relativeabundance") 
@@ -147,7 +148,7 @@ fticr_soil_relabundance_summary$group = factor(fticr_soil_relabundance_summary$g
     #                                              site+group~treatment,value.var = "relativeabundance") 
 
 
-## HSD 
+## HSD. DONT DO
 fit_hsd_relabund <- function(dat) {
   a <-aov(relabund ~ treatment, data = dat)
   h <-HSD.test(a,"treatment")
@@ -179,12 +180,56 @@ fticr_soil_relabundance_summary2 %>%
   select(-sd,-se,-ci,-hsd)->
   fticr_soil_relabundance_summary2
 
+## DUNNETT'S TEST 
+
+fit_dunnett_relabund <- function(dat) {
+  d <-DescTools::DunnettTest(relabund~treatment, control = "baseline", data = dat)
+  #create a tibble with one column for each treatment
+  # column 4 has the pvalue
+  t = tibble(`drought` = d$`baseline`["drought-baseline",4], 
+             `saturation` = d$`baseline`["saturation-baseline",4],
+             `field moist` = d$`baseline`["field moist-baseline",4],
+             `TZsaturation` = d$baseline["time zero saturation-baseline",4])
+  # we need to convert significant p values to asterisks
+  # since the values are in a single row, it is tricky
+  t %>% 
+    # first, gather all p-values into a single column, pval
+    gather(trt, pval, 1:4) %>% 
+    # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+    mutate(p = if_else(pval<0.05, "*","")) %>% 
+    # remove the pval column
+    dplyr::select(-pval) %>% 
+    # spread the p (asterisks) column bnack into the three columns
+    spread(trt, p)  ->
+    t
+}
+
+fticr_soil_relabundance_long[!fticr_soil_relabundance_long$group=="total",] %>% 
+  group_by(site, group) %>% 
+  do(fit_dunnett_relabund(.))  ->
+  soil_relabund_dunnett
+
+soil_relabund_dunnett %>% 
+  gather(treatment, dunnett, 3:6)-> #gather columns 4-7 (treatment levels)
+  soil_relabund_dunnett2
+
+# now merge this with `fticr_pore_relabundance_summary`
+
+fticr_soil_relabundance_summary %>% 
+  left_join(soil_relabund_dunnett2,by = c("site","group","treatment"), all.x = TRUE) %>% 
+  replace(.,is.na(.),"") %>% 
+  dplyr::mutate(relativeabundance = paste(relativeabundance,dunnett)) %>% 
+  dplyr::select(-se,-sd, -ci, -dunnett,-N,)->
+  fticr_soil_relabundance_summary2
+
 ### OUTPUT
 write_csv(fticr_soil_relabundance_summary2, FTICR_SOIL_RELABUND)
 
 
+
+
 ## peaks ----
-fticr_soil_gather2 %>% 
+fticr_soil_long %>% 
   group_by(site,treatment,Class) %>% 
   dplyr::summarize(peaks = n()) %>% # get count of each group/class for each tension-site-treatment
   group_by(site,treatment) %>% 
