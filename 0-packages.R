@@ -103,6 +103,7 @@ FTICR_PORE_NOSC <- "fticr/fticr_pore_nosc.csv"
 FTICR_PORE_AROMATIC <- "fticr/fticr_pore_aromatic_counts.csv"
 
 # FTICR_SOIL
+FTICR_SOIL_RAW_LONG <- "fticr/fticr_soil_raw_longform.csv"
 FTICR_SOIL_LONG <- "fticr/fticr_soil_longform.csv"
 FTICR_SOIL_RELABUND <- "fticr/fticr_soil_relabundance_hsd.csv"
 FTICR_SOIL_UNIQUE <- "fticr/fticr_soil_uniquemolecules.csv" 

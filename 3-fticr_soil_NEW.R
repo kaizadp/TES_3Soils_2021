@@ -47,23 +47,31 @@ fticr_soil_data %>%
 # merge with the core key file
   left_join(corekey,by = "core") %>% 
 ## now we need to filter only those peaks seen in 3 or more replicates
-# create a summary table with replicates
+# add a column with no. of replicates
   group_by(Mass,treatment,site) %>% 
-  dplyr::summarize(reps = n(),
-                   intensity = mean(intensity)) %>% 
+  dplyr::mutate(reps = n()) %>% 
 # remove peaks seen in < 3 replicates 
     filter(reps>2) %>% 
 # merge with hcoc file
     left_join(fticr_meta_hcoc, by = "Mass") %>% 
 # remove "unassigned" molecules
   filter(!Class=="Unassigned")  ->
-    fticr_soil_gather2
-## leaving this file named ...gather2 because a lot of subsequent code depends on this. 
+  fticr_soil_raw_long
+  # used to be called:  `fticr_soil_gather2`
 
+## now create a summary of this
+fticr_soil_raw_long %>% 
+  ungroup %>% 
+  group_by(Mass,site,treatment) %>% 
+  dplyr::summarize(intensity = mean(intensity)) %>% 
+  # merge with hcoc file
+  left_join(fticr_meta_hcoc, by = "Mass") ->
+  fticr_soil_long
 
 ### OUTPUT
 # write.csv(fticr_soil_gather2,"fticr_soil_longform.csv")
-write.csv(fticr_soil_gather2, FTICR_SOIL_LONG, row.names = FALSE)
+write.csv(fticr_soil_long, FTICR_SOIL_LONG, row.names = FALSE)
+write.csv(fticr_soil_raw_long, FTICR_SOIL_RAW_LONG, row.names = FALSE)
 
 #
 ## step 3: relative abundance ---- 
