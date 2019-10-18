@@ -155,40 +155,75 @@ lme_trt_pore=lme(log(wsoc)~Site*Treatment*Suction,random=~1|CoreNo,data=wsoc_por
 attach(wsoc_pores)
 wsoc_pore_hsd = HSD.test(aov(lme_trt_pore),trt = "Treatment")
 
-## HSD
-fit_hsd_wsoc <- function(dat) {
-  a <-aov(wsoc ~ Treatment, data = dat)
-  h <-HSD.test(a,"Treatment")
+
+    # ## HSD
+    ## NOT DOING HSD ANY MORE. DOING DUNNETT INSTEAD. SEE BELOW.
+
+    # fit_hsd_wsoc <- function(dat) {
+    #   a <-aov(wsoc ~ Treatment, data = dat)
+    #   h <-HSD.test(a,"Treatment")
+    #   #create a tibble with one column for each treatment
+    #   #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
+    #   tibble(`Drought` = h$groups["Drought",2], 
+    #          `Saturated` = h$groups["Saturated",2],
+    #          `Time Zero` = h$groups["Time Zero",2],
+    #          `Field Moist` = h$groups["Field Moist",2])
+    # }
+    # 
+    # wsoc_pores %>% 
+    #   group_by(Site, Suction) %>% 
+    #   do(fit_hsd_wsoc(.))  ->
+    #   wsoc_pores_hsd
+    # 
+    # wsoc_pores_hsd %>% 
+    #   gather(Treatment, hsd, 3:6)-> #gather columns 4-7 (treatment levels)
+    #   wsoc_pores_hsd2
+
+#
+
+### WSOC concentrations -- pores -- stats DUNNETT ----
+
+fit_dunnett_wsoc <- function(dat) {
+  d <-DescTools::DunnettTest(wsoc~Treatment, control = "Time Zero", data = dat)
   #create a tibble with one column for each treatment
-  #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
-  tibble(`Drought` = h$groups["Drought",2], 
-         `Saturated` = h$groups["Saturated",2],
-         `Time Zero` = h$groups["Time Zero",2],
-         `Field Moist` = h$groups["Field Moist",2])
+  # column 4 has the pvalue
+  t = tibble(`Drought` = d$`Time Zero`["Drought-Time Zero",4], 
+             `Saturated` = d$`Time Zero`["Saturated-Time Zero",4],
+             `Field Moist` = d$`Time Zero`["Field Moist-Time Zero",4])
+  # we need to convert significant p values to asterisks
+  # since the values are in a single row, it is tricky
+  t %>% 
+    # first, gather all p-values into a single column, pval
+    gather(trt, pval, 1:3) %>% 
+    # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+    mutate(p = if_else(pval<0.05, "*","")) %>% 
+    # remove the pval column
+    dplyr::select(-pval) %>% 
+    # spread the p (asterisks) column bnack into the three columns
+    spread(trt, p)  ->
+    t
 }
 
 wsoc_pores %>% 
   group_by(Site, Suction) %>% 
-  do(fit_hsd_wsoc(.))  ->
-  wsoc_pores_hsd
+  do(fit_dunnett_wsoc(.))  ->
+  wsoc_pores_dunnett
 
-wsoc_pores_hsd %>% 
-  gather(Treatment, hsd, 3:6)-> #gather columns 4-7 (treatment levels)
-  wsoc_pores_hsd2
+wsoc_pores_dunnett %>% 
+  gather(treatment, dunnett, 3:5)-> #gather columns 4-7 (treatment levels)
+  wsoc_pores_dunnett2
 
 ### WSOC concentrations -- pores -- summary table ----
 wsoc_pores_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
 wsoc_pores_rmisc$wsoc_mg_L = paste(round(wsoc_pores_rmisc$wsoc,2),"\u00B1",round(wsoc_pores_rmisc$se,2))
 #\u00b1 is plus-minus
 
-
-# merge the summary table with the hsd table
-wsoc_pores_rmisc2 = merge(wsoc_pores_rmisc, wsoc_pores_hsd2, by = c("Site","Suction","Treatment"))
-
-# combine the wsoc and hsd columns
-wsoc_pores_rmisc2 %>% 
-  mutate(wsoc_hsd = paste(wsoc_mg_L," ",hsd)) %>% 
-  select(-sd,-se,-ci,-hsd)->
+# merge the summary table with the hsd/dunnett table
+wsoc_pores_rmisc %>% 
+  left_join(wsoc_pores_dunnett2,by = c("Site","Suction"), all.x = TRUE) %>% 
+  replace(.,is.na(.),"") %>% 
+  dplyr::mutate(wsoc_hsd = paste(wsoc_mg_L,dunnett)) %>% 
+  dplyr::select(-sd,-se,-ci,-dunnett)->
   wsoc_pores_summary
 
 ### OUTPUT
@@ -216,40 +251,85 @@ wsoc_soils_rmisc = summarySE(wsoc_soils,measurevar = "wsoc_mg_g",groupvars = c("
 wsoc_soils_rmisc = wsoc_soils_rmisc[complete.cases(wsoc_soils_rmisc),]
 wsoc_soils_rmisc$WSOC_mg_g = paste(round(wsoc_soils_rmisc$wsoc_mg_g,2),"\u00B1",round(wsoc_soils_rmisc$se,2))
 #\u00b1 is plus-minus
+#
 
-#hsd
+#hsd ----
+# DON'T DO. DO DUNNETT
+    #  fit_hsd_wsoc_soil <- function(dat) {
+    #    a <-aov(wsoc_mg_g ~ Treatment, data = dat)
+    #    h <-HSD.test(a,"Treatment")
+    #    #create a tibble with one column for each treatment
+    #    #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
+    #    tibble(`Drought` = h$groups["Drought",2], 
+    #           `Saturated` = h$groups["Saturated",2],
+    #           `Time Zero` = h$groups["Time Zero",2],
+    #           `Field Moist` = h$groups["Field Moist",2])
+    #  }
+    #  
+    #  wsoc_soils = wsoc_soils[complete.cases(wsoc_soils),]
+    #  wsoc_soils %>% 
+    #    group_by(Site) %>% 
+    #    do(fit_hsd_wsoc_soil(.))  ->
+    #    wsoc_soils_hsd
+    #  
+    #  wsoc_soils_hsd %>% 
+    #    gather(Treatment, hsd, 2:5)-> #gather columns 4-7 (treatment levels)
+    #    wsoc_soils_hsd2
+    #  
+    #  # merge the summary table with the hsd table
+    #  wsoc_soils_rmisc2 = merge(wsoc_soils_rmisc, wsoc_soils_hsd2, by = c("Site","Treatment"))
+    #  
+    #  # combine the wsoc and hsd columns
+    #  wsoc_soils_rmisc2 %>% 
+    #    mutate(wsoc_hsd = paste(WSOC_mg_g," ",hsd)) %>% 
+    #    select(-sd,-se,-ci,-hsd)->
+    #    wsoc_soils_summary
 
-fit_hsd_wsoc_soil <- function(dat) {
-  a <-aov(wsoc_mg_g ~ Treatment, data = dat)
-  h <-HSD.test(a,"Treatment")
+#
+## DUNNETT TEST ----
+
+fit_dunnett_wsoc_soil <- function(dat) {
+  d <-DescTools::DunnettTest(wsoc_mg_g~Treatment, control = "Time Zero", data = dat)
   #create a tibble with one column for each treatment
-  #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
-  tibble(`Drought` = h$groups["Drought",2], 
-         `Saturated` = h$groups["Saturated",2],
-         `Time Zero` = h$groups["Time Zero",2],
-         `Field Moist` = h$groups["Field Moist",2])
+  # column 4 has the pvalue
+  t = tibble(`Drought` = d$`Time Zero`["Drought-Time Zero",4], 
+             `Saturated` = d$`Time Zero`["Saturated-Time Zero",4],
+             `Field Moist` = d$`Time Zero`["Field Moist-Time Zero",4])
+  # we need to convert significant p values to asterisks
+  # since the values are in a single row, it is tricky
+  t %>% 
+    # first, gather all p-values into a single column, pval
+    gather(trt, pval, 1:3) %>% 
+    # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+    mutate(p = if_else(pval<0.05, "*","")) %>% 
+    # remove the pval column
+    dplyr::select(-pval) %>% 
+    # spread the p (asterisks) column bnack into the three columns
+    spread(trt, p)  ->
+    t
 }
 
 wsoc_soils = wsoc_soils[complete.cases(wsoc_soils),]
+
 wsoc_soils %>% 
   group_by(Site) %>% 
-  do(fit_hsd_wsoc_soil(.))  ->
-  wsoc_soils_hsd
+  do(fit_dunnett_wsoc_soil(.))  ->
+  wsoc_soil_dunnett
 
-wsoc_soils_hsd %>% 
-  gather(Treatment, hsd, 2:5)-> #gather columns 4-7 (treatment levels)
-  wsoc_soils_hsd2
+wsoc_soil_dunnett %>% 
+  gather(treatment, dunnett, 2:4)-> #gather columns 4-7 (treatment levels)
+  wsoc_soil_dunnett2
 
-# merge the summary table with the hsd table
-wsoc_soils_rmisc2 = merge(wsoc_soils_rmisc, wsoc_soils_hsd2, by = c("Site","Treatment"))
-
-# combine the wsoc and hsd columns
-wsoc_soils_rmisc2 %>% 
-  mutate(wsoc_hsd = paste(WSOC_mg_g," ",hsd)) %>% 
-  select(-sd,-se,-ci,-hsd)->
+# merge the summary table with the hsd/dunnett table
+wsoc_soils_rmisc %>% 
+  left_join(wsoc_soil_dunnett2,by = c("Site"), all.x = TRUE) %>% 
+  replace(.,is.na(.),"") %>% 
+  dplyr::mutate(wsoc_hsd = paste(WSOC_mg_g,dunnett)) %>% 
+  dplyr::select(-sd,-se,-ci,-dunnett)->
   wsoc_soils_summary
 
-###output
+
+### OUTPUT
 write.csv(wsoc_soils_summary, WSOC_SOIL)
 
 #
