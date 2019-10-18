@@ -229,7 +229,7 @@ write_csv(fticr_soil_relabundance_summary2, FTICR_SOIL_RELABUND)
 
 
 ## peaks ----
-fticr_soil_long %>% 
+fticr_soil_gather2 %>% 
   group_by(site,treatment,Class) %>% 
   dplyr::summarize(peaks = n()) %>% # get count of each group/class for each tension-site-treatment
   group_by(site,treatment) %>% 
