@@ -214,38 +214,39 @@ fticr_pore_relabundance_summarytable2 = dcast(fticr_pore_relabundance_summary,
 
 #
 ## 3.2 stats for the rel_abund summary table -- HSD ----
-# create a function to calculate aov and hsd. this function can then be used for rel_abund for each site/tension/group
-
-fit_hsd_relabund <- function(dat) {
-  a <-aov(relabund ~ treatment, data = dat)
-  h <-HSD.test(a,"treatment")
-  #create a tibble with one column for each treatment
-  #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
-  tibble(`drought` = h$groups["drought",2], 
-         `saturation` = h$groups["saturation",2],
-         `time zero saturation` = h$groups["time zero saturation",2],
-         `field moist` = h$groups["field moist",2])
-}
-
-fticr_pore_relabundance_long[!fticr_pore_relabundance_long$group=="total",] %>% 
-  group_by(site, tension, group) %>% 
-  do(fit_hsd_relabund(.))  ->
-  pore_relabund_hsd
-
-pore_relabund_hsd %>% 
-  gather(treatment, hsd, 4:7)-> #gather columns 4-7 (treatment levels)
-  pore_relabund_hsd2
-
-# now merge this with `fticr_pore_relabundance_summary`
-
-fticr_pore_relabundance_summary2 = merge(fticr_pore_relabundance_summary, pore_relabund_hsd2, by = c("tension","site","group","treatment"))
-fticr_pore_relabundance_summary2$relativeabundance = paste(fticr_pore_relabundance_summary2$relativeabundance," ",fticr_pore_relabundance_summary2$hsd)
-
-fticr_pore_relabundance_summary2table2 = dcast(fticr_pore_relabundance_summary2,
-                                              group~tension+site+treatment,value.var = "relativeabundance") 
-
-### OUTPUT
-write_csv(fticr_pore_relabundance_summary2,FTICR_PORE_RELABUND)
+      # NOT DOING THIS, SWITCHED TO DUNNETT'S TEST
+      #  # create a function to calculate aov and hsd. this function can then be used for rel_abund for each site/tension/group
+      #  
+      #  fit_hsd_relabund <- function(dat) {
+      #    a <-aov(relabund ~ treatment, data = dat)
+      #    h <-HSD.test(a,"treatment")
+      #    #create a tibble with one column for each treatment
+      #    #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
+      #    tibble(`drought` = h$groups["drought",2], 
+      #           `saturation` = h$groups["saturation",2],
+      #           `time zero saturation` = h$groups["time zero saturation",2],
+      #           `field moist` = h$groups["field moist",2])
+      #  }
+      #  
+      #  fticr_pore_relabundance_long[!fticr_pore_relabundance_long$group=="total",] %>% 
+      #    group_by(site, tension, group) %>% 
+      #    do(fit_hsd_relabund(.))  ->
+      #    pore_relabund_hsd
+      #  
+      #  pore_relabund_hsd %>% 
+      #    gather(treatment, hsd, 4:7)-> #gather columns 4-7 (treatment levels)
+      #    pore_relabund_hsd2
+      #  
+      #  # now merge this with `fticr_pore_relabundance_summary`
+      #  
+      #  fticr_pore_relabundance_summary2 = merge(fticr_pore_relabundance_summary, pore_relabund_hsd2, by = c("tension","site","group","treatment"))
+      #  fticr_pore_relabundance_summary2$relativeabundance = paste(fticr_pore_relabundance_summary2$relativeabundance," ",fticr_pore_relabundance_summary2$hsd)
+      #  
+      #  fticr_pore_relabundance_summary2table2 = dcast(fticr_pore_relabundance_summary2,
+      #                                                group~tension+site+treatment,value.var = "relativeabundance") 
+      #  
+      #  ### OUTPUT
+      #  write_csv(fticr_pore_relabundance_summary2,FTICR_PORE_RELABUND)
 
 #
 
