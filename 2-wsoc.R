@@ -23,8 +23,8 @@ wsoc_pores$Treatment = factor(wsoc_pores$Treatment,
                                          "Saturated",
                                          "Drought"))
 #
-## making separate plots for sites ----
-      ## THIS IS CRAZY. USE FACETS INSTEAD
+## making separate plots for sites DON'T DO THIS ----
+      ## THIS IS CRAZY. USE FACETS INSTEADDON'
       # #creating summary
       # wsoc_rmisc_cpcrw=summarySE(wsoc_pores[wsoc_pores$Site=="CPCRW",],measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
       # wsoc_rmisc_dwp=summarySE(wsoc_pores[wsoc_pores$Site=="DWP",],measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
