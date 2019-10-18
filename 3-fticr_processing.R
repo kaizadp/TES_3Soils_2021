@@ -78,7 +78,7 @@ fticr_soil_raw_long %>%
 ### FTICR-SOIL OUTPUT ----
     # write.csv(fticr_soil_gather2,"fticr_soil_longform.csv")
 
-write.csv(fticr_meta_hcoc, FTICR_META_HCOC, row.names = FALSE)
+write.csv(fticr_meta_hcoc, FTICR_SOIL_META_HCOC, row.names = FALSE)
 write.csv(fticr_soil_long, FTICR_SOIL_LONG, row.names = FALSE)
 write.csv(fticr_soil_raw_long, FTICR_SOIL_RAW_LONG, row.names = FALSE)
 
@@ -133,80 +133,70 @@ names(fticr_porewater)[matches_n > 0] <- names[matches_n > 0]
 
 # remove addiitonal unnecessary names that couldn't be automated above
 fticr_porewater %>% 
-  select(-`C13`,-`3use`,-`Error_ppm`)->
+  dplyr::select(-`C13`,-`3use`,-`Error_ppm`)->
   fticr_porewater
 
-## split porewater file into metadata and sample data. ----
+## create meta file ----
 ## sample data split by pore size (50 kPa and 1.5 kPa). 
-fticr_pore_meta = as.data.frame(fticr_porewater[,1:11])
-fticr_pore_data_50 = (select(fticr_porewater, "Mass", starts_with("5")))
-fticr_pore_data_1 = (select(fticr_porewater, "Mass", starts_with("1")))
+fticr_porewater %>% 
+  dplyr::select(1:11) %>% 
+# remove compounds without class. har har. 
+  filter(!Class=="None") %>% 
+# create new columns  
+  dplyr::mutate(AImod = (1+C-(0.5*O)-S-(0.5*H))/(C-(0.5*O)-S-N-P),
+                NOSC =  4-(((4*C)+H-(3*N)-(2*O)-(2*S))/C),
+                HC = round(H/C,2),
+                OC = round(O/C,2))->
+  fticr_pore_meta
 
-## meta: remove componds without class
-fticr_pore_meta = fticr_pore_meta[!(fticr_pore_meta$Class=="None"),]
+# create subset for HCOC and class
+fticr_pore_meta %>% 
+  dplyr::select(Mass, HC, OC, Class)->
+  fticr_pore_meta_hcoc
 
-## create new columns for Aromatic Index, Nominal Oxidative State of Compounds, H/C, and O/C
+#
+## create data file ----
+fticr_porewater %>% 
+  dplyr::select(Mass, starts_with("5"), starts_with("1")) %>% 
+# collapse all core columns into a single column
+  melt(id="Mass") %>% 
+  dplyr::rename(sample = variable,
+                intensity = value) %>% 
+# remove all peaks with intensity ==0  
+  filter(!intensity==0) %>% 
+# using `sample` column, create columns for tension and core
+  dplyr::mutate(tension_temp = substr(sample,start=1,stop=1),
+                core = substr(sample,start=3,stop=7),
+                tension = case_when(
+                  tension_temp=="1"~"1.5 kPa",
+                  tension_temp=="5"~"50 kPa")) %>% 
+# remove unnecessary columns
+  dplyr::select(-tension_temp,-sample) %>% 
+# merge with the corekey and then remove NA containing rows
+  right_join(corekey, by = "core") %>% 
+  drop_na->
+  temp_pore
 
-#AImod = (1+C-1/2 O-S-1/2H)/(C=1/2 O -S-N-P). Formula from Bailey et al. 2017 SOC pore water
-fticr_pore_meta$AImod = with(fticr_pore_meta, (1+C-(0.5*O)-S-(0.5*H))/(C-(0.5*O)-S-N-P))
+# remove peaks seen in < 3 replicates
+temp_pore %>% 
+  group_by(Mass,tension,site,treatment) %>% 
+  dplyr::mutate(reps = n()) %>% 
+  filter(reps >2) %>% 
+  # merge with hcoc file
+  left_join(fticr_pore_meta_hcoc, by = "Mass") %>% 
+  drop_na->
+  fticr_pore_raw_long
 
-#NOSC = 4-((4C+H-3N-2O-2S)/C). From Riedel et al. in Coward et al. 2019
-fticr_pore_meta$NOSC = with(fticr_pore_meta, 4-(((4*C)+H-(3*N)-(2*O)-(2*S))/C))
-
-fticr_pore_meta$HC = with(fticr_pore_meta, H/C)
-fticr_pore_meta$OC = with(fticr_pore_meta, O/C)
-
-### OUTPUT
-write_csv(fticr_pore_meta, FTICR_PORE_META)
-
-# melt/gather. transform from wide to long form
-## using "gather" in the name despite using melt, to keep it consistent with the fticr_soil script
-fticr_pore_gather_50 = fticr_pore_data_50 %>% 
-  melt(id = "Mass")
-fticr_pore_gather_1 = fticr_pore_data_1 %>% 
-  melt(id = "Mass")
-
-
-# remove all samples with zero intensity
-fticr_pore_gather_50 = fticr_pore_gather_50[!(fticr_pore_gather_50$value=="0"),]
-fticr_pore_gather_1 = fticr_pore_gather_1[!(fticr_pore_gather_1$value=="0"),]
-
-# combine the 50 and 1.5 kPa files. rbind combines vertically
-fticr_pore_gather = rbind(fticr_pore_gather_1,fticr_pore_gather_50)
-
-# create columns for core # and tension
-# use tension_2 to code the tension column using the stringr extraction function, and then delete tension_2 because it is unnecessary
-fticr_pore_gather %>% 
-  dplyr::rename(intensity = value) %>% # the melt function gave us a column value, rename to intensity
-  mutate(tension_2 = substr(variable,start=1,stop=1)) %>% 
-  mutate(core = substr(variable,start=3,stop=7)) %>% 
-  mutate(tension = case_when(
-    tension_2=="1"~"1.5 kPa",
-    tension_2=="5"~"50 kPa")) ->
-  fticr_pore_gather
-
-fticr_pore_gather %>% 
-  select(-tension_2,-variable) ->
-  fticr_pore_gather
-
-# merge with the core key file
-fticr_pore_gather = left_join(corekey,fticr_pore_gather, by = "core")
-#remove NA
-fticr_pore_gather = fticr_pore_gather[complete.cases(fticr_pore_gather),]
+# now create a summary by treatment
+fticr_pore_raw_long %>% 
+  group_by(Mass,tension,site,treatment) %>% 
+  dplyr::summarise(intensity = mean(intensity)) %>% 
+  # merge with hcoc file
+  left_join(fticr_pore_meta_hcoc, by = "Mass") ->
+  fticr_pore_long
 
 
-### remove peaks seen in < 3 replicates 
-# first, group 
-# then, remove
-
-fticr_pore_gather %>% 
-  group_by(Mass,treatment,site, tension) %>% 
-  dplyr::mutate(reps = n()) ->
-  fticr_pore_gather2
-
-fticr_pore_gather2 = fticr_pore_gather2[!(fticr_pore_gather2$reps<3),]
-
-# write.csv(fticr_soil_gather,"fticr_soil_gather.csv")
-
-### OUTPUT
-write_csv(fticr_pore_gather2, FTICR_PORE_LONG)
+### FTICR-PORE OUTPUT ----
+write.csv(fticr_pore_meta, FTICR_PORE_META, row.names = FALSE)
+write.csv(fticr_pore_long, FTICR_PORE_LONG,row.names = FALSE)
+write.csv(fticr_pore_raw_long, FTICR_PORE_RAW_LONG,row.names = FALSE)

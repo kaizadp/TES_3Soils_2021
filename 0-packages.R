@@ -4,7 +4,6 @@
 ## packages ####
 library(readxl)
 library(ggplot2)       # 2.1.0
-library(dplyr)         # 0.5.0
 library(readr)         # 1.0.0
 library(lubridate)     # 1.6.0
 library(stringr)       # 1.1.0
@@ -30,6 +29,8 @@ library(googlesheets)
 library(gsheet)
 library(multcomp)
 library(DescTools)
+library(dplyr)         # 0.5.0
+
 
 # create a custom ggplot theme
 theme_kp <- function() {  # this for all the elements common across plots
@@ -91,9 +92,17 @@ PORE_DISTRIBUTION <- "processed/pore_distribution.csv"
 WSOC_PORE <- "processed/wsoc_pore_summary.csv"
 WSOC_SOIL <- "processed/wsoc_soils_summary.csv"
 
-# FTICR_PORE
+# FTICR_PORE_INITIAL FILES
+FTICR_SOIL_META <- "fticr/fticr_soil_meta.csv"
+FTICR_SOIL_META_HCOC <- "fticr/soil_meta_hcoc.csv"
+FTICR_SOIL_RAW_LONG <- "fticr/fticr_soil_raw_longform.csv"
+FTICR_SOIL_LONG <- "fticr/fticr_soil_longform.csv"
+
 FTICR_PORE_META <- "fticr/fticr_pore_meta.csv"
 FTICR_PORE_LONG <- "fticr/fticr_pore_longform.csv"
+FTICR_PORE_RAW_LONG <- "fticr/fticr_pore_raw_longform.csv"
+
+#
 FTICR_PORE_RELABUND <- "fticr/fticr_pore_relabundance_groups2_hsd.csv"
 FTICR_PORE_PEAKS <- "fticr/fticr_pore_peakscount.csv"
 FTICR_PORE_UNIQUE <- "fticr/fticr_pore_uniquemolecules.csv"
@@ -103,8 +112,6 @@ FTICR_PORE_NOSC <- "fticr/fticr_pore_nosc.csv"
 FTICR_PORE_AROMATIC <- "fticr/fticr_pore_aromatic_counts.csv"
 
 # FTICR_SOIL
-FTICR_SOIL_RAW_LONG <- "fticr/fticr_soil_raw_longform.csv"
-FTICR_SOIL_LONG <- "fticr/fticr_soil_longform.csv"
 FTICR_SOIL_RELABUND <- "fticr/fticr_soil_relabundance_hsd.csv"
 FTICR_SOIL_UNIQUE <- "fticr/fticr_soil_uniquemolecules.csv" 
 FTICR_SOIL_HCOC <- "fticr/fticr_soil_hcoc.csv"
@@ -113,7 +120,6 @@ FTICR_SOIL_AROMATIC <- "fticr/fticr_soil_aromatic_counts.csv"
 FTICR_SOIL_PEAKS <- "fticr/fticr_soil_peakscount.csv"
 FTICR_SOIL_UNIQUE_PEAKS <- "fticr/fticr_soil_unique_peakscount.csv"
 
-FTICR_META_HCOC <- "fticr/meta_hcoc.csv"
 
 
 
