@@ -3,13 +3,14 @@
 # Kaizad F. Patel
 # October 2019
 
- ## this script will process the input dta and metadata files and
- ## generate clean files that can be used for subsequent analysis
+ ## this script will process the input data and metadata files and
+ ## generate clean files that can be used for subsequent analysis.
  ## each dataset will generate longform files of (a) all cores, (b) summarized data for each treatment (i.e. cores combined) 
 
 source("0-packages.R")
 
 # ------------------------------------------------------- ----
+
 # PART I: FTICR DATA FOR SOIL EXTRACTS ----
 
 ## step 1: load the files ----
@@ -84,6 +85,7 @@ write.csv(fticr_soil_raw_long, FTICR_SOIL_RAW_LONG, row.names = FALSE)
 
 #
 # ------------------------------------------------------- ----
+
 # PART II: FTICR DATA FOR POREWATER ----
 ## step 1: load the files ----
 # the porewater file contains the Mass/Peak metadata as well as sample intensities data
@@ -99,7 +101,7 @@ corekey = read.csv("data/COREKEY.csv")
 #
 ## step 2: clean and process ----
 
-## 2a: remove unnecessary columns. LOTS of unnecessary columns. fml. #### 
+## 2a: remove unnecessary columns. LOTS of unnecessary columns. fml. 
 # This uses a seemingly arbitrary list that's experiment-specific. Kind of sucky
 
 # Create a file with the list of columns to drop. 
@@ -136,7 +138,7 @@ fticr_porewater %>%
   dplyr::select(-`C13`,-`3use`,-`Error_ppm`)->
   fticr_porewater
 
-## create meta file ----
+### create meta file ----
 ## sample data split by pore size (50 kPa and 1.5 kPa). 
 fticr_porewater %>% 
   dplyr::select(1:11) %>% 
@@ -155,7 +157,7 @@ fticr_pore_meta %>%
   fticr_pore_meta_hcoc
 
 #
-## create data file ----
+### create data file ----
 fticr_porewater %>% 
   dplyr::select(Mass, starts_with("5"), starts_with("1")) %>% 
 # collapse all core columns into a single column
@@ -200,3 +202,6 @@ fticr_pore_raw_long %>%
 write.csv(fticr_pore_meta, FTICR_PORE_META, row.names = FALSE)
 write.csv(fticr_pore_long, FTICR_PORE_LONG,row.names = FALSE)
 write.csv(fticr_pore_raw_long, FTICR_PORE_RAW_LONG,row.names = FALSE)
+
+#
+# ------------------------------------------------------- ----
