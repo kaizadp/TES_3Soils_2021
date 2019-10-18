@@ -13,20 +13,24 @@ fticr_soil_meta = read_csv("data/FTICR_INPUT_SOIL_META.csv.zip")
 fticr_soil_data = read_csv("data/FTICR_INPUT_SOIL_DATA.csv.zip")
 corekey = read.csv("data/COREKEY.csv")
 
-# remove unnecessary columns from meta
-
-fticr_soil_meta = fticr_soil_meta[,!colnames(fticr_soil_meta)%in%
-                                    c("C13","Error_ppm", "Candidates", "GFE", "bs1_class","bs2_class")]
 fticr_soil_meta %>% 
+# remove unnecessary columns
+  dplyr::select(-C13,-Error_ppm,-Candidates,-GFE,-bs1_class,-bs2_class) %>% 
+# rename columns
   dplyr::rename(OC = OtoC_ratio,
-                HC = HtoC_ratio)->
+                HC = HtoC_ratio) %>% 
+  filter(!Class=="Unassigned")->
   fticr_soil_meta
-
 
 ## make a subset for just HCOC
 fticr_soil_meta %>% 
-  select(Mass, Class, HC, OC)->
+  dplyr::select(Mass, Class, HC, OC) %>% 
+  dplyr::mutate(HC = round(HC, 4),
+                OC = round(OC,4))->
   fticr_meta_hcoc
+
+### OUTPUT
+write.csv(fticr_meta_hcoc, FTICR_META_HCOC, row.names = FALSE)
 
 # merge metadata with sample data
 # ¿¿¿ do this later instead? YES
@@ -45,7 +49,8 @@ fticr_soil_data %>%
 ## now we need to filter only those peaks seen in 3 or more replicates
 # create a summary table with replicates
   group_by(Mass,treatment,site) %>% 
-  dplyr::summarize(reps = n()) %>% 
+  dplyr::summarize(reps = n(),
+                   intensity = mean(intensity)) %>% 
 # remove peaks seen in < 3 replicates 
     filter(reps>2) %>% 
 # merge with hcoc file
@@ -58,7 +63,7 @@ fticr_soil_data %>%
 
 ### OUTPUT
 # write.csv(fticr_soil_gather2,"fticr_soil_longform.csv")
-write.csv(fticr_soil_gather2, FTICR_SOIL_LONG, row.names = "")
+write.csv(fticr_soil_gather2, FTICR_SOIL_LONG, row.names = FALSE)
 
 #
 ## step 3: relative abundance ---- 
