@@ -23,6 +23,14 @@ pore = read.csv(PORE_DISTRIBUTION)# <- "processed/pore_distribution.csv"
 wsoc_pore = read.csv(WSOC_PORE)# <- "processed/wsoc_pore_summary.csv"
 wsoc_soil = read.csv(WSOC_SOIL)# <- "processed/wsoc_soils_summary.csv"
 
+# FTICR
+soil_raw = read.csv(FTICR_SOIL_RAW_LONG)# <- "fticr/fticr_soil_raw_longform.csv"
+soil_long = read.csv(FTICR_SOIL_LONG)# <- "fticr/fticr_soil_longform.csv"
+
+pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
+pore_raw = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_raw_longform.csv"
+
+
 # FTICR_PORE
 pore_aromatic = read.csv(FTICR_PORE_AROMATIC)# <- "fticr/fticr_pore_aromatic_counts.csv"
 pore_meta = read.csv(FTICR_PORE_META)# <- "fticr/fticr_pore_meta.csv"
@@ -113,6 +121,7 @@ wsoc_soil %>%
   dplyr::select(Treatment,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
+  
 ```
 ---
 ## pores
@@ -132,9 +141,6 @@ wsoc_pore %>%
 ```{r wsoc, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
 # create a "suction" column in the soil file and code all as "soil".
 
-wsoc_soil %>% 
-  mutate(Suction = "Soil")->
-  wsoc_soil
 
 ```
 ---
@@ -143,23 +149,9 @@ wsoc_soil %>%
 ## native SOM
 ```{r vk_baseline, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for TZSat pores",fig.width=10, fig.height=7,,fig.path = "images/"}
 
-ggplot(pore_hcoc[pore_hcoc$treatment=="time zero saturation",],
-       aes(x = OC, y = HC, color = site))+
-  geom_point(alpha = 0.1)+
+gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",])+
   scale_color_brewer(palette = "Set1")+
-  
-  xlab("O/C")+
-  ylab("H/C")+
-  xlim(0,1.27)+
-  ylim(0,2.7)+
-  
-  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
-  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
-  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
-  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
-
   facet_grid(tension~site)+
-  
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
   theme_bw()+
   theme_kp()
@@ -167,32 +159,15 @@ ggplot(pore_hcoc[pore_hcoc$treatment=="time zero saturation",],
 ---
 ## treatment effect -- all peaks
 ```{r vk_treatments, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for treatments",fig.width=10, fig.height=7,,fig.path = "images/"}
-pore_hcoc %>% 
-  mutate(treatment = factor(treatment, levels = c("time zero saturation","field moist","drought","saturation")))->
-           pore_hcoc2
+pore_long %>% 
+  dplyr::mutate(treatment = factor(treatment, 
+                                   levels = c("time zero saturation","field moist","drought","saturation")))->
+           pore_long
 
-ggplot(pore_hcoc2[!pore_hcoc2$treatment=="time zero saturation",], # remove baseline 
-         aes(x = OC, y = HC, color = treatment))+
-  geom_point(alpha = 0.1)+
+
+gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
   scale_color_brewer(palette = "Dark2")+
-  
-  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
-  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
-  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
-  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
-
-  xlab("O/C")+
-  ylab("H/C")+
-  xlim(0,1.27)+
-  ylim(0,2.7)+
-  
-  geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
-  geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
-  geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
-  geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
-
   facet_grid(tension~site)+
-  
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
   theme_bw()+
   theme_kp()
@@ -208,7 +183,7 @@ these are peaks that were uniquely **added** during a given treatment
 ```{r vk_unique, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for unique peaks",fig.width=10, fig.height=7,fig.path = "images/"}
 # set level of factors
 pore_unique %>% 
-  mutate(unique = factor(unique, levels = c("field_moist","drought","saturation")))->
+  dplyr::mutate(unique = factor(unique, levels = c("field_moist","drought","saturation")))->
            pore_unique
 
 ggplot(pore_unique,

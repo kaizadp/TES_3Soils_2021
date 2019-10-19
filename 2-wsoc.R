@@ -210,7 +210,7 @@ wsoc_pores %>%
   wsoc_pores_dunnett
 
 wsoc_pores_dunnett %>% 
-  gather(treatment, dunnett, 3:5)-> #gather columns 4-7 (treatment levels)
+  gather(Treatment, dunnett, 3:5)-> #gather columns 4-7 (treatment levels)
   wsoc_pores_dunnett2
 
 ### WSOC concentrations -- pores -- summary table ----
@@ -220,7 +220,7 @@ wsoc_pores_rmisc$wsoc_mg_L = paste(round(wsoc_pores_rmisc$wsoc,2),"\u00B1",round
 
 # merge the summary table with the hsd/dunnett table
 wsoc_pores_rmisc %>% 
-  left_join(wsoc_pores_dunnett2,by = c("Site","Suction"), all.x = TRUE) %>% 
+  left_join(wsoc_pores_dunnett2,by = c("Site","Suction","Treatment"), all.x = TRUE) %>% 
   replace(.,is.na(.),"") %>% 
   dplyr::mutate(wsoc_dunnett = paste(wsoc_mg_L,dunnett)) %>% 
   dplyr::select(-sd,-se,-ci,-dunnett)->
@@ -317,12 +317,12 @@ wsoc_soils %>%
   wsoc_soil_dunnett
 
 wsoc_soil_dunnett %>% 
-  gather(treatment, dunnett, 2:4)-> #gather columns 4-7 (treatment levels)
+  gather(Treatment, dunnett, 2:4)-> #gather columns 4-7 (treatment levels)
   wsoc_soil_dunnett2
 
 # merge the summary table with the hsd/dunnett table
 wsoc_soils_rmisc %>% 
-  left_join(wsoc_soil_dunnett2,by = c("Site"), all.x = TRUE) %>% 
+  left_join(wsoc_soil_dunnett2,by = c("Site","Treatment"), all.x = TRUE) %>% 
   replace(.,is.na(.),"") %>% 
   dplyr::mutate(wsoc_dunnett = paste(WSOC_mg_g,dunnett)) %>% 
   dplyr::select(-sd,-se,-ci,-dunnett)->
