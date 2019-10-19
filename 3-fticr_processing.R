@@ -195,7 +195,8 @@ fticr_pore_raw_long %>%
   group_by(Mass,tension,site,treatment) %>% 
   dplyr::summarise(intensity = mean(intensity)) %>% 
   # merge with hcoc file
-  left_join(fticr_pore_meta_hcoc, by = "Mass") ->
+  left_join(fticr_pore_meta_hcoc, by = "Mass") %>% 
+  drop_na->
   fticr_pore_long
 
 
