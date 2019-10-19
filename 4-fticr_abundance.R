@@ -59,6 +59,11 @@ soil_long %>%
   dplyr::select(-drought, -saturation, -baseline, -`field moist`,-`time zero saturation`)-> 
   soil_unique_peaks
 
+### OUTPUT
+write.csv(soil_unique_peaks,FTICR_SOIL_UNIQUE, row.names = FALSE)
+
+
+
 # PART III: SOIL AROMATIC PEAKS ----
 meta_aromatic <- soil_meta %>% 
   dplyr::select(Mass, AI_Mod)
@@ -237,6 +242,9 @@ pore_long %>%
   dplyr::select(-drought, -saturation, -`field moist`,-`time zero saturation`)-> 
   pore_unique_peaks
 
+write.csv(pore_unique_peaks,FTICR_PORE_UNIQUE, row.names = FALSE)
+
+
 #
 # PART VII: PORE AROMATIC PEAKS ----
 meta_aromatic <- pore_meta %>% 
@@ -386,5 +394,10 @@ write.csv(fticr_pore_relabundance, FTICR_PORE_RELABUND)
 
 
 
+
+
+
+
+# ------------------------------------------------------- ----
 
 
