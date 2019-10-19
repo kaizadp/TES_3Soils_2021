@@ -11,7 +11,6 @@ library(luzlogr)       # 0.2.0
 library(tidyr)
 library(readr)
 library(tidyverse)
-library(dplyr)
 library(Rmisc)
 library(ggplot2)
 library(data.table)
