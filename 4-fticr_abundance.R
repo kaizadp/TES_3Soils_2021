@@ -311,18 +311,10 @@ relabund_temp%>%
   dplyr::mutate(relabund = paste(round(relabund2,2),"\u00B1",round(se,2))) %>% 
   # we need to add a total column
   dplyr::mutate(total = 100) %>% 
-  dplyr::select(-se,-relabund2) %>% 
-  # we need to bring the total column into the Class.
-  # so first spread the class column and then melt back together
-  spread(Class, relabund) %>% 
-  melt(id = c("tension","site","treatment")) %>% 
-  dplyr::rename(Class = variable,
-                relabund= value)->
+  dplyr::select(-se) -> 
   pore_relabund
 # we will combine this file with the Dunnett test results below
 
-pore_relabund %>% 
-  dcast(Class~tension+site+treatment, value.var = "relabund")->summary
 
 
 
