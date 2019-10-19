@@ -222,7 +222,7 @@ wsoc_pores_rmisc$wsoc_mg_L = paste(round(wsoc_pores_rmisc$wsoc,2),"\u00B1",round
 wsoc_pores_rmisc %>% 
   left_join(wsoc_pores_dunnett2,by = c("Site","Suction"), all.x = TRUE) %>% 
   replace(.,is.na(.),"") %>% 
-  dplyr::mutate(wsoc_hsd = paste(wsoc_mg_L,dunnett)) %>% 
+  dplyr::mutate(wsoc_dunnett = paste(wsoc_mg_L,dunnett)) %>% 
   dplyr::select(-sd,-se,-ci,-dunnett)->
   wsoc_pores_summary
 
@@ -324,7 +324,7 @@ wsoc_soil_dunnett %>%
 wsoc_soils_rmisc %>% 
   left_join(wsoc_soil_dunnett2,by = c("Site"), all.x = TRUE) %>% 
   replace(.,is.na(.),"") %>% 
-  dplyr::mutate(wsoc_hsd = paste(WSOC_mg_g,dunnett)) %>% 
+  dplyr::mutate(wsoc_dunnett = paste(WSOC_mg_g,dunnett)) %>% 
   dplyr::select(-sd,-se,-ci,-dunnett)->
   wsoc_soils_summary
 
