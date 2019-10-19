@@ -1,241 +1,216 @@
-site,treatment,group,tension,relabund,relativeabundance
-CPCRW,drought,AminoSugar,1.5 kPa,4.302440350013436,4.3 ± 0.52 *
-CPCRW,drought,AminoSugar,50 kPa,4.345779569400009,4.35 ± 0.66 *
-CPCRW,drought,Carb,1.5 kPa,13.145649997891844,13.15 ± 2.28 *
-CPCRW,drought,Carb,50 kPa,10.91118893377541,10.91 ± 2.17 *
-CPCRW,drought,ConHC,1.5 kPa,1.0236080613543526,1.02 ± 0.23 
-CPCRW,drought,ConHC,50 kPa,1.3736438594114193,1.37 ± 0.34 *
-CPCRW,drought,Lignin,1.5 kPa,47.389005725188284,47.39 ± 6.34 
-CPCRW,drought,Lignin,50 kPa,56.09200404320608,56.09 ± 2.88 *
-CPCRW,drought,Lipid,1.5 kPa,12.435192862073993,12.44 ± 5.18 
-CPCRW,drought,Lipid,50 kPa,7.067890452935319,7.07 ± 1.09 
-CPCRW,drought,Other,1.5 kPa,2.708266480304391,2.71 ± 1.85 
-CPCRW,drought,Other,50 kPa,0.625470727180602,0.63 ± 0.17 *
-CPCRW,drought,Protein,1.5 kPa,16.565276159298687,16.57 ± 1.96 
-CPCRW,drought,Protein,50 kPa,16.11327420747434,16.11 ± 1.74 *
-CPCRW,drought,Tannin,1.5 kPa,2.2802393725374075,2.28 ± 0.57 
-CPCRW,drought,Tannin,50 kPa,3.3681400863555746,3.37 ± 0.46 
-CPCRW,drought,total,1.5 kPa,100,100 
-CPCRW,drought,total,50 kPa,100,100 
-CPCRW,drought,UnsatHC,1.5 kPa,0.15032099133760451,0.15 ± 0.05 *
-CPCRW,drought,UnsatHC,50 kPa,0.10260812026124658,0.1 ± 0.03 
-CPCRW,field moist,AminoSugar,1.5 kPa,0.3338085599989627,0.33 ± 0.05 
-CPCRW,field moist,AminoSugar,50 kPa,0.2041365847814962,0.2 ± 0 
-CPCRW,field moist,Carb,1.5 kPa,0.4008430345307891,0.4 ± 0.08 
-CPCRW,field moist,Carb,50 kPa,0.31404092633938485,0.31 ± 0.01 
-CPCRW,field moist,ConHC,1.5 kPa,2.2603770599267583,2.26 ± 0.21 
-CPCRW,field moist,ConHC,50 kPa,2.582762538298125,2.58 ± 0.51 
-CPCRW,field moist,Lignin,1.5 kPa,58.66842454491181,58.67 ± 9.42 
-CPCRW,field moist,Lignin,50 kPa,82.96109188265343,82.96 ± 1.55 
-CPCRW,field moist,Lipid,1.5 kPa,24.16730477333467,24.17 ± 8.26 
-CPCRW,field moist,Lipid,50 kPa,5.522988328759219,5.52 ± 2.18 
-CPCRW,field moist,Other,1.5 kPa,0.09505547463705036,0.1 ± 0.03 
-CPCRW,field moist,Other,50 kPa,0.1587932979267964,0.16 ± 0.02 
-CPCRW,field moist,Protein,1.5 kPa,11.571565911636938,11.57 ± 1.44 *
-CPCRW,field moist,Protein,50 kPa,3.970004308963257,3.97 ± 0.08 
-CPCRW,field moist,Tannin,1.5 kPa,1.8492988859560042,1.85 ± 0.21 
-CPCRW,field moist,Tannin,50 kPa,3.930608121990904,3.93 ± 0.92 
-CPCRW,field moist,total,1.5 kPa,100,100 
-CPCRW,field moist,total,50 kPa,100,100 
-CPCRW,field moist,UnsatHC,1.5 kPa,0.6533217550670126,0.65 ± 0.09 
-CPCRW,field moist,UnsatHC,50 kPa,0.3555740102873891,0.36 ± 0.04 
-CPCRW,saturation,AminoSugar,1.5 kPa,0.5350198558995671,0.54 ± 0.1 
-CPCRW,saturation,AminoSugar,50 kPa,0.5280322084791507,0.53 ± 0.06 
-CPCRW,saturation,Carb,1.5 kPa,0.45893448483529253,0.46 ± 0.05 
-CPCRW,saturation,Carb,50 kPa,0.8982477750959648,0.9 ± 0.25 
-CPCRW,saturation,ConHC,1.5 kPa,1.3610840003907305,1.36 ± 0.42 
-CPCRW,saturation,ConHC,50 kPa,2.503245039696252,2.5 ± 0.45 
-CPCRW,saturation,Lignin,1.5 kPa,52.554427869891114,52.55 ± 3.27 
-CPCRW,saturation,Lignin,50 kPa,69.88854143919363,69.89 ± 1.46 
-CPCRW,saturation,Lipid,1.5 kPa,24.293228668638125,24.29 ± 2.66 
-CPCRW,saturation,Lipid,50 kPa,9.61079614863269,9.61 ± 1.49 
-CPCRW,saturation,Other,1.5 kPa,0.12802254650209802,0.13 ± 0.02 
-CPCRW,saturation,Other,50 kPa,0.0446502160789917,0.04 ± 0 
-CPCRW,saturation,Protein,1.5 kPa,18.95004193416148,18.95 ± 2.03 
-CPCRW,saturation,Protein,50 kPa,12.797385599992644,12.8 ± 0.71 *
-CPCRW,saturation,Tannin,1.5 kPa,1.0407691980542804,1.04 ± 0.21 
-CPCRW,saturation,Tannin,50 kPa,3.1416739487710323,3.14 ± 0.6 
-CPCRW,saturation,total,1.5 kPa,100,100 
-CPCRW,saturation,total,50 kPa,100,100 
-CPCRW,saturation,UnsatHC,1.5 kPa,0.6784714416273154,0.68 ± 0.18 
-CPCRW,saturation,UnsatHC,50 kPa,0.5874276240596471,0.59 ± 0.44 
-CPCRW,time zero saturation,AminoSugar,1.5 kPa,0.8164245885358025,0.82 ± 0.12 
-CPCRW,time zero saturation,AminoSugar,50 kPa,0.3691283652015423,0.37 ± 0.02 
-CPCRW,time zero saturation,Carb,1.5 kPa,0.3563235586861342,0.36 ± 0.05 
-CPCRW,time zero saturation,Carb,50 kPa,0.4168636792781839,0.42 ± 0.05 
-CPCRW,time zero saturation,ConHC,1.5 kPa,2.554145920625126,2.55 ± 0.68 
-CPCRW,time zero saturation,ConHC,50 kPa,4.143689524198792,4.14 ± 1.04 
-CPCRW,time zero saturation,Lignin,1.5 kPa,49.344305751215636,49.34 ± 5.81 
-CPCRW,time zero saturation,Lignin,50 kPa,75.73255309690973,75.73 ± 2.43 
-CPCRW,time zero saturation,Lipid,1.5 kPa,24.227255744213696,24.23 ± 4.1 
-CPCRW,time zero saturation,Lipid,50 kPa,8.658894785853146,8.66 ± 1.76 
-CPCRW,time zero saturation,Other,1.5 kPa,0.06795870716494752,0.07 ± 0.02 
-CPCRW,time zero saturation,Other,50 kPa,0.13391072148687264,0.13 ± 0.04 
-CPCRW,time zero saturation,Protein,1.5 kPa,19.927400945700228,19.93 ± 2.86 
-CPCRW,time zero saturation,Protein,50 kPa,6.997988700123816,7 ± 0.8 
-CPCRW,time zero saturation,Tannin,1.5 kPa,1.74619826050175,1.75 ± 0.27 
-CPCRW,time zero saturation,Tannin,50 kPa,2.882052511778171,2.88 ± 0.43 
-CPCRW,time zero saturation,total,1.5 kPa,100,100 
-CPCRW,time zero saturation,total,50 kPa,100,100 
-CPCRW,time zero saturation,UnsatHC,1.5 kPa,0.9599865233566811,0.96 ± 0.21 
-CPCRW,time zero saturation,UnsatHC,50 kPa,0.6649186151697518,0.66 ± 0.32 
-DWP,drought,AminoSugar,1.5 kPa,1.0251527484176675,1.03 ± 0.16 *
-DWP,drought,AminoSugar,50 kPa,1.381873527865675,1.38 ± 0.38 *
-DWP,drought,Carb,1.5 kPa,8.32497920724298,8.32 ± 1.22 
-DWP,drought,Carb,50 kPa,4.057524198006376,4.06 ± 1.1 *
-DWP,drought,ConHC,1.5 kPa,2.3031327579439655,2.3 ± 0.29 
-DWP,drought,ConHC,50 kPa,2.3458479008009503,2.35 ± 0.33 
-DWP,drought,Lignin,1.5 kPa,43.383542629677144,43.38 ± 4.12 *
-DWP,drought,Lignin,50 kPa,55.555751868139396,55.56 ± 2.55 
-DWP,drought,Lipid,1.5 kPa,21.632281708619665,21.63 ± 3.13 
-DWP,drought,Lipid,50 kPa,11.533670458701948,11.53 ± 1.44 
-DWP,drought,Other,1.5 kPa,0.9049596457115242,0.9 ± 0.12 
-DWP,drought,Other,50 kPa,0.5835876991256239,0.58 ± 0.08 
-DWP,drought,Protein,1.5 kPa,20.413567579248063,20.41 ± 2.14 *
-DWP,drought,Protein,50 kPa,22.262978567431873,22.26 ± 2 *
-DWP,drought,Tannin,1.5 kPa,0.44002111993627824,0.44 ± 0.1 *
-DWP,drought,Tannin,50 kPa,1.5205857200176147,1.52 ± 0.21 *
-DWP,drought,total,1.5 kPa,100,100 
-DWP,drought,total,50 kPa,100,100 
-DWP,drought,UnsatHC,1.5 kPa,1.5723626032027185,1.57 ± 1.11 
-DWP,drought,UnsatHC,50 kPa,0.7581800599105449,0.76 ± 0.32 
-DWP,field moist,AminoSugar,1.5 kPa,0.6561254324037399,0.66 ± 0.11 *
-DWP,field moist,AminoSugar,50 kPa,0.7850167346308234,0.79 ± 0.07 *
-DWP,field moist,Carb,1.5 kPa,0.3213129830301512,0.32 ± 0.03 *
-DWP,field moist,Carb,50 kPa,0.3318409281058194,0.33 ± 0.01 *
-DWP,field moist,ConHC,1.5 kPa,3.0955451152669764,3.1 ± 0.91 
-DWP,field moist,ConHC,50 kPa,3.66386797378132,3.66 ± 0.85 
-DWP,field moist,Lignin,1.5 kPa,56.463697803934025,56.46 ± 1.95 *
-DWP,field moist,Lignin,50 kPa,71.0229243061425,71.02 ± 2.08 *
-DWP,field moist,Lipid,1.5 kPa,20.836352354382466,20.84 ± 1.54 
-DWP,field moist,Lipid,50 kPa,9.357468686441592,9.36 ± 1.09 
-DWP,field moist,Other,1.5 kPa,0.1948055213653225,0.19 ± 0.04 *
-DWP,field moist,Other,50 kPa,0.10980996483637298,0.11 ± 0.02 *
-DWP,field moist,Protein,1.5 kPa,14.444870319510931,14.44 ± 1.13 *
-DWP,field moist,Protein,50 kPa,10.700613212491456,10.7 ± 1.54 *
-DWP,field moist,Tannin,1.5 kPa,2.4606609047902412,2.46 ± 0.25 
-DWP,field moist,Tannin,50 kPa,3.1566646333643407,3.16 ± 0.46 
-DWP,field moist,total,1.5 kPa,100,100 
-DWP,field moist,total,50 kPa,100,100 
-DWP,field moist,UnsatHC,1.5 kPa,1.5266295653161441,1.53 ± 0.36 
-DWP,field moist,UnsatHC,50 kPa,0.8717935602057694,0.87 ± 0.32 
-DWP,saturation,AminoSugar,1.5 kPa,0.275012019977039,0.28 ± 0.1 *
-DWP,saturation,AminoSugar,50 kPa,0.6089577692438826,0.61 ± 0.12 *
-DWP,saturation,Carb,1.5 kPa,0.795141127712254,0.8 ± 0.24 *
-DWP,saturation,Carb,50 kPa,0.8616280480301877,0.86 ± 0.15 *
-DWP,saturation,ConHC,1.5 kPa,6.979237241707937,6.98 ± 1.16 *
-DWP,saturation,ConHC,50 kPa,4.962318098792339,4.96 ± 1.11 
-DWP,saturation,Lignin,1.5 kPa,54.106035438616885,54.11 ± 7.25 *
-DWP,saturation,Lignin,50 kPa,58.90047360260742,58.9 ± 9.08 *
-DWP,saturation,Lipid,1.5 kPa,21.17163899530264,21.17 ± 5.37 
-DWP,saturation,Lipid,50 kPa,18.87772478438418,18.88 ± 10.45 
-DWP,saturation,Other,1.5 kPa,0.1705981155980682,0.17 ± 0.03 *
-DWP,saturation,Other,50 kPa,0.1081485815029876,0.11 ± 0.03 *
-DWP,saturation,Protein,1.5 kPa,12.925521950090763,12.93 ± 2.3 *
-DWP,saturation,Protein,50 kPa,10.54580779704076,10.55 ± 1.35 *
-DWP,saturation,Tannin,1.5 kPa,1.917230620833589,1.92 ± 0.51 
-DWP,saturation,Tannin,50 kPa,3.9549181708207257,3.95 ± 0.93 
-DWP,saturation,total,1.5 kPa,100,100 
-DWP,saturation,total,50 kPa,100,100 
-DWP,saturation,UnsatHC,1.5 kPa,1.659584490160821,1.66 ± 0.26 
-DWP,saturation,UnsatHC,50 kPa,1.1800231475775123,1.18 ± 0.53 
-DWP,time zero saturation,AminoSugar,1.5 kPa,7.763464095875635,7.76 ± 2.46 
-DWP,time zero saturation,AminoSugar,50 kPa,8.788309191054335,8.79 ± 1.49 
-DWP,time zero saturation,Carb,1.5 kPa,10.993385948491147,10.99 ± 3.48 
-DWP,time zero saturation,Carb,50 kPa,9.912296694513524,9.91 ± 1.31 
-DWP,time zero saturation,ConHC,1.5 kPa,1.6576463924465592,1.66 ± 0.54 
-DWP,time zero saturation,ConHC,50 kPa,2.4692372135452323,2.47 ± 0.26 
-DWP,time zero saturation,Lignin,1.5 kPa,15.258277622484393,15.26 ± 3.77 
-DWP,time zero saturation,Lignin,50 kPa,33.192232328639015,33.19 ± 3.36 
-DWP,time zero saturation,Lipid,1.5 kPa,29.39175879594031,29.39 ± 12.34 
-DWP,time zero saturation,Lipid,50 kPa,7.73863068278539,7.74 ± 2.81 
-DWP,time zero saturation,Other,1.5 kPa,0.7537912790123503,0.75 ± 0.24 
-DWP,time zero saturation,Other,50 kPa,0.5945794907624375,0.59 ± 0.06 
-DWP,time zero saturation,Protein,1.5 kPa,30.066329820160917,30.07 ± 2.2 
-DWP,time zero saturation,Protein,50 kPa,30.921512141236846,30.92 ± 3.15 
-DWP,time zero saturation,Tannin,1.5 kPa,3.1462979175111263,3.15 ± 1.06 
-DWP,time zero saturation,Tannin,50 kPa,5.175498335734945,5.18 ± 0.31 
-DWP,time zero saturation,total,1.5 kPa,100,100 
-DWP,time zero saturation,total,50 kPa,100,100 
-DWP,time zero saturation,UnsatHC,1.5 kPa,0.9690481280775609,0.97 ± 0.15 
-DWP,time zero saturation,UnsatHC,50 kPa,1.2077039217282728,1.21 ± 0.33 
-SR,drought,AminoSugar,1.5 kPa,0.6612218516089293,0.66 ± 0.23 
-SR,drought,AminoSugar,50 kPa,0.3125578761270902,0.31 ± 0.09 
-SR,drought,Carb,1.5 kPa,0.13006304838994542,0.13 ± 0.02 
-SR,drought,Carb,50 kPa,0.30357897647719406,0.3 ± 0.05 
-SR,drought,ConHC,1.5 kPa,1.5194961857947884,1.52 ± 0.45 
-SR,drought,ConHC,50 kPa,0.4224446419773817,0.42 ± 0.19 
-SR,drought,Lignin,1.5 kPa,30.20494801328172,30.2 ± 2.11 
-SR,drought,Lignin,50 kPa,42.696979042157245,42.7 ± 8.42 
-SR,drought,Lipid,1.5 kPa,43.37361280140239,43.37 ± 1.9 
-SR,drought,Lipid,50 kPa,36.80934745043351,36.81 ± 7.51 
-SR,drought,Other,1.5 kPa,0.2605151173884963,0.26 ± 0.1 
-SR,drought,Other,50 kPa,0.1607332960649758,0.16 ± 0.05 
-SR,drought,Protein,1.5 kPa,18.58032415334492,18.58 ± 1.49 *
-SR,drought,Protein,50 kPa,17.23524119255603,17.24 ± 4.14 
-SR,drought,Tannin,1.5 kPa,0.21955288104647666,0.22 ± 0.1 
-SR,drought,Tannin,50 kPa,0.25120138739656545,0.25 ± 0.15 
-SR,drought,total,1.5 kPa,100,100 
-SR,drought,total,50 kPa,100,100 
-SR,drought,UnsatHC,1.5 kPa,5.050265947742332,5.05 ± 1.66 
-SR,drought,UnsatHC,50 kPa,1.8079161368100096,1.81 ± 0.79 
-SR,field moist,AminoSugar,1.5 kPa,1.6266198824286995,1.63 ± 0.5 
-SR,field moist,AminoSugar,50 kPa,1.2364274488082898,1.24 ± 0.24 
-SR,field moist,Carb,1.5 kPa,1.6079567519784352,1.61 ± 0.61 
-SR,field moist,Carb,50 kPa,1.0349584064408255,1.03 ± 0.54 
-SR,field moist,ConHC,1.5 kPa,0.7140098910795846,0.71 ± 0.34 
-SR,field moist,ConHC,50 kPa,0.5068860721113672,0.51 ± 0.15 
-SR,field moist,Lignin,1.5 kPa,28.935953748462662,28.94 ± 10.2 
-SR,field moist,Lignin,50 kPa,36.06252808744097,36.06 ± 5.64 
-SR,field moist,Lipid,1.5 kPa,44.83516978548549,44.84 ± 11.52 
-SR,field moist,Lipid,50 kPa,43.71917103916017,43.72 ± 6.42 
-SR,field moist,Other,1.5 kPa,0.10686526577969263,0.11 ± 0.02 
-SR,field moist,Other,50 kPa,0.1335875815286193,0.13 ± 0.03 
-SR,field moist,Protein,1.5 kPa,20.197056439748298,20.2 ± 4.83 
-SR,field moist,Protein,50 kPa,14.49259256649333,14.49 ± 2.04 
-SR,field moist,Tannin,1.5 kPa,0.4204665472483623,0.42 ± 0.11 
-SR,field moist,Tannin,50 kPa,0.2601910916980549,0.26 ± 0.07 
-SR,field moist,total,1.5 kPa,100,100 
-SR,field moist,total,50 kPa,100,100 
-SR,field moist,UnsatHC,1.5 kPa,1.5559016877887761,1.56 ± 0.21 
-SR,field moist,UnsatHC,50 kPa,2.5536577063183747,2.55 ± 0.35 
-SR,saturation,AminoSugar,1.5 kPa,0.5939191418187345,0.59 ± 0.12 
-SR,saturation,AminoSugar,50 kPa,1.6589543251530632,1.66 ± 0.34 
-SR,saturation,Carb,1.5 kPa,0.7900804995921845,0.79 ± 0.3 
-SR,saturation,Carb,50 kPa,0.3809517292942017,0.38 ± 0.03 
-SR,saturation,ConHC,1.5 kPa,0.5759919033606619,0.58 ± 0.12 
-SR,saturation,ConHC,50 kPa,1.2544973717854773,1.25 ± 0.52 
-SR,saturation,Lignin,1.5 kPa,19.26175009602521,19.26 ± 2.9 
-SR,saturation,Lignin,50 kPa,28.38676622179844,28.39 ± 4.35 
-SR,saturation,Lipid,1.5 kPa,65.04758402300186,65.05 ± 3.58 
-SR,saturation,Lipid,50 kPa,38.66963650490212,38.67 ± 7 
-SR,saturation,Other,1.5 kPa,0,0 ± 0 *
-SR,saturation,Other,50 kPa,0.1061514352979233,0.11 ± 0.04 
-SR,saturation,Protein,1.5 kPa,9.493061464368502,9.49 ± 0.92 *
-SR,saturation,Protein,50 kPa,26.99678038252965,27 ± 3.64 
-SR,saturation,Tannin,1.5 kPa,0.1814093945418388,0.18 ± 0.06 
-SR,saturation,Tannin,50 kPa,0.21671198538886094,0.22 ± 0.05 
-SR,saturation,total,1.5 kPa,100,100 
-SR,saturation,total,50 kPa,100,100 
-SR,saturation,UnsatHC,1.5 kPa,4.0562034772910085,4.06 ± 0.85 
-SR,saturation,UnsatHC,50 kPa,2.329550043850265,2.33 ± 0.46 
-SR,time zero saturation,AminoSugar,1.5 kPa,1.8372857259566457,1.84 ± 0.3 
-SR,time zero saturation,AminoSugar,50 kPa,2.1750202230593523,2.18 ± 1.37 
-SR,time zero saturation,Carb,1.5 kPa,0.507944379351109,0.51 ± 0.08 
-SR,time zero saturation,Carb,50 kPa,0.17050991730496887,0.17 ± 0.02 
-SR,time zero saturation,ConHC,1.5 kPa,1.2850361556356562,1.29 ± 0.31 
-SR,time zero saturation,ConHC,50 kPa,1.4405244189470814,1.44 ± 0.32 
-SR,time zero saturation,Lignin,1.5 kPa,15.937304652615367,15.94 ± 0.84 
-SR,time zero saturation,Lignin,50 kPa,40.321854520572536,40.32 ± 11.73 
-SR,time zero saturation,Lipid,1.5 kPa,43.82270063881125,43.82 ± 6.28 
-SR,time zero saturation,Lipid,50 kPa,33.889614881137,33.89 ± 9.83 
-SR,time zero saturation,Other,1.5 kPa,0.35014166904093535,0.35 ± 0.15 
-SR,time zero saturation,Other,50 kPa,0.19911391536047157,0.2 ± 0.05 
-SR,time zero saturation,Protein,1.5 kPa,33.14933243061433,33.15 ± 5.46 
-SR,time zero saturation,Protein,50 kPa,17.706328377176202,17.71 ± 5.26 
-SR,time zero saturation,Tannin,1.5 kPa,0.21228806211134896,0.21 ± 0.05 
-SR,time zero saturation,Tannin,50 kPa,1.5381996402210873,1.54 ± 1.01 
-SR,time zero saturation,total,1.5 kPa,100,100 
-SR,time zero saturation,total,50 kPa,100,100 
-SR,time zero saturation,UnsatHC,1.5 kPa,2.89796628586336,2.9 ± 0.81 
-SR,time zero saturation,UnsatHC,50 kPa,2.558834106221301,2.56 ± 0.89 
+"","tension","site","treatment","Class","relabund2","total","relativeabundance"
+"1","1.5 kPa","CPCRW","drought","AminoSugar",4.30244035001344,100,"4.3 ± 0.52 *"
+"2","1.5 kPa","CPCRW","drought","Carb",13.1456499978918,100,"13.15 ± 2.28 *"
+"3","1.5 kPa","CPCRW","drought","ConHC",1.02360806135435,100,"1.02 ± 0.23 "
+"4","1.5 kPa","CPCRW","drought","Lignin",47.3890057251883,100,"47.39 ± 6.34 "
+"5","1.5 kPa","CPCRW","drought","Lipid",12.435192862074,100,"12.44 ± 5.18 "
+"6","1.5 kPa","CPCRW","drought","Other",2.70826648030439,100,"2.71 ± 1.85 "
+"7","1.5 kPa","CPCRW","drought","Protein",16.5652761592987,100,"16.57 ± 1.96 "
+"8","1.5 kPa","CPCRW","drought","Tannin",2.28023937253741,100,"2.28 ± 0.57 "
+"9","1.5 kPa","CPCRW","drought","UnsatHC",0.150320991337605,100,"0.15 ± 0.05 *"
+"10","1.5 kPa","CPCRW","field moist","AminoSugar",0.333808559998963,100,"0.33 ± 0.05 "
+"11","1.5 kPa","CPCRW","field moist","Carb",0.400843034530789,100,"0.4 ± 0.08 "
+"12","1.5 kPa","CPCRW","field moist","ConHC",2.26037705992676,100,"2.26 ± 0.21 "
+"13","1.5 kPa","CPCRW","field moist","Lignin",58.6684245449118,100,"58.67 ± 9.42 "
+"14","1.5 kPa","CPCRW","field moist","Lipid",24.1673047733347,100,"24.17 ± 8.26 "
+"15","1.5 kPa","CPCRW","field moist","Other",0.118819343296313,100,"0.12 ± 0.03 "
+"16","1.5 kPa","CPCRW","field moist","Protein",11.5715659116369,100,"11.57 ± 1.44 *"
+"17","1.5 kPa","CPCRW","field moist","Tannin",1.849298885956,100,"1.85 ± 0.21 "
+"18","1.5 kPa","CPCRW","field moist","UnsatHC",0.653321755067013,100,"0.65 ± 0.09 "
+"19","1.5 kPa","CPCRW","saturation","AminoSugar",0.535019855899567,100,"0.54 ± 0.1 "
+"20","1.5 kPa","CPCRW","saturation","Carb",0.458934484835293,100,"0.46 ± 0.05 "
+"21","1.5 kPa","CPCRW","saturation","ConHC",1.36108400039073,100,"1.36 ± 0.42 "
+"22","1.5 kPa","CPCRW","saturation","Lignin",52.5544278698911,100,"52.55 ± 3.27 "
+"23","1.5 kPa","CPCRW","saturation","Lipid",24.2932286686381,100,"24.29 ± 2.66 "
+"24","1.5 kPa","CPCRW","saturation","Other",0.128022546502098,100,"0.13 ± 0.02 "
+"25","1.5 kPa","CPCRW","saturation","Protein",18.9500419341615,100,"18.95 ± 2.03 "
+"26","1.5 kPa","CPCRW","saturation","Tannin",1.04076919805428,100,"1.04 ± 0.21 "
+"27","1.5 kPa","CPCRW","saturation","UnsatHC",0.678471441627315,100,"0.68 ± 0.18 "
+"28","1.5 kPa","CPCRW","time zero saturation","AminoSugar",0.816424588535802,100,"0.82 ± 0.12 "
+"29","1.5 kPa","CPCRW","time zero saturation","Carb",0.356323558686134,100,"0.36 ± 0.05 "
+"30","1.5 kPa","CPCRW","time zero saturation","ConHC",2.55414592062513,100,"2.55 ± 0.68 "
+"31","1.5 kPa","CPCRW","time zero saturation","Lignin",49.3443057512156,100,"49.34 ± 5.81 "
+"32","1.5 kPa","CPCRW","time zero saturation","Lipid",24.2272557442137,100,"24.23 ± 4.1 "
+"33","1.5 kPa","CPCRW","time zero saturation","Other",0.0849483839561844,100,"0.08 ± 0.01 "
+"34","1.5 kPa","CPCRW","time zero saturation","Protein",19.9274009457002,100,"19.93 ± 2.86 "
+"35","1.5 kPa","CPCRW","time zero saturation","Tannin",1.74619826050175,100,"1.75 ± 0.27 "
+"36","1.5 kPa","CPCRW","time zero saturation","UnsatHC",0.959986523356681,100,"0.96 ± 0.21 "
+"37","1.5 kPa","DWP","drought","AminoSugar",1.02515274841767,100,"1.03 ± 0.16 *"
+"38","1.5 kPa","DWP","drought","Carb",8.32497920724298,100,"8.32 ± 1.22 "
+"39","1.5 kPa","DWP","drought","ConHC",2.30313275794397,100,"2.3 ± 0.29 "
+"40","1.5 kPa","DWP","drought","Lignin",43.3835426296771,100,"43.38 ± 4.12 *"
+"41","1.5 kPa","DWP","drought","Lipid",21.6322817086197,100,"21.63 ± 3.13 "
+"42","1.5 kPa","DWP","drought","Other",0.904959645711524,100,"0.9 ± 0.12 "
+"43","1.5 kPa","DWP","drought","Protein",20.4135675792481,100,"20.41 ± 2.14 *"
+"44","1.5 kPa","DWP","drought","Tannin",0.440021119936278,100,"0.44 ± 0.1 *"
+"45","1.5 kPa","DWP","drought","UnsatHC",1.57236260320272,100,"1.57 ± 1.11 "
+"46","1.5 kPa","DWP","field moist","AminoSugar",0.65612543240374,100,"0.66 ± 0.11 *"
+"47","1.5 kPa","DWP","field moist","Carb",0.321312983030151,100,"0.32 ± 0.03 *"
+"48","1.5 kPa","DWP","field moist","ConHC",3.09554511526698,100,"3.1 ± 0.91 "
+"49","1.5 kPa","DWP","field moist","Lignin",56.463697803934,100,"56.46 ± 1.95 *"
+"50","1.5 kPa","DWP","field moist","Lipid",20.8363523543825,100,"20.84 ± 1.54 "
+"51","1.5 kPa","DWP","field moist","Other",0.194805521365323,100,"0.19 ± 0.04 "
+"52","1.5 kPa","DWP","field moist","Protein",14.4448703195109,100,"14.44 ± 1.13 *"
+"53","1.5 kPa","DWP","field moist","Tannin",2.46066090479024,100,"2.46 ± 0.25 "
+"54","1.5 kPa","DWP","field moist","UnsatHC",1.52662956531614,100,"1.53 ± 0.36 "
+"55","1.5 kPa","DWP","saturation","AminoSugar",0.275012019977039,100,"0.28 ± 0.1 *"
+"56","1.5 kPa","DWP","saturation","Carb",0.795141127712254,100,"0.8 ± 0.24 *"
+"57","1.5 kPa","DWP","saturation","ConHC",6.97923724170794,100,"6.98 ± 1.16 *"
+"58","1.5 kPa","DWP","saturation","Lignin",54.1060354386169,100,"54.11 ± 7.25 *"
+"59","1.5 kPa","DWP","saturation","Lipid",21.1716389953026,100,"21.17 ± 5.37 "
+"60","1.5 kPa","DWP","saturation","Other",0.170598115598068,100,"0.17 ± 0.03 "
+"61","1.5 kPa","DWP","saturation","Protein",12.9255219500908,100,"12.93 ± 2.3 *"
+"62","1.5 kPa","DWP","saturation","Tannin",1.91723062083359,100,"1.92 ± 0.51 "
+"63","1.5 kPa","DWP","saturation","UnsatHC",1.65958449016082,100,"1.66 ± 0.26 "
+"64","1.5 kPa","DWP","time zero saturation","AminoSugar",7.76346409587564,100,"7.76 ± 2.46 "
+"65","1.5 kPa","DWP","time zero saturation","Carb",10.9933859484911,100,"10.99 ± 3.48 "
+"66","1.5 kPa","DWP","time zero saturation","ConHC",1.65764639244656,100,"1.66 ± 0.54 "
+"67","1.5 kPa","DWP","time zero saturation","Lignin",15.2582776224844,100,"15.26 ± 3.77 "
+"68","1.5 kPa","DWP","time zero saturation","Lipid",29.3917587959403,100,"29.39 ± 12.34 "
+"69","1.5 kPa","DWP","time zero saturation","Other",0.75379127901235,100,"0.75 ± 0.24 "
+"70","1.5 kPa","DWP","time zero saturation","Protein",30.0663298201609,100,"30.07 ± 2.2 "
+"71","1.5 kPa","DWP","time zero saturation","Tannin",3.14629791751113,100,"3.15 ± 1.06 "
+"72","1.5 kPa","DWP","time zero saturation","UnsatHC",0.969048128077561,100,"0.97 ± 0.15 "
+"73","1.5 kPa","SR","drought","AminoSugar",0.661221851608929,100,"0.66 ± 0.23 "
+"74","1.5 kPa","SR","drought","Carb",0.130063048389945,100,"0.13 ± 0.02 "
+"75","1.5 kPa","SR","drought","ConHC",1.51949618579479,100,"1.52 ± 0.45 "
+"76","1.5 kPa","SR","drought","Lignin",30.2049480132817,100,"30.2 ± 2.11 "
+"77","1.5 kPa","SR","drought","Lipid",43.3736128014024,100,"43.37 ± 1.9 "
+"78","1.5 kPa","SR","drought","Other",0.260515117388496,100,"0.26 ± 0.1 "
+"79","1.5 kPa","SR","drought","Protein",18.5803241533449,100,"18.58 ± 1.49 *"
+"80","1.5 kPa","SR","drought","Tannin",0.365921468410794,100,"0.37 ± 0.09 "
+"81","1.5 kPa","SR","drought","UnsatHC",5.05026594774233,100,"5.05 ± 1.66 "
+"82","1.5 kPa","SR","field moist","AminoSugar",1.6266198824287,100,"1.63 ± 0.5 "
+"83","1.5 kPa","SR","field moist","Carb",1.60795675197844,100,"1.61 ± 0.61 "
+"84","1.5 kPa","SR","field moist","ConHC",0.714009891079585,100,"0.71 ± 0.34 "
+"85","1.5 kPa","SR","field moist","Lignin",28.9359537484627,100,"28.94 ± 10.2 "
+"86","1.5 kPa","SR","field moist","Lipid",44.8351697854855,100,"44.84 ± 11.52 "
+"87","1.5 kPa","SR","field moist","Other",0.106865265779693,100,"0.11 ± 0.02 "
+"88","1.5 kPa","SR","field moist","Protein",20.1970564397483,100,"20.2 ± 4.83 "
+"89","1.5 kPa","SR","field moist","Tannin",0.420466547248362,100,"0.42 ± 0.11 "
+"90","1.5 kPa","SR","field moist","UnsatHC",1.55590168778878,100,"1.56 ± 0.21 "
+"91","1.5 kPa","SR","saturation","AminoSugar",0.593919141818735,100,"0.59 ± 0.12 "
+"92","1.5 kPa","SR","saturation","Carb",0.790080499592185,100,"0.79 ± 0.3 "
+"93","1.5 kPa","SR","saturation","ConHC",0.575991903360662,100,"0.58 ± 0.12 "
+"94","1.5 kPa","SR","saturation","Lignin",19.2617500960252,100,"19.26 ± 2.9 "
+"95","1.5 kPa","SR","saturation","Lipid",65.0475840230019,100,"65.05 ± 3.58 "
+"96","1.5 kPa","SR","saturation","Protein",9.4930614643685,100,"9.49 ± 0.92 *"
+"97","1.5 kPa","SR","saturation","Tannin",0.181409394541839,100,"0.18 ± 0.06 "
+"98","1.5 kPa","SR","saturation","UnsatHC",4.05620347729101,100,"4.06 ± 0.85 "
+"99","1.5 kPa","SR","time zero saturation","AminoSugar",1.83728572595665,100,"1.84 ± 0.3 "
+"100","1.5 kPa","SR","time zero saturation","Carb",0.507944379351109,100,"0.51 ± 0.08 "
+"101","1.5 kPa","SR","time zero saturation","ConHC",1.28503615563566,100,"1.29 ± 0.31 "
+"102","1.5 kPa","SR","time zero saturation","Lignin",15.9373046526154,100,"15.94 ± 0.84 "
+"103","1.5 kPa","SR","time zero saturation","Lipid",43.8227006388113,100,"43.82 ± 6.28 "
+"104","1.5 kPa","SR","time zero saturation","Other",0.350141669040935,100,"0.35 ± 0.15 "
+"105","1.5 kPa","SR","time zero saturation","Protein",33.1493324306143,100,"33.15 ± 5.46 "
+"106","1.5 kPa","SR","time zero saturation","Tannin",0.212288062111349,100,"0.21 ± 0.05 "
+"107","1.5 kPa","SR","time zero saturation","UnsatHC",2.89796628586336,100,"2.9 ± 0.81 "
+"108","50 kPa","CPCRW","drought","AminoSugar",4.34577956940001,100,"4.35 ± 0.66 *"
+"109","50 kPa","CPCRW","drought","Carb",10.9111889337754,100,"10.91 ± 2.17 *"
+"110","50 kPa","CPCRW","drought","ConHC",1.37364385941142,100,"1.37 ± 0.34 *"
+"111","50 kPa","CPCRW","drought","Lignin",56.0920040432061,100,"56.09 ± 2.88 *"
+"112","50 kPa","CPCRW","drought","Lipid",7.06789045293532,100,"7.07 ± 1.09 "
+"113","50 kPa","CPCRW","drought","Other",0.625470727180602,100,"0.63 ± 0.17 "
+"114","50 kPa","CPCRW","drought","Protein",16.1132742074743,100,"16.11 ± 1.74 *"
+"115","50 kPa","CPCRW","drought","Tannin",3.36814008635557,100,"3.37 ± 0.46 "
+"116","50 kPa","CPCRW","drought","UnsatHC",0.102608120261247,100,"0.1 ± 0.03 "
+"117","50 kPa","CPCRW","field moist","AminoSugar",0.204136584781496,100,"0.2 ± 0 "
+"118","50 kPa","CPCRW","field moist","Carb",0.314040926339385,100,"0.31 ± 0.01 "
+"119","50 kPa","CPCRW","field moist","ConHC",2.58276253829812,100,"2.58 ± 0.51 "
+"120","50 kPa","CPCRW","field moist","Lignin",82.9610918826534,100,"82.96 ± 1.55 "
+"121","50 kPa","CPCRW","field moist","Lipid",5.52298832875922,100,"5.52 ± 2.18 "
+"122","50 kPa","CPCRW","field moist","Other",0.158793297926796,100,"0.16 ± 0.02 "
+"123","50 kPa","CPCRW","field moist","Protein",3.97000430896326,100,"3.97 ± 0.08 "
+"124","50 kPa","CPCRW","field moist","Tannin",3.9306081219909,100,"3.93 ± 0.92 "
+"125","50 kPa","CPCRW","field moist","UnsatHC",0.355574010287389,100,"0.36 ± 0.04 "
+"126","50 kPa","CPCRW","saturation","AminoSugar",0.528032208479151,100,"0.53 ± 0.06 "
+"127","50 kPa","CPCRW","saturation","Carb",0.898247775095965,100,"0.9 ± 0.25 "
+"128","50 kPa","CPCRW","saturation","ConHC",2.50324503969625,100,"2.5 ± 0.45 "
+"129","50 kPa","CPCRW","saturation","Lignin",69.8885414391936,100,"69.89 ± 1.46 "
+"130","50 kPa","CPCRW","saturation","Lipid",9.61079614863269,100,"9.61 ± 1.49 "
+"131","50 kPa","CPCRW","saturation","Other",0.0446502160789917,100,"0.04 ± 0 "
+"132","50 kPa","CPCRW","saturation","Protein",12.7973855999926,100,"12.8 ± 0.71 *"
+"133","50 kPa","CPCRW","saturation","Tannin",3.14167394877103,100,"3.14 ± 0.6 "
+"134","50 kPa","CPCRW","saturation","UnsatHC",0.587427624059647,100,"0.59 ± 0.44 "
+"135","50 kPa","CPCRW","time zero saturation","AminoSugar",0.369128365201542,100,"0.37 ± 0.02 "
+"136","50 kPa","CPCRW","time zero saturation","Carb",0.416863679278184,100,"0.42 ± 0.05 "
+"137","50 kPa","CPCRW","time zero saturation","ConHC",4.14368952419879,100,"4.14 ± 1.04 "
+"138","50 kPa","CPCRW","time zero saturation","Lignin",75.7325530969097,100,"75.73 ± 2.43 "
+"139","50 kPa","CPCRW","time zero saturation","Lipid",8.65889478585315,100,"8.66 ± 1.76 "
+"140","50 kPa","CPCRW","time zero saturation","Other",0.133910721486873,100,"0.13 ± 0.04 "
+"141","50 kPa","CPCRW","time zero saturation","Protein",6.99798870012382,100,"7 ± 0.8 "
+"142","50 kPa","CPCRW","time zero saturation","Tannin",2.88205251177817,100,"2.88 ± 0.43 "
+"143","50 kPa","CPCRW","time zero saturation","UnsatHC",0.664918615169752,100,"0.66 ± 0.32 "
+"144","50 kPa","DWP","drought","AminoSugar",1.38187352786568,100,"1.38 ± 0.38 *"
+"145","50 kPa","DWP","drought","Carb",4.05752419800638,100,"4.06 ± 1.1 *"
+"146","50 kPa","DWP","drought","ConHC",2.34584790080095,100,"2.35 ± 0.33 "
+"147","50 kPa","DWP","drought","Lignin",55.5557518681394,100,"55.56 ± 2.55 "
+"148","50 kPa","DWP","drought","Lipid",11.5336704587019,100,"11.53 ± 1.44 "
+"149","50 kPa","DWP","drought","Other",0.583587699125624,100,"0.58 ± 0.08 "
+"150","50 kPa","DWP","drought","Protein",22.2629785674319,100,"22.26 ± 2 *"
+"151","50 kPa","DWP","drought","Tannin",1.52058572001761,100,"1.52 ± 0.21 *"
+"152","50 kPa","DWP","drought","UnsatHC",0.758180059910545,100,"0.76 ± 0.32 "
+"153","50 kPa","DWP","field moist","AminoSugar",0.785016734630823,100,"0.79 ± 0.07 *"
+"154","50 kPa","DWP","field moist","Carb",0.331840928105819,100,"0.33 ± 0.01 *"
+"155","50 kPa","DWP","field moist","ConHC",3.66386797378132,100,"3.66 ± 0.85 "
+"156","50 kPa","DWP","field moist","Lignin",71.0229243061425,100,"71.02 ± 2.08 *"
+"157","50 kPa","DWP","field moist","Lipid",9.35746868644159,100,"9.36 ± 1.09 "
+"158","50 kPa","DWP","field moist","Other",0.109809964836373,100,"0.11 ± 0.02 "
+"159","50 kPa","DWP","field moist","Protein",10.7006132124915,100,"10.7 ± 1.54 *"
+"160","50 kPa","DWP","field moist","Tannin",3.15666463336434,100,"3.16 ± 0.46 "
+"161","50 kPa","DWP","field moist","UnsatHC",0.871793560205769,100,"0.87 ± 0.32 "
+"162","50 kPa","DWP","saturation","AminoSugar",0.608957769243883,100,"0.61 ± 0.12 *"
+"163","50 kPa","DWP","saturation","Carb",0.861628048030188,100,"0.86 ± 0.15 *"
+"164","50 kPa","DWP","saturation","ConHC",4.96231809879234,100,"4.96 ± 1.11 "
+"165","50 kPa","DWP","saturation","Lignin",58.9004736026074,100,"58.9 ± 9.08 *"
+"166","50 kPa","DWP","saturation","Lipid",18.8777247843842,100,"18.88 ± 10.45 "
+"167","50 kPa","DWP","saturation","Other",0.108148581502988,100,"0.11 ± 0.03 "
+"168","50 kPa","DWP","saturation","Protein",10.5458077970408,100,"10.55 ± 1.35 *"
+"169","50 kPa","DWP","saturation","Tannin",3.95491817082073,100,"3.95 ± 0.93 "
+"170","50 kPa","DWP","saturation","UnsatHC",1.18002314757751,100,"1.18 ± 0.53 "
+"171","50 kPa","DWP","time zero saturation","AminoSugar",8.78830919105434,100,"8.79 ± 1.49 "
+"172","50 kPa","DWP","time zero saturation","Carb",9.91229669451352,100,"9.91 ± 1.31 "
+"173","50 kPa","DWP","time zero saturation","ConHC",2.46923721354523,100,"2.47 ± 0.26 "
+"174","50 kPa","DWP","time zero saturation","Lignin",33.192232328639,100,"33.19 ± 3.36 "
+"175","50 kPa","DWP","time zero saturation","Lipid",7.73863068278539,100,"7.74 ± 2.81 "
+"176","50 kPa","DWP","time zero saturation","Other",0.594579490762438,100,"0.59 ± 0.06 "
+"177","50 kPa","DWP","time zero saturation","Protein",30.9215121412368,100,"30.92 ± 3.15 "
+"178","50 kPa","DWP","time zero saturation","Tannin",5.17549833573495,100,"5.18 ± 0.31 "
+"179","50 kPa","DWP","time zero saturation","UnsatHC",1.20770392172827,100,"1.21 ± 0.33 "
+"180","50 kPa","SR","drought","AminoSugar",0.31255787612709,100,"0.31 ± 0.09 "
+"181","50 kPa","SR","drought","Carb",0.303578976477194,100,"0.3 ± 0.05 "
+"182","50 kPa","SR","drought","ConHC",0.422444641977382,100,"0.42 ± 0.19 "
+"183","50 kPa","SR","drought","Lignin",42.6969790421572,100,"42.7 ± 8.42 "
+"184","50 kPa","SR","drought","Lipid",36.8093474504335,100,"36.81 ± 7.51 "
+"185","50 kPa","SR","drought","Other",0.160733296064976,100,"0.16 ± 0.05 "
+"186","50 kPa","SR","drought","Protein",17.235241192556,100,"17.24 ± 4.14 "
+"187","50 kPa","SR","drought","Tannin",0.251201387396565,100,"0.25 ± 0.15 "
+"188","50 kPa","SR","drought","UnsatHC",1.80791613681001,100,"1.81 ± 0.79 "
+"189","50 kPa","SR","field moist","AminoSugar",1.23642744880829,100,"1.24 ± 0.24 "
+"190","50 kPa","SR","field moist","Carb",1.03495840644083,100,"1.03 ± 0.54 "
+"191","50 kPa","SR","field moist","ConHC",0.506886072111367,100,"0.51 ± 0.15 "
+"192","50 kPa","SR","field moist","Lignin",36.062528087441,100,"36.06 ± 5.64 "
+"193","50 kPa","SR","field moist","Lipid",43.7191710391602,100,"43.72 ± 6.42 "
+"194","50 kPa","SR","field moist","Other",0.133587581528619,100,"0.13 ± 0.03 "
+"195","50 kPa","SR","field moist","Protein",14.4925925664933,100,"14.49 ± 2.04 "
+"196","50 kPa","SR","field moist","Tannin",0.260191091698055,100,"0.26 ± 0.07 "
+"197","50 kPa","SR","field moist","UnsatHC",2.55365770631837,100,"2.55 ± 0.35 "
+"198","50 kPa","SR","saturation","AminoSugar",1.65895432515306,100,"1.66 ± 0.34 "
+"199","50 kPa","SR","saturation","Carb",0.380951729294202,100,"0.38 ± 0.03 "
+"200","50 kPa","SR","saturation","ConHC",1.25449737178548,100,"1.25 ± 0.52 "
+"201","50 kPa","SR","saturation","Lignin",28.3867662217984,100,"28.39 ± 4.35 "
+"202","50 kPa","SR","saturation","Lipid",38.6696365049021,100,"38.67 ± 7 "
+"203","50 kPa","SR","saturation","Other",0.106151435297923,100,"0.11 ± 0.04 "
+"204","50 kPa","SR","saturation","Protein",26.9967803825296,100,"27 ± 3.64 "
+"205","50 kPa","SR","saturation","Tannin",0.216711985388861,100,"0.22 ± 0.05 "
+"206","50 kPa","SR","saturation","UnsatHC",2.32955004385026,100,"2.33 ± 0.46 "
+"207","50 kPa","SR","time zero saturation","AminoSugar",2.17502022305935,100,"2.18 ± 1.37 "
+"208","50 kPa","SR","time zero saturation","Carb",0.170509917304969,100,"0.17 ± 0.02 "
+"209","50 kPa","SR","time zero saturation","ConHC",1.44052441894708,100,"1.44 ± 0.32 "
+"210","50 kPa","SR","time zero saturation","Lignin",40.3218545205725,100,"40.32 ± 11.73 "
+"211","50 kPa","SR","time zero saturation","Lipid",33.889614881137,100,"33.89 ± 9.83 "
+"212","50 kPa","SR","time zero saturation","Other",0.199113915360472,100,"0.2 ± 0.05 "
+"213","50 kPa","SR","time zero saturation","Protein",17.7063283771762,100,"17.71 ± 5.26 "
+"214","50 kPa","SR","time zero saturation","Tannin",1.53819964022109,100,"1.54 ± 1.01 "
+"215","50 kPa","SR","time zero saturation","UnsatHC",2.5588341062213,100,"2.56 ± 0.89 "

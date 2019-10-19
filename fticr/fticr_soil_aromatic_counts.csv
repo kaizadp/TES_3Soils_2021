@@ -1,74 +1,147 @@
-core,aromatic,site,treatment,N,arom_core_counts,sd,se,ci
-C1,aromatic,CPCRW,baseline,1361,1361,0,0,0
-C10,aromatic,CPCRW,time zero saturation,1341,1341,0,0,0
-C11,aromatic,CPCRW,saturation,1349,1349,0,0,0
-C12,aromatic,CPCRW,saturation,1416,1416,0,0,0
-C13,aromatic,CPCRW,saturation,1237,1237,0,0,0
-C14,aromatic,CPCRW,saturation,1385,1385,0,0,0
-C15,aromatic,CPCRW,saturation,1299,1299,0,0,0
-C16,aromatic,CPCRW,field moist,1655,1655,0,0,0
-C17,aromatic,CPCRW,field moist,1585,1585,0,0,0
-C18,aromatic,CPCRW,field moist,1514,1514,0,0,0
-C19,aromatic,CPCRW,field moist,1465,1465,0,0,0
-C2,aromatic,CPCRW,baseline,1368,1368,0,0,0
-C20,aromatic,CPCRW,field moist,1604,1604,0,0,0
-C21,aromatic,CPCRW,drought,1266,1266,0,0,0
-C22,aromatic,CPCRW,drought,1699,1699,0,0,0
-C23,aromatic,CPCRW,drought,1760,1760,0,0,0
-C24,aromatic,CPCRW,drought,1656,1656,0,0,0
-C25,aromatic,CPCRW,drought,1630,1630,0,0,0
-C3,aromatic,CPCRW,baseline,968,968,0,0,0
-C4,aromatic,CPCRW,baseline,1316,1316,0,0,0
-C5,aromatic,CPCRW,baseline,1316,1316,0,0,0
-C6,aromatic,CPCRW,time zero saturation,1215,1215,0,0,0
-C7,aromatic,CPCRW,time zero saturation,1401,1401,0,0,0
-C8,aromatic,CPCRW,time zero saturation,1398,1398,0,0,0
-C9,aromatic,CPCRW,time zero saturation,1174,1174,0,0,0
-D1,aromatic,DWP,baseline,1306,1306,0,0,0
-D10,aromatic,DWP,time zero saturation,1818,1818,0,0,0
-D11,aromatic,DWP,saturation,1618,1618,0,0,0
-D12,aromatic,DWP,saturation,1574,1574,0,0,0
-D13,aromatic,DWP,saturation,1519,1519,0,0,0
-D14,aromatic,DWP,saturation,1703,1703,0,0,0
-D15,aromatic,DWP,saturation,1768,1768,0,0,0
-D17,aromatic,DWP,field moist,1022,1022,0,0,0
-D18,aromatic,DWP,field moist,959,959,0,0,0
-D19,aromatic,DWP,field moist,1016,1016,0,0,0
-D2,aromatic,DWP,baseline,1323,1323,0,0,0
-D20,aromatic,DWP,field moist,914,914,0,0,0
-D21,aromatic,DWP,drought,1502,1502,0,0,0
-D22,aromatic,DWP,drought,1487,1487,0,0,0
-D23,aromatic,DWP,drought,1455,1455,0,0,0
-D24,aromatic,DWP,drought,1553,1553,0,0,0
-D25,aromatic,DWP,drought,1672,1672,0,0,0
-D3,aromatic,DWP,baseline,1409,1409,0,0,0
-D4,aromatic,DWP,baseline,1357,1357,0,0,0
-D6,aromatic,DWP,time zero saturation,1647,1647,0,0,0
-D7,aromatic,DWP,time zero saturation,1703,1703,0,0,0
-D8,aromatic,DWP,time zero saturation,1421,1421,0,0,0
-D9,aromatic,DWP,time zero saturation,1806,1806,0,0,0
-S1,aromatic,SR,field moist,1334,1334,0,0,0
-S10,aromatic,SR,drought,1840,1840,0,0,0
-S11,aromatic,SR,time zero saturation,1570,1570,0,0,0
-S12,aromatic,SR,baseline,1311,1311,0,0,0
-S13,aromatic,SR,field moist,1426,1426,0,0,0
-S14,aromatic,SR,drought,1726,1726,0,0,0
-S15,aromatic,SR,field moist,1329,1329,0,0,0
-S16,aromatic,SR,time zero saturation,1469,1469,0,0,0
-S17,aromatic,SR,time zero saturation,1442,1442,0,0,0
-S18,aromatic,SR,saturation,1438,1438,0,0,0
-S19,aromatic,SR,field moist,1405,1405,0,0,0
-S2,aromatic,SR,saturation,1553,1553,0,0,0
-S20,aromatic,SR,baseline,1132,1132,0,0,0
-S21,aromatic,SR,field moist,1448,1448,0,0,0
-S22,aromatic,SR,baseline,1324,1324,0,0,0
-S23,aromatic,SR,time zero saturation,1552,1552,0,0,0
-S24,aromatic,SR,saturation,1429,1429,0,0,0
-S25,aromatic,SR,drought,1822,1822,0,0,0
-S3,aromatic,SR,saturation,1382,1382,0,0,0
-S4,aromatic,SR,drought,1678,1678,0,0,0
-S5,aromatic,SR,drought,1748,1748,0,0,0
-S6,aromatic,SR,baseline,1334,1334,0,0,0
-S7,aromatic,SR,saturation,1598,1598,0,0,0
-S8,aromatic,SR,baseline,902,902,0,0,0
-S9,aromatic,SR,time zero saturation,1665,1665,0,0,0
+site,treatment,core,aromatic,counts
+CPCRW,baseline,C1,aliphatic,1734
+CPCRW,baseline,C1,aromatic,1332
+CPCRW,baseline,C2,aliphatic,1799
+CPCRW,baseline,C2,aromatic,1342
+CPCRW,baseline,C3,aliphatic,1362
+CPCRW,baseline,C3,aromatic,942
+CPCRW,baseline,C4,aliphatic,1681
+CPCRW,baseline,C4,aromatic,1288
+CPCRW,baseline,C5,aliphatic,1538
+CPCRW,baseline,C5,aromatic,1298
+CPCRW,drought,C21,aliphatic,1271
+CPCRW,drought,C21,aromatic,1254
+CPCRW,drought,C22,aliphatic,1577
+CPCRW,drought,C22,aromatic,1677
+CPCRW,drought,C23,aliphatic,1814
+CPCRW,drought,C23,aromatic,1740
+CPCRW,drought,C24,aliphatic,1713
+CPCRW,drought,C24,aromatic,1639
+CPCRW,drought,C25,aliphatic,1800
+CPCRW,drought,C25,aromatic,1612
+CPCRW,field moist,C16,aliphatic,1952
+CPCRW,field moist,C16,aromatic,1622
+CPCRW,field moist,C17,aliphatic,1984
+CPCRW,field moist,C17,aromatic,1551
+CPCRW,field moist,C18,aliphatic,1883
+CPCRW,field moist,C18,aromatic,1483
+CPCRW,field moist,C19,aliphatic,1855
+CPCRW,field moist,C19,aromatic,1443
+CPCRW,field moist,C20,aliphatic,1933
+CPCRW,field moist,C20,aromatic,1568
+CPCRW,saturation,C11,aliphatic,2052
+CPCRW,saturation,C11,aromatic,1315
+CPCRW,saturation,C12,aliphatic,2127
+CPCRW,saturation,C12,aromatic,1375
+CPCRW,saturation,C13,aliphatic,2139
+CPCRW,saturation,C13,aromatic,1208
+CPCRW,saturation,C14,aliphatic,2104
+CPCRW,saturation,C14,aromatic,1352
+CPCRW,saturation,C15,aliphatic,2197
+CPCRW,saturation,C15,aromatic,1266
+CPCRW,time zero saturation,C10,aliphatic,1925
+CPCRW,time zero saturation,C10,aromatic,1313
+CPCRW,time zero saturation,C6,aliphatic,1882
+CPCRW,time zero saturation,C6,aromatic,1203
+CPCRW,time zero saturation,C7,aliphatic,2035
+CPCRW,time zero saturation,C7,aromatic,1374
+CPCRW,time zero saturation,C8,aliphatic,1862
+CPCRW,time zero saturation,C8,aromatic,1377
+CPCRW,time zero saturation,C9,aliphatic,1926
+CPCRW,time zero saturation,C9,aromatic,1156
+DWP,baseline,D1,aliphatic,2455
+DWP,baseline,D1,aromatic,1253
+DWP,baseline,D2,aliphatic,2571
+DWP,baseline,D2,aromatic,1265
+DWP,baseline,D3,aliphatic,2463
+DWP,baseline,D3,aromatic,1346
+DWP,baseline,D4,aliphatic,2578
+DWP,baseline,D4,aromatic,1294
+DWP,drought,D21,aliphatic,2068
+DWP,drought,D21,aromatic,1472
+DWP,drought,D22,aliphatic,2047
+DWP,drought,D22,aromatic,1458
+DWP,drought,D23,aliphatic,2013
+DWP,drought,D23,aromatic,1419
+DWP,drought,D24,aliphatic,2051
+DWP,drought,D24,aromatic,1521
+DWP,drought,D25,aliphatic,2292
+DWP,drought,D25,aromatic,1630
+DWP,field moist,D17,aliphatic,1543
+DWP,field moist,D17,aromatic,1003
+DWP,field moist,D18,aliphatic,1431
+DWP,field moist,D18,aromatic,944
+DWP,field moist,D19,aliphatic,1545
+DWP,field moist,D19,aromatic,997
+DWP,field moist,D20,aliphatic,1494
+DWP,field moist,D20,aromatic,895
+DWP,saturation,D11,aliphatic,1974
+DWP,saturation,D11,aromatic,1585
+DWP,saturation,D12,aliphatic,2151
+DWP,saturation,D12,aromatic,1529
+DWP,saturation,D13,aliphatic,1915
+DWP,saturation,D13,aromatic,1479
+DWP,saturation,D14,aliphatic,1979
+DWP,saturation,D14,aromatic,1657
+DWP,saturation,D15,aliphatic,2030
+DWP,saturation,D15,aromatic,1721
+DWP,time zero saturation,D10,aliphatic,2286
+DWP,time zero saturation,D10,aromatic,1754
+DWP,time zero saturation,D6,aliphatic,2207
+DWP,time zero saturation,D6,aromatic,1604
+DWP,time zero saturation,D7,aliphatic,2347
+DWP,time zero saturation,D7,aromatic,1637
+DWP,time zero saturation,D8,aliphatic,1920
+DWP,time zero saturation,D8,aromatic,1382
+DWP,time zero saturation,D9,aliphatic,2441
+DWP,time zero saturation,D9,aromatic,1732
+SR,baseline,S12,aliphatic,1307
+SR,baseline,S12,aromatic,1293
+SR,baseline,S20,aliphatic,1236
+SR,baseline,S20,aromatic,1116
+SR,baseline,S22,aliphatic,1371
+SR,baseline,S22,aromatic,1303
+SR,baseline,S6,aliphatic,1233
+SR,baseline,S6,aromatic,1316
+SR,baseline,S8,aliphatic,737
+SR,baseline,S8,aromatic,892
+SR,drought,S10,aliphatic,1954
+SR,drought,S10,aromatic,1789
+SR,drought,S14,aliphatic,2142
+SR,drought,S14,aromatic,1682
+SR,drought,S25,aliphatic,2196
+SR,drought,S25,aromatic,1766
+SR,drought,S4,aliphatic,2071
+SR,drought,S4,aromatic,1634
+SR,drought,S5,aliphatic,2057
+SR,drought,S5,aromatic,1700
+SR,field moist,S1,aliphatic,2693
+SR,field moist,S1,aromatic,1296
+SR,field moist,S13,aliphatic,1868
+SR,field moist,S13,aromatic,1400
+SR,field moist,S15,aliphatic,2750
+SR,field moist,S15,aromatic,1285
+SR,field moist,S19,aliphatic,2073
+SR,field moist,S19,aromatic,1373
+SR,field moist,S21,aliphatic,2563
+SR,field moist,S21,aromatic,1412
+SR,saturation,S18,aliphatic,2457
+SR,saturation,S18,aromatic,1404
+SR,saturation,S2,aliphatic,2246
+SR,saturation,S2,aromatic,1502
+SR,saturation,S24,aliphatic,2401
+SR,saturation,S24,aromatic,1392
+SR,saturation,S3,aliphatic,2610
+SR,saturation,S3,aromatic,1340
+SR,saturation,S7,aliphatic,2519
+SR,saturation,S7,aromatic,1542
+SR,time zero saturation,S11,aliphatic,1924
+SR,time zero saturation,S11,aromatic,1531
+SR,time zero saturation,S16,aliphatic,1960
+SR,time zero saturation,S16,aromatic,1432
+SR,time zero saturation,S17,aliphatic,1752
+SR,time zero saturation,S17,aromatic,1408
+SR,time zero saturation,S23,aliphatic,1924
+SR,time zero saturation,S23,aromatic,1514
+SR,time zero saturation,S9,aliphatic,1962
+SR,time zero saturation,S9,aromatic,1622
