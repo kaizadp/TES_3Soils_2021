@@ -79,6 +79,7 @@ fticr_soil_raw_long %>%
 ### FTICR-SOIL OUTPUT ----
     # write.csv(fticr_soil_gather2,"fticr_soil_longform.csv")
 
+write.csv(fticr_soil_meta, FTICR_SOIL_META, row.names = FALSE)
 write.csv(fticr_meta_hcoc, FTICR_SOIL_META_HCOC, row.names = FALSE)
 write.csv(fticr_soil_long, FTICR_SOIL_LONG, row.names = FALSE)
 write.csv(fticr_soil_raw_long, FTICR_SOIL_RAW_LONG, row.names = FALSE)

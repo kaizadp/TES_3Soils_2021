@@ -41,3 +41,38 @@ soil_long %>%
 write_csv(fticr_soil_peaks,FTICR_SOIL_PEAKS)
 
 # ------------------------------------------------------- ----
+
+# PART II: SOIL UNIQUE PEAKS ----
+soil_long %>% 
+  spread(treatment, intensity) %>% 
+# add columns for new/lost molecules
+  dplyr::mutate(drought2 = case_when(!is.na(drought)&is.na(baseline) ~ "new",
+                                        is.na(drought)&!is.na(baseline) ~ "lost"),
+                  fm2 = case_when(!is.na(`field moist`)&is.na(baseline) ~ "new",
+                                        is.na(`field moist`)&!is.na(baseline) ~ "lost"),
+                  saturation2 = case_when(!is.na(saturation)&is.na(baseline) ~ "new",
+                                        is.na(saturation)&!is.na(baseline) ~ "lost")) %>% 
+# add columns for unique peaks
+  dplyr:: mutate(unique = case_when((drought2=="new" & is.na(fm2) & is.na(saturation2)) ~ "drought",
+                                    (saturation2=="new" & is.na(fm2) & is.na(drought2)) ~ "saturation",
+                                    (fm2=="new" & is.na(drought2) & is.na(saturation2)) ~ "field moist")) %>% 
+  dplyr::select(-drought, -saturation, -baseline, -`field moist`,-`time zero saturation`)-> 
+  soil_unique_peaks
+
+# PART III: SOIL RELATIVE ABUNDANCE ----
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
