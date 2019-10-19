@@ -109,8 +109,8 @@ mg/g soil
 wsoc_soil %>% 
   ungroup %>% 
   dplyr::mutate(sp = paste(Site),
-                val = paste(wsoc_hsd)) %>% 
-  select(Treatment,sp, val) %>% 
+                val = paste(wsoc_dunnett)) %>% 
+  dplyr::select(Treatment,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
