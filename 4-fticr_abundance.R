@@ -8,6 +8,8 @@
 source("0-packages.R")
 
 # ------------------------------------------------------- ----
+
+# FILES ----
 ## use the raw-long files for relative abundance only
 ## use the long files for peaks
 
@@ -16,9 +18,9 @@ soil_meta = read.csv(FTICR_SOIL_META)# <- "fticr/fticr_soil_meta.csv"
 soil_raw_long = read.csv(FTICR_SOIL_RAW_LONG)# <- "fticr/fticr_soil_raw_longform.csv"
 soil_long = read.csv(FTICR_SOIL_LONG)# <- "fticr/fticr_soil_longform.csv"
 
-#FTICR_PORE_META <- "fticr/fticr_pore_meta.csv"
-#FTICR_PORE_LONG <- "fticr/fticr_pore_longform.csv"
-#FTICR_PORE_RAW_LONG <- "fticr/fticr_pore_raw_longform.csv"
+pore_meta = read.csv(FTICR_PORE_META)# <- "fticr/fticr_pore_meta.csv"
+pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
+pore_raw_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_raw_longform.csv"
 
 # ------------------------------------------------------- ----
 
@@ -37,10 +39,8 @@ soil_long %>%
   fticr_soil_peaks
 
 
-### OUTPUT
+### OUTPUT 
 write_csv(fticr_soil_peaks,FTICR_SOIL_PEAKS)
-
-# ------------------------------------------------------- ----
 
 # PART II: SOIL UNIQUE PEAKS ----
 soil_long %>% 
@@ -59,7 +59,34 @@ soil_long %>%
   dplyr::select(-drought, -saturation, -baseline, -`field moist`,-`time zero saturation`)-> 
   soil_unique_peaks
 
-# PART III: SOIL RELATIVE ABUNDANCE ----
+# PART III: SOIL AROMATIC PEAKS ----
+meta_aromatic <- soil_meta %>% 
+  dplyr::select(Mass, AI_Mod)
+  
+soil_raw_long %>%
+  left_join(meta_aromatic, by = "Mass") %>% 
+# create a column designating aromatic  vs. aliphatic
+# aromatic == AI_Mod > 0.5, aliphatic == 1.5 < HC < 2.0
+# see Bailey et al. 2017 SBB, Chasse et al. 2015 for references
+  dplyr::mutate(aromatic = case_when(AI_Mod>0.5 ~ "aromatic", 
+                                     (HC<2.0 & HC>1.5) ~ "aliphatic"))  ->
+  soil_aromatic
+
+soil_aromatic %>% 
+  drop_na %>% 
+  group_by(site, treatment, core, aromatic) %>% 
+  dplyr::summarize(counts = n())->
+  soil_aromatic_counts
+
+
+
+### OUTPUT
+# write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
+write_csv(fticr_soil_aromatic_counts, FTICR_SOIL_AROMATIC)
+
+# ------------------------------------------------------- ----
+
+# PART IV: SOIL RELATIVE ABUNDANCE ----
 ## step 1: create a summary table by group/treatment
 
 soil_raw_long %>% 
@@ -91,6 +118,47 @@ relabund_temp%>%
   soil_relabund
 # we will combine this file with the Dunnett test results below
   
+
+## step 2: DUNNETT'S TEST 
+
+fit_dunnett_relabund <- function(dat) {
+  d <-DescTools::DunnettTest(relabund~treatment, control = "baseline", data = dat)
+  #create a tibble with one column for each treatment
+  # column 4 has the pvalue
+  t = tibble(`drought` = d$`baseline`["drought-baseline",4], 
+             `saturation` = d$`baseline`["saturation-baseline",4],
+             `field moist` = d$`baseline`["field moist-baseline",4],
+             `TZsaturation` = d$baseline["time zero saturation-baseline",4])
+  # we need to convert significant p values to asterisks
+  # since the values are in a single row, it is tricky
+  t %>% 
+    # first, gather all p-values into a single column, pval
+    gather(trt, pval, 1:4) %>% 
+    # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+    mutate(p = if_else(pval<0.05, "*","")) %>% 
+    # remove the pval column
+    dplyr::select(-pval) %>% 
+    # spread the p (asterisks) column bnack into the three columns
+    spread(trt, p)  ->
+    t
+}
+
+relabund_temp[!relabund_temp$Class=="total",] %>% 
+  group_by(site, Class) %>% 
+  do(fit_dunnett_relabund(.)) %>% 
+  melt(id = c("site","Class"), value.name = "dunnett", variable.name = "treatment")-> #gather columns 4-7 (treatment levels)
+  soil_relabund_dunnett
+
+## step 3: now merge this with `soil_relabund`
+
+soil_relabund %>% 
+  left_join(soil_relabund_dunnett,by = c("site","Class","treatment"), all.x = TRUE) %>% 
+  replace(.,is.na(.),"") %>% 
+  dplyr::mutate(relativeabundance = paste(relabund,dunnett)) %>% 
+  dplyr::select(-relabund, -dunnett)->
+  fticr_soil_relativeabundance
+
+
 
       ## ## HSD. DONT DO
       ## fit_hsd_relabund <- function(dat) {
@@ -125,46 +193,9 @@ relabund_temp%>%
       ##   fticr_soil_relabundance_summary2
 
 
-## step 2: DUNNETT'S TEST 
 
-fit_dunnett_relabund <- function(dat) {
-  d <-DescTools::DunnettTest(relabund~treatment, control = "baseline", data = dat)
-  #create a tibble with one column for each treatment
-  # column 4 has the pvalue
-  t = tibble(`drought` = d$`baseline`["drought-baseline",4], 
-             `saturation` = d$`baseline`["saturation-baseline",4],
-             `field moist` = d$`baseline`["field moist-baseline",4],
-             `TZsaturation` = d$baseline["time zero saturation-baseline",4])
-  # we need to convert significant p values to asterisks
-  # since the values are in a single row, it is tricky
-  t %>% 
-    # first, gather all p-values into a single column, pval
-    gather(trt, pval, 1:4) %>% 
-    # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
-    mutate(p = if_else(pval<0.05, "*","")) %>% 
-    # remove the pval column
-    dplyr::select(-pval) %>% 
-    # spread the p (asterisks) column bnack into the three columns
-    spread(trt, p)  ->
-    t
-}
 
-relabund_temp[!relabund_temp$Class=="total",] %>% 
-  group_by(site, Class) %>% 
-  do(fit_dunnett_relabund(.)) %>% 
-  melt(id = c("site","Class"), value.name = "dunnett", variable.name = "treatment")-> #gather columns 4-7 (treatment levels)
-  soil_relabund_dunnett
-
-# now merge this with `fticr_pore_relabundance_summary`
-
-soil_relabund %>% 
-  left_join(soil_relabund_dunnett,by = c("site","Class","treatment"), all.x = TRUE) %>% 
-  replace(.,is.na(.),"") %>% 
-  dplyr::mutate(relativeabundance = paste(relabund,dunnett)) %>% 
-  dplyr::select(-relabund, -dunnett)->
-  fticr_soil_relativeabundance
-
-### OUTPUT
+### OUTPUT ----
 write_csv(fticr_soil_relativeabundance, FTICR_SOIL_RELABUND)
 
 
@@ -182,4 +213,11 @@ write_csv(fticr_soil_relativeabundance, FTICR_SOIL_RELABUND)
 
 
 
+
+
+
+# ------------------------------------------------------- ----
+# ------------------------------------------------------- ----
+
+# PART V: POREWATER PEAKS ----
 
