@@ -199,23 +199,6 @@ soil_relabund %>%
 write_csv(fticr_soil_relativeabundance, FTICR_SOIL_RELABUND)
 
 
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # ------------------------------------------------------- ----
 # ------------------------------------------------------- ----
 
@@ -355,6 +338,9 @@ pore_relabund %>%
   dplyr::select(-relabund, -dunnett)->
   fticr_pore_relativeabundance
 
+
+### OUTPUT
+write.csv(fticr_pore_relabundance, FTICR_PORE_RELABUND) 
 
 
 ## ## HSD. DONT DO
