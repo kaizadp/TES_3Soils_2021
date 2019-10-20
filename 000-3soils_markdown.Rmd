@@ -61,14 +61,14 @@ soil_unique_peaks = read.csv(FTICR_SOIL_UNIQUE_PEAKS)# <- "fticr/fticr_soil_uniq
 ## summary table
 ```{r charac, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
 charac %>% 
-  mutate(variable = factor(variable, levels = c("TC_perc", "TN_perc", "TOC_perc", "WSOC_mg_g",
+  dplyr::mutate(variable = factor(variable, levels = c("TC_perc", "TN_perc", "TOC_perc", "WSOC_mg_g",
                                                 "Ca_meq100g", "Mg_meq100g",
                                                 "pH", "EC_dS_m", 
                                                 "Sand_perc", "Silt_perc", "Clay_perc"))) %>% 
   ungroup %>% 
   dplyr::mutate(sp = paste(site),
                 val = paste(summary_hsd)) %>% 
-  select(variable,sp, val) %>% 
+  dplyr::select(variable,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
@@ -134,8 +134,8 @@ mg/L
 wsoc_pore %>% 
   ungroup %>% 
   dplyr::mutate(sp = paste(Suction, Site),
-                val = paste(wsoc_hsd)) %>% 
-  select(Treatment,sp, val) %>% 
+                val = paste(wsoc_dunnett)) %>% 
+  dplyr::select(Treatment,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
@@ -258,7 +258,7 @@ ggplot(pore_nosc[pore_nosc$site=="CPCRW" &!pore_nosc$treatment=="baseline",],
   #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
 
   xlim(-2.5, 2.5)+
-  ylim(0,3000)+
+  ylim(0,300)+
   ggtitle("CPCRW")+
   
   facet_grid(tension~treatment)+ #facet with two variables
@@ -271,7 +271,7 @@ ggplot(pore_nosc[pore_nosc$site=="CPCRW" &!pore_nosc$treatment=="baseline",],
 #DWP
 ggplot(pore_nosc[pore_nosc$site=="DWP" &!pore_nosc$treatment=="baseline",], 
        aes(x = NOSC, fill = treatment, color = treatment))+
-  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  geom_histogram(binwidth = 0.10, position = "identity", alpha = 0.2)+
   #scale_fill_brewer(palette = "Dark2")+
   scale_color_brewer(palette = "Dark2")+
   scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
@@ -279,7 +279,7 @@ ggplot(pore_nosc[pore_nosc$site=="DWP" &!pore_nosc$treatment=="baseline",],
   #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
 
   xlim(-2.5, 2.5)+
-  ylim(0,3000)+
+  ylim(0,300)+
   ggtitle("DWP")+
   
   facet_grid(tension~treatment)+ #facet with two variables
@@ -293,7 +293,7 @@ ggplot(pore_nosc[pore_nosc$site=="DWP" &!pore_nosc$treatment=="baseline",],
 #SR
 ggplot(pore_nosc[pore_nosc$site=="SR" &!pore_nosc$treatment=="baseline",], 
        aes(x = NOSC, fill = treatment, color = treatment))+
-  geom_histogram(binwidth = 0.25, position = "identity", alpha = 0.2)+
+  geom_histogram(binwidth = 0.10, position = "identity", alpha = 0.2)+
   #scale_fill_brewer(palette = "Dark2")+
   scale_color_brewer(palette = "Dark2")+
   scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
@@ -301,13 +301,30 @@ ggplot(pore_nosc[pore_nosc$site=="SR" &!pore_nosc$treatment=="baseline",],
   #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
 
   xlim(-2.5, 2.5)+
-  ylim(0,3000)+
+  ylim(0,300)+
   ggtitle("SR")+
   
   facet_grid(tension~treatment)+ #facet with two variables
   
   theme_bw()+
   theme_kp()
+```
+
+
+## NOSC table
+```{r NOSC, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for SR",fig.width=11, fig.height=6,fig.path = "images/"}
+pore_nosc %>% 
+  group_by(tension,site,treatment) %>% 
+  dplyr::summarise(median = median(NOSC))->
+  pore_nosc_median
+
+pore_nosc_median %>% 
+  dplyr::mutate(sp = paste(treatment),
+                val = round(median,4)) %>% 
+  dplyr::select(tension,site,sp,val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+
 ```
 
 ---
@@ -506,13 +523,6 @@ gg_vankrev(soil_unique,
 ```{r soiL_rel_abund, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Relative abundance",fig.width=9, fig.height=7,fig.path = "images/"}
 # use file fticr_pore_relabundance_summary
 # first, remove the `total` row
-soil_relabund = soil_relabund[!soil_relabund$group=="total",]
-
-# set Other as last factor
-old.lvl = levels(factor(soil_relabund$group))
-soil_relabund$group = factor(soil_relabund$group, 
-                                            levels=c(sort(old.lvl[old.lvl!="Unnamed"]), "Unnamed"))
-
 
 soil_relabund %>% 
   dplyr::filter(!Class=="total") %>% 
@@ -557,7 +567,7 @@ ggplot(soil_nosc,
   #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
 
   xlim(-2.5, 2.5)+
-  ylim(0,3000)+
+  ylim(0,1000)+
 
   facet_grid(site~treatment)+ #facet with two variables
   
@@ -565,6 +575,21 @@ ggplot(soil_nosc,
   theme_kp()
 ```
 
+## NOSC table
+```{r soilNOSC, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for SR",fig.width=11, fig.height=6,fig.path = "images/"}
+soil_nosc %>% 
+  group_by(site,treatment) %>% 
+  dplyr::summarise(median = median(NOSC))->
+  soil_nosc_median
+
+soil_nosc_median %>% 
+  dplyr::mutate(sp = paste(treatment),
+                val = round(median,4)) %>% 
+  dplyr::select(site,sp,val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+
+```
 ---
 
 ## aromatic peaks

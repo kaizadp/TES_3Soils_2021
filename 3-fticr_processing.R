@@ -207,3 +207,20 @@ write.csv(fticr_pore_raw_long, FTICR_PORE_RAW_LONG,row.names = FALSE)
 
 #
 # ------------------------------------------------------- ----
+
+# PART III: PROCESSING FOR OTHER ANALYSES ----
+## a. NOSC  ----
+### soil
+soil_meta_nosc <- fticr_soil_meta %>% 
+  dplyr::select(Mass,NOSC)
+soil_nosc <- merge(fticr_soil_long,soil_meta_nosc, by="Mass")
+
+### pore
+
+pore_meta_nosc <- fticr_pore_meta %>% 
+  dplyr::select(Mass,NOSC)
+pore_nosc <- merge(fticr_pore_long,pore_meta_nosc, by="Mass")
+
+### OUTPUT
+write.csv(soil_nosc,FTICR_SOIL_NOSC,row.names = FALSE)
+write.csv(pore_nosc,FTICR_PORE_NOSC,row.names = FALSE)
