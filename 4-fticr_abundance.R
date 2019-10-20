@@ -102,6 +102,21 @@ soil_raw_long %>%
   relabund_temp
 
 relabund_temp%>% 
+  # now summarize by treatment. combine cores
+  ungroup %>% 
+  dplyr::group_by(site, treatment, Class) %>% 
+  dplyr::summarize(relabund2 = mean(relabund),
+                   se = sd(relabund)/sqrt(n())) %>% 
+  # create a column of relabund +/- se  
+  dplyr::mutate(relabund = paste(round(relabund2,2),"\u00B1",round(se,2))) %>% 
+  # we need to add a total column
+  dplyr::mutate(total = 100) %>% 
+  dplyr::select(-se) -> 
+  soil_relabund
+
+
+
+relabund_temp%>% 
 # now summarize by treatment. combine cores
   ungroup %>% 
   dplyr::group_by(site, treatment, Class) %>% 
