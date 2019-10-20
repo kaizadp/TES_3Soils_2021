@@ -241,14 +241,14 @@ ggplot(pore_relabund, aes(x = treatment, y = relabund2, fill = Class))+
 
 ## treatment effect -- NOSC
 
-```{r NOSC_c, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for CPCRW",fig.width=11, fig.height=6,fig.path = "images/"}
+```{r NOSC_c, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for CPCRW",fig.width=11, fig.height=18,fig.path = "images/"}
 pore_nosc %>% 
   mutate(treatment = factor(treatment,
                             levels = c("baseline","time zero saturation", "field moist","drought","saturation")))->
   pore_nosc
 
 #CPCRW
-ggplot(pore_nosc[pore_nosc$site=="CPCRW" &!pore_nosc$treatment=="baseline",], 
+ggplot(pore_nosc[!pore_nosc$treatment=="baseline",], 
        aes(x = NOSC, fill = treatment, color = treatment))+
   geom_histogram(binwidth = 0.10, position = "identity", alpha = 0.2)+
   #scale_fill_brewer(palette = "Dark2")+
@@ -259,52 +259,8 @@ ggplot(pore_nosc[pore_nosc$site=="CPCRW" &!pore_nosc$treatment=="baseline",],
 
   xlim(-2.5, 2.5)+
   ylim(0,300)+
-  ggtitle("CPCRW")+
-  
-  facet_grid(tension~treatment)+ #facet with two variables
-  
-  theme_bw()+
-  theme_kp()
-```
 
-```{r NOSC_d, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for DWP",fig.width=11, fig.height=6,fig.path = "images/"}
-#DWP
-ggplot(pore_nosc[pore_nosc$site=="DWP" &!pore_nosc$treatment=="baseline",], 
-       aes(x = NOSC, fill = treatment, color = treatment))+
-  geom_histogram(binwidth = 0.10, position = "identity", alpha = 0.2)+
-  #scale_fill_brewer(palette = "Dark2")+
-  scale_color_brewer(palette = "Dark2")+
-  scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
-  scale_color_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
-  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
-
-  xlim(-2.5, 2.5)+
-  ylim(0,300)+
-  ggtitle("DWP")+
-  
-  facet_grid(tension~treatment)+ #facet with two variables
-  
-  theme_bw()+
-  theme_kp()
-```
-
-```{r NOSC_s, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for SR",fig.width=11, fig.height=6,fig.path = "images/"}
-
-#SR
-ggplot(pore_nosc[pore_nosc$site=="SR" &!pore_nosc$treatment=="baseline",], 
-       aes(x = NOSC, fill = treatment, color = treatment))+
-  geom_histogram(binwidth = 0.10, position = "identity", alpha = 0.2)+
-  #scale_fill_brewer(palette = "Dark2")+
-  scale_color_brewer(palette = "Dark2")+
-  scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
-  scale_color_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
-  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
-
-  xlim(-2.5, 2.5)+
-  ylim(0,300)+
-  ggtitle("SR")+
-  
-  facet_grid(tension~treatment)+ #facet with two variables
+  facet_grid(site+tension~treatment)+ #facet with two variables
   
   theme_bw()+
   theme_kp()
@@ -365,13 +321,19 @@ ggplot(pore_aromatic[pore_aromatic$aromatic=="aromatic",],
 # FTICR Pores -- tables
 ## peaks
 ```{r peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+pore_peaks %>% 
+  dplyr::mutate(Class = factor(Class, levels =
+                          c("AminoSugar","Carb","Lipid","Protein","UnsatHC",
+                            "ConHC","Lignin","Tannin","Other","total")))->
+  pore_peaks
+
 print("50 kPa")
 pore_peaks %>% 
   ungroup %>% 
     filter(tension=="50 kPa") %>% 
-  dplyr::mutate(sp = paste(site, treatment),
+  dplyr::mutate(sp = paste(treatment),
                 val = paste(peaks_count)) %>% 
-  dplyr::select(Class,sp, val) %>% 
+  dplyr::select(site,Class,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
@@ -381,9 +343,9 @@ print("1.5 kPa")
 pore_peaks %>% 
   ungroup %>% 
   filter(tension=="1.5 kPa") %>% 
-  dplyr::mutate(sp = paste(site, treatment),
+  dplyr::mutate(sp = paste(treatment),
                 val = paste(peaks_count)) %>% 
-  dplyr::select(Class,sp, val) %>% 
+  dplyr::select(site,Class,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
@@ -392,10 +354,6 @@ pore_peaks %>%
 
 ## unique peaks
 ```{r uniquepeaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
-old.lvl = levels(factor(pore_unique_peaks$Class))
-pore_unique_peaks$Class = factor(pore_unique_peaks$Class, 
-                                            levels=c(sort(old.lvl[old.lvl!="total"]), "total"))
-
 pore_unique %>% 
   dplyr::select(Mass,tension,site,Class,unique) %>% 
   dplyr::mutate(Class = factor(Class, levels = 
