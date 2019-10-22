@@ -366,4 +366,26 @@ write.csv(fticr_pore_relabundance, FTICR_PORE_RELABUND)
 
 # ------------------------------------------------------- ----
 
+# PART V: SHANNON DIVERSITY ----
+# Shannon diversity, H = - sum [p*ln(p)], where n = no. of individuals per species/total number of individuals
+pore_raw_long %>% 
+  group_by(tension,site,treatment, core,Class) %>% 
+  dplyr::summarize(n = n()) %>%
+  ungroup %>% 
+  group_by(tension,site,treatment,core) %>% 
+  dplyr::mutate(total = sum(n),
+                p = n/total,
+                log = log(p),
+                p_logp = p*log) %>% 
+  dplyr::summarize(H1 = sum(p_logp),
+                H2 = -1*H1) ->shannon 
+
+
+
+
+
+
+
+
+
 
