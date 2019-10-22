@@ -318,6 +318,16 @@ ggplot(pore_aromatic[pore_aromatic$aromatic=="aromatic",],
 
 ```
 
+## shannon diversity index --
+
+```{r}
+ggplot(shannon, aes(x = treatment, y = H2, color = treatment))+
+  geom_boxplot()+
+  geom_point()+
+  facet_wrap(~site)
+
+```
+
 # FTICR Pores -- tables
 ## peaks
 ```{r peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
