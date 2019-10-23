@@ -31,7 +31,7 @@ fticr_soil_meta %>%
 
 # make a subset for just HCOC and class
 fticr_soil_meta %>% 
-  dplyr::select(Mass, Class, HC, OC) %>% 
+  dplyr::select(Mass, MolForm, Class, HC, OC) %>% 
   dplyr::mutate(HC = round(HC, 4),
                 OC = round(OC,4))->
   fticr_meta_hcoc
@@ -54,14 +54,14 @@ fticr_soil_data %>%
   filter(!intensity=="0") %>% 
   # merge with the core key file
   left_join(corekey,by = "core") %>% 
+  # merge with hcoc file
+  left_join(fticr_meta_hcoc, by = "Mass") %>% 
   ## now we need to filter only those peaks seen in 3 or more replicates
   # add a column with no. of replicates
-  group_by(Mass,treatment,site) %>% 
+  group_by(MolForm,treatment,site) %>% 
   dplyr::mutate(reps = n()) %>% 
   # remove peaks seen in < 3 replicates 
   filter(reps>2) %>% 
-  # merge with hcoc file
-  left_join(fticr_meta_hcoc, by = "Mass") %>% 
   # remove "unassigned" molecules
   filter(!Class=="Unassigned")  ->
   fticr_soil_raw_long
@@ -70,12 +70,13 @@ fticr_soil_data %>%
 ## now create a summary of this
 fticr_soil_raw_long %>% 
   ungroup %>% 
-  group_by(Mass,site,treatment) %>% 
+  group_by(MolForm,site,treatment) %>% 
   dplyr::summarize(intensity = mean(intensity)) %>% 
   # merge with hcoc file
-  left_join(fticr_meta_hcoc, by = "Mass") ->
+  left_join(fticr_meta_hcoc, by = "MolForm") ->
   fticr_soil_long
 
+#
 ### FTICR-SOIL OUTPUT ----
     # write.csv(fticr_soil_gather2,"fticr_soil_longform.csv")
 
