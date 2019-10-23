@@ -25,8 +25,8 @@ valve2 %>%
   filter(!Treatment=="ambient") %>% 
   mutate(Start_Date_Time2 = as.POSIXct(strptime(valve2$Start_Date_Time,format = "%m/%d/%Y %H:%M", tz = "America/Los_Angeles")),
          Additional_Wt_toRemove = as.numeric(Additional_Wt_toRemove))%>% 
-  group_by(Site, SampleID, Treatment) %>% 
-  dplyr::filter(Start_Date_Time2 == max(Start_Date_Time2)) %>% 
+  #group_by(Site, SampleID, Treatment) %>% 
+  #dplyr::filter(Start_Date_Time2 == max(Start_Date_Time2)) %>% 
   
   #dplyr::select(1:6) %>% 
   left_join(key2, by = c("SampleID","Site","Treatment")) %>%
