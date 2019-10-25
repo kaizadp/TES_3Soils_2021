@@ -375,7 +375,7 @@ write.csv(porewatersubsetlong,"processed/porewater_subset.csv")
 porewatersubset2 = read.csv("processed/porewater_subset.csv")
 
 porewatersubset2 %>% 
-  select(-X) %>% 
+  dplyr::select(-X) %>% 
   filter(!empty==0&!full==0) %>% 
 # create a new column to note missing weights  
   mutate(notes2 = case_when(empty == "no weight recorded"~"empty:no weight recorded",
@@ -384,7 +384,8 @@ porewatersubset2 %>%
   dplyr::mutate(empty = as.numeric(as.character(empty)),
                 full = as.numeric(as.character(full))) %>% 
 # for missing empty weight, take average of all the others
-  mutate(empty_corr = if_else(is.na(empty),mean(empty, na.rm=TRUE),empty)) %>% 
+  mutate(empty_corr = if_else(full>80,(2*mean(empty,na.rm = TRUE)),
+                              if_else(is.na(empty),mean(empty, na.rm=TRUE),empty))) %>% 
   dplyr::mutate(empty_corr = round(empty_corr,2),
                 porewater_g = full-empty_corr) %>% 
 # now create a column for total volume  
