@@ -56,6 +56,36 @@ fticr_soil_data %>%
   left_join(corekey,by = "core") %>% 
   # merge with hcoc file
   left_join(fticr_meta_hcoc, by = "Mass") %>% 
+  # since we are using MolForm instead of Mass, we need to average out Mass values in case peaks are repeated 
+  group_by(MolForm,Class, core, treatment, site) %>% 
+  dplyr::summarize(intensity = mean(intensity))->temp
+
+temp%>% 
+  ## now we need to filter only those peaks seen in 3 or more replicates
+  # add a column with no. of replicates
+  group_by(MolForm,treatment,site) %>% 
+  dplyr::mutate(reps = n())->temp 
+
+temp %>% 
+  # remove peaks seen in < 3 replicates 
+  filter(reps>2) %>% 
+  # remove "unassigned" molecules
+  filter(!Class=="Unassigned")  ->
+  fticr_soil_raw_long
+# used to be called:  `fticr_soil_gather2`
+
+fticr_soil_data %>% 
+  # melt/gather. transform from wide to long form
+  gather(core, intensity, C1:S25) %>% ## core = name of new categ column, intensity = name of values column, C1:C25 are columns that are collapsed
+  # remove all samples with zero intensity
+  filter(!intensity=="0") %>% 
+  # merge with the core key file
+  left_join(corekey,by = "core") %>% 
+  # merge with hcoc file
+  left_join(fticr_meta_hcoc, by = "Mass") %>% 
+  # since we are using MolForm instead of Mass, we need to average out Mass values in case peaks are repeated 
+#  group_by(MolForm,Class, core, treatment, site) %>% 
+#  dplyr::summarize(intensity = mean(intensity)) %>% 
   ## now we need to filter only those peaks seen in 3 or more replicates
   # add a column with no. of replicates
   group_by(MolForm,treatment,site) %>% 
@@ -64,8 +94,16 @@ fticr_soil_data %>%
   filter(reps>2) %>% 
   # remove "unassigned" molecules
   filter(!Class=="Unassigned")  ->
-  fticr_soil_raw_long
-# used to be called:  `fticr_soil_gather2`
+  fticr_soil_raw_long2
+
+fticr_soil_raw_long2 %>% 
+  group_by(MolForm, core, site, treatment) %>% 
+  dplyr::mutate(molform_n = n())->temp2
+
+
+fticr_soil_raw_long %>% 
+  group_by(MolForm,core,site,treatment) %>% 
+  dplyr::summarize(n = n())->temp
 
 ## now create a summary of this
 fticr_soil_raw_long %>% 
@@ -153,17 +191,50 @@ fticr_porewater %>%
                 OC = round(O/C,2))->
   fticr_pore_meta
 
+#### calculate molecular formula
+fticr_pore_meta %>% 
+  dplyr::select(1:8) %>% 
+  dplyr::mutate(mol_C = case_when(C==1 ~ paste("C"),
+                                  C>1 ~ paste0("C",C),
+                                  C==0 ~ NA_character_),
+                mol_H = case_when(H==1 ~ paste("H"),
+                                  H>1 ~ paste0("H",H),
+                                  H==0 ~ NA_character_),
+                mol_O = case_when(O==1 ~ paste("O"),
+                                  O>1 ~ paste0("O",O),
+                                  O==0 ~ NA_character_),
+                mol_N = case_when(N==1 ~ paste("N"),
+                                  N>1 ~ paste0("N",N),
+                                  N==0 ~ NA_character_),
+                mol_S = case_when(S==1 ~ paste("S"),
+                                  S>1 ~ paste0("S",S),
+                                  S==0 ~ NA_character_),
+                mol_P = case_when(P==1 ~ paste("P"),
+                                  P>1 ~ paste0("P",P),
+                                  P==0 ~ NA_character_),
+                mol_Na = case_when(Na==1 ~ paste("Na"),
+                                  Na>1 ~ paste0("Na",Na),
+                                  Na==0 ~ NA_character_),
+                MolForm = paste0(mol_C,mol_H,mol_N,mol_O,mol_S,mol_Na),
+                MolForm = str_replace_all(MolForm,"NA","")) %>% 
+  dplyr::select(Mass,MolForm)->molform_temp
+
+molform_temp%>% 
+  left_join(fticr_pore_meta, by = "Mass")->fticr_pore_meta
+
+
 # create subset for HCOC and class
 fticr_pore_meta %>% 
-  dplyr::select(Mass, HC, OC, Class)->
+  dplyr::select(Mass, MolForm,HC, OC, Class)->
   fticr_pore_meta_hcoc
 
 #
 ### create data file ----
-fticr_porewater %>% 
-  dplyr::select(Mass, starts_with("5"), starts_with("1")) %>% 
+fticr_porewater %>%
+  left_join(molform_temp, by = "Mass") %>% 
+  dplyr::select(MolForm, starts_with("5"), starts_with("1")) %>% 
 # collapse all core columns into a single column
-  melt(id="Mass") %>% 
+  melt(id="MolForm") %>% 
   dplyr::rename(sample = variable,
                 intensity = value) %>% 
 # remove all peaks with intensity ==0  
@@ -183,20 +254,20 @@ fticr_porewater %>%
 
 # remove peaks seen in < 3 replicates
 temp_pore %>% 
-  group_by(Mass,tension,site,treatment) %>% 
+  group_by(MolForm,tension,site,treatment) %>% 
   dplyr::mutate(reps = n()) %>% 
   filter(reps >2) %>% 
   # merge with hcoc file
-  left_join(fticr_pore_meta_hcoc, by = "Mass") %>% 
+  left_join(fticr_pore_meta_hcoc, by = "MolForm") %>% 
   drop_na->
   fticr_pore_raw_long
 
 # now create a summary by treatment
 fticr_pore_raw_long %>% 
-  group_by(Mass,tension,site,treatment) %>% 
+  group_by(MolForm,tension,site,treatment) %>% 
   dplyr::summarise(intensity = mean(intensity)) %>% 
   # merge with hcoc file
-  left_join(fticr_pore_meta_hcoc, by = "Mass") %>% 
+  left_join(fticr_pore_meta_hcoc, by = "MolForm") %>% 
   drop_na->
   fticr_pore_long
 
@@ -213,15 +284,16 @@ write.csv(fticr_pore_raw_long, FTICR_PORE_RAW_LONG,row.names = FALSE)
 ## a. NOSC  ----
 ### soil
 soil_meta_nosc <- fticr_soil_meta %>% 
-  dplyr::select(Mass,NOSC)
-soil_nosc <- merge(fticr_soil_long,soil_meta_nosc, by="Mass")
+  dplyr::select(MolForm,NOSC)
+soil_nosc <- merge(fticr_soil_long,soil_meta_nosc, by="MolForm")
 
 ### pore
 
 pore_meta_nosc <- fticr_pore_meta %>% 
-  dplyr::select(Mass,NOSC)
-pore_nosc <- merge(fticr_pore_long,pore_meta_nosc, by="Mass")
+  dplyr::select(MolForm,NOSC)
+pore_nosc <- merge(fticr_pore_long,pore_meta_nosc, by="MolForm")
 
 ### OUTPUT
 write.csv(soil_nosc,FTICR_SOIL_NOSC,row.names = FALSE)
 write.csv(pore_nosc,FTICR_PORE_NOSC,row.names = FALSE)
+
