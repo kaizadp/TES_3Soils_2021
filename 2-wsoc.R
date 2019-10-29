@@ -111,7 +111,7 @@ write.csv(wsoc_soils_summary, WSOC_SOIL)
 # ------------------------------------------------------ ----
 
 ## WSOC concentrations -- pores ####
-# step 1: concentrations as mg/L 
+# step 1: concentrations as mg/L ----
 wsoc_pores = read_excel("data/3Soils_WSOC_CN_PoreCore.xlsx") %>% 
   dplyr::rename(wsoc_mg_L = `Water Soluble Organic Carbon (mg/L)`) %>% 
   dplyr::select(-FTICR_ID, -`FT-ICRvol_ml`, -`Pore Size Domain`, -`NPOC (M/L)`,-SampleID) %>% 
@@ -201,7 +201,7 @@ porewatersubset3 %>%
                 Suction = tension)->
   porewater_weight
 
-# step 3: get dry soil weight
+# step 3: get dry soil weight ----
 # https://docs.google.com/spreadsheets/d/1U5pw1kaEX5qWdW57FzQFXCFb0XrKqNLyztHhbtpgk-U
 core_weight = gs_read(key, ws = "3Soils_ImportantWeights", overwrite = TRUE) %>% 
   dplyr::select(SampleID, DryWeightSoilONLY) %>% 

@@ -87,6 +87,9 @@ gg_vankrev <- function(data,mapping){
 CHARACTERIZATION <- "processed/soil_characterization.csv"
 PORE_DISTRIBUTION <- "processed/pore_distribution.csv"
   
+
+CORE_WEIGHTS <- "processed/core_weights.csv"
+  
 # WSOC
 WSOC_PORE <- "processed/wsoc_pore_summary.csv"
 WSOC_SOIL <- "processed/wsoc_soils_summary.csv"

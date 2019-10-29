@@ -48,7 +48,10 @@ pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
 pore_unique_peaks = read.csv(FTICR_PORE_UNIQUE_PEAKS)# <- "fticr/fticr_pore_unique_peakscount.csv"
 pore_hcoc = read.csv(FTICR_PORE_HCOC)# <- "fticr/fticr_pore_hcoc.csv"
 pore_nosc = read.csv(FTICR_PORE_NOSC)# <- "fticr/fticr_pore_nosc.csv"
+pore_shannon = read.csv(FTICR_PORE_DIVERSITY)# <- "fticr/fticr_pore_shannondiversity.csv"
 
+  
+  
 #FTICR_SOIL
 soil_aromatic = read.csv(FTICR_SOIL_AROMATIC)# <- "fticr/fticr_soil_aromatic_counts.csv"
 soil_nosc = read.csv(FTICR_SOIL_NOSC)# <- "fticr/fticr_soil_nosc.csv"
@@ -178,8 +181,6 @@ gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y
 
 ```
 
----
-
 ## treatment effect -- unique peaks
 unique in each treatment compared to all, including TZsaturation
 these are peaks that were uniquely **added** during a given treatment
@@ -199,8 +200,6 @@ facet_grid(tension~site)+
   theme_kp()
 
 ```
-
----
 
 ## treatment effect -- relative abundance
 
@@ -283,8 +282,6 @@ pore_nosc_median %>%
 
 ```
 
----
-
 ## aromatic peaks
 ```{r aromatic, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="aromatic peaks", fig.width=12, fig.height=7,fig.path = "images/"}
 pore_aromatic %>% 
@@ -320,11 +317,31 @@ ggplot(pore_aromatic[pore_aromatic$aromatic=="aromatic",],
 
 ## shannon diversity index --
 
-```{r}
-ggplot(shannon, aes(x = treatment, y = H2, color = treatment))+
-  geom_boxplot()+
-  geom_point()+
-  facet_wrap(~site)
+```{r shannon, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="aromatic peaks", fig.width=12, fig.height=7,fig.path = "images/"}
+pore_shannon %>% 
+  dplyr::mutate(treatment = factor(treatment,
+                            levels = c("baseline","time zero saturation", "field moist","saturation","drought"))) ->
+  pore_shannon
+
+
+ggplot(pore_shannon, aes(x = site, y = H, color = treatment, fill = treatment))+
+  geom_boxplot(position = "dodge", fill = "white", lwd = 1,fatten = 1)+
+  geom_dotplot(binaxis = "y", position = position_dodge(0.75), 
+               stackdir = "center", dotsize = 0.4, color = "black")+
+  
+  scale_fill_brewer(palette = "Dark2")+
+  scale_color_brewer(palette = "Dark2")+
+
+  ylab("Shannon Diversity Index")+
+  xlab("")+
+  #ylim(0,1)+
+  geom_vline(xintercept = 1.5)+
+  geom_vline(xintercept = 2.5)+
+  
+  facet_wrap(~tension)+
+  
+  theme_bw()+
+  theme_kp()
 
 ```
 
@@ -359,8 +376,6 @@ pore_peaks %>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
-
----
 
 ## unique peaks
 ```{r uniquepeaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
@@ -412,8 +427,6 @@ pore_relabund%>%
 ```
 
 total = 100%
-
----
 
 ```{r relabund_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 1.5 kPa"}
 print("1.5 kPa")

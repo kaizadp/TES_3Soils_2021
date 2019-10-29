@@ -384,6 +384,9 @@ pore_raw_long %>%
 ### OUTPUT
 write.csv(pore_shannon, FTICR_PORE_DIVERSITY)
 
+#
+# ------------------------------------------------------- ----
+
 
 
 

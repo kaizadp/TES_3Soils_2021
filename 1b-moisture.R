@@ -21,7 +21,12 @@ core_weights = read_excel("moisture/3Soils_MoistureContentRevised_20190314.xlsx"
          empty_corr = if_else(is.na(empty_g),50,empty_g),
          moist_g = total_g - empty_corr - litter_g,
          dry_g = round(moist_g/(1+gmoisture),2),
-         bd = round(dry_g/VolumeSoil_cm3,2))->core_weights
+         bd = round(dry_g/VolumeSoil_cm3,2)) %>% 
+  dplyr::select(Site, Core, SampleID, Treatment, dry_g, bd)->core_weights
+
+#### OUTPUT
+write.csv(core_weights,CORE_WEIGHTS, row.names = FALSE)
+
 
 # use the dry weights from this file for all calculations.
 core_weights %>% 
