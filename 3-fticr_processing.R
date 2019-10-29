@@ -22,7 +22,7 @@ corekey = read.csv("data/COREKEY.csv")
 
 fticr_soil_meta %>% 
   # remove unnecessary columns
-  dplyr::select(-C13,-Error_ppm,-Candidates,-GFE,-bs1_class,-bs2_class) %>% 
+  dplyr::select(-C13,-Error_ppm,-Candidates,-GFE,-bs1_class,-bs2_class, -AI, -AI_Mod) %>% 
   # rename columns
   dplyr::rename(OC = OtoC_ratio,
                 HC = HtoC_ratio) %>% 
@@ -37,6 +37,21 @@ fticr_soil_meta %>%
   fticr_meta_hcoc
 
 # make a subset for relevant columns
+
+# create a column for Aromatic Index (the corrected formula by Dittmar and Koch 2015, https://doi.org/10.1002/rcm.7433)
+fticr_soil_meta %>% 
+  dplyr::select(Mass,Class, C:Na, AI_Mod) %>% 
+  dplyr::mutate(AI_mod = (1+C-(0.5*O)-S-(0.5*(N+P+H)))/(C-(0.5*O)-N-S-P),
+                AI_mod2 = if_else(AI_mod=="-Inf",0,AI_mod)) ->
+  fticr_meta_arom
+
+## trying out the corrected AI_mod
+fticr_meta_arom %>% 
+  left_join(soil_long, by = "Mass")->arom
+
+ggplot(arom, aes(x = treatment, y = AI_mod))+
+  geom_point()+
+  facet_wrap(~site)
 
 
 ### OUTPUT
