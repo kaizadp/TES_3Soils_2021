@@ -1,217 +1,217 @@
 tension,site,treatment,core,aromatic,counts
-1.5 kPa,CPCRW,drought,C21,aliphatic,412
-1.5 kPa,CPCRW,drought,C21,aromatic,57
-1.5 kPa,CPCRW,drought,C22,aliphatic,633
-1.5 kPa,CPCRW,drought,C22,aromatic,81
-1.5 kPa,CPCRW,drought,C23,aliphatic,733
-1.5 kPa,CPCRW,drought,C23,aromatic,74
-1.5 kPa,CPCRW,drought,C24,aliphatic,710
-1.5 kPa,CPCRW,drought,C24,aromatic,60
-1.5 kPa,CPCRW,drought,C25,aliphatic,686
-1.5 kPa,CPCRW,drought,C25,aromatic,38
-1.5 kPa,CPCRW,field moist,C16,aliphatic,417
-1.5 kPa,CPCRW,field moist,C16,aromatic,219
-1.5 kPa,CPCRW,field moist,C17,aliphatic,442
-1.5 kPa,CPCRW,field moist,C17,aromatic,221
-1.5 kPa,CPCRW,field moist,C18,aliphatic,425
-1.5 kPa,CPCRW,field moist,C18,aromatic,223
-1.5 kPa,CPCRW,field moist,C19,aliphatic,244
-1.5 kPa,CPCRW,field moist,C19,aromatic,99
-1.5 kPa,CPCRW,field moist,C20,aliphatic,243
-1.5 kPa,CPCRW,field moist,C20,aromatic,103
-1.5 kPa,CPCRW,saturation,C11,aliphatic,361
-1.5 kPa,CPCRW,saturation,C11,aromatic,120
-1.5 kPa,CPCRW,saturation,C12,aliphatic,645
-1.5 kPa,CPCRW,saturation,C12,aromatic,154
-1.5 kPa,CPCRW,saturation,C13,aliphatic,631
-1.5 kPa,CPCRW,saturation,C13,aromatic,162
-1.5 kPa,CPCRW,saturation,C14,aliphatic,619
-1.5 kPa,CPCRW,saturation,C14,aromatic,151
-1.5 kPa,CPCRW,saturation,C15,aliphatic,660
-1.5 kPa,CPCRW,saturation,C15,aromatic,52
-1.5 kPa,CPCRW,time zero saturation,C10,aliphatic,336
-1.5 kPa,CPCRW,time zero saturation,C10,aromatic,34
-1.5 kPa,CPCRW,time zero saturation,C6,aliphatic,558
-1.5 kPa,CPCRW,time zero saturation,C6,aromatic,232
-1.5 kPa,CPCRW,time zero saturation,C7,aliphatic,533
-1.5 kPa,CPCRW,time zero saturation,C7,aromatic,81
-1.5 kPa,CPCRW,time zero saturation,C8,aliphatic,546
-1.5 kPa,CPCRW,time zero saturation,C8,aromatic,230
-1.5 kPa,CPCRW,time zero saturation,C9,aliphatic,304
-1.5 kPa,CPCRW,time zero saturation,C9,aromatic,208
-1.5 kPa,DWP,drought,D21,aliphatic,400
-1.5 kPa,DWP,drought,D21,aromatic,13
-1.5 kPa,DWP,drought,D22,aliphatic,413
-1.5 kPa,DWP,drought,D22,aromatic,18
-1.5 kPa,DWP,drought,D23,aliphatic,394
-1.5 kPa,DWP,drought,D23,aromatic,56
-1.5 kPa,DWP,drought,D24,aliphatic,498
-1.5 kPa,DWP,drought,D24,aromatic,57
-1.5 kPa,DWP,drought,D25,aliphatic,476
-1.5 kPa,DWP,drought,D25,aromatic,56
-1.5 kPa,DWP,field moist,D17,aliphatic,239
-1.5 kPa,DWP,field moist,D17,aromatic,198
-1.5 kPa,DWP,field moist,D18,aliphatic,364
-1.5 kPa,DWP,field moist,D18,aromatic,198
-1.5 kPa,DWP,field moist,D19,aliphatic,348
-1.5 kPa,DWP,field moist,D19,aromatic,79
-1.5 kPa,DWP,field moist,D20,aliphatic,359
-1.5 kPa,DWP,field moist,D20,aromatic,195
-1.5 kPa,DWP,saturation,D11,aliphatic,124
-1.5 kPa,DWP,saturation,D11,aromatic,190
-1.5 kPa,DWP,saturation,D12,aliphatic,144
-1.5 kPa,DWP,saturation,D12,aromatic,125
-1.5 kPa,DWP,saturation,D13,aliphatic,175
-1.5 kPa,DWP,saturation,D13,aromatic,85
-1.5 kPa,DWP,saturation,D14,aliphatic,119
-1.5 kPa,DWP,saturation,D14,aromatic,192
-1.5 kPa,DWP,saturation,D15,aliphatic,178
-1.5 kPa,DWP,saturation,D15,aromatic,192
-1.5 kPa,DWP,time zero saturation,D10,aliphatic,1174
-1.5 kPa,DWP,time zero saturation,D10,aromatic,97
-1.5 kPa,DWP,time zero saturation,D6,aliphatic,1092
-1.5 kPa,DWP,time zero saturation,D6,aromatic,96
-1.5 kPa,DWP,time zero saturation,D7,aliphatic,1088
-1.5 kPa,DWP,time zero saturation,D7,aromatic,91
-1.5 kPa,DWP,time zero saturation,D8,aliphatic,498
-1.5 kPa,DWP,time zero saturation,D8,aromatic,26
-1.5 kPa,DWP,time zero saturation,D9,aliphatic,333
-1.5 kPa,DWP,time zero saturation,D9,aromatic,13
-1.5 kPa,SR,drought,S10,aliphatic,453
-1.5 kPa,SR,drought,S10,aromatic,53
-1.5 kPa,SR,drought,S14,aliphatic,456
-1.5 kPa,SR,drought,S14,aromatic,52
-1.5 kPa,SR,drought,S25,aliphatic,64
-1.5 kPa,SR,drought,S25,aromatic,4
-1.5 kPa,SR,drought,S4,aliphatic,199
-1.5 kPa,SR,drought,S4,aromatic,51
-1.5 kPa,SR,drought,S5,aliphatic,437
-1.5 kPa,SR,drought,S5,aromatic,6
-1.5 kPa,SR,field moist,S1,aliphatic,535
-1.5 kPa,SR,field moist,S1,aromatic,14
-1.5 kPa,SR,field moist,S13,aliphatic,211
-1.5 kPa,SR,field moist,S13,aromatic,8
-1.5 kPa,SR,field moist,S15,aliphatic,588
-1.5 kPa,SR,field moist,S15,aromatic,13
-1.5 kPa,SR,field moist,S19,aliphatic,468
-1.5 kPa,SR,field moist,S19,aromatic,6
-1.5 kPa,SR,field moist,S21,aliphatic,551
-1.5 kPa,SR,field moist,S21,aromatic,12
-1.5 kPa,SR,saturation,S18,aliphatic,152
-1.5 kPa,SR,saturation,S18,aromatic,48
-1.5 kPa,SR,saturation,S2,aliphatic,175
-1.5 kPa,SR,saturation,S2,aromatic,49
-1.5 kPa,SR,saturation,S3,aliphatic,173
-1.5 kPa,SR,saturation,S3,aromatic,13
-1.5 kPa,SR,saturation,S7,aliphatic,176
-1.5 kPa,SR,saturation,S7,aromatic,47
-1.5 kPa,SR,time zero saturation,S16,aliphatic,482
-1.5 kPa,SR,time zero saturation,S16,aromatic,46
-1.5 kPa,SR,time zero saturation,S17,aliphatic,444
-1.5 kPa,SR,time zero saturation,S17,aromatic,37
-1.5 kPa,SR,time zero saturation,S23,aliphatic,479
-1.5 kPa,SR,time zero saturation,S23,aromatic,30
-1.5 kPa,SR,time zero saturation,S9,aliphatic,403
-1.5 kPa,SR,time zero saturation,S9,aromatic,43
-50 kPa,CPCRW,drought,C21,aliphatic,882
-50 kPa,CPCRW,drought,C21,aromatic,165
-50 kPa,CPCRW,drought,C22,aliphatic,1239
-50 kPa,CPCRW,drought,C22,aromatic,191
-50 kPa,CPCRW,drought,C23,aliphatic,1260
-50 kPa,CPCRW,drought,C23,aromatic,166
-50 kPa,CPCRW,drought,C24,aliphatic,752
-50 kPa,CPCRW,drought,C24,aromatic,168
-50 kPa,CPCRW,drought,C25,aliphatic,1235
-50 kPa,CPCRW,drought,C25,aromatic,144
-50 kPa,CPCRW,field moist,C16,aliphatic,139
-50 kPa,CPCRW,field moist,C16,aromatic,207
-50 kPa,CPCRW,field moist,C17,aliphatic,139
-50 kPa,CPCRW,field moist,C17,aromatic,207
-50 kPa,CPCRW,field moist,C20,aliphatic,139
-50 kPa,CPCRW,field moist,C20,aromatic,207
-50 kPa,CPCRW,saturation,C11,aliphatic,623
-50 kPa,CPCRW,saturation,C11,aromatic,224
-50 kPa,CPCRW,saturation,C12,aliphatic,626
-50 kPa,CPCRW,saturation,C12,aromatic,192
-50 kPa,CPCRW,saturation,C13,aliphatic,560
-50 kPa,CPCRW,saturation,C13,aromatic,220
-50 kPa,CPCRW,saturation,C14,aliphatic,511
-50 kPa,CPCRW,saturation,C14,aromatic,207
-50 kPa,CPCRW,time zero saturation,C10,aliphatic,360
-50 kPa,CPCRW,time zero saturation,C10,aromatic,209
-50 kPa,CPCRW,time zero saturation,C6,aliphatic,333
-50 kPa,CPCRW,time zero saturation,C6,aromatic,322
-50 kPa,CPCRW,time zero saturation,C7,aliphatic,331
-50 kPa,CPCRW,time zero saturation,C7,aromatic,203
-50 kPa,CPCRW,time zero saturation,C8,aliphatic,170
-50 kPa,CPCRW,time zero saturation,C8,aromatic,295
-50 kPa,CPCRW,time zero saturation,C9,aliphatic,280
-50 kPa,CPCRW,time zero saturation,C9,aromatic,294
-50 kPa,DWP,drought,D22,aliphatic,639
-50 kPa,DWP,drought,D22,aromatic,148
-50 kPa,DWP,drought,D23,aliphatic,628
-50 kPa,DWP,drought,D23,aromatic,146
-50 kPa,DWP,drought,D24,aliphatic,683
-50 kPa,DWP,drought,D24,aromatic,92
-50 kPa,DWP,drought,D25,aliphatic,653
-50 kPa,DWP,drought,D25,aromatic,147
-50 kPa,DWP,field moist,D17,aliphatic,248
-50 kPa,DWP,field moist,D17,aromatic,178
-50 kPa,DWP,field moist,D19,aliphatic,248
-50 kPa,DWP,field moist,D19,aromatic,178
-50 kPa,DWP,field moist,D20,aliphatic,248
-50 kPa,DWP,field moist,D20,aromatic,178
-50 kPa,DWP,saturation,D11,aliphatic,278
-50 kPa,DWP,saturation,D11,aromatic,147
-50 kPa,DWP,saturation,D12,aliphatic,343
-50 kPa,DWP,saturation,D12,aromatic,206
-50 kPa,DWP,saturation,D13,aliphatic,367
-50 kPa,DWP,saturation,D13,aromatic,245
-50 kPa,DWP,saturation,D14,aliphatic,158
-50 kPa,DWP,saturation,D14,aromatic,244
-50 kPa,DWP,saturation,D15,aliphatic,381
-50 kPa,DWP,saturation,D15,aromatic,204
-50 kPa,DWP,time zero saturation,D6,aliphatic,1224
-50 kPa,DWP,time zero saturation,D6,aromatic,171
-50 kPa,DWP,time zero saturation,D7,aliphatic,1340
-50 kPa,DWP,time zero saturation,D7,aromatic,209
-50 kPa,DWP,time zero saturation,D8,aliphatic,916
-50 kPa,DWP,time zero saturation,D8,aromatic,192
-50 kPa,DWP,time zero saturation,D9,aliphatic,1316
-50 kPa,DWP,time zero saturation,D9,aromatic,176
-50 kPa,SR,drought,S10,aliphatic,341
-50 kPa,SR,drought,S10,aromatic,11
-50 kPa,SR,drought,S14,aliphatic,337
-50 kPa,SR,drought,S14,aromatic,11
-50 kPa,SR,drought,S25,aliphatic,71
-50 kPa,SR,drought,S25,aromatic,3
-50 kPa,SR,drought,S5,aliphatic,342
-50 kPa,SR,drought,S5,aromatic,11
-50 kPa,SR,field moist,S1,aliphatic,352
-50 kPa,SR,field moist,S1,aromatic,22
-50 kPa,SR,field moist,S13,aliphatic,208
-50 kPa,SR,field moist,S13,aromatic,20
-50 kPa,SR,field moist,S15,aliphatic,353
-50 kPa,SR,field moist,S15,aromatic,16
-50 kPa,SR,field moist,S19,aliphatic,379
-50 kPa,SR,field moist,S19,aromatic,21
-50 kPa,SR,field moist,S21,aliphatic,395
-50 kPa,SR,field moist,S21,aromatic,14
-50 kPa,SR,saturation,S18,aliphatic,771
-50 kPa,SR,saturation,S18,aromatic,18
-50 kPa,SR,saturation,S2,aliphatic,699
-50 kPa,SR,saturation,S2,aromatic,13
-50 kPa,SR,saturation,S24,aliphatic,773
-50 kPa,SR,saturation,S24,aromatic,16
-50 kPa,SR,saturation,S3,aliphatic,807
-50 kPa,SR,saturation,S3,aromatic,17
-50 kPa,SR,time zero saturation,S11,aliphatic,119
-50 kPa,SR,time zero saturation,S11,aromatic,88
-50 kPa,SR,time zero saturation,S16,aliphatic,363
-50 kPa,SR,time zero saturation,S16,aromatic,46
-50 kPa,SR,time zero saturation,S17,aliphatic,232
-50 kPa,SR,time zero saturation,S17,aromatic,88
-50 kPa,SR,time zero saturation,S23,aliphatic,343
-50 kPa,SR,time zero saturation,S23,aromatic,12
-50 kPa,SR,time zero saturation,S9,aliphatic,342
-50 kPa,SR,time zero saturation,S9,aromatic,86
+1.5 kPa,CPCRW,drought,C21,aliphatic,765
+1.5 kPa,CPCRW,drought,C21,aromatic,80
+1.5 kPa,CPCRW,drought,C22,aliphatic,1120
+1.5 kPa,CPCRW,drought,C22,aromatic,112
+1.5 kPa,CPCRW,drought,C23,aliphatic,1993
+1.5 kPa,CPCRW,drought,C23,aromatic,102
+1.5 kPa,CPCRW,drought,C24,aliphatic,1851
+1.5 kPa,CPCRW,drought,C24,aromatic,89
+1.5 kPa,CPCRW,drought,C25,aliphatic,1279
+1.5 kPa,CPCRW,drought,C25,aromatic,43
+1.5 kPa,CPCRW,field moist,C16,aliphatic,832
+1.5 kPa,CPCRW,field moist,C16,aromatic,281
+1.5 kPa,CPCRW,field moist,C17,aliphatic,850
+1.5 kPa,CPCRW,field moist,C17,aromatic,285
+1.5 kPa,CPCRW,field moist,C18,aliphatic,953
+1.5 kPa,CPCRW,field moist,C18,aromatic,288
+1.5 kPa,CPCRW,field moist,C19,aliphatic,462
+1.5 kPa,CPCRW,field moist,C19,aromatic,135
+1.5 kPa,CPCRW,field moist,C20,aliphatic,458
+1.5 kPa,CPCRW,field moist,C20,aromatic,136
+1.5 kPa,CPCRW,saturation,C11,aliphatic,682
+1.5 kPa,CPCRW,saturation,C11,aromatic,155
+1.5 kPa,CPCRW,saturation,C12,aliphatic,1484
+1.5 kPa,CPCRW,saturation,C12,aromatic,207
+1.5 kPa,CPCRW,saturation,C13,aliphatic,1186
+1.5 kPa,CPCRW,saturation,C13,aromatic,216
+1.5 kPa,CPCRW,saturation,C14,aliphatic,1164
+1.5 kPa,CPCRW,saturation,C14,aromatic,205
+1.5 kPa,CPCRW,saturation,C15,aliphatic,1493
+1.5 kPa,CPCRW,saturation,C15,aromatic,72
+1.5 kPa,CPCRW,time zero saturation,C10,aliphatic,622
+1.5 kPa,CPCRW,time zero saturation,C10,aromatic,48
+1.5 kPa,CPCRW,time zero saturation,C6,aliphatic,1111
+1.5 kPa,CPCRW,time zero saturation,C6,aromatic,299
+1.5 kPa,CPCRW,time zero saturation,C7,aliphatic,1085
+1.5 kPa,CPCRW,time zero saturation,C7,aromatic,116
+1.5 kPa,CPCRW,time zero saturation,C8,aliphatic,1078
+1.5 kPa,CPCRW,time zero saturation,C8,aromatic,296
+1.5 kPa,CPCRW,time zero saturation,C9,aliphatic,600
+1.5 kPa,CPCRW,time zero saturation,C9,aromatic,272
+1.5 kPa,DWP,drought,D21,aliphatic,725
+1.5 kPa,DWP,drought,D21,aromatic,14
+1.5 kPa,DWP,drought,D22,aliphatic,718
+1.5 kPa,DWP,drought,D22,aromatic,20
+1.5 kPa,DWP,drought,D23,aliphatic,725
+1.5 kPa,DWP,drought,D23,aromatic,85
+1.5 kPa,DWP,drought,D24,aliphatic,970
+1.5 kPa,DWP,drought,D24,aromatic,86
+1.5 kPa,DWP,drought,D25,aliphatic,879
+1.5 kPa,DWP,drought,D25,aromatic,85
+1.5 kPa,DWP,field moist,D17,aliphatic,441
+1.5 kPa,DWP,field moist,D17,aromatic,273
+1.5 kPa,DWP,field moist,D18,aliphatic,747
+1.5 kPa,DWP,field moist,D18,aromatic,273
+1.5 kPa,DWP,field moist,D19,aliphatic,652
+1.5 kPa,DWP,field moist,D19,aromatic,127
+1.5 kPa,DWP,field moist,D20,aliphatic,768
+1.5 kPa,DWP,field moist,D20,aromatic,270
+1.5 kPa,DWP,saturation,D11,aliphatic,215
+1.5 kPa,DWP,saturation,D11,aromatic,260
+1.5 kPa,DWP,saturation,D12,aliphatic,269
+1.5 kPa,DWP,saturation,D12,aromatic,175
+1.5 kPa,DWP,saturation,D13,aliphatic,346
+1.5 kPa,DWP,saturation,D13,aromatic,124
+1.5 kPa,DWP,saturation,D14,aliphatic,217
+1.5 kPa,DWP,saturation,D14,aromatic,262
+1.5 kPa,DWP,saturation,D15,aliphatic,404
+1.5 kPa,DWP,saturation,D15,aromatic,306
+1.5 kPa,DWP,time zero saturation,D10,aliphatic,2035
+1.5 kPa,DWP,time zero saturation,D10,aromatic,127
+1.5 kPa,DWP,time zero saturation,D6,aliphatic,2070
+1.5 kPa,DWP,time zero saturation,D6,aromatic,132
+1.5 kPa,DWP,time zero saturation,D7,aliphatic,1916
+1.5 kPa,DWP,time zero saturation,D7,aromatic,121
+1.5 kPa,DWP,time zero saturation,D8,aliphatic,850
+1.5 kPa,DWP,time zero saturation,D8,aromatic,34
+1.5 kPa,DWP,time zero saturation,D9,aliphatic,595
+1.5 kPa,DWP,time zero saturation,D9,aromatic,14
+1.5 kPa,SR,drought,S10,aliphatic,965
+1.5 kPa,SR,drought,S10,aromatic,79
+1.5 kPa,SR,drought,S14,aliphatic,855
+1.5 kPa,SR,drought,S14,aromatic,78
+1.5 kPa,SR,drought,S25,aliphatic,91
+1.5 kPa,SR,drought,S25,aromatic,5
+1.5 kPa,SR,drought,S4,aliphatic,338
+1.5 kPa,SR,drought,S4,aromatic,77
+1.5 kPa,SR,drought,S5,aliphatic,809
+1.5 kPa,SR,drought,S5,aromatic,7
+1.5 kPa,SR,field moist,S1,aliphatic,996
+1.5 kPa,SR,field moist,S1,aromatic,16
+1.5 kPa,SR,field moist,S13,aliphatic,340
+1.5 kPa,SR,field moist,S13,aromatic,9
+1.5 kPa,SR,field moist,S15,aliphatic,1139
+1.5 kPa,SR,field moist,S15,aromatic,15
+1.5 kPa,SR,field moist,S19,aliphatic,1219
+1.5 kPa,SR,field moist,S19,aromatic,9
+1.5 kPa,SR,field moist,S21,aliphatic,1010
+1.5 kPa,SR,field moist,S21,aromatic,14
+1.5 kPa,SR,saturation,S18,aliphatic,235
+1.5 kPa,SR,saturation,S18,aromatic,77
+1.5 kPa,SR,saturation,S2,aliphatic,309
+1.5 kPa,SR,saturation,S2,aromatic,78
+1.5 kPa,SR,saturation,S3,aliphatic,409
+1.5 kPa,SR,saturation,S3,aromatic,18
+1.5 kPa,SR,saturation,S7,aliphatic,292
+1.5 kPa,SR,saturation,S7,aromatic,75
+1.5 kPa,SR,time zero saturation,S16,aliphatic,959
+1.5 kPa,SR,time zero saturation,S16,aromatic,72
+1.5 kPa,SR,time zero saturation,S17,aliphatic,810
+1.5 kPa,SR,time zero saturation,S17,aromatic,62
+1.5 kPa,SR,time zero saturation,S23,aliphatic,1009
+1.5 kPa,SR,time zero saturation,S23,aromatic,44
+1.5 kPa,SR,time zero saturation,S9,aliphatic,728
+1.5 kPa,SR,time zero saturation,S9,aromatic,68
+50 kPa,CPCRW,drought,C21,aliphatic,1643
+50 kPa,CPCRW,drought,C21,aromatic,231
+50 kPa,CPCRW,drought,C22,aliphatic,2304
+50 kPa,CPCRW,drought,C22,aromatic,264
+50 kPa,CPCRW,drought,C23,aliphatic,3059
+50 kPa,CPCRW,drought,C23,aromatic,232
+50 kPa,CPCRW,drought,C24,aliphatic,1366
+50 kPa,CPCRW,drought,C24,aromatic,235
+50 kPa,CPCRW,drought,C25,aliphatic,2905
+50 kPa,CPCRW,drought,C25,aromatic,209
+50 kPa,CPCRW,field moist,C16,aliphatic,437
+50 kPa,CPCRW,field moist,C16,aromatic,271
+50 kPa,CPCRW,field moist,C17,aliphatic,351
+50 kPa,CPCRW,field moist,C17,aromatic,271
+50 kPa,CPCRW,field moist,C20,aliphatic,251
+50 kPa,CPCRW,field moist,C20,aromatic,271
+50 kPa,CPCRW,saturation,C11,aliphatic,1614
+50 kPa,CPCRW,saturation,C11,aromatic,321
+50 kPa,CPCRW,saturation,C12,aliphatic,1534
+50 kPa,CPCRW,saturation,C12,aromatic,258
+50 kPa,CPCRW,saturation,C13,aliphatic,1055
+50 kPa,CPCRW,saturation,C13,aromatic,287
+50 kPa,CPCRW,saturation,C14,aliphatic,988
+50 kPa,CPCRW,saturation,C14,aromatic,274
+50 kPa,CPCRW,time zero saturation,C10,aliphatic,754
+50 kPa,CPCRW,time zero saturation,C10,aromatic,275
+50 kPa,CPCRW,time zero saturation,C6,aliphatic,619
+50 kPa,CPCRW,time zero saturation,C6,aromatic,403
+50 kPa,CPCRW,time zero saturation,C7,aliphatic,629
+50 kPa,CPCRW,time zero saturation,C7,aromatic,267
+50 kPa,CPCRW,time zero saturation,C8,aliphatic,317
+50 kPa,CPCRW,time zero saturation,C8,aromatic,373
+50 kPa,CPCRW,time zero saturation,C9,aliphatic,538
+50 kPa,CPCRW,time zero saturation,C9,aromatic,373
+50 kPa,DWP,drought,D22,aliphatic,1218
+50 kPa,DWP,drought,D22,aromatic,218
+50 kPa,DWP,drought,D23,aliphatic,1345
+50 kPa,DWP,drought,D23,aromatic,216
+50 kPa,DWP,drought,D24,aliphatic,1487
+50 kPa,DWP,drought,D24,aromatic,138
+50 kPa,DWP,drought,D25,aliphatic,1220
+50 kPa,DWP,drought,D25,aromatic,216
+50 kPa,DWP,field moist,D17,aliphatic,471
+50 kPa,DWP,field moist,D17,aromatic,250
+50 kPa,DWP,field moist,D19,aliphatic,633
+50 kPa,DWP,field moist,D19,aromatic,250
+50 kPa,DWP,field moist,D20,aliphatic,693
+50 kPa,DWP,field moist,D20,aromatic,250
+50 kPa,DWP,saturation,D11,aliphatic,581
+50 kPa,DWP,saturation,D11,aromatic,199
+50 kPa,DWP,saturation,D12,aliphatic,682
+50 kPa,DWP,saturation,D12,aromatic,278
+50 kPa,DWP,saturation,D13,aliphatic,905
+50 kPa,DWP,saturation,D13,aromatic,339
+50 kPa,DWP,saturation,D14,aliphatic,296
+50 kPa,DWP,saturation,D14,aromatic,323
+50 kPa,DWP,saturation,D15,aliphatic,812
+50 kPa,DWP,saturation,D15,aromatic,283
+50 kPa,DWP,time zero saturation,D6,aliphatic,2462
+50 kPa,DWP,time zero saturation,D6,aromatic,256
+50 kPa,DWP,time zero saturation,D7,aliphatic,2949
+50 kPa,DWP,time zero saturation,D7,aromatic,306
+50 kPa,DWP,time zero saturation,D8,aliphatic,1616
+50 kPa,DWP,time zero saturation,D8,aromatic,272
+50 kPa,DWP,time zero saturation,D9,aliphatic,2581
+50 kPa,DWP,time zero saturation,D9,aromatic,249
+50 kPa,SR,drought,S10,aliphatic,805
+50 kPa,SR,drought,S10,aromatic,17
+50 kPa,SR,drought,S14,aliphatic,779
+50 kPa,SR,drought,S14,aromatic,21
+50 kPa,SR,drought,S25,aliphatic,127
+50 kPa,SR,drought,S25,aromatic,4
+50 kPa,SR,drought,S5,aliphatic,681
+50 kPa,SR,drought,S5,aromatic,19
+50 kPa,SR,field moist,S1,aliphatic,632
+50 kPa,SR,field moist,S1,aromatic,30
+50 kPa,SR,field moist,S13,aliphatic,344
+50 kPa,SR,field moist,S13,aromatic,28
+50 kPa,SR,field moist,S15,aliphatic,632
+50 kPa,SR,field moist,S15,aromatic,21
+50 kPa,SR,field moist,S19,aliphatic,850
+50 kPa,SR,field moist,S19,aromatic,29
+50 kPa,SR,field moist,S21,aliphatic,865
+50 kPa,SR,field moist,S21,aromatic,15
+50 kPa,SR,saturation,S18,aliphatic,1410
+50 kPa,SR,saturation,S18,aromatic,21
+50 kPa,SR,saturation,S2,aliphatic,1511
+50 kPa,SR,saturation,S2,aromatic,15
+50 kPa,SR,saturation,S24,aliphatic,1564
+50 kPa,SR,saturation,S24,aromatic,19
+50 kPa,SR,saturation,S3,aliphatic,1514
+50 kPa,SR,saturation,S3,aromatic,20
+50 kPa,SR,time zero saturation,S11,aliphatic,330
+50 kPa,SR,time zero saturation,S11,aromatic,146
+50 kPa,SR,time zero saturation,S16,aliphatic,943
+50 kPa,SR,time zero saturation,S16,aromatic,77
+50 kPa,SR,time zero saturation,S17,aliphatic,413
+50 kPa,SR,time zero saturation,S17,aromatic,140
+50 kPa,SR,time zero saturation,S23,aliphatic,857
+50 kPa,SR,time zero saturation,S23,aromatic,14
+50 kPa,SR,time zero saturation,S9,aliphatic,607
+50 kPa,SR,time zero saturation,S9,aromatic,135

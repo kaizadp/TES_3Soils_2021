@@ -109,6 +109,7 @@ FTICR_PORE_UNIQUE_PEAKS <- "fticr/fticr_pore_unique_peakscount.csv"
 FTICR_PORE_HCOC <- "fticr/fticr_pore_hcoc.csv"
 FTICR_PORE_NOSC <- "fticr/fticr_pore_nosc.csv"
 FTICR_PORE_AROMATIC <- "fticr/fticr_pore_aromatic_counts.csv"
+FTICR_PORE_DIVERSITY <- "fticr/fticr_pore_shannondiversity.csv"
 
 # FTICR_SOIL
 FTICR_SOIL_RELABUND <- "fticr/fticr_soil_relabundance_hsd.csv"

@@ -378,8 +378,11 @@ pore_raw_long %>%
                 log = log(p),
                 p_logp = p*log) %>% 
   dplyr::summarize(H1 = sum(p_logp),
-                H2 = -1*H1) ->shannon 
+                H = round(-1*H1, 2)) %>% 
+  dplyr::select(-H1)->pore_shannon 
 
+### OUTPUT
+write.csv(pore_shannon, FTICR_PORE_DIVERSITY)
 
 
 
