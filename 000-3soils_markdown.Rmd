@@ -132,7 +132,7 @@ wsoc_soil %>%
 
 ## pores
 mg/L
-```{r wsoc_pore, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+```{r wsoc_pore_mgL, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
 wsoc_pore %>% 
   ungroup %>% 
   dplyr::mutate(sp = paste(Suction, Site),
@@ -145,7 +145,7 @@ wsoc_pore %>%
 
 ## pores
 mg/g
-```{r wsoc_pore, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+```{r wsoc_pore_mgg, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
 wsoc_pore %>% 
   ungroup %>% 
   dplyr::mutate(sp = paste(Suction, Site),
