@@ -12,13 +12,6 @@ input data files
 
 FTICR files are zipped. *Do not unzip, they are too big for GitHub.*
 
-## `fticr` 
-output files from the FTICR script 
-
-use these files as inputs for the graphs. avoid grief by using these smaller files.
-
-## `output`
-output graphs and tables
 
 ## scripts
 `0-packages.R`: packages and ggplot functions used in subsequent scripts
@@ -33,4 +26,4 @@ output graphs and tables
 
 `4-fticr_abundance.R`: uses outputs from script #3 to count peaks and calculate relative abundance of the classes. output files are saved in `fticr` folder.
 
-`000-3soils_markdown.Rmd`: uses output from all other scripts to generate figures and tables
+`000-3soils_markdown.Rmd`: uses output from all other scripts to generate figures and tables. figures are also saved in the `images` folder, currently set to 72 dpi. 
