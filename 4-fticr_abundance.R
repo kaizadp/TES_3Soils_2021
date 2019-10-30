@@ -94,7 +94,7 @@ write_csv(soil_aromatic_counts, FTICR_SOIL_AROMATIC)
 
 soil_raw_long %>% 
   group_by(site, treatment,Class,core) %>% 
-  dplyr::summarize(compounds = sum(intensity)) %>% # sum all intensities for each Class
+  dplyr::summarize(compounds = n()) %>% # sum all intensities for each Class
 # now calculate relative abundance for each Class for each core
   group_by(site, treatment, core) %>% 
   dplyr::mutate(total = sum(compounds),
@@ -133,7 +133,7 @@ relabund_temp%>%
   melt(id = c("site","treatment")) %>% 
   dplyr::rename(Class = variable,
                 relabund= value)->
-  soil_relabund
+  soil_relabund2
 # we will combine this file with the Dunnett test results below
   
 
@@ -215,7 +215,7 @@ soil_relabund %>%
 
 ### OUTPUT ----
 write_csv(fticr_soil_relativeabundance, FTICR_SOIL_RELABUND)
-
+#
 
 # ------------------------------------------------------- ----
 # ------------------------------------------------------- ----
@@ -299,7 +299,7 @@ write_csv(pore_aromatic_counts, FTICR_PORE_AROMATIC)
 
 pore_raw_long %>% 
   group_by(tension,site, treatment,Class,core) %>% 
-  dplyr::summarize(compounds = sum(intensity)) %>% # sum all intensities for each Class
+  dplyr::summarize(compounds = n()) %>% # sum all COUNTS for each Class
   # now calculate relative abundance for each Class for each core
   group_by(tension,site, treatment, core) %>% 
   dplyr::mutate(total = sum(compounds),
