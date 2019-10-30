@@ -178,7 +178,7 @@ fticr_porewater %>%
 # remove compounds without class. har har. 
   filter(!Class=="None") %>% 
 # create new columns  
-  dplyr::mutate(AImod = (1+C-(0.5*O)-S-(0.5*H))/(C-(0.5*O)-S-N-P),
+  dplyr::mutate(AImod = (1+C-(0.5*O)-S-(0.5*(N+P+H)))/(C-(0.5*O)-S-N-P),
                 NOSC =  4-(((4*C)+H-(3*N)-(2*O)-(2*S))/C),
                 HC = round(H/C,2),
                 OC = round(O/C,2))->

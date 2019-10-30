@@ -1,208 +1,208 @@
 tension,site,treatment,Class,peaks_count
-1.5 kPa,CPCRW,drought,AminoSugar,270
-1.5 kPa,CPCRW,field moist,AminoSugar,25
-1.5 kPa,CPCRW,saturation,AminoSugar,40
-1.5 kPa,CPCRW,time zero saturation,AminoSugar,53
-1.5 kPa,DWP,drought,AminoSugar,40
-1.5 kPa,DWP,field moist,AminoSugar,31
-1.5 kPa,DWP,saturation,AminoSugar,6
-1.5 kPa,DWP,time zero saturation,AminoSugar,434
-1.5 kPa,SR,drought,AminoSugar,27
-1.5 kPa,SR,field moist,AminoSugar,79
-1.5 kPa,SR,saturation,AminoSugar,25
-1.5 kPa,SR,time zero saturation,AminoSugar,65
-50 kPa,CPCRW,drought,AminoSugar,381
-50 kPa,CPCRW,field moist,AminoSugar,13
-50 kPa,CPCRW,saturation,AminoSugar,38
-50 kPa,CPCRW,time zero saturation,AminoSugar,28
-50 kPa,DWP,drought,AminoSugar,56
-50 kPa,DWP,field moist,AminoSugar,30
-50 kPa,DWP,saturation,AminoSugar,37
-50 kPa,DWP,time zero saturation,AminoSugar,473
-50 kPa,SR,drought,AminoSugar,8
-50 kPa,SR,field moist,AminoSugar,48
-50 kPa,SR,saturation,AminoSugar,88
-50 kPa,SR,time zero saturation,AminoSugar,72
-1.5 kPa,CPCRW,drought,Carb,316
-1.5 kPa,CPCRW,field moist,Carb,34
-1.5 kPa,CPCRW,saturation,Carb,42
-1.5 kPa,CPCRW,time zero saturation,Carb,23
-1.5 kPa,DWP,drought,Carb,120
+1.5 kPa,CPCRW,drought,AminoSugar,142
+1.5 kPa,CPCRW,field moist,AminoSugar,21
+1.5 kPa,CPCRW,saturation,AminoSugar,31
+1.5 kPa,CPCRW,time zero saturation,AminoSugar,42
+1.5 kPa,DWP,drought,AminoSugar,32
+1.5 kPa,DWP,field moist,AminoSugar,27
+1.5 kPa,DWP,saturation,AminoSugar,5
+1.5 kPa,DWP,time zero saturation,AminoSugar,300
+1.5 kPa,SR,drought,AminoSugar,20
+1.5 kPa,SR,field moist,AminoSugar,56
+1.5 kPa,SR,saturation,AminoSugar,16
+1.5 kPa,SR,time zero saturation,AminoSugar,49
+50 kPa,CPCRW,drought,AminoSugar,243
+50 kPa,CPCRW,field moist,AminoSugar,9
+50 kPa,CPCRW,saturation,AminoSugar,28
+50 kPa,CPCRW,time zero saturation,AminoSugar,23
+50 kPa,DWP,drought,AminoSugar,45
+50 kPa,DWP,field moist,AminoSugar,26
+50 kPa,DWP,saturation,AminoSugar,33
+50 kPa,DWP,time zero saturation,AminoSugar,305
+50 kPa,SR,drought,AminoSugar,6
+50 kPa,SR,field moist,AminoSugar,31
+50 kPa,SR,saturation,AminoSugar,67
+50 kPa,SR,time zero saturation,AminoSugar,37
+1.5 kPa,CPCRW,drought,Carb,201
+1.5 kPa,CPCRW,field moist,Carb,28
+1.5 kPa,CPCRW,saturation,Carb,32
+1.5 kPa,CPCRW,time zero saturation,Carb,19
+1.5 kPa,DWP,drought,Carb,88
 1.5 kPa,DWP,field moist,Carb,11
-1.5 kPa,DWP,saturation,Carb,18
-1.5 kPa,DWP,time zero saturation,Carb,477
+1.5 kPa,DWP,saturation,Carb,14
+1.5 kPa,DWP,time zero saturation,Carb,363
 1.5 kPa,SR,drought,Carb,4
-1.5 kPa,SR,field moist,Carb,43
-1.5 kPa,SR,saturation,Carb,15
-1.5 kPa,SR,time zero saturation,Carb,16
-50 kPa,CPCRW,drought,Carb,434
-50 kPa,CPCRW,field moist,Carb,14
-50 kPa,CPCRW,saturation,Carb,84
-50 kPa,CPCRW,time zero saturation,Carb,30
-50 kPa,DWP,drought,Carb,116
+1.5 kPa,SR,field moist,Carb,26
+1.5 kPa,SR,saturation,Carb,10
+1.5 kPa,SR,time zero saturation,Carb,11
+50 kPa,CPCRW,drought,Carb,301
+50 kPa,CPCRW,field moist,Carb,13
+50 kPa,CPCRW,saturation,Carb,60
+50 kPa,CPCRW,time zero saturation,Carb,26
+50 kPa,DWP,drought,Carb,85
 50 kPa,DWP,field moist,Carb,8
-50 kPa,DWP,saturation,Carb,41
-50 kPa,DWP,time zero saturation,Carb,441
-50 kPa,SR,drought,Carb,8
-50 kPa,SR,field moist,Carb,27
-50 kPa,SR,saturation,Carb,16
-50 kPa,SR,time zero saturation,Carb,7
-1.5 kPa,CPCRW,drought,ConHC,92
-1.5 kPa,CPCRW,field moist,ConHC,207
-1.5 kPa,CPCRW,saturation,ConHC,146
-1.5 kPa,CPCRW,time zero saturation,ConHC,243
-1.5 kPa,DWP,drought,ConHC,58
-1.5 kPa,DWP,field moist,ConHC,236
-1.5 kPa,DWP,saturation,ConHC,221
-1.5 kPa,DWP,time zero saturation,ConHC,82
-1.5 kPa,SR,drought,ConHC,46
-1.5 kPa,SR,field moist,ConHC,15
-1.5 kPa,SR,saturation,ConHC,52
-1.5 kPa,SR,time zero saturation,ConHC,57
-50 kPa,CPCRW,drought,ConHC,227
-50 kPa,CPCRW,field moist,ConHC,206
-50 kPa,CPCRW,saturation,ConHC,223
-50 kPa,CPCRW,time zero saturation,ConHC,341
-50 kPa,DWP,drought,ConHC,175
-50 kPa,DWP,field moist,ConHC,214
-50 kPa,DWP,saturation,ConHC,284
-50 kPa,DWP,time zero saturation,ConHC,237
-50 kPa,SR,drought,ConHC,13
-50 kPa,SR,field moist,ConHC,15
-50 kPa,SR,saturation,ConHC,17
-50 kPa,SR,time zero saturation,ConHC,123
-1.5 kPa,CPCRW,drought,Lignin,1882
-1.5 kPa,CPCRW,field moist,Lignin,1994
-1.5 kPa,CPCRW,saturation,Lignin,1985
-1.5 kPa,CPCRW,time zero saturation,Lignin,1934
-1.5 kPa,DWP,drought,Lignin,1567
-1.5 kPa,DWP,field moist,Lignin,2023
-1.5 kPa,DWP,saturation,Lignin,1581
-1.5 kPa,DWP,time zero saturation,Lignin,1827
-1.5 kPa,SR,drought,Lignin,1249
-1.5 kPa,SR,field moist,Lignin,1433
-1.5 kPa,SR,saturation,Lignin,1045
-1.5 kPa,SR,time zero saturation,Lignin,1090
-50 kPa,CPCRW,drought,Lignin,2630
-50 kPa,CPCRW,field moist,Lignin,1950
-50 kPa,CPCRW,saturation,Lignin,2239
-50 kPa,CPCRW,time zero saturation,Lignin,2296
-50 kPa,DWP,drought,Lignin,2084
-50 kPa,DWP,field moist,Lignin,1969
-50 kPa,DWP,saturation,Lignin,2118
-50 kPa,DWP,time zero saturation,Lignin,2443
-50 kPa,SR,drought,Lignin,1316
-50 kPa,SR,field moist,Lignin,1521
-50 kPa,SR,saturation,Lignin,1483
-50 kPa,SR,time zero saturation,Lignin,1790
-1.5 kPa,CPCRW,drought,Lipid,184
-1.5 kPa,CPCRW,field moist,Lipid,207
-1.5 kPa,CPCRW,saturation,Lipid,377
-1.5 kPa,CPCRW,time zero saturation,Lipid,249
-1.5 kPa,DWP,drought,Lipid,197
-1.5 kPa,DWP,field moist,Lipid,184
-1.5 kPa,DWP,saturation,Lipid,124
-1.5 kPa,DWP,time zero saturation,Lipid,207
-1.5 kPa,SR,drought,Lipid,325
-1.5 kPa,SR,field moist,Lipid,277
-1.5 kPa,SR,saturation,Lipid,180
-1.5 kPa,SR,time zero saturation,Lipid,233
-50 kPa,CPCRW,drought,Lipid,282
-50 kPa,CPCRW,field moist,Lipid,78
-50 kPa,CPCRW,saturation,Lipid,302
-50 kPa,CPCRW,time zero saturation,Lipid,192
-50 kPa,DWP,drought,Lipid,246
-50 kPa,DWP,field moist,Lipid,112
-50 kPa,DWP,saturation,Lipid,196
-50 kPa,DWP,time zero saturation,Lipid,268
-50 kPa,SR,drought,Lipid,255
-50 kPa,SR,field moist,Lipid,295
-50 kPa,SR,saturation,Lipid,397
-50 kPa,SR,time zero saturation,Lipid,186
-1.5 kPa,CPCRW,drought,Other,42
-1.5 kPa,CPCRW,field moist,Other,10
-1.5 kPa,CPCRW,saturation,Other,12
-1.5 kPa,CPCRW,time zero saturation,Other,8
-1.5 kPa,DWP,drought,Other,17
+50 kPa,DWP,saturation,Carb,30
+50 kPa,DWP,time zero saturation,Carb,319
+50 kPa,SR,drought,Carb,7
+50 kPa,SR,field moist,Carb,21
+50 kPa,SR,saturation,Carb,13
+50 kPa,SR,time zero saturation,Carb,6
+1.5 kPa,CPCRW,drought,ConHC,54
+1.5 kPa,CPCRW,field moist,ConHC,143
+1.5 kPa,CPCRW,saturation,ConHC,95
+1.5 kPa,CPCRW,time zero saturation,ConHC,172
+1.5 kPa,DWP,drought,ConHC,36
+1.5 kPa,DWP,field moist,ConHC,152
+1.5 kPa,DWP,saturation,ConHC,152
+1.5 kPa,DWP,time zero saturation,ConHC,60
+1.5 kPa,SR,drought,ConHC,27
+1.5 kPa,SR,field moist,ConHC,13
+1.5 kPa,SR,saturation,ConHC,26
+1.5 kPa,SR,time zero saturation,ConHC,34
+50 kPa,CPCRW,drought,ConHC,139
+50 kPa,CPCRW,field moist,ConHC,136
+50 kPa,CPCRW,saturation,ConHC,151
+50 kPa,CPCRW,time zero saturation,ConHC,248
+50 kPa,DWP,drought,ConHC,106
+50 kPa,DWP,field moist,ConHC,132
+50 kPa,DWP,saturation,ConHC,195
+50 kPa,DWP,time zero saturation,ConHC,151
+50 kPa,SR,drought,ConHC,3
+50 kPa,SR,field moist,ConHC,14
+50 kPa,SR,saturation,ConHC,16
+50 kPa,SR,time zero saturation,ConHC,63
+1.5 kPa,CPCRW,drought,Lignin,1055
+1.5 kPa,CPCRW,field moist,Lignin,1409
+1.5 kPa,CPCRW,saturation,Lignin,1323
+1.5 kPa,CPCRW,time zero saturation,Lignin,1277
+1.5 kPa,DWP,drought,Lignin,895
+1.5 kPa,DWP,field moist,Lignin,1265
+1.5 kPa,DWP,saturation,Lignin,819
+1.5 kPa,DWP,time zero saturation,Lignin,946
+1.5 kPa,SR,drought,Lignin,597
+1.5 kPa,SR,field moist,Lignin,635
+1.5 kPa,SR,saturation,Lignin,521
+1.5 kPa,SR,time zero saturation,Lignin,543
+50 kPa,CPCRW,drought,Lignin,1948
+50 kPa,CPCRW,field moist,Lignin,1333
+50 kPa,CPCRW,saturation,Lignin,1583
+50 kPa,CPCRW,time zero saturation,Lignin,1686
+50 kPa,DWP,drought,Lignin,1297
+50 kPa,DWP,field moist,Lignin,1208
+50 kPa,DWP,saturation,Lignin,1321
+50 kPa,DWP,time zero saturation,Lignin,1529
+50 kPa,SR,drought,Lignin,606
+50 kPa,SR,field moist,Lignin,826
+50 kPa,SR,saturation,Lignin,834
+50 kPa,SR,time zero saturation,Lignin,849
+1.5 kPa,CPCRW,drought,Lipid,114
+1.5 kPa,CPCRW,field moist,Lipid,143
+1.5 kPa,CPCRW,saturation,Lipid,253
+1.5 kPa,CPCRW,time zero saturation,Lipid,167
+1.5 kPa,DWP,drought,Lipid,132
+1.5 kPa,DWP,field moist,Lipid,128
+1.5 kPa,DWP,saturation,Lipid,83
+1.5 kPa,DWP,time zero saturation,Lipid,145
+1.5 kPa,SR,drought,Lipid,222
+1.5 kPa,SR,field moist,Lipid,203
+1.5 kPa,SR,saturation,Lipid,135
+1.5 kPa,SR,time zero saturation,Lipid,167
+50 kPa,CPCRW,drought,Lipid,184
+50 kPa,CPCRW,field moist,Lipid,44
+50 kPa,CPCRW,saturation,Lipid,193
+50 kPa,CPCRW,time zero saturation,Lipid,142
+50 kPa,DWP,drought,Lipid,161
+50 kPa,DWP,field moist,Lipid,65
+50 kPa,DWP,saturation,Lipid,118
+50 kPa,DWP,time zero saturation,Lipid,172
+50 kPa,SR,drought,Lipid,145
+50 kPa,SR,field moist,Lipid,214
+50 kPa,SR,saturation,Lipid,272
+50 kPa,SR,time zero saturation,Lipid,129
+1.5 kPa,CPCRW,drought,Other,30
+1.5 kPa,CPCRW,field moist,Other,9
+1.5 kPa,CPCRW,saturation,Other,11
+1.5 kPa,CPCRW,time zero saturation,Other,7
+1.5 kPa,DWP,drought,Other,14
 1.5 kPa,DWP,field moist,Other,7
 1.5 kPa,DWP,saturation,Other,3
-1.5 kPa,DWP,time zero saturation,Other,41
+1.5 kPa,DWP,time zero saturation,Other,32
 1.5 kPa,SR,drought,Other,3
-1.5 kPa,SR,field moist,Other,6
+1.5 kPa,SR,field moist,Other,5
 1.5 kPa,SR,saturation,Other,NA
 1.5 kPa,SR,time zero saturation,Other,5
-50 kPa,CPCRW,drought,Other,21
-50 kPa,CPCRW,field moist,Other,10
+50 kPa,CPCRW,drought,Other,15
+50 kPa,CPCRW,field moist,Other,9
 50 kPa,CPCRW,saturation,Other,2
-50 kPa,CPCRW,time zero saturation,Other,12
-50 kPa,DWP,drought,Other,13
+50 kPa,CPCRW,time zero saturation,Other,11
+50 kPa,DWP,drought,Other,12
 50 kPa,DWP,field moist,Other,2
 50 kPa,DWP,saturation,Other,3
-50 kPa,DWP,time zero saturation,Other,35
+50 kPa,DWP,time zero saturation,Other,22
 50 kPa,SR,drought,Other,2
 50 kPa,SR,field moist,Other,5
 50 kPa,SR,saturation,Other,4
 50 kPa,SR,time zero saturation,Other,3
-1.5 kPa,CPCRW,drought,Protein,755
-1.5 kPa,CPCRW,field moist,Protein,478
-1.5 kPa,CPCRW,saturation,Protein,771
-1.5 kPa,CPCRW,time zero saturation,Protein,779
-1.5 kPa,DWP,drought,Protein,536
-1.5 kPa,DWP,field moist,Protein,406
-1.5 kPa,DWP,saturation,Protein,218
-1.5 kPa,DWP,time zero saturation,Protein,902
-1.5 kPa,SR,drought,Protein,494
-1.5 kPa,SR,field moist,Protein,770
-1.5 kPa,SR,saturation,Protein,208
-1.5 kPa,SR,time zero saturation,Protein,683
-50 kPa,CPCRW,drought,Protein,988
-50 kPa,CPCRW,field moist,Protein,131
-50 kPa,CPCRW,saturation,Protein,652
-50 kPa,CPCRW,time zero saturation,Protein,278
-50 kPa,DWP,drought,Protein,777
-50 kPa,DWP,field moist,Protein,332
-50 kPa,DWP,saturation,Protein,431
-50 kPa,DWP,time zero saturation,Protein,1028
-50 kPa,SR,drought,Protein,466
-50 kPa,SR,field moist,Protein,425
-50 kPa,SR,saturation,Protein,862
-50 kPa,SR,time zero saturation,Protein,572
-1.5 kPa,CPCRW,drought,Tannin,193
-1.5 kPa,CPCRW,field moist,Tannin,145
-1.5 kPa,CPCRW,saturation,Tannin,95
-1.5 kPa,CPCRW,time zero saturation,Tannin,144
-1.5 kPa,DWP,drought,Tannin,24
-1.5 kPa,DWP,field moist,Tannin,153
-1.5 kPa,DWP,saturation,Tannin,94
-1.5 kPa,DWP,time zero saturation,Tannin,208
-1.5 kPa,SR,drought,Tannin,15
-1.5 kPa,SR,field moist,Tannin,39
-1.5 kPa,SR,saturation,Tannin,11
-1.5 kPa,SR,time zero saturation,Tannin,15
-50 kPa,CPCRW,drought,Tannin,399
-50 kPa,CPCRW,field moist,Tannin,170
-50 kPa,CPCRW,saturation,Tannin,212
-50 kPa,CPCRW,time zero saturation,Tannin,192
-50 kPa,DWP,drought,Tannin,124
-50 kPa,DWP,field moist,Tannin,167
-50 kPa,DWP,saturation,Tannin,243
-50 kPa,DWP,time zero saturation,Tannin,298
-50 kPa,SR,drought,Tannin,28
+1.5 kPa,CPCRW,drought,Protein,429
+1.5 kPa,CPCRW,field moist,Protein,313
+1.5 kPa,CPCRW,saturation,Protein,489
+1.5 kPa,CPCRW,time zero saturation,Protein,494
+1.5 kPa,DWP,drought,Protein,355
+1.5 kPa,DWP,field moist,Protein,272
+1.5 kPa,DWP,saturation,Protein,149
+1.5 kPa,DWP,time zero saturation,Protein,600
+1.5 kPa,SR,drought,Protein,316
+1.5 kPa,SR,field moist,Protein,458
+1.5 kPa,SR,saturation,Protein,122
+1.5 kPa,SR,time zero saturation,Protein,424
+50 kPa,CPCRW,drought,Protein,661
+50 kPa,CPCRW,field moist,Protein,85
+50 kPa,CPCRW,saturation,Protein,404
+50 kPa,CPCRW,time zero saturation,Protein,210
+50 kPa,DWP,drought,Protein,481
+50 kPa,DWP,field moist,Protein,202
+50 kPa,DWP,saturation,Protein,271
+50 kPa,DWP,time zero saturation,Protein,687
+50 kPa,SR,drought,Protein,253
+50 kPa,SR,field moist,Protein,270
+50 kPa,SR,saturation,Protein,570
+50 kPa,SR,time zero saturation,Protein,294
+1.5 kPa,CPCRW,drought,Tannin,98
+1.5 kPa,CPCRW,field moist,Tannin,94
+1.5 kPa,CPCRW,saturation,Tannin,63
+1.5 kPa,CPCRW,time zero saturation,Tannin,93
+1.5 kPa,DWP,drought,Tannin,18
+1.5 kPa,DWP,field moist,Tannin,98
+1.5 kPa,DWP,saturation,Tannin,42
+1.5 kPa,DWP,time zero saturation,Tannin,152
+1.5 kPa,SR,drought,Tannin,11
+1.5 kPa,SR,field moist,Tannin,10
+1.5 kPa,SR,saturation,Tannin,10
+1.5 kPa,SR,time zero saturation,Tannin,11
+50 kPa,CPCRW,drought,Tannin,236
+50 kPa,CPCRW,field moist,Tannin,95
+50 kPa,CPCRW,saturation,Tannin,119
+50 kPa,CPCRW,time zero saturation,Tannin,121
+50 kPa,DWP,drought,Tannin,79
+50 kPa,DWP,field moist,Tannin,106
+50 kPa,DWP,saturation,Tannin,151
+50 kPa,DWP,time zero saturation,Tannin,206
+50 kPa,SR,drought,Tannin,4
 50 kPa,SR,field moist,Tannin,11
-50 kPa,SR,saturation,Tannin,12
-50 kPa,SR,time zero saturation,Tannin,201
+50 kPa,SR,saturation,Tannin,10
+50 kPa,SR,time zero saturation,Tannin,31
 1.5 kPa,CPCRW,drought,UnsatHC,4
 1.5 kPa,CPCRW,field moist,UnsatHC,17
 1.5 kPa,CPCRW,saturation,UnsatHC,15
-1.5 kPa,CPCRW,time zero saturation,UnsatHC,19
+1.5 kPa,CPCRW,time zero saturation,UnsatHC,18
 1.5 kPa,DWP,drought,UnsatHC,5
 1.5 kPa,DWP,field moist,UnsatHC,10
 1.5 kPa,DWP,saturation,UnsatHC,8
-1.5 kPa,DWP,time zero saturation,UnsatHC,19
+1.5 kPa,DWP,time zero saturation,UnsatHC,16
 1.5 kPa,SR,drought,UnsatHC,15
-1.5 kPa,SR,field moist,UnsatHC,14
+1.5 kPa,SR,field moist,UnsatHC,13
 1.5 kPa,SR,saturation,UnsatHC,25
-1.5 kPa,SR,time zero saturation,UnsatHC,22
+1.5 kPa,SR,time zero saturation,UnsatHC,20
 50 kPa,CPCRW,drought,UnsatHC,4
 50 kPa,CPCRW,field moist,UnsatHC,9
 50 kPa,CPCRW,saturation,UnsatHC,3
@@ -210,32 +210,32 @@ tension,site,treatment,Class,peaks_count
 50 kPa,DWP,drought,UnsatHC,6
 50 kPa,DWP,field moist,UnsatHC,3
 50 kPa,DWP,saturation,UnsatHC,10
-50 kPa,DWP,time zero saturation,UnsatHC,20
+50 kPa,DWP,time zero saturation,UnsatHC,19
 50 kPa,SR,drought,UnsatHC,5
-50 kPa,SR,field moist,UnsatHC,20
-50 kPa,SR,saturation,UnsatHC,18
-50 kPa,SR,time zero saturation,UnsatHC,21
-1.5 kPa,CPCRW,drought,total,3738
-1.5 kPa,CPCRW,field moist,total,3117
-1.5 kPa,CPCRW,saturation,total,3483
-1.5 kPa,CPCRW,time zero saturation,total,3452
-1.5 kPa,DWP,drought,total,2564
-1.5 kPa,DWP,field moist,total,3061
-1.5 kPa,DWP,saturation,total,2273
-1.5 kPa,DWP,time zero saturation,total,4197
-1.5 kPa,SR,drought,total,2178
-1.5 kPa,SR,field moist,total,2676
-1.5 kPa,SR,saturation,total,1561
-1.5 kPa,SR,time zero saturation,total,2186
-50 kPa,CPCRW,drought,total,5366
-50 kPa,CPCRW,field moist,total,2581
-50 kPa,CPCRW,saturation,total,3755
-50 kPa,CPCRW,time zero saturation,total,3380
-50 kPa,DWP,drought,total,3597
-50 kPa,DWP,field moist,total,2837
-50 kPa,DWP,saturation,total,3363
-50 kPa,DWP,time zero saturation,total,5243
-50 kPa,SR,drought,total,2101
-50 kPa,SR,field moist,total,2367
-50 kPa,SR,saturation,total,2897
-50 kPa,SR,time zero saturation,total,2975
+50 kPa,SR,field moist,UnsatHC,19
+50 kPa,SR,saturation,UnsatHC,17
+50 kPa,SR,time zero saturation,UnsatHC,19
+1.5 kPa,CPCRW,drought,total,2127
+1.5 kPa,CPCRW,field moist,total,2177
+1.5 kPa,CPCRW,saturation,total,2312
+1.5 kPa,CPCRW,time zero saturation,total,2289
+1.5 kPa,DWP,drought,total,1575
+1.5 kPa,DWP,field moist,total,1970
+1.5 kPa,DWP,saturation,total,1275
+1.5 kPa,DWP,time zero saturation,total,2614
+1.5 kPa,SR,drought,total,1215
+1.5 kPa,SR,field moist,total,1419
+1.5 kPa,SR,saturation,total,865
+1.5 kPa,SR,time zero saturation,total,1264
+50 kPa,CPCRW,drought,total,3731
+50 kPa,CPCRW,field moist,total,1733
+50 kPa,CPCRW,saturation,total,2543
+50 kPa,CPCRW,time zero saturation,total,2478
+50 kPa,DWP,drought,total,2272
+50 kPa,DWP,field moist,total,1752
+50 kPa,DWP,saturation,total,2132
+50 kPa,DWP,time zero saturation,total,3410
+50 kPa,SR,drought,total,1031
+50 kPa,SR,field moist,total,1411
+50 kPa,SR,saturation,total,1803
+50 kPa,SR,time zero saturation,total,1431
