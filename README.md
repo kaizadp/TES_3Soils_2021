@@ -25,7 +25,7 @@ output graphs and tables
 
 `1-characterization.R`: initial soil characterization for the three sites: chemistry, pore size distribution, water retention curves. processed output files are saved in `processed` folder.
 
-    `1b-moisture.R`: calculates dry soil weight in each core. attempts to calculate moisture values. work in progress.
+  `1b-moisture.R`: calculates dry soil weight in each core. attempts to calculate moisture values. work in progress.
 
 `2-wsoc.R`: water soluble organic carbon for porewater and soil extracts. report as mg/L and mg/g respectively.
 
