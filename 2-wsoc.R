@@ -216,18 +216,20 @@ wsoc_pores %>%
   wsoc_pores_wt
 
 wsoc_pores_wt %>% 
+  filter(!is.na(wsoc_mg_L)) %>% 
   group_by(Suction,Site, Treatment) %>% 
+# make summary columns for mg/L and mg/g values
   dplyr::summarize(wsoc_mgg_mean = mean(wsoc_mgg, na.rm = TRUE),
-                   se = sd(wsoc_mgg)/sqrt(n())) %>% 
-  dplyr::mutate(mean_se = paste(round(wsoc_mgg_mean,2),"\u00B1",round(se,2))) %>% 
+                   mgg_se = sd(wsoc_mgg)/sqrt(n()),
+                   wsoc_mgL_mean = mean(wsoc_mg_L, na.rm = TRUE),
+                   mgL_se = sd(wsoc_mg_L)/sqrt(n())) %>% 
+  dplyr::mutate(wsoc_mgg_mean_se = paste(round(wsoc_mgg_mean,2),"\u00B1",round(mgg_se,2)),
+                wsoc_mgL_mean_se = paste(round(wsoc_mgL_mean,2),"\u00B1",round(mgL_se,2))) %>% 
   ungroup %>% 
-  dplyr::select(Site,Treatment,Suction,mean_se, mean_se)->
+  dplyr::select(Site,Treatment,Suction,wsoc_mgg_mean_se, wsoc_mgL_mean_se)->
   wsoc_pores_summary
 
-#
 
-### OUTPUT
-write.csv(wsoc_pores_summary, WSOC_PORE, row.names = FALSE)
 
 #
 
@@ -354,17 +356,17 @@ write.csv(wsoc_pores_summary, WSOC_PORE, row.names = FALSE)
 #
   ### WSOC concentrations -- pores -- stats ----
 
-#remove NA
-wsoc_pores = wsoc_pores[complete.cases(wsoc_pores),]
+      ## #remove NA
+      ## wsoc_pores = wsoc_pores[complete.cases(wsoc_pores),]
+      ## 
+      ## #overall LME site/treatment/suction
+      ## lme_trt_pore=lme(log(wsoc)~Site*Treatment*Suction,random=~1|CoreNo,data=wsoc_pores);Anova(lme_trt_pore)
+      ## #capture.output(Anova(lme_trt_pore),file = "pore_wsoc_anova.txt")
+      ## attach(wsoc_pores)
+      ## wsoc_pore_hsd = HSD.test(aov(lme_trt_pore),trt = "Treatment")
+      ## 
 
-#overall LME site/treatment/suction
-lme_trt_pore=lme(log(wsoc)~Site*Treatment*Suction,random=~1|CoreNo,data=wsoc_pores);Anova(lme_trt_pore)
-#capture.output(Anova(lme_trt_pore),file = "pore_wsoc_anova.txt")
-attach(wsoc_pores)
-wsoc_pore_hsd = HSD.test(aov(lme_trt_pore),trt = "Treatment")
-
-
-    # ## HSD
+    # ## HSD ----
     ## NOT DOING HSD ANY MORE. DOING DUNNETT INSTEAD. SEE BELOW.
 
     # fit_hsd_wsoc <- function(dat) {
@@ -390,54 +392,45 @@ wsoc_pore_hsd = HSD.test(aov(lme_trt_pore),trt = "Treatment")
 #
 
 ### WSOC concentrations -- pores -- stats DUNNETT ----
-## CANNOT DO DUNNETT TEST BECAUSE OF SO MANY MISSING DATA POINTS
 
-      # fit_dunnett_wsoc <- function(dat) {
-      #   d <-DescTools::DunnettTest(wsoc_mgg~Treatment, control = "Time Zero", data = dat)
-      #   #create a tibble with one column for each treatment
-      #   # column 4 has the pvalue
-      #   t = tibble(`Drought` = d$`Time Zero`["Drought-Time Zero",4], 
-      #              `Saturated` = d$`Time Zero`["Saturated-Time Zero",4],
-      #              `Field Moist` = d$`Time Zero`["Field Moist-Time Zero",4])
-      #   # we need to convert significant p values to asterisks
-      #   # since the values are in a single row, it is tricky
-      #   t %>% 
-      #     # first, gather all p-values into a single column, pval
-      #     gather(trt, pval, 1:3) %>% 
-      #     # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
-      #     mutate(p = if_else(pval<0.05, "*","")) %>% 
-      #     # remove the pval column
-      #     dplyr::select(-pval) %>% 
-      #     # spread the p (asterisks) column bnack into the three columns
-      #     spread(trt, p)  ->
-      #     t
-      # }
-      # 
-      # wsoc_pores_wt %>%
-      #   dplyr::filter(!Site=="DWP") %>% 
-      #   group_by(Site, Suction) %>% 
-      #   do(fit_dunnett_wsoc(.))  ->
-      #   wsoc_pores_dunnett
-      # 
-      # wsoc_pores_dunnett %>% 
-      #   gather(Treatment, dunnett, 3:5)-> #gather columns 4-7 (treatment levels)
-      #   wsoc_pores_dunnett2
-      # 
-      # ### WSOC concentrations -- pores -- summary table ----
-      # wsoc_pores_rmisc=summarySE(wsoc_pores,measurevar = "wsoc", groupvars=c("Site","Suction","Treatment"),na.rm=TRUE)
-      # wsoc_pores_rmisc$wsoc_mg_L = paste(round(wsoc_pores_rmisc$wsoc,2),"\u00B1",round(wsoc_pores_rmisc$se,2))
-      # #\u00b1 is plus-minus
-      # 
-      # # merge the summary table with the hsd/dunnett table
-      # wsoc_pores_rmisc %>% 
-      #   left_join(wsoc_pores_dunnett2,by = c("Site","Suction","Treatment"), all.x = TRUE) %>% 
-      #   replace(.,is.na(.),"") %>% 
-      #   dplyr::mutate(wsoc_dunnett = paste(wsoc_mg_L,dunnett)) %>% 
-      #   dplyr::select(-sd,-se,-ci,-dunnett)->
-      #   wsoc_pores_summary
-      # 
-      # ### OUTPUT
-      # write.csv(wsoc_pores_summary, WSOC_PORE)
+ fit_dunnett_wsoc <- function(dat) {
+   d <-DescTools::DunnettTest(wsoc_mg_L~Treatment, control = "Time Zero", data = dat)
+   #create a tibble with one column for each treatment
+   # column 4 has the pvalue
+   t = tibble(`Drought` = d$`Time Zero`["Drought-Time Zero",4], 
+              `Saturated` = d$`Time Zero`["Saturated-Time Zero",4],
+              `Field Moist` = d$`Time Zero`["Field Moist-Time Zero",4])
+   # we need to convert significant p values to asterisks
+   # since the values are in a single row, it is tricky
+   t %>% 
+     # first, gather all p-values into a single column, pval
+     gather(trt, pval, 1:3) %>% 
+     # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+     mutate(p = if_else(pval<0.05, "*","")) %>% 
+     # remove the pval column
+     dplyr::select(-pval) %>% 
+     # spread the p (asterisks) column bnack into the three columns
+     spread(trt, p)  ->
+     t
+ }
+ 
+ wsoc_pores_wt %>%
+   group_by(Site, Suction) %>% 
+   do(fit_dunnett_wsoc(.)) %>% 
+   gather(Treatment, dunnett, 3:5)-> #gather columns 4-7 (treatment levels)
+   wsoc_pores_dunnett
+ 
+### merge the summary table with the hsd/dunnett table ----
+ wsoc_pores_summary %>% 
+   left_join(wsoc_pores_dunnett,by = c("Site","Suction","Treatment"), all.x = TRUE) %>% 
+   replace(.,is.na(.),"") %>% 
+   dplyr::mutate(wsoc_mgL = paste(wsoc_mgL_mean_se,dunnett))  %>% 
+   dplyr::select(-dunnett, -wsoc_mgL_mean_se) %>% 
+   dplyr::rename(wsoc_mgg = wsoc_mgg_mean_se)->
+   wsoc_pores_summary
+ 
+### OUTPUT ---- 
+write.csv(wsoc_pores_summary, WSOC_PORE, row.names = FALSE)
 
 
 ##

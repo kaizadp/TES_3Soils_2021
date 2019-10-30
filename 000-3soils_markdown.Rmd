@@ -131,12 +131,25 @@ wsoc_soil %>%
 ```
 
 ## pores
+mg/L
+```{r wsoc_pore, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+wsoc_pore %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(Suction, Site),
+                val = paste(wsoc_mgL)) %>% 
+  dplyr::select(Treatment,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+
+## pores
 mg/g
 ```{r wsoc_pore, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
 wsoc_pore %>% 
   ungroup %>% 
   dplyr::mutate(sp = paste(Suction, Site),
-                val = paste(mean_se)) %>% 
+                val = paste(wsoc_mgg)) %>% 
   dplyr::select(Treatment,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
@@ -611,8 +624,6 @@ soil_relabund%>%
   knitr::kable(align = "r")
 ```
 
----
-
 ## peaks
 ```{r soil_peaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
 soil_peaks %>% 
@@ -626,9 +637,6 @@ soil_peaks %>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
-
----
-
 ## unique peaks
 ```{r soil_uniquepeaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
 old.lvl = levels(factor(soil_unique_peaks$Class))
@@ -655,4 +663,4 @@ soil_unique_counts%>%
 
 ```
 
----
+
