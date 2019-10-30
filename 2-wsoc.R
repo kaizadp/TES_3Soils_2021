@@ -129,7 +129,7 @@ wsoc_pores = read_excel("data/3Soils_WSOC_CN_PoreCore.xlsx") %>%
 
 #
 
-## step 2: calculating porewater volume ----
+## step 2a: calculating porewater volume ----
 porewater = read.csv("data/Porewater_weights.csv")
 names(porewater)
 
@@ -165,7 +165,7 @@ porewater_subset %>%
 
 write.csv(porewatersubsetlong,"processed/porewater_subset.csv")
 
-## NOW that the file has been edited in Excel, reupload it here
+## step 2b: NOW that the file has been edited in Excel, reupload it here ----
 porewatersubset2 = read.csv("processed/porewater_subset.csv")
 
 porewatersubset2 %>% 
@@ -201,31 +201,33 @@ porewatersubset3 %>%
                 Suction = tension)->
   porewater_weight
 
+#
 # step 3: get dry soil weight ----
-# https://docs.google.com/spreadsheets/d/1U5pw1kaEX5qWdW57FzQFXCFb0XrKqNLyztHhbtpgk-U
-core_weight = gs_read(key, ws = "3Soils_ImportantWeights", overwrite = TRUE) %>% 
-  dplyr::select(SampleID, DryWeightSoilONLY) %>% 
-  dplyr::rename(CoreID = SampleID)->core_weight
+core_weight = read.csv(CORE_WEIGHTS) %>% 
+  dplyr::rename(CoreID = SampleID) %>% 
+  dplyr::select(CoreID, dry_g)->core_weight
 
 # step 4: now combine all, so we can convert mg/L to mg/g
 wsoc_pores %>% 
   left_join(porewater_weight, by = c("Site","CoreNo","Suction")) %>% 
   left_join(core_weight, by = "CoreID") %>% 
-  dplyr::rename(drywt_g = DryWeightSoilONLY) %>% 
-  dplyr::select(CoreID, CoreNo,Site, Treatment, Suction, wsoc_mg_L, totalvolume_mL,drywt_g) %>% 
-  dplyr::mutate(wsoc_mgg = wsoc_mg_L * totalvolume_mL/drywt_g)->
+  dplyr::select(CoreID, CoreNo,Site, Treatment, Suction, wsoc_mg_L, totalvolume_mL,dry_g) %>% 
+  dplyr::mutate(wsoc_mgg = wsoc_mg_L * totalvolume_mL/dry_g)->
   wsoc_pores_wt
 
 wsoc_pores_wt %>% 
   group_by(Suction,Site, Treatment) %>% 
   dplyr::summarize(wsoc_mgg_mean = mean(wsoc_mgg, na.rm = TRUE),
                    se = sd(wsoc_mgg)/sqrt(n())) %>% 
-  dplyr::mutate(mean_se = paste(round(wsoc_mgg_mean,2),"\u00B1",round(se,2)),
-                sp = paste(Suction,Site)) %>% 
+  dplyr::mutate(mean_se = paste(round(wsoc_mgg_mean,2),"\u00B1",round(se,2))) %>% 
   ungroup %>% 
-  dplyr::select(sp,mean_se, Treatment) %>% 
-  spread(sp, mean_se)->
+  dplyr::select(Site,Treatment,Suction,mean_se, mean_se)->
   wsoc_pores_summary
+
+#
+
+### OUTPUT
+write.csv(wsoc_pores_summary, WSOC_PORE, row.names = FALSE)
 
 #
 

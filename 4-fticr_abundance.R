@@ -173,12 +173,12 @@ soil_relabund %>%
   left_join(soil_relabund_dunnett,by = c("site","Class","treatment"), all.x = TRUE) %>% 
   replace(.,is.na(.),"") %>% 
   dplyr::mutate(relativeabundance = paste(relabund,dunnett)) %>% 
-  dplyr::select(-relabund, -dunnett)->
+  dplyr::select(-relabund, -dunnett) ->
   fticr_soil_relativeabundance
 
 
-
-      ## ## HSD. DONT DO
+#
+      ## ## HSD. DONT DO ----
       ## fit_hsd_relabund <- function(dat) {
       ##   a <-aov(relabund ~ treatment, data = dat)
       ##   h <-HSD.test(a,"treatment")
