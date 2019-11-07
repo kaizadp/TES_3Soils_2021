@@ -11,7 +11,7 @@ Run: `r Sys.Date()`
 
 
 ```{r setup, include=FALSE, echo=FALSE}
-source("0-packages.R")
+source("0b-packages.R")
 
 # input files
 #   CHARAC
@@ -156,6 +156,22 @@ wsoc_pore %>%
 ```
 
 ---
+# FTICR domains 
+
+```{r vk_domains,echo=FALSE, warning=FALSE,message=FALSE, fig.height=7,fig.width=7, fig.path="images/"}
+pore_long %>% 
+  dplyr::mutate(Class = factor(Class, levels = 
+                          c("AminoSugar", "Carb","Lipid","Protein","UnsatHC",
+                            "ConHC","Lignin","Tannin","Other")))->
+           pore_long
+
+gg_vankrev(pore_long, aes(x=OC,y=HC,color=Class))+
+  scale_color_viridis_d(option = "inferno")+
+  theme_kp()+  
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))
+
+```
+
 
 # FTICR Pores -- figures
 ## native SOM
@@ -168,6 +184,9 @@ gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=H
   theme_bw()+
   theme_kp()
 ```
+
+
+
 
 ## treatment effect -- all peaks
 ```{r vk_treatments, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for treatments",fig.width=10, fig.height=7,,fig.path = "images/"}
