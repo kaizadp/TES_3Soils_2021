@@ -27,3 +27,5 @@ FTICR files are zipped. *Do not unzip, they are too big for GitHub.*
 `4-fticr_abundance.R`: uses outputs from script #3 to count peaks and calculate relative abundance of the classes. output files are saved in `fticr` folder.
 
 `000-3soils_markdown.Rmd`: uses output from all other scripts to generate figures and tables. figures are also saved in the `images` folder, currently set to 72 dpi. 
+
+`10-transformation_analysis...` is for Transformation analysis of FTICR data. Script from Bob Danczak.
