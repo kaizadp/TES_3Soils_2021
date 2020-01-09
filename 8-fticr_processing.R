@@ -350,4 +350,4 @@ ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment)) +
 
 ###### Significance testing
 
-adonis(g_matrix ~ g_tab$Site+g_tab$Treatment+g_tab$Site*g_tab$Treatment, method="bray", permutations=999)
+adonis(df_f ~ fticr_pore_raw_long$site+fticr_pore_raw_long$treatment+fticr_pore_raw_long$site:fticr_pore_raw_long$treatment, method="bray", permutations=100)
