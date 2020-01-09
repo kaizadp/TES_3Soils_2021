@@ -7,7 +7,7 @@
  ## generate clean files that can be used for subsequent analysis.
  ## each dataset will generate longform files of (a) all cores, (b) summarized data for each treatment (i.e. cores combined) 
 
-source("0-packages.R")
+source("0b-packages.R")
 
 # ------------------------------------------------------- ----
 
@@ -289,3 +289,66 @@ pore_nosc <- merge(fticr_pore_long,pore_meta_nosc, by="Mass")
 write.csv(soil_nosc,FTICR_SOIL_NOSC,row.names = FALSE)
 write.csv(pore_nosc,FTICR_PORE_NOSC,row.names = FALSE)
 
+
+## b. PCA ----
+library(devtools)
+install_github("vqv/ggbiplot")
+library(ggbiplot)
+library(vegan)
+library("ape")
+
+fticr_pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
+
+fticr_pore_pca = 
+  fticr_pore_long %>% 
+  dplyr::mutate(presence = case_when(intensity>0~1)) %>% 
+  dplyr::select(Mass,tension,site,treatment,presence) %>%  
+  spread(Mass,presence)
+
+fticr_pca_num = 
+  fticr_pore_pca %>% 
+  dplyr::select(.,-(1:3)) %>% 
+  replace(.,is.na(.),0)
+
+fticr_pca_grp = 
+  fticr_pore_pca %>% 
+  dplyr::select(.,(1:3))  
+
+df_f <- fticr_pca_num[,apply(fticr_pca_num, 2, var, na.rm=TRUE) != 0]
+
+pca = prcomp(df_f, scale. = T)
+summary(pca)
+
+ggbiplot(pca, obs.scale = 1, var.scale = 1, 
+         groups = fticr_pca_grp$site, ellipse = TRUE, circle = TRUE,
+         var.axes = FALSE)
+
+## TPC method
+
+bray_distance = vegdist(fticr_pca_num, method="euclidean")
+principal_coordinates = pcoa(bray_distance)
+
+pcoa_plot = data.frame(principal_coordinates$vectors[,])
+pcoa_plot_merged = merge(pcoa_plot, fticr_pca_grp, by="row.names")
+
+####### Calculate percent variation explained by PC1, PC2
+
+PC1 <- 100*(principal_coordinates$values$Eigenvalues[1]/sum(principal_coordinates$values$Eigenvalues))
+PC2 <- 100*(principal_coordinates$values$Eigenvalues[2]/sum(principal_coordinates$values$Eigenvalues))
+PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinates$values$Eigenvalues))
+
+###### Plot PCoA
+
+ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site)) + 
+  geom_point(size=4)+
+  facet_grid(site~tension)+
+#  stat_ellipse()+
+  theme_kp()+
+  theme(legend.position = "right")+
+  labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
+
+
+
+###### Significance testing
+
+adonis(g_matrix ~ g_tab$Site+g_tab$Treatment+g_tab$Site*g_tab$Treatment, method="bray", permutations=999)
