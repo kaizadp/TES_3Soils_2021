@@ -297,22 +297,22 @@ library(ggbiplot)
 library(vegan)
 library("ape")
 
-fticr_pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
+fticr_pore_raw_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_longform.csv"
 
 fticr_pore_pca = 
-  fticr_pore_long %>% 
+  fticr_pore_raw_long %>% 
   dplyr::mutate(presence = case_when(intensity>0~1)) %>% 
-  dplyr::select(Mass,tension,site,treatment,presence) %>%  
+  dplyr::select(core,Mass,tension,site,treatment,presence) %>%  
   spread(Mass,presence)
 
 fticr_pca_num = 
   fticr_pore_pca %>% 
-  dplyr::select(.,-(1:3)) %>% 
+  dplyr::select(.,-(1:4)) %>% 
   replace(.,is.na(.),0)
 
 fticr_pca_grp = 
   fticr_pore_pca %>% 
-  dplyr::select(.,(1:3))  
+  dplyr::select(.,(1:4))  
 
 df_f <- fticr_pca_num[,apply(fticr_pca_num, 2, var, na.rm=TRUE) != 0]
 
@@ -342,7 +342,7 @@ PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinate
 ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site)) + 
   geom_point(size=4)+
   facet_grid(site~tension)+
-#  stat_ellipse()+
+  stat_ellipse(color="black")+
   theme_kp()+
   theme(legend.position = "right")+
   labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
