@@ -320,7 +320,7 @@ pca = prcomp(df_f, scale. = T)
 summary(pca)
 
 ggbiplot(pca, obs.scale = 1, var.scale = 1, 
-         groups = fticr_pca_grp$site, ellipse = TRUE, circle = TRUE,
+         groups = fticr_pca_grp$treatment, ellipse = TRUE, circle = TRUE,
          var.axes = FALSE)
 
 ## TPC method
@@ -339,12 +339,11 @@ PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinate
 
 ###### Plot PCoA
 
-ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site)) + 
+ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment)) + 
   geom_point(size=4)+
   facet_grid(site~tension)+
-  stat_ellipse(color="black")+
+  #stat_ellipse()+
   theme_kp()+
-  theme(legend.position = "right")+
   labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
 
 
