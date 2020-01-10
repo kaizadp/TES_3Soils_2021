@@ -1,0 +1,70 @@
+Tue Nov 19 10:48:27 2019  Opening outputs//1-googlesheets/1-googlesheets.R.log.txt 
+Tue Nov 19 10:48:28 2019  Welcome to 1-googlesheets.R 
+Tue Nov 19 10:48:29 2019  Getting list of Picarro files... 
+                  Spreadsheet title: 3Soils_CPCRW_SR_DWP_PicarroLog
+                 Spreadsheet author: peytonjunior
+  Date of googlesheets registration: 2019-11-19 18:49:21 GMT
+    Date of last spreadsheet update: 2019-11-19 18:49:21 GMT
+                         visibility: private
+                        permissions: r
+                            version: new
+
+Contains 4 worksheets:
+(Title): (Nominal worksheet extent as rows x columns)
+valve_map: 984 x 27
+Example: 1000 x 26
+Notes: 1000 x 26
+sampleID_key: 1007 x 22
+
+Key: 1wsI3tldbhhMDSDoRejmS2jE2c9U-75sht_Dyum3QUBY
+Browser URL: https://docs.google.com/spreadsheets/d/1wsI3tldbhhMDSDoRejmS2jE2c9U-75sht_Dyum3QUBY/
+Tue Nov 19 10:49:30 2019  Downloading valve_map 
+Downloading: 1.3 kB     Downloading: 1.3 kB     Downloading: 2.6 kB     Downloading: 2.6 kB     Downloading: 4 kB     Downloading: 4 kB     Downloading: 4.1 kB     Downloading: 4.1 kB     Downloading: 5.4 kB     Downloading: 5.4 kB     Downloading: 5.9 kB     Downloading: 5.9 kB     Downloading: 6.9 kB     Downloading: 6.9 kB     Downloading: 7.2 kB     Downloading: 7.2 kB     Downloading: 8.3 kB     Downloading: 8.3 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Tue Nov 19 10:49:45 2019  Downloading sampleID_key 
+Downloading: 1.2 kB     Downloading: 1.2 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Tue Nov 19 10:49:50 2019  Saving data//gs_valvemap.csv 
+Tue Nov 19 10:50:15 2019  Saving data//gs_key.csv 
+Tue Nov 19 10:50:29 2019  All done with 1-googlesheets.R 
+Tue Nov 19 10:50:31 2019  Closing outputs//1-googlesheets/1-googlesheets.R.log.txt flags = 0 
+-------
+R version 3.6.0 (2019-04-26)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] googledrive_1.0.0  googlesheets_0.3.0 tidyr_1.0.0        luzlogr_0.2.0     
+[5] stringr_1.4.0      lubridate_1.7.4    readr_1.3.1        dplyr_0.8.3       
+[9] ggplot2_3.2.1     
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.2       pillar_1.4.2     compiler_3.6.0   cellranger_1.1.0 tools_3.6.0     
+ [6] zeallot_0.1.0    jsonlite_1.6     tibble_2.1.3     lifecycle_0.1.0  gargle_0.4.0    
+[11] gtable_0.3.0     pkgconfig_2.0.3  rlang_0.4.1      rstudioapi_0.10  curl_4.2        
+[16] xml2_1.2.2       httr_1.4.1       withr_2.1.2      askpass_1.1      vctrs_0.2.0     
+[21] fs_1.3.1         hms_0.5.1        grid_3.6.0       tidyselect_0.2.5 glue_1.3.1      
+[26] R6_2.4.0         purrr_0.3.3      magrittr_1.5     backports_1.1.5  scales_1.0.0    
+[31] assertthat_0.2.1 colorspace_1.4-1 stringi_1.4.3    openssl_1.4.1    lazyeval_0.2.2  
+[36] munsell_0.5.0    crayon_1.3.4    
+Saving data//gs_key.csv 
+Tue Nov 19 10:50:29 2019  All done with 1-googlesheets.R 
+Tue Nov 19 10:50:31 2019  Closing outputs//1-googlesheets/1-googlesheets.R.log.txt flags = 0 
+Tue Nov 19 10:51:00 2019  Opening outputs//2-data/2-data.R.log.txt 
+Tue Nov 19 10:51:01 2019  Welcome to 2-data.R 
+Tue Nov 19 10:51:01 2019  Data directory is data//picarro/ 
+Tue Nov 19 10:51:02 2019  process_directory data//picarro/ 
+Tue Nov 19 10:51:03 2019  Writing output file... 
+Tue Nov 19 10:51:05 2019  Saving outputs//rawdata.csv 
+Tue Nov 19 10:51:05 2019  gzipping outputs//rawdata.csv 
+Tue Nov 19 10:51:07 2019  All done with 2-data.R 
+Tue Nov 19 10:51:08 2019  Closing outputs//2-data/2-data.R.log.txt flags = 0 
+Tue Nov 19 10:51:26 2019  Opening outputs//3-summarize/3-summarize.R.log.txt 
+Tue Nov 19 10:51:27 2019  Welcome to 3-summarize.R 
+Tue Nov 19 10:51:27 2019  Reading in raw data... 
