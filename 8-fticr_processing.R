@@ -312,7 +312,8 @@ fticr_pca_num =
 
 fticr_pca_grp = 
   fticr_pore_pca %>% 
-  dplyr::select(.,(1:4))  
+  dplyr::select(.,(1:4)) %>% 
+  dplyr::mutate(row = row_number())
 
 df_f <- fticr_pca_num[,apply(fticr_pca_num, 2, var, na.rm=TRUE) != 0]
 
@@ -351,3 +352,33 @@ ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment)) +
 ###### Significance testing
 
 adonis(df_f ~ fticr_pore_raw_long$site+fticr_pore_raw_long$treatment+fticr_pore_raw_long$site:fticr_pore_raw_long$treatment, method="bray", permutations=100)
+
+## distance matrix
+bray_df  =matrixConvert(bray_distance, colname = c("Var1","Var2","dist"))
+
+bray_df2 = 
+  bray_df %>% 
+  left_join(fticr_pca_grp, by = c("Var1"="row")) %>% 
+  left_join(fticr_pca_grp, by = c("Var2"="row")) %>% 
+#  dplyr::mutate(NAME = paste(site.x,treatment.x,"-",site.y,treatment.y)) %>% 
+# now select only TZSat distances
+  dplyr::mutate(TZSAT = case_when(treatment.x=="time zero saturation" | treatment.y=="time zero saturation"~"time zero saturation")) %>% 
+  filter(!is.na(TZSAT)) %>% 
+  dplyr::mutate(trtx = case_when(!treatment.x=="time zero saturation" ~treatment.x),
+                trty = case_when(!treatment.y=="time zero saturation" ~treatment.y),
+                TRT = paste(trtx,trty),
+                TRT = str_replace_all(TRT,"NA ",""),
+                TRT = str_replace_all(TRT," NA",""),
+                TRT = str_replace_all(TRT,"NA",""))
+
+    
+
+ggplot(bray_df2, aes(x = TRT, y = dist, color = TRT))+
+  geom_boxplot(position = position_dodge(width = 0.7), fill = "white", lwd = 1,fatten = 1, width=0.5)+ # fatten changes thickness of median line, lwd changes thickness of all lines
+  geom_point(position = position_dodge(width = 0.7), alpha=0.1, shape=1, size=2)  
+
+
+
+
+
+
