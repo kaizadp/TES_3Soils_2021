@@ -1,10 +1,13 @@
-Tue Nov 19 10:48:27 2019  Opening outputs//1-googlesheets/1-googlesheets.R.log.txt 
-Tue Nov 19 10:48:28 2019  Welcome to 1-googlesheets.R 
-Tue Nov 19 10:48:29 2019  Getting list of Picarro files... 
+Fri Jan 10 13:27:02 2020  Opening outputs//1-googlesheets/1-googlesheets.R.log.txt 
+Fri Jan 10 13:27:04 2020  Welcome to 1-googlesheets.R 
+Fri Jan 10 13:28:19 2020  Opening outputs//3-summarize/3-summarize.R.log.txt 
+Fri Jan 10 13:28:20 2020  Welcome to 3-summarize.R 
+Fri Jan 10 13:28:20 2020  Reading in raw data... 
+Fri Jan 10 13:29:12 2020  Getting list of Picarro files... 
                   Spreadsheet title: 3Soils_CPCRW_SR_DWP_PicarroLog
                  Spreadsheet author: peytonjunior
-  Date of googlesheets registration: 2019-11-19 18:49:21 GMT
-    Date of last spreadsheet update: 2019-11-19 18:49:21 GMT
+  Date of googlesheets registration: 2020-01-10 21:30:08 GMT
+    Date of last spreadsheet update: 2020-01-10 21:30:08 GMT
                          visibility: private
                         permissions: r
                             version: new
@@ -18,53 +21,961 @@ sampleID_key: 1007 x 22
 
 Key: 1wsI3tldbhhMDSDoRejmS2jE2c9U-75sht_Dyum3QUBY
 Browser URL: https://docs.google.com/spreadsheets/d/1wsI3tldbhhMDSDoRejmS2jE2c9U-75sht_Dyum3QUBY/
-Tue Nov 19 10:49:30 2019  Downloading valve_map 
-Downloading: 1.3 kB     Downloading: 1.3 kB     Downloading: 2.6 kB     Downloading: 2.6 kB     Downloading: 4 kB     Downloading: 4 kB     Downloading: 4.1 kB     Downloading: 4.1 kB     Downloading: 5.4 kB     Downloading: 5.4 kB     Downloading: 5.9 kB     Downloading: 5.9 kB     Downloading: 6.9 kB     Downloading: 6.9 kB     Downloading: 7.2 kB     Downloading: 7.2 kB     Downloading: 8.3 kB     Downloading: 8.3 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Tue Nov 19 10:49:45 2019  Downloading sampleID_key 
-Downloading: 1.2 kB     Downloading: 1.2 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Tue Nov 19 10:49:50 2019  Saving data//gs_valvemap.csv 
-Tue Nov 19 10:50:15 2019  Saving data//gs_key.csv 
-Tue Nov 19 10:50:29 2019  All done with 1-googlesheets.R 
-Tue Nov 19 10:50:31 2019  Closing outputs//1-googlesheets/1-googlesheets.R.log.txt flags = 0 
--------
-R version 3.6.0 (2019-04-26)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS Mojave 10.14.6
-
-Matrix products: default
-BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
-
-locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
-[1] googledrive_1.0.0  googlesheets_0.3.0 tidyr_1.0.0        luzlogr_0.2.0     
-[5] stringr_1.4.0      lubridate_1.7.4    readr_1.3.1        dplyr_0.8.3       
-[9] ggplot2_3.2.1     
-
-loaded via a namespace (and not attached):
- [1] Rcpp_1.0.2       pillar_1.4.2     compiler_3.6.0   cellranger_1.1.0 tools_3.6.0     
- [6] zeallot_0.1.0    jsonlite_1.6     tibble_2.1.3     lifecycle_0.1.0  gargle_0.4.0    
-[11] gtable_0.3.0     pkgconfig_2.0.3  rlang_0.4.1      rstudioapi_0.10  curl_4.2        
-[16] xml2_1.2.2       httr_1.4.1       withr_2.1.2      askpass_1.1      vctrs_0.2.0     
-[21] fs_1.3.1         hms_0.5.1        grid_3.6.0       tidyselect_0.2.5 glue_1.3.1      
-[26] R6_2.4.0         purrr_0.3.3      magrittr_1.5     backports_1.1.5  scales_1.0.0    
-[31] assertthat_0.2.1 colorspace_1.4-1 stringi_1.4.3    openssl_1.4.1    lazyeval_0.2.2  
-[36] munsell_0.5.0    crayon_1.3.4    
-Saving data//gs_key.csv 
-Tue Nov 19 10:50:29 2019  All done with 1-googlesheets.R 
-Tue Nov 19 10:50:31 2019  Closing outputs//1-googlesheets/1-googlesheets.R.log.txt flags = 0 
-Tue Nov 19 10:51:00 2019  Opening outputs//2-data/2-data.R.log.txt 
-Tue Nov 19 10:51:01 2019  Welcome to 2-data.R 
-Tue Nov 19 10:51:01 2019  Data directory is data//picarro/ 
-Tue Nov 19 10:51:02 2019  process_directory data//picarro/ 
-Tue Nov 19 10:51:03 2019  Writing output file... 
-Tue Nov 19 10:51:05 2019  Saving outputs//rawdata.csv 
-Tue Nov 19 10:51:05 2019  gzipping outputs//rawdata.csv 
-Tue Nov 19 10:51:07 2019  All done with 2-data.R 
-Tue Nov 19 10:51:08 2019  Closing outputs//2-data/2-data.R.log.txt flags = 0 
-Tue Nov 19 10:51:26 2019  Opening outputs//3-summarize/3-summarize.R.log.txt 
-Tue Nov 19 10:51:27 2019  Welcome to 3-summarize.R 
-Tue Nov 19 10:51:27 2019  Reading in raw data... 
+Fri Jan 10 13:30:23 2020  Downloading valve_map 
+Downloading: 1.2 kB     Downloading: 1.2 kB     Downloading: 2.6 kB     Downloading: 2.6 kB     Downloading: 3.9 kB     Downloading: 3.9 kB     Downloading: 5.3 kB     Downloading: 5.3 kB     Downloading: 5.9 kB     Downloading: 5.9 kB     Downloading: 7.2 kB     Downloading: 7.2 kB     Downloading: 8.3 kB     Downloading: 8.3 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Downloading: 8.4 kB     Fri Jan 10 13:30:31 2020  Downloading sampleID_key 
+Downloading: 1.1 kB     Downloading: 1.1 kB     Downloading: 2.4 kB     Downloading: 2.4 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Downloading: 2.5 kB     Fri Jan 10 13:30:35 2020  Saving data//gs_valvemap.csv 
+Fri Jan 10 13:30:39 2020  Saving data//gs_key.csv 
+Fri Jan 10 13:30:41 2020  All done with 3-summarize.R 
+Fri Jan 10 13:30:43 2020  Closing outputs//3-summarize/3-summarize.R.log.txt flags = 0 
+Fri Jan 10 13:31:31 2020  Opening outputs//2-data/2-data.R.log.txt 
+Fri Jan 10 13:31:32 2020  Welcome to 2-data.R 
+Fri Jan 10 13:31:32 2020  Data directory is data//picarro/ 
+Fri Jan 10 13:31:34 2020  process_directory data//picarro/ 
+Fri Jan 10 13:31:36 2020  Writing output file... 
+Fri Jan 10 13:31:37 2020  Saving outputs//rawdata.csv 
+Fri Jan 10 13:31:37 2020  gzipping outputs//rawdata.csv 
+Fri Jan 10 13:31:49 2020  All done with 2-data.R 
+Fri Jan 10 13:31:50 2020  Closing outputs//2-data/2-data.R.log.txt flags = 0 
+Fri Jan 10 13:33:22 2020  Opening outputs//3-summarize/3-summarize.R.log.txt 
+Fri Jan 10 13:33:23 2020  Welcome to 3-summarize.R 
+Fri Jan 10 13:33:24 2020  Reading in raw data... 
+Fri Jan 10 13:37:09 2020  Opening outputs//3-summarize/3-summarize.R.log.txt 
+Fri Jan 10 13:37:09 2020  Welcome to 3-summarize.R 
+Fri Jan 10 13:37:10 2020  Data directory is data//picarro/ 
+Fri Jan 10 13:37:10 2020  process_directory data//picarro/ 
+Fri Jan 10 13:37:10 2020  Reading data//picarro//CFADS2283-20160321-195651Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:27 2020  Opening outputs//3-summarize/3-summarize.R.log.txt 
+Fri Jan 10 13:37:28 2020  Welcome to 3-summarize.R 
+Fri Jan 10 13:37:28 2020  Data directory is data//picarro/ 
+Fri Jan 10 13:37:29 2020  process_directory data//picarro/ 
+Fri Jan 10 13:37:29 2020  Reading data//picarro//CFADS2283-20160321-195651Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:29 2020  Reading data//picarro//CFADS2283-20160321-205658Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:29 2020  Reading data//picarro//CFADS2283-20160321-215703Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160321-225709Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160321-235716Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-005722Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-015727Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-025733Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-035738Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-045743Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-055749Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-065754Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-075801Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-085806Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-095811Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:30 2020  Reading data//picarro//CFADS2283-20160322-105816Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-115822Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-125827Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-135833Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-145838Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-155843Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-165848Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-175853Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-185859Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-195904Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-205909Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-215913Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:31 2020  Reading data//picarro//CFADS2283-20160322-225921Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160510-183756Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160510-193801Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160511-175218Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160511-185226Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160511-195231Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160512-173804Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160512-183811Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160517-155038Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160517-165044Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160517-195120Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160517-205126Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160518-173627Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160518-183632Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160518-231924Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160613-184131Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160613-194136Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160613-204141Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:32 2020  Reading data//picarro//CFADS2283-20160614-175702Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160614-185706Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160614-195712Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160614-205718Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160615-165120Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160615-175251Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160615-185259Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160615-195305Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160615-205310Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160711-165815Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160711-175820Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160711-185826Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160712-161958Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160712-172005Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160712-182010Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160713-163829Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160713-173835Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160713-183840Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160713-193848Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160829-165942Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160830-192436Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:34 2020  Reading data//picarro//CFADS2283-20160831-173412Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20160831-183420Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20160909-144212Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20160909-154147Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20160909-164154Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161006-205054Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161006-215100Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161006-225107Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161007-161808Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161007-171814Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161007-181819Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161007-191824Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161007-201831Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161007-211837Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161007-221843Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161007-231848Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161008-005147Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161008-015153Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161008-025200Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161008-035206Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161008-045213Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:35 2020  Reading data//picarro//CFADS2283-20161008-055220Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161008-065228Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161008-075234Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161008-085239Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161008-095246Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161008-105253Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161008-115300Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161008-125307Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161008-135315Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161008-145323Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161009-153212Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161011-165624Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161011-175630Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161011-185638Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161011-195646Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161011-205653Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161011-215659Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161011-225706Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161011-235713Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161012-005719Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161012-015727Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:36 2020  Reading data//picarro//CFADS2283-20161012-025734Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-035742Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-045749Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-055755Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-065803Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-075810Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-085815Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-095822Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-105827Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-115835Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-125841Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-135847Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-145853Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161012-155900Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161013-164410Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161013-174415Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161013-184420Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161013-194426Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161015-165051Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161015-175056Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161015-185102Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161018-164542Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161018-174548Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161018-184557Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161018-194610Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161020-163550Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:37 2020  Reading data//picarro//CFADS2283-20161020-173554Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161020-183602Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161020-193609Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161020-203617Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161020-213622Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161025-175848Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161025-185854Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161025-195859Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161025-205906Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161027-174830Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161027-184836Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161027-194842Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161101-170155Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161101-180202Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161101-190210Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161101-200218Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161101-210224Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161102-170227Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161103-165350Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:38 2020  Reading data//picarro//CFADS2283-20161103-175358Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161103-185405Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161103-195412Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161103-205418Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161108-165830Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161108-175835Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161108-185842Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161108-195848Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161108-205854Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161108-215859Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161108-225905Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161110-180356Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161110-190402Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161110-200408Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161110-210414Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161110-220421Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161110-230426Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161111-000433Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161111-010440Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161111-020447Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:39 2020  Reading data//picarro//CFADS2283-20161111-030452Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-040457Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-050503Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-060508Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-070513Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-080520Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-090528Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-100536Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-110543Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-120548Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-130555Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-140601Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-150607Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-160612Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-170620Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-180627Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-190632Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-200638Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161111-210645Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:40 2020  Reading data//picarro//CFADS2283-20161114-172457Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161114-182503Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161114-192509Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161114-202514Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161114-212520Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161114-222527Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161114-232532Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-002538Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-012543Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-022550Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-032557Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-042602Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-052609Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-062616Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-072621Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-082627Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-092634Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-102640Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-112645Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-122651Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-132657Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-142703Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-152711Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161115-162717Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161117-173515Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161117-183522Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:41 2020  Reading data//picarro//CFADS2283-20161117-193527Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161117-203532Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161117-213538Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161117-223544Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161117-233549Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161117-235509Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-005516Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-015524Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-025530Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-035538Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-045546Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-055551Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-065557Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-075604Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-085613Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-095618Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-105630Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-115637Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-125647Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-135657Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-145703Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-155709Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-165714Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161118-175719Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161122-192332Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161122-202339Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161122-212344Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:42 2020  Reading data//picarro//CFADS2283-20161122-222351Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161122-232358Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161123-183519Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161123-193524Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161123-203531Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161125-200508Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161125-210513Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161125-220518Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161125-230524Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161126-000530Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161129-172401Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161129-182406Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161129-192413Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161129-202419Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161129-212424Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161129-222432Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161202-171712Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161202-181718Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161202-191724Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161202-201731Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:43 2020  Reading data//picarro//CFADS2283-20161202-211737Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161202-221743Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161202-231750Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-001755Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-011800Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-021806Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-031811Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-041817Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-051824Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-061830Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-071836Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-081842Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-091849Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-101854Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-111902Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-121908Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-131914Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-141920Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-151926Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-161933Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-171939Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:44 2020  Reading data//picarro//CFADS2283-20161203-181945Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161203-191952Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161203-201958Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161203-212009Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161203-222015Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161203-232021Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-002026Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-012034Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-022039Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-032045Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-042051Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-052057Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-062102Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-072108Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-082115Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-092123Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-102128Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-112135Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-122141Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:45 2020  Reading data//picarro//CFADS2283-20161204-132147Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:46 2020  Reading data//picarro//CFADS2283-20161204-142153Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:46 2020  Reading data//picarro//CFADS2283-20161204-152159Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:46 2020  Reading data//picarro//CFADS2283-20161204-162204Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:46 2020  Reading data//picarro//CFADS2283-20161204-172211Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:46 2020  Reading data//picarro//CFADS2283-20161204-182217Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:46 2020  Reading data//picarro//CFADS2283-20161204-192224Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:46 2020  Reading data//picarro//CFADS2283-20161204-202230Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:46 2020  Reading data//picarro//CFADS2283-20161204-212235Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:46 2020  Reading data//picarro//CFADS2283-20161204-222241Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161204-232246Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-002252Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-012258Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-022304Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-032310Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-042316Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-052323Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-062330Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-072337Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-082344Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-092349Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-102355Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-112402Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-122409Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-132416Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-142422Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-152427Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-162434Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161205-172440Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161206-190041Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161206-200048Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161206-210054Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161206-220101Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161206-230106Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161208-180430Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161208-190439Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:47 2020  Reading data//picarro//CFADS2283-20161208-200444Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161208-210449Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161208-220456Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161208-230502Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-000507Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-010514Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-020519Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-030526Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-040533Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-050539Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-060545Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-070552Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-080600Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-090606Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-100612Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-110617Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-120623Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-130629Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-140634Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-150640Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-160646Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:48 2020  Reading data//picarro//CFADS2283-20161209-170653Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161209-180659Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161209-190706Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161209-200711Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161209-210717Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161209-220724Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161209-230730Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161210-000737Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161212-190908Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161212-200915Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161212-210922Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161212-220928Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161216-193015Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161216-203022Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161216-213028Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161216-232729Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161219-191439Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161219-201446Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161219-211451Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161219-221458Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161219-231503Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161220-001508Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:49 2020  Reading data//picarro//CFADS2283-20161220-011513Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-021519Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-031526Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-041532Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-051537Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-061542Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-071549Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-081556Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-091602Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-101608Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-111614Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-121622Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-131628Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-141634Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-151641Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-161648Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-171653Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-181701Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-191707Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-201713Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-211719Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:50 2020  Reading data//picarro//CFADS2283-20161220-221727Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161220-231735Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-001743Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-011749Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-021756Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-031801Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-041808Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-051813Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-061820Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-071825Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-081832Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-091838Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-101843Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-111849Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-121856Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-131902Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-141908Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-151915Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-161922Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:51 2020  Reading data//picarro//CFADS2283-20161221-171929Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161221-181934Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161221-191940Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161221-201948Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161221-211954Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161221-221959Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161221-232005Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-002011Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-012016Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-022024Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-032033Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-042040Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-052046Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-062053Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-072059Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-082105Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-092113Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-102120Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-112128Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-122136Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-132142Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-142148Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-152155Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:52 2020  Reading data//picarro//CFADS2283-20161222-162200Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161222-172207Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161222-182215Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161222-192221Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161222-202229Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161222-212236Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161222-222243Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161222-232248Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-002255Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-012301Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-022309Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-032314Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-042321Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-052327Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-062333Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-072341Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-082348Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-092354Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-102400Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:53 2020  Reading data//picarro//CFADS2283-20161223-112407Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:54 2020  Reading data//picarro//CFADS2283-20161223-122413Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:54 2020  Reading data//picarro//CFADS2283-20161223-132418Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:54 2020  Reading data//picarro//CFADS2283-20161223-142424Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:54 2020  Reading data//picarro//CFADS2283-20161223-152431Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:54 2020  Reading data//picarro//CFADS2283-20161223-162437Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:54 2020  Reading data//picarro//CFADS2283-20161223-172445Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:54 2020  Reading data//picarro//CFADS2283-20161223-182453Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161223-192501Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161223-202506Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161223-212512Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161223-222519Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161223-232526Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161224-002532Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161224-012538Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161224-022544Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161224-032551Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161224-042557Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:55 2020  Reading data//picarro//CFADS2283-20161224-052603Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:56 2020  Reading data//picarro//CFADS2283-20161224-062611Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:56 2020  Reading data//picarro//CFADS2283-20161224-072618Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:56 2020  Reading data//picarro//CFADS2283-20161224-082625Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:56 2020  Reading data//picarro//CFADS2283-20161224-092630Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:56 2020  Reading data//picarro//CFADS2283-20161224-102637Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:56 2020  Reading data//picarro//CFADS2283-20161224-112643Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-122650Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-132656Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-142702Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-152709Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-162716Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-172723Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-182730Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-192736Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-202742Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-212748Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-222755Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161224-232800Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-002807Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-012812Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-022820Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-032827Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-042834Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-052840Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-062845Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-072853Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-082858Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:57 2020  Reading data//picarro//CFADS2283-20161225-092905Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-102910Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-112917Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-122923Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-132928Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-142934Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-152939Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-162946Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-172952Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-182959Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-193005Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-203011Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-213018Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-223024Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161225-233031Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-003036Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-013041Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-023046Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-033051Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-043058Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-053104Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-063111Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-073117Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-083123Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:58 2020  Reading data//picarro//CFADS2283-20161226-093128Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-103136Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-113141Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-123148Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-133153Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-143201Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-153208Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-163213Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-173219Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-183226Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-193233Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-203238Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-213245Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-223251Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161226-233256Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161227-003303Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161227-013308Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161227-023314Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161227-033321Z-DataLog_User.dat.gz 
+Fri Jan 10 13:37:59 2020  Reading data//picarro//CFADS2283-20161227-043327Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-053332Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-063339Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-073344Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-083351Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-093358Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-103405Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-113411Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-123417Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-133423Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-143430Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-153436Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-163441Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-173447Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-183454Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-193501Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-203508Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-213516Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-223522Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161227-233527Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161228-003533Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161228-013538Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:00 2020  Reading data//picarro//CFADS2283-20161228-023544Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-033551Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-043556Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-053601Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-063608Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-073615Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-083622Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-093629Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-103636Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-113642Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-123648Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-133655Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-143701Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-153709Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-163716Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-173723Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-183731Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-193738Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-203743Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-213749Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-223754Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161228-233800Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161229-003806Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161229-013811Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161229-023817Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161229-033823Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161229-043828Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:01 2020  Reading data//picarro//CFADS2283-20161229-053833Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-063839Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-073844Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-083851Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-093858Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-103905Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-113910Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-123917Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-133925Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-143932Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-153939Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-163945Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-173952Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-183959Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-194007Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-204014Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:02 2020  Reading data//picarro//CFADS2283-20161229-214019Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161229-224026Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161229-234033Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-004039Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-014044Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-024052Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-034059Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-044104Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-054109Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-064115Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-074120Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-084128Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-094133Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-104138Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-114145Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-124150Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-134157Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-144203Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-154209Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-164216Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-174222Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-184230Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-194237Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-204244Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-214251Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-224256Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161230-234304Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:03 2020  Reading data//picarro//CFADS2283-20161231-004311Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:04 2020  Reading data//picarro//CFADS2283-20161231-014319Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:04 2020  Reading data//picarro//CFADS2283-20161231-024327Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:04 2020  Reading data//picarro//CFADS2283-20161231-034334Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:04 2020  Reading data//picarro//CFADS2283-20161231-044342Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:04 2020  Reading data//picarro//CFADS2283-20161231-054347Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:04 2020  Reading data//picarro//CFADS2283-20161231-064353Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:04 2020  Reading data//picarro//CFADS2283-20161231-074400Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-084405Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-094411Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-104417Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-114422Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-124428Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-134434Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-144441Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-154446Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-164452Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-174457Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-184504Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-194511Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-204516Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-214523Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-224530Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20161231-234537Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-004542Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-014549Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-024554Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-034601Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-044609Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-054614Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-064620Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-074625Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-084632Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-094639Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-104647Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:05 2020  Reading data//picarro//CFADS2283-20170101-114652Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-124700Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-134706Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-144712Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-154719Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-164724Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-174729Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-184736Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-194741Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-204747Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-214755Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-224801Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170101-234808Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170102-004814Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170102-014821Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170102-024828Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170102-034833Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170102-044839Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170102-054845Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170102-064852Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:06 2020  Reading data//picarro//CFADS2283-20170102-074859Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-084904Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-094910Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-104915Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-114922Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-124928Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-134935Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-144940Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-154947Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-164953Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-174959Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-185007Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-195013Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-205021Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-215027Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-225033Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170102-235040Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170103-005048Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170103-015054Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170103-025103Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170103-035108Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170103-045116Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:07 2020  Reading data//picarro//CFADS2283-20170103-055123Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-065128Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-075135Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-085142Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-095149Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-105155Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-115159Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-125206Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-135212Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-145219Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-155225Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-165229Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-175234Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-185240Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-195247Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-205253Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-215300Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-225308Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170103-235314Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170104-005319Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:08 2020  Reading data//picarro//CFADS2283-20170104-015324Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-025330Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-035336Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-045343Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-055350Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-065358Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-075403Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-085410Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-095417Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-105424Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-115431Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-125437Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-135442Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-145447Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-155454Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-165500Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-175506Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-185511Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-195518Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-205525Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-215532Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-225539Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:09 2020  Reading data//picarro//CFADS2283-20170104-235547Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-005553Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-015600Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-025608Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-035616Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-045621Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-055627Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-065633Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-075640Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-085647Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:10 2020  Reading data//picarro//CFADS2283-20170105-095653Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-105700Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-115708Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-125715Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-135720Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-145727Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-155732Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-165740Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-175745Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-185753Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-195758Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-205806Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-215814Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-225821Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170105-235826Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170106-005831Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170106-015836Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170106-025841Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170106-035847Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170106-045853Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170106-055859Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170106-065904Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:11 2020  Reading data//picarro//CFADS2283-20170106-075909Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:12 2020  Reading data//picarro//CFADS2283-20170106-085915Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:12 2020  Reading data//picarro//CFADS2283-20170106-095920Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:12 2020  Reading data//picarro//CFADS2283-20170106-105925Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:12 2020  Reading data//picarro//CFADS2283-20170106-115932Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:12 2020  Reading data//picarro//CFADS2283-20170106-125939Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:12 2020  Reading data//picarro//CFADS2283-20170106-135945Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:12 2020  Reading data//picarro//CFADS2283-20170106-145952Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:12 2020  Reading data//picarro//CFADS2283-20170106-160000Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170106-170007Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170106-180012Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170106-190017Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170106-200023Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170106-210029Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170106-220037Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170106-230044Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170107-000049Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170107-010056Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170107-020101Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:13 2020  Reading data//picarro//CFADS2283-20170107-030106Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-040111Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-050116Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-060124Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-070129Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-080134Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-090139Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-100145Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-110151Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-120157Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-130204Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-140209Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-150216Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-160223Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-170228Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-180236Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-190243Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-200250Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-210256Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-220301Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170107-230308Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170108-000313Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170108-010321Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170108-020326Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:14 2020  Reading data//picarro//CFADS2283-20170108-030331Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-040337Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-050344Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-060351Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-070356Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-080402Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-090408Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-100414Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-110420Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-120427Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-130434Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-140441Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-150448Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-160454Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-170500Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-180508Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-190513Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-200519Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-210525Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-220531Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170108-230538Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170109-000546Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170109-010552Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170109-020558Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:15 2020  Reading data//picarro//CFADS2283-20170109-030603Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-040611Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-050616Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-060622Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-070629Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-080636Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-090641Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-100648Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-110655Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-120702Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-130709Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-140716Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-150722Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-160729Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-170736Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-180743Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-190749Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-200757Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-210804Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-220810Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:16 2020  Reading data//picarro//CFADS2283-20170109-230815Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-000823Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-010829Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-020835Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-030841Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-040848Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-050853Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-060900Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-070906Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-080914Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-090918Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-100923Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-110929Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-120936Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-130942Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:17 2020  Reading data//picarro//CFADS2283-20170110-140947Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170110-150954Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170110-160959Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170110-171005Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170110-181010Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170110-191016Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170110-201023Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170110-211029Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170110-221036Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170110-231043Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-001048Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-011054Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-021101Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-031106Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-041113Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-051119Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-061126Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-071131Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-081138Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-091146Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-101153Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-111200Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-121206Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-131213Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-141218Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:19 2020  Reading data//picarro//CFADS2283-20170111-151226Z-DataLog_User.dat.gz 
+-111200Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-121206Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-131213Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:18 2020  Reading data//picarro//CFADS2283-20170111-141218Z-DataLog_User.dat.gz 
+Fri Jan 10 13:38:19 2020  Reading data//picarro//CFADS2283-20170111-151226Z-DataLog_User.dat.gz 
