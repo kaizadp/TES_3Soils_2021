@@ -2,6 +2,7 @@
 
 library(dplyr)
 library(tidyr)
+library(readr)         # 1.0.0
 
 options(digits=10) # Sig figs in mass resolution data
 
@@ -13,9 +14,20 @@ Sample_Name = "Nisqually_48Hour"
 #######################
 
 # Loading in ICR data
-setwd("~/Documents/48 Hour Meta-analysis/Individual Datasets/Nisqually River/")
-data = read.csv(list.files(pattern = "*_Data_clean_noRep.csv"), row.names = 1) # Keeping data and mol-data seperate to ensure they are unaltered
-mol = read.csv(list.files(pattern = "*_Mol_clean_noRep.csv"), row.names = 1)
+#setwd("~/Documents/48 Hour Meta-analysis/Individual Datasets/Nisqually River/")
+mol = read_csv("data/FTICR_INPUT_SOILPORE.csv.zip") %>% 
+  dplyr::select(1:14) %>% 
+  dplyr::filter(!C13==1)# Keeping data and mol-data seperate to ensure they are unaltered
+data = read_csv("data/FTICR_INPUT_SOILPORE.csv.zip") %>% 
+  dplyr::filter(!C13==1)%>% dplyr::select(1,16) 
+
+data = as.data.frame(data)
+data.row = data$Mass
+data = as.data.frame(data[,-1])
+row.names(data) = data.row
+
+mol = as.data.frame(mol)
+row.names(mol) = mol$Mass
 
 colnames(data) = paste("Sample_", colnames(data), sep="")
 
@@ -25,7 +37,7 @@ if(identical(x = row.names(data), y = row.names(mol)) == FALSE){
 }
 
 # Loading in transformations
-trans.full =  read.csv("~/Documents/Code Information (ESOM and 16S)/FTICR Scripts/Transformation_Database_10-2019.csv")
+trans.full =  read.csv("data/Transformation_Database_10-2019.csv")
 trans.full$Name = as.character(trans.full$Name)
 
 # ############# #
@@ -90,8 +102,8 @@ for (current.sample in samples.to.process) {
   colnames(one.sample.matrix) = c("peak", colnames(one.sample.matrix[2]))
   # print(head(one.sample.matrix))
   
-  Sample_Peak_Mat <- one.sample.matrix %>% gather("sample", "value", -1) %>% filter(value > 0) %>% select(sample, peak)
-  Distance_Results <- Sample_Peak_Mat %>% left_join(Sample_Peak_Mat, by = "sample") %>% filter(peak.x > peak.y) %>% mutate(Dist = peak.x - peak.y) %>% select(sample, Dist,peak.x,peak.y)
+  Sample_Peak_Mat <- one.sample.matrix %>% gather("sample", "value", -1) %>% filter(value > 0) %>% dplyr::select(sample, peak)
+  Distance_Results <- Sample_Peak_Mat %>% left_join(Sample_Peak_Mat, by = "sample") %>% filter(peak.x > peak.y) %>% dplyr::mutate(Dist = peak.x - peak.y) %>% dplyr::select(sample, Dist,peak.x,peak.y)
   Distance_Results$Dist.plus = Distance_Results$Dist + error.term
   Distance_Results$Dist.minus = Distance_Results$Dist - error.term
   Distance_Results$Trans.name = -999
