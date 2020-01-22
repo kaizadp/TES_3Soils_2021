@@ -1,0 +1,126 @@
+---
+title: "5b-fluxes_graphs"
+author: "Kaizad Patel"
+date: "1/20/2020"
+output: word_document
+---
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+knitr::opts_chunk$set(echo=FALSE,message=FALSE,warning=FALSE,
+                      collapse = TRUE,
+                      comment = "#>")
+```
+
+```{r}
+source("0-functions.R")
+source("0b-packages.R")
+
+flux = read_csv("processed/fluxdata_kp.csv")
+
+```
+
+```{r}
+# remove pre-incubation data
+flux = 
+  flux %>% 
+#  filter(!TREATMENT_PHASE == "DROUGHT_PRE_INCUBATION") %>% 
+#  filter(!TREATMENT_PHASE == "DROUGHT4C_PRE_INCUBATION") %>% 
+  filter(!SampleID=="S5")  
+  filter(!Treatment=="sat_I")
+```
+
+```{r, fig.width=8, fig.height=8}
+ggplot(flux, aes(x = time_hours, y = CO2_mgC_gSoil_hr, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_grid(Treatment~Site, scales = "free")
+  scale_x_date(date_breaks = "14 days")
+
+ggplot(flux, aes(x = (time_hours), y = CH4_mgC_gSoil_hr*1e6, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_grid(Treatment~Site, scales = "free_x")
+  scale_x_date(date_breaks = "14 days")
+```
+
+by core: CPCRW
+
+
+```{r, fig.width=8, fig.height=8}
+ggplot(flux[flux$Site=="CPCRW",], aes(x = as.Date(DATETIME), y = CO2_mgC_gSoil_hr, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_wrap(Treatment~SampleID, scales = "free_x")+
+  scale_x_date(date_breaks = "7 days")
+
+ggplot(flux[flux$Site=="CPCRW",], aes(x = as.Date(DATETIME), y = CH4_mgC_gSoil_hr*1000000, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_wrap(Treatment~SampleID, scales = "free_x")+
+  scale_x_date(date_breaks = "7 days")
+```
+
+by core: DWP
+```{r, fig.width=8, fig.height=8}
+ggplot(flux[flux$Site=="DWP",], aes(x = as.Date(DATETIME), y = CO2_mgC_gSoil_hr, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_wrap(Treatment~SampleID, scales = "free_x")+
+  scale_x_date(date_breaks = "7 days")
+
+ggplot(flux[flux$Site=="DWP",], aes(x = as.Date(DATETIME), y = CH4_mgC_gSoil_hr*1000000, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_wrap(Treatment~SampleID, scales = "free_x")+
+  scale_x_date(date_breaks = "7 days")
+```
+
+by core: SR
+
+```{r, fig.width=8, fig.height=8}
+ggplot(flux[flux$Site=="SR",], aes(x = as.Date(DATETIME), y = CO2_mgC_gSoil_hr, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_wrap(Treatment~SampleID, scales = "free_x")+
+  scale_x_date(date_breaks = "7 days")
+
+ggplot(flux[flux$Site=="SR",], aes(x = as.Date(DATETIME), y = CH4_mgC_gSoil_hr*1000000, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_wrap(Treatment~SampleID, scales = "free_x")+
+  scale_x_date(date_breaks = "7 days")
+```
+
+graphs
+
+```{r}
+flux2 = 
+  flux %>% 
+  na.omit() %>% 
+  filter(!SampleID=="S5") %>% 
+  dplyr::mutate(CO2_mgC_gSoil_hr = if_else(CO2_mgC_gSoil_hr>0,CO2_mgC_gSoil_hr, as.numeric(NA)),
+                CH4_mgC_gSoil_hr = if_else(CH4_mgC_gSoil_hr>0,CH4_mgC_gSoil_hr, as.numeric(NA))) %>%
+  group_by(Site, Treatment)%>% 
+  dplyr::mutate(DATE = as.Date(DATETIME),
+                time_days = as.numeric(difftime(DATE, min(DATE), units = "days")),
+                time_hours = round(time_hours,2))
+flux_mean = 
+  flux2 %>% 
+  dplyr::mutate(time_hours = time_days*24) %>% 
+  group_by(Site, TREATMENT_PHASE, time_hours, Treatment) %>% 
+  dplyr::summarise(CO2 = mean(CO2_mgC_gSoil_hr, na.omit = TRUE),
+                   CH4 = mean(CH4_mgC_gSoil_hr, na.omit = TRUE))
+
+ggplot(flux_mean[!flux_mean$Treatment=="sat_I",], aes(x = time_hours, y = CO2, color = TREATMENT_PHASE))+
+  geom_smooth(data=flux2[!flux2$Treatment=="sat_I",],aes( y = CO2_mgC_gSoil_hr, group = SampleID), se = FALSE, color = "grey",alpha = 0.5, size=0.5)+
+  geom_point(data=flux2[!flux2$Treatment=="sat_I",],aes( y = CO2_mgC_gSoil_hr, group = SampleID), color = "grey",alpha = 0.5, size=1)+
+  geom_point(size=3)+
+  #geom_smooth(method = "loess",color = "red")+
+  facet_grid(Site~Treatment)+
+  ylab("CO2, mgC/g/hr")+
+  theme_kp()+theme(legend.position = "none")
+
+ggplot(flux_mean[!flux_mean$Treatment=="sat_I",], aes(x = time_hours, y = CH4*1e6, color = TREATMENT_PHASE))+
+  geom_smooth(data=flux[!flux$Treatment=="sat_I",],aes( y = CH4_mgC_gSoil_hr*1e6, group = SampleID), se = FALSE, color = "grey",alpha = 0.7)+
+  geom_point(data=flux[!flux$Treatment=="sat_I",],aes( y = CH4_mgC_gSoil_hr*1e6, group = SampleID), color = "grey",alpha = 0.5, size=1)+
+  geom_point(size=2)+
+  #geom_smooth(method = "loess",color = "red")+
+  facet_grid(Site~Treatment)+
+  ylab("CH4, ngC/g/hr")+
+  theme_kp()+theme(legend.position = "none")
+
+
+```
+
