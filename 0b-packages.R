@@ -69,9 +69,11 @@ gg_vankrev <- function(data,mapping){
     ylim(0,2.5)+
     # add boundary lines for Van Krevelen regions
     geom_segment(x = 0.0, y = 1.5, xend = 1.2, yend = 1.5,color="black",linetype="longdash")+
-    geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
-    geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
-    geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")
+#   geom_segment(x = 0.0, y = 2, xend = 1.2, yend = 2,color="black",linetype="longdash")+
+#   geom_segment(x = 0.0, y = 1, xend = 1.2, yend = 0.75,color="black",linetype="longdash")+
+#   geom_segment(x = 0.0, y = 0.7, xend = 1.2, yend = 0.5,color="black",linetype="longdash")+
+    geom_segment(x = 0.0, y = 0.8, xend = 1.2, yend = 0.8,color="black",linetype="longdash")
+    
 }
 
 ## to make the Van Krevelen plot:
@@ -89,6 +91,11 @@ PORE_DISTRIBUTION <- "processed/pore_distribution.csv"
   
 
 CORE_WEIGHTS <- "processed/core_weights.csv"
+
+# RESPIRATION
+FLUX_DATA <- "processed/flux_data.csv"
+FLUX_SUMMARY <- "processed/flux_summary.csv"
+
   
 # WSOC
 WSOC_PORE <- "processed/wsoc_pore_summary.csv"
