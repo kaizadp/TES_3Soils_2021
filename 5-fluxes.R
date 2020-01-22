@@ -74,7 +74,7 @@ save_plot("wc_volumetric_time", height = 4, width = 6)
 
 sdata %>% 
   group_by(TREATMENT_PHASE, Site) %>% 
-  summarise(sm_grav = mean(sm_gravimetric, na.rm = TRUE),
+  dplyr::summarise(sm_grav = mean(sm_gravimetric, na.rm = TRUE),
             sm_grav_sd = sd(sm_gravimetric, na.rm = TRUE),
             sm_vol = mean(sm_volumetric, na.rm = TRUE),
             sm_vol_sd = sd(sm_volumetric, na.rm = TRUE),
@@ -156,7 +156,7 @@ sdata %>%
   arrange(DATETIME) %>% 
   group_by(SampleID, TREATMENT_PHASE) %>% 
   # Compute incubation time
-  mutate(inctime_hours = as.numeric(difftime(DATETIME, min(DATETIME), units = "hours")) %>% round(2),
+  dplyr::mutate(inctime_hours = as.numeric(difftime(DATETIME, min(DATETIME), units = "hours")) %>% round(2),
          # interpolate missing fluxes
          CO2_flux_mgC_hr_interp = approx(inctime_hours, CO2_flux_mgC_hr, xout = inctime_hours, rule = 2)[['y']],
          CH4_flux_mgC_hr_interp = approx(inctime_hours, CH4_flux_mgC_hr, xout = inctime_hours, rule = 2)[['y']],
@@ -174,14 +174,14 @@ save_data(fluxdata, fn = FLUXDATA_FILE, scriptfolder = FALSE)
 
 # Peyton's cutoffs from 2018-12-04 email
 fluxdata %>% 
-  select(Site, TREATMENT_PHASE, SampleID, DATETIME, inctime_hours,
+  dplyr::select(Site, TREATMENT_PHASE, SampleID, DATETIME, inctime_hours,
          sm_gravimetric, sm_volumetric, 
          `CO2 flux (mgC/hr)` = CO2_flux_mgC_hr, 
          `CH4 flux (mgC/hr)` = CH4_flux_mgC_hr, 
          `cumCO2 flux (mgC/gSoil)` = cumCO2_flux_mgC_gSoil, 
          `cumCH4 flux (mgC/gSoil)` = cumCH4_flux_mgC_gSoil, label) %>% 
   arrange(Site, TREATMENT_PHASE, SampleID, inctime_hours) %>% 
-  mutate(cutoff = if_else(TREATMENT_PHASE %in% c("SATURATION_IMMEDIATE", 
+  dplyr::mutate(cutoff = if_else(TREATMENT_PHASE %in% c("SATURATION_IMMEDIATE", 
                                                  "SATURATION_SATURATION", 
                                                  "FIELD_MOIST_SATURATION", 
                                                  "DROUGHT_SATURATION"), 7.5, 999),
@@ -219,7 +219,7 @@ save_plot("cumulative_ch4_by_core_samescale", width = 8, height = 6)
 # Plot final (end of incubation) totals
 fluxdata_cutoff %>% 
   group_by(Site, TREATMENT_PHASE, SampleID) %>% 
-  summarise(inctime_hours = last(inctime_hours),
+  dplyr::summarise(inctime_hours = last(inctime_hours),
             `cumCO2 flux (mgC/gSoil)` = last(`cumCO2 flux (mgC/gSoil)`),
             `cumCH4 flux (mgC/gSoil)` = last(`cumCH4 flux (mgC/gSoil)`)) ->
   fluxdata_final
@@ -227,7 +227,7 @@ save_data(fluxdata_final)
 
 fluxdata_final %>% 
   group_by(Site, TREATMENT_PHASE) %>%  # should be already grouped...
-  summarise(`cumCO2 flux (mgC/gSoil) s.d.` = sd(`cumCO2 flux (mgC/gSoil)`),
+  dplyr::summarise(`cumCO2 flux (mgC/gSoil) s.d.` = sd(`cumCO2 flux (mgC/gSoil)`),
             `cumCO2 flux (mgC/gSoil)` = mean(`cumCO2 flux (mgC/gSoil)`),
             `cumCH4 flux (mgC/gSoil) s.d.` = sd(`cumCH4 flux (mgC/gSoil)`),
             `cumCH4 flux (mgC/gSoil)` = mean(`cumCH4 flux (mgC/gSoil)`)) ->
