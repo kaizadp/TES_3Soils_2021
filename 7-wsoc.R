@@ -3,7 +3,7 @@
 # creates summary tables and graphs
 # Kaizad F. Patel, Aug 2019
 
-source("0-packages.R")
+source("0b-packages.R")
 
 #
 ## WSOC concentrations -- soils ---- ----
@@ -116,7 +116,7 @@ wsoc_pores = read_excel("data/3Soils_WSOC_CN_PoreCore.xlsx") %>%
   dplyr::rename(wsoc_mg_L = `Water Soluble Organic Carbon (mg/L)`) %>% 
   dplyr::select(-FTICR_ID, -`FT-ICRvol_ml`, -`Pore Size Domain`, -`NPOC (M/L)`,-SampleID) %>% 
 #rename and reorder factors in Treatment 
-  dplyr::mutate(Treatment = factor(wsoc_pores$Treatment,
+  dplyr::mutate(Treatment = factor(Treatment,
                               levels = c("Time Zero Saturation",
                                          "Field Moisture Incubation",
                                          "Saturation Incubation",
@@ -226,7 +226,7 @@ wsoc_pores_wt %>%
   dplyr::mutate(wsoc_mgg_mean_se = paste(round(wsoc_mgg_mean,2),"\u00B1",round(mgg_se,2)),
                 wsoc_mgL_mean_se = paste(round(wsoc_mgL_mean,2),"\u00B1",round(mgL_se,2))) %>% 
   ungroup %>% 
-  dplyr::select(Site,Treatment,Suction,wsoc_mgg_mean_se, wsoc_mgL_mean_se)->
+  dplyr::select(Site,Treatment,Suction,wsoc_mgL_mean,wsoc_mgg_mean_se, wsoc_mgL_mean_se)->
   wsoc_pores_summary
 
 
@@ -430,8 +430,10 @@ wsoc_pores_wt %>%
    wsoc_pores_summary
  
 ### OUTPUT ---- 
-write.csv(wsoc_pores_summary, WSOC_PORE, row.names = FALSE)
 
+write.csv(wsoc_pores_summary, WSOC_PORE, row.names = FALSE)
+write.csv(wsoc_pores, "processed/wsoc_pores_longform.csv", row.names = FALSE)
+ 
 
 ##
 #
