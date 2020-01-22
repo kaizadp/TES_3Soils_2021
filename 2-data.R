@@ -28,7 +28,7 @@ process_directory <- function(input_path) {
     }
     tibble::as_tibble(d) %>%
       # select only the columns we need, and discard any fractional valve numbers
-      select(DATE, TIME, ALARM_STATUS, MPVPosition, CH4_dry, CO2_dry, h2o_reported) %>%
+      dplyr::select(DATE, TIME, ALARM_STATUS, MPVPosition, CH4_dry, CO2_dry, h2o_reported) %>%
       filter(MPVPosition == floor(MPVPosition)) ->
       filedata[[basename(f)]]
   }
