@@ -301,6 +301,7 @@ fticr_pore_raw_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_longfo
 
 fticr_pore_pca = 
   fticr_pore_raw_long %>% 
+#  filter(tension=="1.5 kPa") %>% 
   dplyr::mutate(presence = case_when(intensity>0~1)) %>% 
   dplyr::select(core,Mass,tension,site,treatment,presence) %>%  
   spread(Mass,presence)
@@ -340,9 +341,9 @@ PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinate
 
 ###### Plot PCoA
 
-ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment)) + 
+ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site)) + 
   geom_point(size=4)+
-  facet_grid(site~tension)+
+  facet_grid(.~tension)+
   #stat_ellipse()+
   theme_kp()+
   labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
@@ -351,7 +352,7 @@ ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment)) +
 
 ###### Significance testing
 
-adonis(df_f ~ fticr_pore_raw_long$site+fticr_pore_raw_long$treatment+fticr_pore_raw_long$site:fticr_pore_raw_long$treatment, method="bray", permutations=100)
+adonis(df_f ~ fticr_pore_pca$site+fticr_pore_pca$treatment+fticr_pore_pca$site:fticr_pore_pca$treatment, method="bray", permutations=100)
 
 ## distance matrix
 bray_df  =matrixConvert(bray_distance, colname = c("Var1","Var2","dist"))
@@ -378,7 +379,148 @@ ggplot(bray_df2, aes(x = TRT, y = dist, color = TRT))+
   geom_point(position = position_dodge(width = 0.7), alpha=0.1, shape=1, size=2)  
 
 
+bray_summary = melt(as.matrix(bray_distance))
+
+# soil extracts
+fticr_soil_long = read.csv(FTICR_SOIL_RAW_LONG) #<- "fticr/fticr_soil_longform.csv"
+
+fticr_soil_pca = 
+  fticr_soil_long %>% 
+  dplyr::mutate(presence = case_when(intensity>0~1)) %>% 
+  dplyr::select(core,Mass,site,treatment,presence) %>%  
+  spread(Mass,presence)
+
+fticr_soil_pca_num = 
+  fticr_soil_pca %>% 
+  dplyr::select(.,-(1:3)) %>% 
+  replace(.,is.na(.),0)
+
+fticr_soil_pca_grp = 
+  fticr_soil_pca %>% 
+  dplyr::select(.,(1:3)) %>% 
+  dplyr::mutate(row = row_number())
+
+df_f <- fticr_soil_pca_num[,apply(fticr_soil_pca_num, 2, var, na.rm=TRUE) != 0]
+
+pca = prcomp(df_f, scale. = T)
+summary(pca)
+
+ggbiplot(pca, obs.scale = 1, var.scale = 1, 
+         groups = fticr_soil_pca_grp$treatment, ellipse = TRUE, circle = TRUE,
+         var.axes = FALSE)
+ggbiplot(pca, obs.scale = 1, var.scale = 1, 
+         groups = fticr_soil_pca_grp$site, ellipse = TRUE, circle = TRUE,
+         var.axes = FALSE)
 
 
+bray_distance = vegdist(fticr_soil_pca_num, method="euclidean")
+principal_coordinates = pcoa(bray_distance)
+
+pcoa_plot = data.frame(principal_coordinates$vectors[,])
+pcoa_plot_merged = merge(pcoa_plot, fticr_soil_pca_grp, by="row.names")
+
+####### Calculate percent variation explained by PC1, PC2
+
+PC1 <- 100*(principal_coordinates$values$Eigenvalues[1]/sum(principal_coordinates$values$Eigenvalues))
+PC2 <- 100*(principal_coordinates$values$Eigenvalues[2]/sum(principal_coordinates$values$Eigenvalues))
+PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinates$values$Eigenvalues))
+
+###### Plot PCoA
+
+ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site)) + 
+  geom_point(size=4)+
+  #facet_grid(.~site)+
+  #stat_ellipse()+
+  theme_kp()+
+  theme(legend.position = "right")+
+  labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
+
+#
+
+### unique to each site ---- pores ----
+unique_pore_temp = 
+  fticr_pore_raw_long %>% 
+#  filter(reps==5) %>% 
+  group_by(Mass, tension, site,  treatment) %>% 
+  dplyr::summarize(presence=1) %>% 
+  filter(treatment=="time zero saturation") %>% 
+  group_by(Mass,tension) %>% 
+  dplyr::mutate(reps=sum(presence)) %>% 
+  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
 
 
+unique_pore = 
+  unique_pore_temp %>% 
+  filter(reps==1) %>% 
+  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
+
+common_pore = 
+  unique_pore_temp %>% 
+  filter(reps>1) %>% 
+  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
+
+
+gg_vankrev(unique_pore, aes(x = OC, y = HC, color = site))+facet_wrap(~tension)
+
+gg_vankrev(unique_pore_temp, aes(x = OC, y = HC, color = site))+
+  scale_color_manual(values = c("blue","yellow","red"))+
+  facet_wrap(tension~reps)
+
+gg_vankrev(molform[molform$treatment=="time zero saturation",], aes(x = OC, y = HC, color = site))+
+  scale_color_manual(values = c("blue","yellow","red"))+
+  facet_wrap(treatment+tension~reps)
+
+molform = 
+  fticr_pore_raw_long %>% 
+  left_join(molform_temp, by = "Mass") %>% 
+  group_by(MolForm, core, site, treatment, tension) %>% 
+  dplyr::summarise() %>% 
+  group_by(MolForm, site, treatment, tension) %>% 
+  dplyr::summarise(reps=n()) %>% 
+  left_join(dplyr::select(molform_temp, MolForm, HC, OC), by = "MolForm")
+
+molform_temp = 
+  molform_temp %>% 
+  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
+
+
+unique_pore_temp = 
+  molform %>% 
+  #  filter(reps==5) %>% 
+  group_by(MolForm, tension, site,  treatment) %>% 
+  dplyr::summarize(presence=1) %>% 
+  filter(treatment=="time zero saturation") %>% 
+  group_by(MolForm,tension) %>% 
+  dplyr::mutate(reps=sum(presence)) %>% 
+  left_join(dplyr::select(molform_temp, MolForm, HC, OC), by = "MolForm")
+
+
+## unique to each site by treatment ----
+
+unique_pore_temp = 
+  fticr_pore_raw_long %>% 
+  #  filter(reps==5) %>% 
+  group_by(Mass, tension, site,  treatment) %>% 
+  dplyr::summarize(presence=1) %>% 
+  #filter(treatment=="time zero saturation") %>% 
+  group_by(Mass,tension, treatment) %>% 
+  dplyr::mutate(reps=sum(presence)) %>% 
+  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
+
+# trying to track molecules. only peaks that were initially unique to each site are plotted across the treatments
+# not sure if this even makes sense. remove?
+temp = 
+  unique_pore_temp %>% 
+  dplyr::mutate(remove=case_when((treatment=="time zero saturation" & reps==1)~"keep")) %>% 
+  ungroup %>% 
+  dplyr::select(Mass, tension, site, remove) %>% 
+  na.omit()
+
+unique_pore_temp = 
+  unique_pore_temp %>% 
+  left_join(temp,  by = c("Mass","tension","site"))
+  
+
+gg_vankrev(unique_pore_temp, aes(x = OC, y = HC, color = site))+
+  scale_color_manual(values = c("blue","yellow","red"))+
+  facet_grid(treatment~reps)
