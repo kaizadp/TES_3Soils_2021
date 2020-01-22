@@ -1,0 +1,142 @@
+Fri Jan 10 15:35:01 2020  Opening outputs//5-fluxes/5-fluxes.R.log.txt 
+Fri Jan 10 15:35:02 2020  Welcome to 5-fluxes.R 
+Fri Jan 10 15:35:03 2020  Reading in summarized data... 
+Fri Jan 10 15:35:34 2020  Saving outputs//5-fluxes/mass_over_time.pdf 
+Fri Jan 10 15:35:54 2020  Saving outputs//5-fluxes/wc_gravimetric_sample.pdf 
+Fri Jan 10 15:36:08 2020  Saving outputs//5-fluxes/wc_gravimetric_time.pdf 
+Fri Jan 10 15:36:16 2020  Saving outputs//5-fluxes/wc_volumetric_sample.pdf 
+Fri Jan 10 15:36:25 2020  Saving outputs//5-fluxes/wc_volumetric_time.pdf 
+# A tibble: 25 x 8
+# Groups:   TREATMENT_PHASE [9]
+   TREATMENT_PHASE        Site  sm_grav sm_grav_sd  sm_vol sm_vol_sd    BD  BD_sd
+   <chr>                  <chr>   <dbl>      <dbl>   <dbl>     <dbl> <dbl>  <dbl>
+ 1 DROUGHT_INCUBATION     CPCRW -0.0670    0.299   -0.0681   0.256   0.770 0.0834
+ 2 DROUGHT_INCUBATION     DWP   -0.0370    0.00505 -0.0413   0.00345 1.13  0.153 
+ 3 DROUGHT_INCUBATION     SR     0.442     0.169    0.193    0.0779  0.433 0.0294
+ 4 DROUGHT_PRE_INCUBATION CPCRW  0.0831    0.0734   0.0649   0.0592  0.771 0.0849
+ 5 DROUGHT_PRE_INCUBATION DWP    0.0270    0.0749   0.0323   0.0874  1.13  0.153 
+ 6 DROUGHT_PRE_INCUBATION SR     1.69      0.191    0.732    0.0695  0.433 0.0260
+ 7 DROUGHT_SATURATION     CPCRW  0.717     0.0776   0.551    0.0645  0.773 0.0856
+ 8 DROUGHT_SATURATION     DWP   -0.0655    0.00834 -0.0730   0.00403 1.13  0.154 
+ 9 DROUGHT_SATURATION     SR     1.44      0.332    0.639    0.128   0.446 0.0226
+10 DROUGHT4C_PRE_INCUBAT… CPCRW  0.209     0.0823   0.163    0.0713  0.772 0.0857
+11 FIELD_MOIST_INCUBATION CPCRW  0.369     0.0563   0.310    0.0592  0.867 0.235 
+12 FIELD_MOIST_INCUBATION DWP    0.0931    0.0458   0.110    0.0462  1.24  0.124 
+13 FIELD_MOIST_INCUBATION SR     1.87      0.166    0.624    0.0658  0.335 0.0379
+14 FIELD_MOIST_SATURATION CPCRW  0.806     0.257    0.642    0.0757  0.863 0.237 
+15 FIELD_MOIST_SATURATION DWP    0.270     0.163    0.332    0.183   1.24  0.124 
+16 FIELD_MOIST_SATURATION SR     1.82      0.183    0.606    0.0570  0.334 0.0385
+17 IMMEDIATE_SATURATION   CPCRW  0.608     0.217    0.604    0.170   1.02  0.107 
+18 IMMEDIATE_SATURATION   DWP    0.140     0.0824   0.180    0.0896  1.35  0.136 
+19 IMMEDIATE_SATURATION   SR     2.02      0.482    0.661    0.0445  0.340 0.0584
+20 SATURATION_INCUBATION  CPCRW  1.02      0.249    1.14     0.576   1.10  0.364 
+21 SATURATION_INCUBATION  DWP    0.354     0.0906   0.396    0.0629  1.15  0.115 
+22 SATURATION_INCUBATION  SR     2.05      0.126    0.820    0.0831  0.402 0.0416
+23 SATURATION_SATURATION  CPCRW  0.940     0.272    1.04     0.572   1.09  0.362 
+24 SATURATION_SATURATION  DWP    0.406     0.129    0.452    0.0971  1.15  0.115 
+25 SATURATION_SATURATION  SR     1.87      0.0432   0.745    0.0622  0.400 0.0413
+Fri Jan 10 15:37:19 2020  Saving outputs//5-fluxes/wc_grav_summary.pdf 
+Fri Jan 10 15:37:27 2020  Saving outputs//5-fluxes/wc_vol_summary.pdf 
+Fri Jan 10 15:37:32 2020  Saving outputs//5-fluxes/bd_summary.pdf 
+Fri Jan 10 15:38:00 2020  Saving outputs//fluxdata.csv 
+Fri Jan 10 15:38:31 2020  Saving outputs//5-fluxes/fluxdata_cutoff.csv 
+Fri Jan 10 15:42:08 2020  Saving outputs//fluxdata.csv 
+Fri Jan 10 15:42:09 2020  Saving outputs//5-fluxes/fluxdata_cutoff.csv 
+Fri Jan 10 15:44:04 2020  Saving outputs//5-fluxes/cumulative_co2_by_core.pdf 
+Fri Jan 10 15:44:20 2020  Saving outputs//5-fluxes/cumulative_co2_by_core_samescale.pdf 
+Fri Jan 10 15:44:49 2020  Saving outputs//5-fluxes/cumulative_ch4_by_core.pdf 
+Fri Jan 10 15:45:00 2020  Saving outputs//5-fluxes/cumulative_ch4_by_core_samescale.pdf 
+Fri Jan 10 15:45:30 2020  Saving outputs//5-fluxes/fluxdata_final.csv 
+Fri Jan 10 15:45:31 2020  Saving outputs//5-fluxes/fluxdata_final_by_site.csv 
+Fri Jan 10 15:45:50 2020  Saving outputs//5-fluxes/final_co2_inc.pdf 
+Fri Jan 10 15:46:05 2020  Saving outputs//5-fluxes/final_ch4_inc.pdf 
+Fri Jan 10 15:49:23 2020  Saving outputs//5-fluxes/fluxdata_cutoff.csv 
+Fri Jan 10 15:50:35 2020  Saving outputs//5-fluxes/fluxdata_final.csv 
+Fri Jan 10 15:51:00 2020  Saving outputs//5-fluxes/fluxdata_final_by_site.csv 
+ [1] "SampleID"                            
+ [2] "Site"                                
+ [3] "Treatment"                           
+ [4] "HeadSpace_Ht_cm"                     
+ [5] "soil_pH_water_airdried"              
+ [6] "DryMass_SoilOnly_g"                  
+ [7] "DryMass_NONsoil_ALL_g"               
+ [8] "VolumeSoil_cm3"                      
+ [9] "rownum"                              
+[10] "TREATMENT_PHASE"                     
+[11] "sequence_valve"                      
+[12] "Total_core_mass_pot_pie_pans_g"      
+[13] "Additional_Wt_toRemove"              
+[14] "picarro_records"                     
+[15] "samplenum"                           
+[16] "CO2_ppm_s"                           
+[17] "CH4_ppb_s"                           
+[18] "r2_CO2"                              
+[19] "r2_CH4"                              
+[20] "DATETIME"                            
+[21] "N"                                   
+[22] "h2o_reported"                        
+[23] "inctime_hours"                       
+[24] "delta_Total_core_mass_pot_pie_pans_g"
+[25] "sm_gravimetric"                      
+[26] "sm_volumetric"                       
+[27] "bd"                                  
+[28] "V_cm3"                               
+[29] "CO2_flux_mgC_hr"                     
+[30] "CH4_flux_mgC_hr"                     
+[31] "CO2_flux_mgC_hr_interp"              
+[32] "CH4_flux_mgC_hr_interp"              
+[33] "delta_hrs"                           
+[34] "CO2_flux_mgC"                        
+[35] "cumCO2_flux_mgC_gSoil"               
+[36] "CH4_flux_mgC"                        
+[37] "cumCH4_flux_mgC_gSoil"               
+[38] "label"                               
+NULL
+[1] "DROUGHT_INCUBATION"       "DROUGHT_PRE_INCUBATION"  
+[3] "DROUGHT_SATURATION"       "DROUGHT4C_PRE_INCUBATION"
+[5] "FIELD_MOIST_INCUBATION"   "FIELD_MOIST_SATURATION"  
+[7] "IMMEDIATE_SATURATION"     "SATURATION_INCUBATION"   
+[9] "SATURATION_SATURATION"   
+[1] "DROUGHT_INCUBATION"      
+[2] "DROUGHT_PRE_INCUBATION"  
+[3] "DROUGHT_SATURATION"      
+[4] "DROUGHT4C_PRE_INCUBATION"
+[5] "FIELD_MOIST_INCUBATION"  
+[6] "FIELD_MOIST_SATURATION"  
+[7] "IMMEDIATE_SATURATION"    
+[8] "SATURATION_INCUBATION"   
+[9] "SATURATION_SATURATION"   
+[1] "DROUGHT_INCUBATION"     "FIELD_MOIST_INCUBATION"
+[3] "SATURATION_INCUBATION" 
+ [1] "Site"                    "TREATMENT_PHASE"        
+ [3] "SampleID"                "DATETIME"               
+ [5] "inctime_hours"           "sm_gravimetric"         
+ [7] "sm_volumetric"           "CO2 flux (mgC/hr)"      
+ [9] "CH4 flux (mgC/hr)"       "cumCO2 flux (mgC/gSoil)"
+[11] "cumCH4 flux (mgC/gSoil)" "label"                  
+[13] "cutoff"                 
+
+
+|SampleID |Site |Treatment |Picarro_start       | sequence_valve| picarro_records|
+|:--------|:----|:---------|:-------------------|--------------:|---------------:|
+|D21      |DWP  |drought   |2017-08-04 17:00:00 |              3|               0|
+|D22      |DWP  |drought   |2017-08-04 17:00:00 |              5|               0|
+|D23      |DWP  |drought   |2017-08-04 17:00:00 |              1|               0|
+|D24      |DWP  |drought   |2017-08-04 17:00:00 |              8|               0|
+|D25      |DWP  |drought   |2017-08-04 17:00:00 |             15|               0|
+ [1] "SampleID"                      
+ [2] "Site"                          
+ [3] "Treatment"                     
+ [4] "HeadSpace_Ht_cm"               
+ [5] "soil_pH_water_airdried"        
+ [6] "DryMass_SoilOnly_g"            
+ [7] "DryMass_NONsoil_ALL_g"         
+ [8] "VolumeSoil_cm3"                
+ [9] "rownum"                        
+[10] "TREATMENT_PHASE"               
+[11] "sequence_valve"                
+[12] "Picarro_start"                 
+[13] "Picarro_stop"                  
+[14] "Total_core_mass_pot_pie_pans_g"
+[15] "Additional_Wt_toRemove"        
+[16] "picarro_records"               

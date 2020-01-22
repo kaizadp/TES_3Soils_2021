@@ -1,0 +1,121 @@
+"CoreID","CoreNo","Site","Treatment","Suction","wsoc_mg_L"
+"C6",6,"CPCRW","Time Zero","1.5 kPa",23.6
+"C7",7,"CPCRW","Time Zero","1.5 kPa",33.4
+"C8",8,"CPCRW","Time Zero","1.5 kPa",23
+"C9",9,"CPCRW","Time Zero","1.5 kPa",32.3
+"C10",10,"CPCRW","Time Zero","1.5 kPa",19.2
+"C11",11,"CPCRW","Saturated","1.5 kPa",33.6
+"C12",12,"CPCRW","Saturated","1.5 kPa",70.7
+"C13",13,"CPCRW","Saturated","1.5 kPa",32.5
+"C14",14,"CPCRW","Saturated","1.5 kPa",27.8
+"C15",15,"CPCRW","Saturated","1.5 kPa",99.5
+"C16",16,"CPCRW","Field Moist","1.5 kPa",25.7
+"C17",17,"CPCRW","Field Moist","1.5 kPa",19.2
+"C18",18,"CPCRW","Field Moist","1.5 kPa",33.1
+"C19",19,"CPCRW","Field Moist","1.5 kPa",11.8
+"C20",20,"CPCRW","Field Moist","1.5 kPa",16.3
+"C21",21,"CPCRW","Drought","1.5 kPa",20.1
+"C22",22,"CPCRW","Drought","1.5 kPa",79.8
+"C23",23,"CPCRW","Drought","1.5 kPa",266.6
+"C24",24,"CPCRW","Drought","1.5 kPa",112
+"C25",25,"CPCRW","Drought","1.5 kPa",80.6
+"D6",6,"DWP","Time Zero","1.5 kPa",108.3
+"D7",7,"DWP","Time Zero","1.5 kPa",81.3
+"D8",8,"DWP","Time Zero","1.5 kPa",49.4
+"D9",9,"DWP","Time Zero","1.5 kPa",10.3
+"D10",10,"DWP","Time Zero","1.5 kPa",134.1
+"D11",11,"DWP","Saturated","1.5 kPa",30.4
+"D12",12,"DWP","Saturated","1.5 kPa",19.3
+"D13",13,"DWP","Saturated","1.5 kPa",57
+"D14",14,"DWP","Saturated","1.5 kPa",53.9
+"D15",15,"DWP","Saturated","1.5 kPa",49.8
+"D16",16,"DWP","Field Moist","1.5 kPa",NA
+"D17",17,"DWP","Field Moist","1.5 kPa",36
+"D18",18,"DWP","Field Moist","1.5 kPa",78.1
+"D19",19,"DWP","Field Moist","1.5 kPa",49.1
+"D20",20,"DWP","Field Moist","1.5 kPa",22.1
+"D21",21,"DWP","Drought","1.5 kPa",87.1
+"D22",22,"DWP","Drought","1.5 kPa",64.1
+"D23",23,"DWP","Drought","1.5 kPa",31.9
+"D24",24,"DWP","Drought","1.5 kPa",107.1
+"D25",25,"DWP","Drought","1.5 kPa",54.9
+"S1",1,"SR","Field Moist","1.5 kPa",23.5
+"S2",2,"SR","Saturated","1.5 kPa",26.6
+"S3",3,"SR","Saturated","1.5 kPa",32.1
+"S4",4,"SR","Drought","1.5 kPa",13
+"S5",5,"SR","Drought","1.5 kPa",9.4
+"S7",7,"SR","Saturated","1.5 kPa",14.8
+"S9",9,"SR","Time Zero","1.5 kPa",4.9
+"S10",10,"SR","Drought","1.5 kPa",15.9
+"S11",11,"SR","Time Zero","1.5 kPa",NA
+"S13",13,"SR","Field Moist","1.5 kPa",12.9
+"S14",14,"SR","Drought","1.5 kPa",22.2
+"S15",15,"SR","Field Moist","1.5 kPa",17.2
+"S16",16,"SR","Time Zero","1.5 kPa",7.1
+"S17",17,"SR","Time Zero","1.5 kPa",6.9
+"S18",18,"SR","Saturated","1.5 kPa",26
+"S19",19,"SR","Field Moist","1.5 kPa",24.9
+"S21",21,"SR","Field Moist","1.5 kPa",14.9
+"S23",23,"SR","Time Zero","1.5 kPa",5.2
+"S24",24,"SR","Saturated","1.5 kPa",16.3
+"S25",25,"SR","Drought","1.5 kPa",9
+"C6",6,"CPCRW","Time Zero","50 kPa",34.7
+"C7",7,"CPCRW","Time Zero","50 kPa",19
+"C8",8,"CPCRW","Time Zero","50 kPa",23.3
+"C9",9,"CPCRW","Time Zero","50 kPa",43.5
+"C10",10,"CPCRW","Time Zero","50 kPa",25.2
+"C11",11,"CPCRW","Saturated","50 kPa",48.6
+"C12",12,"CPCRW","Saturated","50 kPa",63.5
+"C13",13,"CPCRW","Saturated","50 kPa",32.1
+"C14",14,"CPCRW","Saturated","50 kPa",29.7
+"C15",15,"CPCRW","Saturated","50 kPa",143.1
+"C16",16,"CPCRW","Field Moist","50 kPa",66.4
+"C17",17,"CPCRW","Field Moist","50 kPa",30.5
+"C18",18,"CPCRW","Field Moist","50 kPa",NA
+"C19",19,"CPCRW","Field Moist","50 kPa",NA
+"C20",20,"CPCRW","Field Moist","50 kPa",26.6
+"C21",21,"CPCRW","Drought","50 kPa",53.6
+"C22",22,"CPCRW","Drought","50 kPa",121.9
+"C23",23,"CPCRW","Drought","50 kPa",283.8
+"C24",24,"CPCRW","Drought","50 kPa",92.6
+"C25",25,"CPCRW","Drought","50 kPa",382.4
+"D6",6,"DWP","Time Zero","50 kPa",76.4
+"D7",7,"DWP","Time Zero","50 kPa",110.6
+"D8",8,"DWP","Time Zero","50 kPa",39.5
+"D9",9,"DWP","Time Zero","50 kPa",NA
+"D10",10,"DWP","Time Zero","50 kPa",142.8
+"D11",11,"DWP","Saturated","50 kPa",46.9
+"D12",12,"DWP","Saturated","50 kPa",53.9
+"D13",13,"DWP","Saturated","50 kPa",78.7
+"D14",14,"DWP","Saturated","50 kPa",94.9
+"D15",15,"DWP","Saturated","50 kPa",139.1
+"D16",16,"DWP","Field Moist","50 kPa",NA
+"D17",17,"DWP","Field Moist","50 kPa",43.6
+"D18",18,"DWP","Field Moist","50 kPa",NA
+"D19",19,"DWP","Field Moist","50 kPa",81.2
+"D20",20,"DWP","Field Moist","50 kPa",32.5
+"D21",21,"DWP","Drought","50 kPa",NA
+"D22",22,"DWP","Drought","50 kPa",58.8
+"D23",23,"DWP","Drought","50 kPa",46.7
+"D24",24,"DWP","Drought","50 kPa",108.3
+"D25",25,"DWP","Drought","50 kPa",66.1
+"S1",1,"SR","Field Moist","50 kPa",24.9
+"S2",2,"SR","Saturated","50 kPa",NA
+"S3",3,"SR","Saturated","50 kPa",31
+"S4",4,"SR","Drought","50 kPa",NA
+"S5",5,"SR","Drought","50 kPa",9.9
+"S7",7,"SR","Saturated","50 kPa",21.6
+"S9",9,"SR","Time Zero","50 kPa",6.5
+"S10",10,"SR","Drought","50 kPa",NA
+"S11",11,"SR","Time Zero","50 kPa",6.9
+"S13",13,"SR","Field Moist","50 kPa",10.9
+"S14",14,"SR","Drought","50 kPa",35.9
+"S15",15,"SR","Field Moist","50 kPa",15
+"S16",16,"SR","Time Zero","50 kPa",NA
+"S17",17,"SR","Time Zero","50 kPa",7.9
+"S18",18,"SR","Saturated","50 kPa",23.7
+"S19",19,"SR","Field Moist","50 kPa",25.9
+"S21",21,"SR","Field Moist","50 kPa",22.4
+"S23",23,"SR","Time Zero","50 kPa",7.8
+"S24",24,"SR","Saturated","50 kPa",20
+"S25",25,"SR","Drought","50 kPa",12.1

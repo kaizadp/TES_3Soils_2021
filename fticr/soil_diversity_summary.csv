@@ -1,0 +1,16 @@
+"","site","treatment","H_mean","H_se","dunnett"
+"1","CPCRW","baseline",1.92,0.00774596669241484,NA
+"2","CPCRW","drought",1.892,0.00489897948556636,"*"
+"3","CPCRW","field moist",1.924,0.00509901951359279,""
+"4","CPCRW","saturation",1.956,0.00244948974278318,"*"
+"5","CPCRW","time zero saturation",1.95,0.00316227766016838,NA
+"6","DWP","baseline",1.9875,0.0025,NA
+"7","DWP","drought",1.914,0.00244948974278318,"*"
+"8","DWP","field moist",1.9275,0.0025,"*"
+"9","DWP","saturation",1.946,0.00244948974278318,"*"
+"10","DWP","time zero saturation",1.96,0.00447213595499958,NA
+"11","SR","baseline",1.904,0.00871779788708131,NA
+"12","SR","drought",1.918,0.00489897948556636,""
+"13","SR","field moist",1.944,0.004,"*"
+"14","SR","saturation",1.948,0.00374165738677394,"*"
+"15","SR","time zero saturation",1.954,0.004,NA

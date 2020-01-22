@@ -1,0 +1,25 @@
+site,treatment,tension,counts_mean,counts_se,dunnett
+CPCRW,time zero saturation,1.5 kPa,1,0,NA
+CPCRW,time zero saturation,50 kPa,1,0,NA
+CPCRW,field moist,1.5 kPa,1,0,
+CPCRW,field moist,50 kPa,1,0,
+CPCRW,saturation,1.5 kPa,1,0,
+CPCRW,saturation,50 kPa,1,0,
+CPCRW,drought,1.5 kPa,1,0,
+CPCRW,drought,50 kPa,1,0,*
+DWP,time zero saturation,1.5 kPa,1,0,NA
+DWP,time zero saturation,50 kPa,1,0,NA
+DWP,field moist,1.5 kPa,1,0,*
+DWP,field moist,50 kPa,1,0,
+DWP,saturation,1.5 kPa,1,0,*
+DWP,saturation,50 kPa,1,0,
+DWP,drought,1.5 kPa,1,0,
+DWP,drought,50 kPa,1,0,
+SR,time zero saturation,1.5 kPa,1,0,NA
+SR,time zero saturation,50 kPa,1,0,NA
+SR,field moist,1.5 kPa,1,0,*
+SR,field moist,50 kPa,1,0,*
+SR,saturation,1.5 kPa,1,0,
+SR,saturation,50 kPa,1,0,*
+SR,drought,1.5 kPa,1,0,
+SR,drought,50 kPa,1,0,*
