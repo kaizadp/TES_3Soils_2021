@@ -27,10 +27,10 @@ stop()
 printlog(SEPARATOR)
 printlog("Number of samples for each core, by date:")
 summarydata %>% 
-  filter(!is.na(`Core_#`)) %>%
-  mutate(Date = strftime(DATETIME, format = "%Y-%m-%d", tz = "UTC")) %>% 
+#  filter(!is.na(`Core_#`)) %>%
+  dplyr::mutate(Date = strftime(DATETIME, format = "%Y-%m-%d", tz = "UTC")) %>% 
   group_by(`Core_#`, Date) %>% 
-  summarise(n = n()) ->
+  dplyr::summarise(n = n()) ->
   samples_by_date
 save_data(samples_by_date)
 p <- qplot(Date, `Core_#`, data = samples_by_date, geom = "tile", fill = n)
