@@ -72,9 +72,9 @@ valve2 %>%
 names(valve3)
 
 
-ggplot(valve3[valve3$Site=="CPCRW",], aes(x = (Start_Date_Time2), y = moisture_perc, color = SampleID))+
+ggplot(valve3, aes(x = (Start_Date_Time2), y = moisture_perc, color = SampleID))+
   geom_point()+
-  facet_grid(Site~Treatment)
+  facet_grid(Site~Treatment, scales = "free")+theme(legend.position = "none")
   
   
 
