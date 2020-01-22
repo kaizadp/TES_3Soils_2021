@@ -48,7 +48,8 @@ openlog(file.path(outputdir(), paste0(SCRIPTNAME, ".log.txt")), sink = TRUE) # o
 printlog("Welcome to", SCRIPTNAME)
 
 printlog("Reading in raw data...")
-read_csv(RAWDATA_FILE, col_types = cols(filename = col_character(),
+rawdata =
+  read_csv(RAWDATA_FILE, col_types = cols(filename = col_character(),
                                         DATE = col_date(format = ""),
                                         TIME = col_time(format = ""),
                                         ALARM_STATUS = col_integer(),
@@ -56,18 +57,21 @@ read_csv(RAWDATA_FILE, col_types = cols(filename = col_character(),
                                         CH4_dry = col_double(),
                                         CO2_dry = col_double(),
                                         h2o_reported = col_double()
-)) %>%
+)) 
+
+rawdata2 = 
+  rawdata %>%
   # Convert date/time to POSIXct
-  mutate(DATETIME = ymd_hms(paste(DATE, TIME))) %>%
-  select(-DATE, -TIME) %>%
+  dplyr::mutate(DATETIME = ymd_hms(paste(DATE, TIME))) %>%
+  dplyr::select(-DATE, -TIME) %>%
   arrange(DATETIME) %>%
-  print_dims("rawdata") ->
-  rawdata
-print(summary(rawdata))
+  print_dims("rawdata") 
+
+print(summary(rawdata2))
 printlog("First timestamp:")
-print(min(rawdata$DATETIME))
+print(min(rawdata2$DATETIME))
 printlog("Last timestamp:")
-print(max(rawdata$DATETIME))
+print(max(rawdata2$DATETIME))
 
 # -----------------------------------------------------------------------------
 # Prep work: data cleaning, dates, sample numbers, elapsed time
@@ -75,14 +79,14 @@ print(max(rawdata$DATETIME))
 # Assign a different sample number to each sample group 
 # (we know we're on a new sample when MPVPosition changes)
 printlog("Assigning sample numbers and computing elapsed time...")
-rawdata %>%
-  mutate(newsample = MPVPosition != lag(MPVPosition)) %>%
+rawdata_samples = 
+  rawdata2 %>%
+  mutate(newsample = MPVPosition != lag(MPVPosition)) %>% 
   replace_na(list(newsample = FALSE)) %>% 
   mutate(samplenum = cumsum(newsample)) %>%
-  select(-newsample) %>%
+  dplyr::select(-newsample) %>%
   group_by(samplenum) %>%
-  mutate(elapsed_seconds = as.double(difftime(DATETIME, min(DATETIME), units = "secs"))) ->
-  rawdata_samples
+  dplyr::mutate(elapsed_seconds = as.double(difftime(DATETIME, min(DATETIME), units = "secs")))
 
 printlog("Removing ambient and very long samples...")
 AMBIENT_VALVE <- 16
@@ -123,12 +127,12 @@ save_plot("raw_ch4_by_valve", ptype = ".png")
 printlog(SEPARATOR)
 printlog("Reading valve and core mapping data...")
 read_csv(VALVEMAP_FILE, na = c("NA", "#VALUE!", "NO VALVE", "NO WEIGHT", "", "DATA?")) %>% 
-  mutate(rownum = row_number()) %>% 
+  dplyr::mutate(rownum = row_number()) %>% 
   filter(!is.na(SampleID)) %>%
   mutate(Picarro_start = mdy_hm(Start_Date_Time, tz = "America/Los_Angeles"),
          Picarro_stop = mdy_hm(Stop_Date_Time, tz = "America/Los_Angeles"),
          sequence_valve = as.numeric(sequence_valve)) %>% 
-  select(rownum, SampleID, TREATMENT_PHASE, sequence_valve,
+  dplyr::select(rownum, SampleID, TREATMENT_PHASE, sequence_valve,
          Picarro_start,
          Picarro_stop, 
          Total_core_mass_pot_pie_pans_g, Additional_Wt_toRemove) %>% 
@@ -137,7 +141,7 @@ read_csv(VALVEMAP_FILE, na = c("NA", "#VALUE!", "NO VALVE", "NO WEIGHT", "", "DA
 
 # The `gs_key` file maps SampleID to (at the moment) core dry mass and pH
 read_csv(KEY_FILE) %>% 
-  select(SampleID, Site, Treatment, HeadSpace_Ht_cm, 
+  dplyr::select(SampleID, Site, Treatment, HeadSpace_Ht_cm, 
          soil_pH_water_airdried, 
          DryMass_SoilOnly_g, DryMass_NONsoil_ALL_g, VolumeSoil_cm3) %>% 
   right_join(valvemap, by = "SampleID") ->
@@ -162,7 +166,7 @@ rawdata_samples %>%
          elapsed_seconds >= MIN_MEASUREMENT_TIME) %>% 
   # find max CO2 time for each sample
   group_by(samplenum) %>% 
-  mutate(N = n(),
+  dplyr::mutate(N = n(),
          max_co2_time = nth(elapsed_seconds, which.max(CO2_dry))) %>%
   # filter for at least 3 data points and for max CO2 time window
   filter(N >= 3, 
@@ -170,7 +174,7 @@ rawdata_samples %>%
   # now compute the slope for each group
   # stupid to fit each model twice, and I could use do(), but this is easy...
   group_by(samplenum) %>%
-  summarise(CO2_ppm_s = lm(CO2_dry ~ elapsed_seconds)$coefficients["elapsed_seconds"],
+  dplyr::summarise(CO2_ppm_s = lm(CO2_dry ~ elapsed_seconds)$coefficients["elapsed_seconds"],
             CH4_ppb_s = lm(CH4_dry ~ elapsed_seconds)$coefficients["elapsed_seconds"],
             r2_CO2 = summary(lm(CO2_dry ~ elapsed_seconds))$adj.r.squared,
             r2_CH4 = summary(lm(CH4_dry ~ elapsed_seconds))$adj.r.squared,
@@ -194,7 +198,7 @@ for(i in seq_len(nrow(valvemap))) {
   newdata[[i]] <- left_join(valvemap[i,], d, by = c("sequence_valve" = "MPVPosition"))
 }
 bind_rows(newdata) %>% 
-  select(-Picarro_start, -Picarro_stop) ->
+  dplyr::select(-Picarro_start, -Picarro_stop) ->
   summarydata_clean
 
 
