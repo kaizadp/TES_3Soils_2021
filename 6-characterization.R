@@ -131,7 +131,7 @@ names(pores)
 cpcrw_pore_scores = pores$CPCRW
 dwp_pore_scores = pores$DWP
 sr_pore_scores = pores$SR
-bins = seq(0,4000, by = 50)
+bins = seq(0,4000, by = 100)
 
 cpcrw_scores = cut(cpcrw_pore_scores,bins)
 dwp_scores = cut(dwp_pore_scores,bins)
@@ -139,15 +139,15 @@ sr_scores = cut(sr_pore_scores,bins)
 
 freq_cpcrw = transform(table(cpcrw_scores))
 c = transform(freq_cpcrw,Cum_Freq=cumsum(Freq),Perc_Freq = prop.table(Freq)*100)
-c$scores = seq(50,4000,by = 50)
+c$scores = seq(0,3999,by = 100)
 
 freq_dwp = transform(table(dwp_scores))
 d = transform(freq_dwp,Cum_Freq=cumsum(Freq),Perc_Freq = prop.table(Freq)*100)
-d$scores = seq(50,4000,by = 50)
+d$scores = seq(0,3999,by = 100)
 
 freq_sr = transform(table(sr_scores))
 s = transform(freq_sr,Cum_Freq=cumsum(Freq),Perc_Freq = prop.table(Freq)*100)
-s$scores = seq(50,4000,by = 50)
+s$scores = seq(0,3999,by = 100)
 
 #combining the three sites, two at a time
 #the file contains frequency, cum freq, and % frequency
@@ -162,7 +162,7 @@ combined_pore_perc_freq = data.frame(combined_pore_freq$scores,
                                      combined_pore_freq$Perc_Freq.y,
                                      combined_pore_freq$Perc_Freq)
 names(combined_pore_perc_freq) = c("pore_size","cpcrw","dwp","sr")
-write.csv(combined_pore_perc_freq,"processed/pore_size_perc_freq2.csv")
+write_csv(combined_pore_perc_freq,"processed/pore_size_perc_freq2.csv")
 
 #melting the three sites into a single column
 pores_melt = melt(combined_pore_perc_freq,id = "pore_size")
