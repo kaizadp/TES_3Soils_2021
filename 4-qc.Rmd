@@ -22,7 +22,7 @@ rawdata_samples <- read_csv(RAWDATA_SAMPLES_FILE)
 ```{r, echo=FALSE}
 valvemap %>% 
   filter(picarro_records == 0) %>% 
-  select(SampleID, Site, Treatment, Picarro_start, sequence_valve, picarro_records) ->
+  dplyr::select(SampleID, Site, Treatment, Picarro_start, sequence_valve, picarro_records) ->
   unmatched_valvemap
 ```
 
@@ -55,17 +55,17 @@ There are `r nrow(summarydata_clean)` different samples.
 #hist(summarydata_clean$CO2_ppm_s)
 #hist(summarydata_clean$CH4_ppb_s)
 summarydata_clean %>% 
-  select(CO2_ppm_s, CH4_ppb_s, N) %>% 
+  dplyr::select(CO2_ppm_s, CH4_ppb_s, N) %>% 
   summary %>% 
   knitr::kable(caption = "Summary data overall")
 summarydata_clean %>% 
   filter(!is.na(CO2_ppm_s)) %>% 
-  group_by(Site, PHASE) %>% 
-  summarise(CO2_ppm_s = mean(CO2_ppm_s), CH4_ppb_s = mean(CH4_ppb_s), Picarro_obs = sum(N), N = n()) %>% 
+  group_by(Site, TREATMENT_PHASE) %>% 
+  dplyr::summarise(CO2_ppm_s = mean(CO2_ppm_s), CH4_ppb_s = mean(CH4_ppb_s), Picarro_obs = sum(N), N = n()) %>% 
   knitr::kable(caption = "Summary data by site and phase")
 summarydata_clean %>% 
   filter(!is.na(CO2_ppm_s)) %>% 
-  group_by(SampleID, PHASE) %>% 
+  group_by(SampleID, TREATMENT_PHASE) %>% 
   summarise(CO2_ppm_s = round(mean(CO2_ppm_s, na.rm = TRUE), 2), 
             CH4_ppb_s = round(mean(CH4_ppb_s, na.rm = TRUE), 4),
             Samples = sum(N), 
@@ -112,7 +112,7 @@ Overall fits are very good (median adjusted R2 = `r round(median(summarydata_cle
 ```{r R2}
 summarydata_clean %>% 
   filter(is.finite(r2_CO2)) %>% 
-  ggplot(aes(r2_CO2, color = PHASE)) + geom_density() + ggtitle("CO2 R2 distribution by phase")
+  ggplot(aes(r2_CO2, color = TREATMENT_PHASE)) + geom_density() + ggtitle("CO2 R2 distribution by phase")
 ```
 
 ### Missing mass data
@@ -120,13 +120,13 @@ summarydata_clean %>%
 ```{r missing-mass}
 summarydata_clean %>% 
   filter(is.na(DryMass_SoilOnly_g)) %>% 
-  group_by(SampleID, PHASE) %>% 
-  summarise(N = n()) %>% 
+  group_by(SampleID, TREATMENT_PHASE) %>% 
+  dplyr::summarise(N = n()) %>% 
   knitr::kable(caption = "Missing dry mass data")
 
 summarydata_clean %>% 
   filter(!is.na(DATETIME)) %>% 
-  ggplot(aes(DATETIME, SampleID, color = is.na(NET_Soil_wet_weight_g))) +
+  ggplot(aes(DATETIME, SampleID)) +
   geom_point() + scale_color_discrete("Missing mass?")
 ```
 
@@ -134,9 +134,9 @@ summarydata_clean %>%
 
 ```{r missing-headspace}
 summarydata_clean %>% 
-  filter(is.na(Headspace_height_cm)) %>% 
-  group_by(SampleID, PHASE) %>% 
-  summarise(N = n()) %>% 
+  filter(is.na(HeadSpace_Ht_cm)) %>% 
+  group_by(SampleID, TREATMENT_PHASE) %>% 
+  dplyr::summarise(N = n()) %>% 
   knitr::kable(caption = "Missing headspace data")
 ```
 
