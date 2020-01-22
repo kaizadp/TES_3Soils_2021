@@ -83,9 +83,48 @@ soil_aromatic %>%
   dplyr::summarize(counts = n())->
   soil_aromatic_counts
 
+
+## b. stats for aromatic peaks (Dunnett's test) ----
+
+fit_dunnett_aromatic_soil <- function(dat) {
+  d <-DescTools::DunnettTest(counts~treatment, control = "time zero saturation", data = dat)
+  #create a tibble with one column for each treatment
+  # column 4 has the pvalue
+  t = tibble(drought = d$`time zero saturation`["drought-time zero saturation",4], 
+             saturation = d$`time zero saturation`["saturation-time zero saturation",4],
+             `field moist` = d$`time zero saturation`["field moist-time zero saturation",4])
+  # we need to convert significant p values to asterisks
+  # since the values are in a single row, it is tricky
+  t %>% 
+    # first, gather all p-values into a single column, pval
+    gather(trt, pval, 1:3) %>% 
+    # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+    dplyr::mutate(p = if_else(pval<0.05, "*","")) %>% 
+    # remove the pval column
+    dplyr::select(-pval) %>% 
+    # spread the p (asterisks) column bnack into the three columns
+    spread(trt, p)  ->
+    t
+}
+soil_aromatic_temp = 
+  soil_aromatic_counts %>%
+  filter(aromatic=="aromatic") %>% 
+  group_by(site) %>% 
+  do(fit_dunnett_aromatic_soil(.)) %>% 
+  melt(id = c("site"), value.name = "dunnett", variable.name = "treatment")
+soil_aromatic_summary = 
+  soil_aromatic_counts %>%
+  filter(aromatic=="aromatic") %>% 
+  group_by(site, treatment) %>% 
+  dplyr::summarise(counts_mean = as.integer(mean(counts)),
+                   counts_se = sd(counts)/sqrt(n())) %>% 
+  left_join(soil_aromatic_temp, by = c("site","treatment"), all.x=TRUE)
+
 ### OUTPUT
 # write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
 write_csv(soil_aromatic_counts, FTICR_SOIL_AROMATIC)
+write_csv(soil_aromatic_summary, FTICR_SOIL_AROMATIC_SUMMARY)
+FTICR_SOIL_AROMATIC_SUMMARY = "fticr/soil_aromatic_summary.csv"
 
 # ------------------------------------------------------- ----
 
@@ -99,9 +138,9 @@ soil_raw_long %>%
   group_by(site, treatment, core) %>% 
   dplyr::mutate(total = sum(compounds),
                 relabund = (compounds/total)*100)->
-  relabund_temp
+  soil_relabund_temp
 
-relabund_temp%>% 
+soil_relabund_temp%>% 
   # now summarize by treatment. combine cores
   ungroup %>% 
   dplyr::group_by(site, treatment, Class) %>% 
@@ -280,12 +319,47 @@ pore_aromatic %>%
   dplyr::summarize(counts = n())->
   pore_aromatic_counts
 
-
+## b. stats for aromatic peaks (Dunnett's test) ----
+fit_dunnett_aromatic_pore <- function(dat) {
+  d <-DescTools::DunnettTest(counts~treatment, control = "time zero saturation", data = dat)
+  #create a tibble with one column for each treatment
+  # column 4 has the pvalue
+  t = tibble(drought = d$`time zero saturation`["drought-time zero saturation",4], 
+             saturation = d$`time zero saturation`["saturation-time zero saturation",4],
+             `field moist` = d$`time zero saturation`["field moist-time zero saturation",4])
+  # we need to convert significant p values to asterisks
+  # since the values are in a single row, it is tricky
+  t %>% 
+    # first, gather all p-values into a single column, pval
+    gather(trt, pval, 1:3) %>% 
+    # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+    dplyr::mutate(p = if_else(pval<0.05, "*","")) %>% 
+    # remove the pval column
+    dplyr::select(-pval) %>% 
+    # spread the p (asterisks) column bnack into the three columns
+    spread(trt, p)  ->
+    t
+}
+pore_aromatic_temp = 
+  pore_aromatic_counts %>%
+  filter(aromatic=="aromatic") %>% 
+  group_by(site,tension) %>% 
+  do(fit_dunnett_aromatic_pore(.)) %>% 
+  melt(id = c("tension","site"), value.name = "dunnett", variable.name = "treatment")
+pore_aromatic_summary = 
+  pore_aromatic_counts %>%
+  filter(aromatic=="aromatic") %>% 
+  group_by(site, treatment, tension) %>% 
+  dplyr::summarise(counts_mean = as.integer(mean(counts)),
+                   counts_se = sd(counts)/sqrt(n())) %>% 
+  left_join(pore_aromatic_temp, by = c("site","treatment","tension"), all.x=TRUE)
+  
 
 ### OUTPUT
 # write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
 write_csv(pore_aromatic_counts, FTICR_PORE_AROMATIC)
-
+write_csv(pore_aromatic_summary, FTICR_PORE_AROMATIC_SUMMARY)
+FTICR_PORE_AROMATIC_SUMMARY = "fticr/pore_aromatic_summary.csv"
 #
 
 
@@ -368,6 +442,7 @@ write.csv(fticr_pore_relabundance, FTICR_PORE_RELABUND)
 
 # PART V: SHANNON DIVERSITY ----
 # Shannon diversity, H = - sum [p*ln(p)], where n = no. of individuals per species/total number of individuals
+## a. for pores ----
 pore_raw_long %>% 
   group_by(tension,site,treatment, core,Class) %>% 
   dplyr::summarize(n = n()) %>%
@@ -381,17 +456,342 @@ pore_raw_long %>%
                 H = round(-1*H1, 2)) %>% 
   dplyr::select(-H1)->pore_shannon 
 
+# summary stats for Shannon -- Dunnett Test 
+
+fit_dunnett_shannon_pore <- function(dat) {
+  d <-DescTools::DunnettTest(H~treatment, control = "time zero saturation", data = dat)
+  #create a tibble with one column for each treatment
+  # column 4 has the pvalue
+  t = tibble(drought = d$`time zero saturation`["drought-time zero saturation",4], 
+             saturation = d$`time zero saturation`["saturation-time zero saturation",4],
+             `field moist` = d$`time zero saturation`["field moist-time zero saturation",4])
+  # we need to convert significant p values to asterisks
+  # since the values are in a single row, it is tricky
+  t %>% 
+    # first, gather all p-values into a single column, pval
+    gather(trt, pval, 1:3) %>% 
+    # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+    dplyr::mutate(p = if_else(pval<0.05, "*","")) %>% 
+    # remove the pval column
+    dplyr::select(-pval) %>% 
+    # spread the p (asterisks) column bnack into the three columns
+    spread(trt, p)  ->
+    t
+}
+pore_shannon_temp = 
+  pore_shannon %>%
+  group_by(site,tension) %>% 
+  do(fit_dunnett_shannon_pore(.)) %>% 
+  melt(id = c("tension","site"), value.name = "dunnett", variable.name = "treatment")
+pore_shannon_summary = 
+  pore_shannon %>%
+  group_by(site, treatment, tension) %>% 
+  dplyr::summarise(H_mean = (mean(H)),
+                   H_se = sd(H)/sqrt(n())) %>% 
+  left_join(pore_shannon_temp, by = c("site","treatment","tension"), all.x=TRUE)
+
+
 ### OUTPUT
 write.csv(pore_shannon, FTICR_PORE_DIVERSITY)
+write.csv(pore_shannon_summary, "fticr/pore_diversity_summary.csv")
+
+## b. for soil ----
+soil_raw_long %>% 
+  group_by(site,treatment, core,Class) %>% 
+  dplyr::summarize(n = n()) %>%
+  ungroup %>% 
+  group_by(site,treatment,core) %>% 
+  dplyr::mutate(total = sum(n),
+                p = n/total,
+                log = log(p),
+                p_logp = p*log) %>% 
+  dplyr::summarize(H1 = sum(p_logp),
+                   H = round(-1*H1, 2)) %>% 
+  dplyr::select(-H1)->soil_shannon 
+
+
+fit_dunnett_shannon_soil <- function(dat) {
+  d <-DescTools::DunnettTest(H~treatment, control = "baseline", data = dat)
+  #create a tibble with one column for each treatment
+  # column 4 has the pvalue
+  t = tibble(drought = d$baseline["drought-baseline",4], 
+             saturation = d$baseline["saturation-baseline",4],
+             `field moist` = d$baseline["field moist-baseline",4])
+  # we need to convert significant p values to asterisks
+  # since the values are in a single row, it is tricky
+  t %>% 
+    # first, gather all p-values into a single column, pval
+    gather(trt, pval, 1:3) %>% 
+    # conditionally replace all significant pvalues (p<0.05) with asterisks and the rest remain blank
+    dplyr::mutate(p = if_else(pval<0.05, "*","")) %>% 
+    # remove the pval column
+    dplyr::select(-pval) %>% 
+    # spread the p (asterisks) column bnack into the three columns
+    spread(trt, p)  ->
+    t
+}
+soil_shannon_temp = 
+  soil_shannon %>%
+  group_by(site) %>% 
+  do(fit_dunnett_shannon_soil(.)) %>% 
+  melt(id = c("site"), value.name = "dunnett", variable.name = "treatment")
+soil_shannon_summary = 
+  soil_shannon %>%
+  group_by(site, treatment) %>% 
+  dplyr::summarise(H_mean = (mean(H)),
+                   H_se = sd(H)/sqrt(n())) %>% 
+  left_join(soil_shannon_temp, by = c("site","treatment"), all.x=TRUE)
+
+### OUTPUT
+write.csv(soil_shannon, "fticr/soil_diversity.csv")
+write.csv(soil_shannon_summary, "fticr/soil_diversity_summary.csv")
 
 #
 # ------------------------------------------------------- ----
 
+# PART VI: RELATIVE ABUNDANCE PCA ----
+pore_relabund = read.csv(FTICR_PORE_RELABUND)# <- "fticr/fticr_pore_relabundance_groups2_hsd.csv"
+soil_relabund = read.csv(FTICR_SOIL_RELABUND)# <- "fticr/fticr_soil_relabundance_hsd.csv"
+
+## a. pores ----
+## native SOM pca
+pore_relabund_pca=
+  relabund_temp %>% 
+  ungroup %>% 
+  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
+  filter(treatment=="time zero saturation") %>% 
+  spread(Class, relabund) %>% 
+  replace(.,is.na(.),0) %>% 
+  dplyr::select(-1)
+
+pore_relabund_pca_num = 
+  pore_relabund_pca %>% 
+  dplyr::select(.,-(1:3))
+
+pore_relabund_pca_grp = 
+  pore_relabund_pca %>% 
+  dplyr::select(.,(1:3)) %>% 
+  dplyr::mutate(row = row_number())
+
+pca = prcomp(pore_relabund_pca_num, scale. = T)
+summary(pca)
+
+ggbiplot(pca, obs.scale = 1, var.scale = 1, 
+         groups = pore_relabund_pca_grp$site, ellipse = TRUE, circle = F,
+         var.axes = TRUE)+
+  geom_point(size=2,stroke=2, aes(shape = pore_relabund_pca_grp$tension, color = groups))+
+  scale_shape_manual(values = c(1,4))
+
+bray_distance = vegdist(pore_relabund_pca_num, method="euclidean")
+principal_coordinates = pcoa(bray_distance)
+
+pcoa_plot = data.frame(principal_coordinates$vectors[,])
+pcoa_plot_merged = merge(pcoa_plot, pore_relabund_pca_grp, by="row.names")
+
+####### Calculate percent variation explained by PC1, PC2
+
+PC1 <- 100*(principal_coordinates$values$Eigenvalues[1]/sum(principal_coordinates$values$Eigenvalues))
+PC2 <- 100*(principal_coordinates$values$Eigenvalues[2]/sum(principal_coordinates$values$Eigenvalues))
+PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinates$values$Eigenvalues))
+
+###### Plot PCoA
+
+ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site)) + 
+  geom_point(size=4)+
+  facet_grid(tension~site)+
+  stat_ellipse()+
+  theme_kp()+
+  theme(legend.position = "right")+
+  labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
+
+
+## treatment PCA: all pores
+
+pore_relabund_pca=
+  relabund_temp %>% 
+  ungroup %>% 
+  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
+  #filter(treatment=="time zero saturation") %>% 
+  spread(Class, relabund) %>% 
+  replace(.,is.na(.),0) %>% 
+  dplyr::select(-1)
+
+pore_relabund_pca_num = 
+  pore_relabund_pca %>% 
+  dplyr::select(.,-(1:3))
+
+pore_relabund_pca_grp = 
+  pore_relabund_pca %>% 
+  dplyr::select(.,(1:3)) %>% 
+  dplyr::mutate(row = row_number())
+
+pca = prcomp(pore_relabund_pca_num, scale. = T)
+summary(pca)
+
+ggbiplot(pca, obs.scale = 1, var.scale = 1, 
+         groups = pore_relabund_pca_grp$site, ellipse = F, circle = F,
+         var.axes = TRUE)+
+  geom_point(size=2,stroke=2, aes(shape = pore_relabund_pca_grp$tension, color = pore_relabund_pca_grp$treatment))+
+  scale_shape_manual(values = c(19,4))+
+  facet_wrap(~groups)
+
+adonis(pore_relabund_pca_num ~ pore_relabund_pca$site+pore_relabund_pca$treatment+pore_relabund_pca$site:pore_relabund_pca$treatment, 
+       method="bray", permutations=999)
+
+## treatment PCA: fine pores
+
+pore_relabund_pca=
+  relabund_temp %>% 
+  ungroup %>% 
+  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
+  #filter(treatment=="time zero saturation") %>% 
+  filter(tension=="50 kPa") %>% 
+  spread(Class, relabund) %>% 
+  replace(.,is.na(.),0) 
+
+pore_relabund_pca_num = 
+  pore_relabund_pca %>% 
+  dplyr::select(.,-(1:4))
+
+pore_relabund_pca_grp = 
+  pore_relabund_pca %>% 
+  dplyr::select(.,(1:4)) %>% 
+  dplyr::mutate(row = row_number())
+
+pca = prcomp(pore_relabund_pca_num, scale. = T)
+summary(pca)
+
+ggbiplot(pca, obs.scale = 1, var.scale = 1, 
+         groups = pore_relabund_pca_grp$site, ellipse = F, circle = F,
+         var.axes = TRUE)+
+  geom_point(size=2,stroke=2, aes(color = pore_relabund_pca_grp$treatment, shape = pore_relabund_pca_grp$site))+
+  geom_text(label = pore_relabund_pca_grp$core)+
+  scale_shape_manual(values = c(19,4,7))+
+  #facet_wrap(~groups)+
+  ggtitle("fine pores")
+
+adonis(pore_relabund_pca_num ~ pore_relabund_pca$site+pore_relabund_pca$treatment+pore_relabund_pca$site:pore_relabund_pca$treatment, 
+       method="bray", permutations=999)
+
+
+## treatment PCA: coarse pores
+
+pore_relabund_pca=
+  relabund_temp %>% 
+  ungroup %>% 
+  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
+  #filter(treatment=="time zero saturation") %>% 
+  filter(tension=="1.5 kPa") %>% 
+  spread(Class, relabund) %>% 
+  replace(.,is.na(.),0) 
+
+pore_relabund_pca_num = 
+  pore_relabund_pca %>% 
+  dplyr::select(.,-(1:4))
+
+pore_relabund_pca_grp = 
+  pore_relabund_pca %>% 
+  dplyr::select(.,(1:4)) %>% 
+  dplyr::mutate(row = row_number())
+
+pca = prcomp(pore_relabund_pca_num, scale. = T)
+summary(pca)
+
+ggbiplot(pca, obs.scale = 1, var.scale = 1, 
+         groups = pore_relabund_pca_grp$site, ellipse = F, circle = F,
+         var.axes = TRUE)+
+  geom_point(size=2,stroke=2, aes(color = pore_relabund_pca_grp$treatment, shape = pore_relabund_pca_grp$site))+
+  scale_shape_manual(values = c(19,4,7))+
+  geom_text(label = pore_relabund_pca_grp$core)+
+  #facet_wrap(~groups)+
+  ggtitle("coarse pores")
 
 
 
 
 
 
+## b. soils ----
+## native SOM pca
+soil_relabund_pca=
+  soil_relabund_temp %>% 
+  ungroup %>% 
+  dplyr::select(core, site, treatment, Class, relabund) %>% 
+  filter(treatment=="time zero saturation") %>% 
+  spread(Class, relabund) %>% 
+  replace(.,is.na(.),0) %>% 
+  dplyr::select(-1)
+
+soil_relabund_pca_num = 
+  soil_relabund_pca %>% 
+  dplyr::select(.,-(1:2))
+
+soil_relabund_pca_grp = 
+  soil_relabund_pca %>% 
+  dplyr::select(.,(1:2)) %>% 
+  dplyr::mutate(row = row_number())
+
+pca = prcomp(soil_relabund_pca_num, scale. = T)
+summary(pca)
+
+ggbiplot(pca, obs.scale = 1, var.scale = 1, 
+         groups = soil_relabund_pca_grp$site, ellipse = TRUE, circle = F,
+         var.axes = TRUE)+
+  geom_point(size=2, stroke=2, aes(color=groups))+
+  ylim(-4,4)+xlim(-4,4)+
+  ggtitle("time zero saturation")
+
+bray_distance = vegdist(pore_relabund_pca_num, method="euclidean")
+principal_coordinates = pcoa(bray_distance)
+
+pcoa_plot = data.frame(principal_coordinates$vectors[,])
+pcoa_plot_merged = merge(pcoa_plot, pore_relabund_pca_grp, by="row.names")
+
+####### Calculate percent variation explained by PC1, PC2
+
+PC1 <- 100*(principal_coordinates$values$Eigenvalues[1]/sum(principal_coordinates$values$Eigenvalues))
+PC2 <- 100*(principal_coordinates$values$Eigenvalues[2]/sum(principal_coordinates$values$Eigenvalues))
+PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinates$values$Eigenvalues))
+
+###### Plot PCoA
+
+ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site)) + 
+  geom_point(size=4)+
+  facet_grid(tension~site)+
+  stat_ellipse()+
+  theme_kp()+
+  theme(legend.position = "right")+
+  labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
 
 
+## treatment PCA
+
+soil_relabund_pca=
+  soil_relabund_temp %>% 
+  ungroup %>% 
+  dplyr::select(core, site, treatment, Class, relabund) %>% 
+  filter(!treatment=="baseline") %>% 
+  spread(Class, relabund) %>% 
+  replace(.,is.na(.),0) %>% 
+  dplyr::select(-1)
+
+soil_relabund_pca_num = 
+  soil_relabund_pca %>% 
+  dplyr::select(.,-(1:2))
+
+soil_relabund_pca_grp = 
+  soil_relabund_pca %>% 
+  dplyr::select(.,(1:2)) %>% 
+  dplyr::mutate(row = row_number())
+
+pca = prcomp(soil_relabund_pca_num, scale. = T)
+summary(pca)
+
+ggbiplot(pca, obs.scale = 1, var.scale = 1, 
+         groups = soil_relabund_pca_grp$treatment, ellipse = T, circle = F,
+         var.axes = TRUE)+
+  geom_point(size=2, stroke=1,aes(shape = soil_relabund_pca_grp$site, color = groups))+
+  scale_shape_manual(values = c(1,0,2))
+
+adonis(soil_relabund_pca_num ~ soil_relabund_pca$site+soil_relabund_pca$treatment+soil_relabund_pca$site:soil_relabund_pca$treatment, 
+       method="bray", permutations=999)
