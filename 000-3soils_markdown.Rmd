@@ -49,6 +49,9 @@ pore_hcoc = read.csv(FTICR_PORE_HCOC)# <- "fticr/fticr_pore_hcoc.csv"
 pore_nosc = read.csv(FTICR_PORE_NOSC)# <- "fticr/fticr_pore_nosc.csv"
 pore_shannon = read.csv(FTICR_PORE_DIVERSITY)# <- "fticr/fticr_pore_shannondiversity.csv"
 
+pore_shannon_summary = read.csv("fticr/pore_diversity_summary.csv")
+soil_shannon_summary = read.csv("fticr/soil_diversity_summary.csv")
+
   
   
 #FTICR_SOIL
@@ -58,6 +61,9 @@ soil_hcoc = read.csv(FTICR_SOIL_HCOC)# <- "fticr/fticr_soil_hcoc.csv"
 soil_unique_peaks = read.csv(FTICR_SOIL_UNIQUE_PEAKS)# <- "fticr/fticr_soil_unique_peakscount.csv"
 
 
+# RESPIRATION
+flux_data = read.csv(FLUX_DATA)
+flux_summary = read.csv(FLUX_SUMMARY)
 ```
 # Soil characterization
 ## summary table
@@ -86,8 +92,33 @@ charac %>%
                         x = expression (bold ("pore size" ))))+
   theme_bw()+
   theme_kp()
+```
+
+summary
+```{r}
+pore_size = read.csv("processed/pore_size_perc_freq2.csv")
+
+pore_size_summary = 
+  pore_size %>% 
+# make new bins
+  dplyr::mutate(bins_um = case_when(pore_size==0 ~ "<100",
+                                    pore_size>0&pore_size<1000~as.character(pore_size+100),
+                                    pore_size>=1000&pore_size<2000 ~ "1000-2000",
+                                    pore_size>=2000&pore_size<3000 ~ "2000-3000",
+                                    pore_size>=3000&pore_size<4000 ~ "3000-4000")) %>% 
+  group_by(bins_um) %>% 
+  dplyr::summarise(CPCRW = round(sum(cpcrw),2),
+                   DWP = round(sum(dwp),2),
+                   SR = round(sum(sr),2)) %>% 
+  knitr::kable()
+  
+
+
+
+
 
 ```
+
 ---
 ## water retention curves
 
@@ -168,6 +199,7 @@ pore_long %>%
 gg_vankrev(pore_long, aes(x=OC,y=HC,color=Class))+
   scale_color_viridis_d(option = "inferno")+
   theme_kp()+  
+#  geom_segment(x = 0.0, y = 0.8, xend = 1.2, yend = 0.8,color="black",linetype="longdash")+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))
 
 ```
@@ -222,8 +254,24 @@ facet_grid(tension~site)+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
   theme_bw()+
   theme_kp()
-
 ```
+
+peaks lost and gained
+
+```{r}
+pore_lost = 
+  pore_unique %>% 
+  gather(treatment,loss, drought2:saturation2)
+
+gg_vankrev(pore_lost,aes(x = OC, y = HC, color = loss))+
+    scale_color_brewer(palette = "Dark2")+
+  facet_grid(treatment+tension~site)+
+  
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+```
+
 
 ## treatment effect -- relative abundance
 
@@ -328,7 +376,7 @@ ggplot(pore_aromatic[pore_aromatic$aromatic=="aromatic",],
 
   ylab("aromatic peaks")+
   xlab("")+
-  ylim(0,350)+
+ # ylim(0,350)+
   geom_vline(xintercept = 1.5)+
   geom_vline(xintercept = 2.5)+
   
@@ -336,6 +384,26 @@ ggplot(pore_aromatic[pore_aromatic$aromatic=="aromatic",],
   
   theme_bw()+
   theme_kp()
+
+```
+
+
+aromatic peaks -- Van Krevelen
+
+```{r}
+pore_aromatic_vk = 
+  pore_long %>% 
+  left_join(dplyr::select(fticr_pore_meta, Mass, AImod), by = "Mass") %>% 
+  dplyr::mutate(aromatic = case_when(AImod>0.5 ~ "aromatic")) 
+
+gg_vankrev(pore_aromatic_vk[pore_aromatic_vk$aromatic=="aromatic",], aes(x = OC, y = HC))+
+  geom_point(data = pore_aromatic_vk[pore_aromatic_vk$Class=="Lignin",], color = "red", alpha = 0.1)+
+  facet_grid(site~tension)
+
+gg_vankrev(pore_aromatic_vk[pore_aromatic_vk$Class=="Lignin",], aes(x = OC, y = HC))+
+  #geom_point(data = pore_aromatic_vk[pore_aromatic_vk$Class=="lignin",], color = "red")+
+  facet_grid(site~tension)
+
 
 ```
 
@@ -465,6 +533,27 @@ pore_relabund%>%
 ```
 
 total = 100%
+## aromatic peaks
+```{r}
+
+  pore_aromatic_summary %>% 
+  ungroup %>% 
+  dplyr::mutate(counts = paste(counts_mean,dunnett),
+                var = paste(tension,site)) %>% 
+  dplyr::select(treatment, var, counts) %>% 
+  spread(var, counts) %>% 
+  knitr::kable()
+```
+## Shannon diversity
+```{r}
+pore_shannon_summary %>% 
+  dplyr::mutate(H = paste(round(H_mean,2), "\U00B1", round(H_se,2), dunnett),
+                H = str_replace_all(H, "NA",""),  
+                var = paste(tension, site)) %>%
+  dplyr::select(treatment, var, H) %>% 
+  spread(var, H) %>% 
+  knitr::kable()
+```
 
 ---
 ---
@@ -517,8 +606,24 @@ gg_vankrev(soil_unique,
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
   theme_bw()+
   theme_kp()
-
 ```
+
+peaks lost and gained
+
+```{r}
+soil_lost = 
+  soil_unique %>% 
+  gather(treatment,loss, drought2:saturation2)
+
+gg_vankrev(soil_lost,aes(x = OC, y = HC, color = loss))+
+    scale_color_brewer(palette = "Dark2")+
+  facet_grid(treatment~site)+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+```
+
+
 
 
 
@@ -680,6 +785,58 @@ soil_unique_counts%>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 
+```
+
+
+
+
+## aromatic peaks
+
+```{r}
+soil_aromatic_summary %>% 
+  ungroup %>% 
+  dplyr::mutate(counts = paste(counts_mean,dunnett)) %>% 
+  dplyr::select(treatment, site, counts) %>% 
+  spread(site, counts) %>% 
+  knitr::kable()
+```
+
+## Shannon diversity
+```{r}
+soil_shannon_summary %>% 
+  dplyr::mutate(H = paste(round(H_mean,2), "\U00B1", round(H_se,2), dunnett),
+                H = str_replace_all(H, "NA","")) %>%
+  dplyr::select(treatment, site, H) %>% 
+  spread(site, H) %>% 
+  knitr::kable()
+```
+
+
+# Respiration 
+## figures
+Time series of CO2 flux
+```{r}
+ggplot(flux_data, aes(y = CO2_flux_mgC_gSoil_hr, x = inctime_hours, color = Treatment))+
+  geom_point()+
+  facet_grid(Treatment~Site)
+```
+
+Flux by site/treatment
+```{r}
+ggplot(flux_data, aes(y = CO2_flux_mgC_gSoil_hr, x = Site, color = Treatment))+
+  geom_point(position = position_dodge(width=0.5))
+```
+
+## flux summary table
+
+```{r}
+flux_summary_table = 
+  flux_summary %>% 
+  gather(variable, value,MEAN_CO2_FLUX_ugC_gSoil_hr:CUM_CO2_FLUX_mgC_gSoil) %>% 
+  dplyr::mutate(var = paste(variable, Site)) %>% 
+  dplyr::select(Treatment, var,value) %>% 
+  spread(var, value) %>% 
+  knitr::kable()
 ```
 
 
