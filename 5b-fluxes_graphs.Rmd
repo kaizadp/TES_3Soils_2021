@@ -30,15 +30,36 @@ flux =
 ```
 
 ```{r, fig.width=8, fig.height=8}
-ggplot(flux, aes(x = time_hours, y = CO2_mgC_gSoil_hr, color = TREATMENT_PHASE))+
+ggplot(flux, aes(x = time_hours, y = CO2_mgC_gSoil_hr*1000, color = TREATMENT_PHASE))+
   geom_point()+
-  facet_grid(Treatment~Site, scales = "free")
+  facet_grid(Treatment~Site)
   scale_x_date(date_breaks = "14 days")
 
 ggplot(flux, aes(x = (time_hours), y = CH4_mgC_gSoil_hr*1e6, color = TREATMENT_PHASE))+
   geom_point()+
   facet_grid(Treatment~Site, scales = "free_x")
   scale_x_date(date_breaks = "14 days")
+  
+ggplot(flux[flux$Treatment=="drought",], aes(x = Site, y = CO2_mgC_gSoil_hr*1000,
+                 color = TREATMENT_PHASE))+
+  geom_boxplot()+
+  theme_kp()+ theme(legend.position = "right")
+
+flux = 
+  flux %>% 
+  dplyr::mutate(
+    TC = case_when(
+      Site=="CPCRW" ~ 1.43,
+      Site=="DWP" ~ 0.98,
+      Site=="SR" ~ 10.32),
+    CO2_mgC_gC_hr = CO2_mgC_gSoil_hr*100/TC
+  ) 
+
+ggplot(flux, aes(x = Site, y = CO2_mgC_gC_hr,
+                 color = TREATMENT_PHASE))+
+  geom_boxplot()+
+  facet_grid(.~Treatment)
+
 ```
 
 by core: CPCRW

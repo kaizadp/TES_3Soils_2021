@@ -173,6 +173,15 @@ wsoc_pore %>%
   knitr::kable(align = "r")
 ```
 
+figure
+```{r}
+wsoc = read.csv("processed/wsoc_pores_longform.csv")
+
+ggplot(wsoc, aes(y = as.numeric(wsoc_mg_L), x = Site, color = Treatment))+
+geom_point(position = position_dodge(width =0.5))+
+facet_wrap(~Suction)
+```
+
 
 ## pores
 mg/g
@@ -204,17 +213,43 @@ gg_vankrev(pore_long, aes(x=OC,y=HC,color=Class))+
 
 ```
 
+domains with NOSC
+
+```{r}
+library(viridis)
+pore_meta = read.csv(FTICR_PORE_META)
+gg_vankrev(pore_meta, aes(x=OC,y=HC,color=(NOSC)))+
+  geom_point(alpha = 0.7)+
+  scale_color_viridis(option = "plasma", direction = -1)+
+  scale_color_gradient2()+  
+  #theme_kp()+
+  labs (color = "NOSC")
+#  geom_segment(x = 0.0, y = 0.8, xend = 1.2, yend = 0.8,color="black",linetype="longdash")+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))
+
+
+```
+
 
 # FTICR Pores -- figures
 ## native SOM
 ```{r vk_baseline, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Van Krevelen plot for TZSat pores",fig.width=10, fig.height=7,,fig.path = "images/"}
 
-gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=HC, color=site))+
+  gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=HC, color=site))+
   scale_color_brewer(palette = "Set1")+
   facet_grid(tension~site)+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
   theme_bw()+
   theme_kp()
+
+vk1 = 
+  gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=HC, color=tension))+
+  scale_color_brewer(palette = "Set1")+
+  facet_grid(~site)+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+
 ```
 
 
@@ -228,7 +263,8 @@ pore_long %>%
            pore_long
 
 
-gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
+vk2 = 
+  gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
   scale_color_brewer(palette = "Dark2")+
   facet_grid(tension~site)+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
@@ -236,6 +272,17 @@ gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y
   theme_kp()
 
 ```
+
+
+```{r}
+library(patchwork)
+combined = vk1/vk2 + plot_layout(heights = c(1,2))
+save_plot("images/vankrev.png", combined ,base_height = 10, base_width = 9)
+
+```
+
+combining both plots
+
 
 ## treatment effect -- unique peaks
 unique in each treatment compared to all, including TZsaturation
@@ -698,6 +745,36 @@ soil_nosc_median %>%
   knitr::kable(align = "r")
 
 ```
+
+## lost/gained NOSC
+
+```{r}
+gained = read.csv("fticr/fticr_pore_newmolecules.csv")
+
+ggplot(gained, 
+       aes(x = NOSC, fill = newmolecules, color = newmolecules))+
+  geom_histogram(binwidth = 0.10, position = "identity", alpha = 0.2)+
+  scale_fill_brewer(palette = "Dark2")+
+  scale_color_brewer(palette = "Dark2")+
+  # scale_fill_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  #  scale_color_manual(values = c("#666666","#1B9E77", "#D95F02", "#7570B3"))+
+  #geom_histogram(data = subset(fticr_pore_nosc, site = "CPCRW" | treatment=="field moist"), fill = "red", alpha = 0.2)+
+
+  xlim(-2.5, 2.5)+
+  #ylim(0,1000)+
+
+  facet_grid(site+tension~treatment)+ #facet with two variables
+  
+  theme_bw()+
+  theme_kp()
+
+ggplot(gained, 
+       aes(y = NOSC, x = treatment, color = newmolecules))+
+  geom_boxplot(position = position_dodge(), fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
+ # geom_dotplot(binaxis = "y",position = position_dodge(0.75),                stackdir = "center", dotsize = 0.1, color = "black")
+  facet_grid(site~tension)
+```
+
 ---
 
 ## aromatic peaks

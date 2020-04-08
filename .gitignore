@@ -3,3 +3,6 @@ fticr/fticr_soil_longform.csv
 .Rproj.user/
 .Rhistory
 .httr-oauth
+*.gz
+*.gz
+outputs/rawdata.csv.gz
