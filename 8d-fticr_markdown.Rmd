@@ -74,14 +74,14 @@ sites
 
 |  |  |  |
 |-----|-----|-----|
-|Alaska | #35b779ff| red |
+|Alaska | #950000 | red |
 |Florida |#e6ab00 | yellow |
 |Washington | #008cff | blue |
 
 
 # FTICR domains 
 
-```{r vk_domains, fig.height=6,fig.width=8}
+```{r vk_domains, fig.height=7,fig.width=12}
 pore_long %>% 
   dplyr::mutate(Class = factor(Class, levels = 
                           c("AminoSugar", "Carb","Lipid","Protein","UnsatHC",
@@ -321,6 +321,37 @@ ggplot(pore_shannon, aes(x = site, y = H, color = treatment, fill = treatment))+
   theme_bw()+
   theme_kp()
 
+```
+
+# unique peaks per site
+
+```{r unique_site, fig.width=8, fig.height=5}
+pore_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_longform.csv"
+fticr_pore_meta = read.csv(FTICR_PORE_META)
+
+unique_pore_temp = 
+  pore_long %>% 
+  #  filter(reps==5) %>% 
+  group_by(Mass, tension, site,  treatment) %>% 
+  dplyr::summarize(presence=1) %>% 
+  filter(treatment=="time zero saturation") %>% 
+  group_by(Mass,tension) %>% 
+  dplyr::mutate(reps=sum(presence)) %>% 
+  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
+
+unique_pore = 
+  unique_pore_temp %>% 
+  filter(reps==1)
+
+common_pore = 
+  unique_pore_temp %>% 
+  filter(reps>1) 
+
+gg_vankrev(unique_pore_temp[unique_pore_temp$reps==1,], aes(x = OC, y = HC, color = site))+
+  scale_color_manual(values = c('#950000', '#e6ab00','#008cff' ))+
+  facet_grid(.~tension)+
+  theme_kp()+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))
 ```
 
 # FTICR Pores -- tables
@@ -727,39 +758,6 @@ soil_shannon_summary %>%
   knitr::kable()
 ```
 
-
-# unique peaks per site
-
-```{r unique_site, fig.width=8, fig.height=5}
-pore_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_longform.csv"
-fticr_pore_meta = read.csv(FTICR_PORE_META)
-
-unique_pore_temp = 
-  pore_long %>% 
-  #  filter(reps==5) %>% 
-  group_by(Mass, tension, site,  treatment) %>% 
-  dplyr::summarize(presence=1) %>% 
-  filter(treatment=="time zero saturation") %>% 
-  group_by(Mass,tension) %>% 
-  dplyr::mutate(reps=sum(presence)) %>% 
-  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
-
-unique_pore = 
-  unique_pore_temp %>% 
-  filter(reps==1)
-
-common_pore = 
-  unique_pore_temp %>% 
-  filter(reps>1) 
-
-gg_vankrev(unique_pore_temp[unique_pore_temp$reps==1,], aes(x = OC, y = HC, color = site))+
-  scale_color_manual(values = c('#ff0000', '#e6ab00','#008cff' ))+
-  facet_grid(.~tension)+
-  theme_kp()+
-  guides(colour = guide_legend(override.aes = list(alpha = 1)))
-
-
-```
 
 # testing color palettes
 ```{r palettes, fig.width=10, fig.height=7}

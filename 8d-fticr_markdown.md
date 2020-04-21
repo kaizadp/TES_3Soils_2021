@@ -15,6 +15,15 @@ treatments == viridis
 | field moist | \#35b779ff | green  |
 | drought     | \#fde725ff | yellow |
 | flood       | \#443a83ff | blue   |
+| baseline    | \#30688E   | blue   |
+
+sites
+
+|            |          |        |
+| ---------- | -------- | ------ |
+| Alaska     | \#950000 | red    |
+| Florida    | \#e6ab00 | yellow |
+| Washington | \#008cff | blue   |
 
 # FTICR domains
 
@@ -70,6 +79,10 @@ tannins that contain aromatic groups
 
 ![aromatic
 peaks](images/shannon-1.png)
+
+# unique peaks per site
+
+![](images/markdown-fticr/unique_site-1.png)<!-- -->
 
 # FTICR Pores – tables
 
@@ -450,10 +463,6 @@ gained
 | field moist          | 1.92 ± 0.01 | 1.93 ± 0 \* | 1.94 ± 0 \* |
 | flood                | 1.96 ± 0 \* | 1.95 ± 0 \* | 1.95 ± 0 \* |
 | time zero saturation | 1.95 ± 0    | 1.96 ± 0    | 1.95 ± 0    |
-
-# unique peaks per site
-
-![](images/markdown-fticr/unique_site-1.png)<!-- -->
 
 # testing color palettes
 
