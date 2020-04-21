@@ -6,3 +6,4 @@ fticr/fticr_soil_longform.csv
 *.gz
 *.gz
 outputs/rawdata.csv.gz
+outputs/rawdata.csv.gz
