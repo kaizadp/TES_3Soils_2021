@@ -121,10 +121,9 @@ soil_aromatic_summary =
   left_join(soil_aromatic_temp, by = c("site","treatment"), all.x=TRUE)
 
 ### OUTPUT
-# write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
 write_csv(soil_aromatic_counts, FTICR_SOIL_AROMATIC)
-write_csv(soil_aromatic_summary, FTICR_SOIL_AROMATIC_SUMMARY)
 FTICR_SOIL_AROMATIC_SUMMARY = "fticr/soil_aromatic_summary.csv"
+write_csv(soil_aromatic_summary, FTICR_SOIL_AROMATIC_SUMMARY)
 
 # ------------------------------------------------------- ----
 
@@ -152,8 +151,6 @@ soil_relabund_temp%>%
   dplyr::mutate(total = 100) %>% 
   dplyr::select(-se) -> 
   soil_relabund
-
-
 
 relabund_temp%>% 
 # now summarize by treatment. combine cores
@@ -214,43 +211,6 @@ soil_relabund %>%
   dplyr::mutate(relativeabundance = paste(relabund,dunnett)) %>% 
   dplyr::select(-relabund, -dunnett) ->
   fticr_soil_relativeabundance
-
-
-#
-      ## ## HSD. DONT DO ----
-      ## fit_hsd_relabund <- function(dat) {
-      ##   a <-aov(relabund ~ treatment, data = dat)
-      ##   h <-HSD.test(a,"treatment")
-      ##   #create a tibble with one column for each treatment
-      ##   #the hsd results are row1 = drought, row2 = saturation, row3 = time zero saturation, row4 = field moist. hsd letters are in column 2
-      ##   tibble(`drought` = h$groups["drought",2], 
-      ##          `saturation` = h$groups["saturation",2],
-      ##          `time zero saturation` = h$groups["time zero saturation",2],
-      ##          `field moist` = h$groups["field moist",2],
-      ##          `baseline` = h$groups["baseline",2])
-      ## }
-      ## 
-      ## fticr_soil_relabundance_long[!fticr_soil_relabundance_long$group=="total",] %>% 
-      ##   group_by(site, group) %>% 
-      ##   do(fit_hsd_relabund(.))  ->
-      ##   soil_relabund_hsd
-      ## 
-      ## soil_relabund_hsd %>% 
-      ##   gather(treatment, hsd, 3:7)-> #gather columns 4-7 (treatment levels)
-      ##   soil_relabund_hsd2
-      ## 
-      ## # now merge this with `fticr_soil_relabundance_summary`
-      ## 
-      ## fticr_soil_relabundance_summary2 = merge(fticr_soil_relabundance_summary, soil_relabund_hsd2, by = c("site","group","treatment"))
-      ## 
-      ## # combine hsd and values and thenremove unnecessary columns
-      ## fticr_soil_relabundance_summary2 %>% 
-      ##   mutate(relabund_hsd = paste(relativeabundance," ",hsd)) %>% 
-      ##   select(-sd,-se,-ci,-hsd)->
-      ##   fticr_soil_relabundance_summary2
-
-
-
 
 ### OUTPUT ----
 write_csv(fticr_soil_relativeabundance, FTICR_SOIL_RELABUND)
