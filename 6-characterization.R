@@ -1,70 +1,37 @@
 # 3Soils 2019
-# This script reads data files for soil characterization parameters, 
-# creates summary tables and graphs
+# This script reads and processes data files for soil characterization parameters
+# summary tables and graphs will be made in the Markdown script
 # Kaizad F. Patel, Aug 2019
 
-source("0-packages.R")
+source("0b-packages.R")
 
 
-## 1. nutrients and soil characterization ----
+# 1. nutrients and soil characterization ----
 
-### input files
+## input files
 
-soil_character = read_excel("data/soil_character.xlsx")
-names(soil_character)
+soil_char = read_excel("data/soil_character.xlsx")
 
-#converting variables to numeric form
-soil_character$K_meq100g = soil_character$`K_ppm`/390
-soil_character$`NO3-N_ppm` = as.numeric(soil_character$`NO3-N_ppm`)
-soil_character$Ca_meq100g = as.numeric(soil_character$Ca_meq100g)
-soil_character$Mg_meq100g = as.numeric(soil_character$Mg_meq100g)
-soil_character$`pH` = as.numeric(soil_character$`pH`)
-soil_character$EC_dS_m = as.numeric(soil_character$EC_dS_m)
-soil_character$`Sand_perc` = as.numeric(soil_character$`Sand_perc`)
-soil_character$`Silt_perc` = as.numeric(soil_character$`Silt_perc`)
-soil_character$`Clay_perc` = as.numeric(soil_character$`Clay_perc`)
+# convert variables to numeric form
+
+soil_character  = 
+  soil_char %>%
+# remove the grouping variables
+# then make all the variables numeric
+  dplyr::select(-c(1:3)) %>% 
+  dplyr::mutate_if(is.character, as.factor) %>% 
+  dplyr::mutate_if(is.factor, as.numeric) %>% 
+# now bring back the original grouping variables
+  cbind(dplyr::select(soil_char, c(1:3)))
 
 
-# creating summary table----
-# option 1 don't do ----
-soil_char2 = 
-  dplyr::mutate(soil_character,
-                soil_factor = factor(soil_character$Soil,
-                                     levels = c("CPCRW","DWP","SR")))
-str(soil_char2)
-
-soil_char_summary = 
-  list ("C" = list("TC, %" = ~qwraps2::mean_sd(TC_perc)),
-        "N" = list("TN, %" = ~qwraps2::mean_sd(TN_perc)),
-        "TOC" = list("TOC, %" = ~qwraps2::mean_sd(TOC_perc)),
-        "WSOC" = list("WSOC, mgC/g" = ~qwraps2::mean_sd(WSOC_mg_g)),
-        "Ca"= list("Ca, meq/100g" = ~qwraps2::mean_sd(Ca_meq100g)),
-        "Mg" = list("Mg, meq/100g" = ~qwraps2::mean_sd(Mg_meq100g)),
-        "pH" = list("pH" = ~qwraps2::mean_sd(pH)),
-        "EC" = list("EC, dS/m" = ~qwraps2::mean_sd(EC_dS_m)),
-        "sand" = list("sand, %" = ~qwraps2::mean_sd(Sand_perc)),
-        "silt" = list("silt, %" = ~qwraps2::mean_sd(Silt_perc)),
-        "clay" = list("clay, %" = ~qwraps2::mean_sd(Clay_perc))
-  )
-
-### need to omit NA for SR. HOW??
-
-soil_char_table = summary_table(dplyr::group_by(soil_char2,Soil),soil_char_summary)
-
-# print(soil_char_table,
-#      cnames = c("CPCRW","DWP","SR"))
-# write.csv(soil_char_table, file = "soil_charac_summary.csv")
-
-##
-
-# option 2 do this----
-
-# select only those rows we want for the characterization summary
+## 1a. creating summary table----
+# select only those columns we want for the characterization summary
 # manual step
 
 soil_character %>% 
   dplyr::rename(site=Soil) %>% 
-  select(site,
+  dplyr::select(site,
          TC_perc, TN_perc, TOC_perc, WSOC_mg_g,
          Ca_meq100g, Mg_meq100g,
          pH, EC_dS_m, 
@@ -89,7 +56,8 @@ soil_character2_long %>%
   dplyr::mutate(summary = paste(round(mean,2), "\u00B1",round(se,2)))->
   soil_character_summary
 
-## 2. characterization -- stats ----
+#
+## 1b. characterization -- stats ----
 
 fit_hsd <- function(dat) {
   a <-aov(value ~ site, data = dat)
@@ -115,15 +83,15 @@ soil_character_summary2 = merge(soil_character_summary, soil_charac_hsd2, by = c
 
 soil_character_summary2 %>% 
   mutate(summary_hsd = paste(summary," ",hsd)) %>% 
-  select(-hsd)->
+  dplyr::select(-hsd)->
   soil_character_summary2
 
 ### OUTPUT
-write.csv(soil_character_summary2, CHARACTERIZATION)
+write.csv(soil_character_summary2, CHARACTERIZATION, row.names = FALSE)
 
 ##
 
-## 3. pore size ----
+# 2. pore size ----
 pores = read_excel("data/pore_size.xlsx")
 names(pores)
 
@@ -162,21 +130,14 @@ combined_pore_perc_freq = data.frame(combined_pore_freq$scores,
                                      combined_pore_freq$Perc_Freq.y,
                                      combined_pore_freq$Perc_Freq)
 names(combined_pore_perc_freq) = c("pore_size","cpcrw","dwp","sr")
-write_csv(combined_pore_perc_freq,"processed/pore_size_perc_freq2.csv")
 
 #melting the three sites into a single column
 pores_melt = melt(combined_pore_perc_freq,id = "pore_size")
 names(pores_melt) = c("pore_size","site","freq")
 
 ###OUTPUT
-write.csv(pores_melt,PORE_DISTRIBUTION)
+write.csv(pores_melt,PORE_DISTRIBUTION, row.names = FALSE)
 
-
-#plotting the frequency distribution -- NOT DOING THIS ANY MORE. MAKING FIGURES IN MARKDOWN 
-##
-
-
-## 4. water retention curves ---- -- NOT DOING THIS ANY MORE. MAKING FIGURES IN MARKDOWN ----
 
 ##
 ##
