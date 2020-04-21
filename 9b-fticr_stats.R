@@ -1,3 +1,11 @@
+# 3Soils
+# fticr_stats 
+# Kaizad F. Patel
+# March 2020
+
+# this file takes the processed fticr files and runs statistics 
+
+
 source("0b-packages.R")
 
 # PART 1. LOAD FILES ----
@@ -287,6 +295,7 @@ ggbiplot(pca, obs.scale = 1, var.scale = 1,
   ylim(-4,4)+xlim(-4,4)+
   ggtitle("time zero saturation")
 
+# tpc method ----
 bray_distance = vegdist(pore_relabund_pca_num, method="euclidean")
 principal_coordinates = pcoa(bray_distance)
 
@@ -310,7 +319,7 @@ ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site))
   labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
 
 
-## treatment PCA
+## treatment PCA ----
 
 soil_relabund_pca=
   soil_relabund_temp %>% 
@@ -344,6 +353,7 @@ adonis(soil_relabund_pca_num ~ soil_relabund_pca$site+soil_relabund_pca$treatmen
 
 
 # testing FAMD ----
+## delete later
 # https://www.r-bloggers.com/factoextra-r-package-easy-multivariate-data-analyses-and-elegant-visualization/
 
 data("decathlon2")
