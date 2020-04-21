@@ -1,7 +1,7 @@
 ---
 title: "3Soils -- FTICR"
 author: "Kaizad Patel"
-output: html_document
+output: github_document
 ---
 
 This is the RMarkdown file for the FTICR results from the 3Soils experiment. 
@@ -60,19 +60,28 @@ soil_unique_peaks = read.csv(FTICR_SOIL_UNIQUE_PEAKS)# <- "fticr/fticr_soil_uniq
 
 ```
 
-Color palette used:
-treatments == viridis
+Color palette used:  
+treatments == viridis  
+
 |  |  |  |
 |-----|-----|-----|
 |field moist | #35b779ff| green |
 |drought |#fde725ff | yellow |
 |flood | #443a83ff | blue |
+|baseline | #30688E | blue |
 
+sites  
+
+|  |  |  |
+|-----|-----|-----|
+|Alaska | #35b779ff| red |
+|Florida |#e6ab00 | yellow |
+|Washington | #008cff | blue |
 
 
 # FTICR domains 
 
-```{r vk_domains, fig.height=7,fig.width=15}
+```{r vk_domains, fig.height=6,fig.width=8}
 pore_long %>% 
   dplyr::mutate(Class = factor(Class, levels = 
                           c("AminoSugar", "Carb","Lipid","Protein","UnsatHC",
@@ -718,6 +727,40 @@ soil_shannon_summary %>%
   knitr::kable()
 ```
 
+
+# unique peaks per site
+
+```{r unique_site, fig.width=8, fig.height=5}
+pore_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_longform.csv"
+fticr_pore_meta = read.csv(FTICR_PORE_META)
+
+unique_pore_temp = 
+  pore_long %>% 
+  #  filter(reps==5) %>% 
+  group_by(Mass, tension, site,  treatment) %>% 
+  dplyr::summarize(presence=1) %>% 
+  filter(treatment=="time zero saturation") %>% 
+  group_by(Mass,tension) %>% 
+  dplyr::mutate(reps=sum(presence)) %>% 
+  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
+
+unique_pore = 
+  unique_pore_temp %>% 
+  filter(reps==1)
+
+common_pore = 
+  unique_pore_temp %>% 
+  filter(reps>1) 
+
+gg_vankrev(unique_pore_temp[unique_pore_temp$reps==1,], aes(x = OC, y = HC, color = site))+
+  scale_color_manual(values = c('#ff0000', '#e6ab00','#008cff' ))+
+  facet_grid(.~tension)+
+  theme_kp()+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))
+
+
+```
+
 # testing color palettes
 ```{r palettes, fig.width=10, fig.height=7}
 gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
@@ -755,5 +798,17 @@ gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y
   theme_bw()+
   ggtitle("#f7cb44ff, #de7065ff, #403891ff")+
   theme_kp()
+
+gg_vankrev(unique_pore_temp[unique_pore_temp$reps==1,], aes(x = OC, y = HC, color = site))+
+  #scale_color_manual(values = c("#000003","#721581", "#F1605D"))+
+  #scale_color_manual(values = c("#6B4596FF","#F68F46FF", "#042333FF"))+
+  #scale_color_manual(values = c("#de7065ff", "#f7cb44ff",  "#403891ff"))+
+  #scale_color_manual(values = c('#008cff', '#e6ab00', '#ff5700'))+
+  scale_color_manual(values = c('#ff0000', '#e6ab00','#008cff' ))+
+  facet_grid(.~tension)+
+  theme_kp()+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  ggtitle("2: #ff0000, #e6ab00,#008cff")
+
 ```
 
