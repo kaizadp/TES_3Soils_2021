@@ -358,8 +358,8 @@ pore_aromatic_summary =
 ### OUTPUT
 # write.csv(fticr_soil_aromatic_counts,"fticr_soil_aromatic_counts.csv")
 write_csv(pore_aromatic_counts, FTICR_PORE_AROMATIC)
-write_csv(pore_aromatic_summary, FTICR_PORE_AROMATIC_SUMMARY)
 FTICR_PORE_AROMATIC_SUMMARY = "fticr/pore_aromatic_summary.csv"
+write_csv(pore_aromatic_summary, FTICR_PORE_AROMATIC_SUMMARY)
 #
 
 

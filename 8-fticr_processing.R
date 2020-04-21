@@ -140,12 +140,12 @@ corekey = read.csv("data/COREKEY.csv")
 # Create a file with the list of columns to drop. 
 # use the sample meta file for this. retain SampleType `sample` and `as`. (I don't know what `as` is.)
 # metadata of sample information
-pore_sample_meta = read.csv("data/FTICR_INPUT_SOILPORE_meta.csv")
+pore_sample_meta = read_excel("data/FTICR_INPUT_SOILPORE_meta.xlsx")
 
 pore_sample_meta %>% 
   filter(!Sample_Type=="sample") %>% 
   filter(!Sample_Type=="as") %>% 
-  dplyr::rename(code = `X21T_CCS.2_Day8_1.C11_11Jan18_Leopard_Infuse.qb`) -> 
+  dplyr::rename(code = `21T_CCS-2_Day8_1-C11_11Jan18_Leopard_Infuse-qb`) -> 
   # ^^^ rename the f-ing column. WTAF is this column name. Checked -- it's not because a row was moved up. 
   pore_sample_meta
 
@@ -168,12 +168,14 @@ names(fticr_porewater)[matches_n > 0] <- names[matches_n > 0]
 
 # remove addiitonal unnecessary names that couldn't be automated above
 fticr_porewater %>% 
-  dplyr::select(-`C13`,-`3use`,-`Error_ppm`)->
+  dplyr::select(-`3use`,-`Error_ppm`)->
   fticr_porewater
 
 ### create meta file ----
 ## sample data split by pore size (50 kPa and 1.5 kPa). 
-fticr_porewater %>% 
+fticr_porewater %>%
+  filter(C13==0) %>% 
+  dplyr::select(-C13) %>% 
   dplyr::select(1:11) %>% 
 # remove compounds without class. har har. 
   filter(!Class=="None") %>% 
@@ -438,6 +440,10 @@ ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site))
 #
 
 ### unique to each site ---- pores ----
+fticr_pore_raw_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_longform.csv"
+fticr_pore_meta = read.csv(FTICR_PORE_META)
+
+
 unique_pore_temp = 
   fticr_pore_raw_long %>% 
 #  filter(reps==5) %>% 
@@ -451,12 +457,12 @@ unique_pore_temp =
 
 unique_pore = 
   unique_pore_temp %>% 
-  filter(reps==1) %>% 
+  filter(reps==1)
   left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
 
 common_pore = 
   unique_pore_temp %>% 
-  filter(reps>1) %>% 
+  filter(reps>1) 
   left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
 
 
@@ -464,7 +470,8 @@ gg_vankrev(unique_pore, aes(x = OC, y = HC, color = site))+facet_wrap(~tension)
 
 gg_vankrev(unique_pore_temp, aes(x = OC, y = HC, color = site))+
   scale_color_manual(values = c("blue","yellow","red"))+
-  facet_wrap(tension~reps)
+  facet_wrap(tension~reps)+
+  theme_kp()
 
 gg_vankrev(molform[molform$treatment=="time zero saturation",], aes(x = OC, y = HC, color = site))+
   scale_color_manual(values = c("blue","yellow","red"))+

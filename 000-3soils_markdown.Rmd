@@ -1,7 +1,7 @@
 ---
 title: "3soils_markdown"
 author: "Kaizad Patel"
-output: word_document
+output: html_document
 ---
 
 This is the RMarkdown file for the 3Soils experiment. Tables and figures for molecular results.
@@ -271,6 +271,43 @@ vk2 =
   theme_bw()+
   theme_kp()
 
+gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
+  #scale_color_viridis_d()+
+  scale_color_manual(values = c("#35b779ff", "#fde725ff","#443a83ff"))+
+  facet_grid(tension~site)+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  ggtitle("viridis #35b779ff, #fde725ff, #443a83ff")+
+  theme_kp()
+
+gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
+  #scale_color_viridis_d(option = "cividis")+
+  scale_color_manual(values = c( "#6B4596FF","#F68F46FF", "#042333FF"))+
+  facet_grid(tension~site)+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  ggtitle("#6B4596FF,#F68F46FF, #042333FF")+
+  theme_bw()+
+  theme_kp()
+
+gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
+  #scale_color_viridis_d(option = "cividis")+
+  scale_color_manual(values = c( "#f7cb44ff", "#cc6a70ff", "#403891ff"))+
+  facet_grid(tension~site)+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  ggtitle("#f7cb44ff, #cc6a70ff, #403891ff")+
+  theme_bw()+
+  theme_kp()
+
+gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
+  #scale_color_viridis_d(option = "cividis")+
+  scale_color_manual(values = c( "#f7cb44ff", "#de7065ff", "#403891ff"))+
+  facet_grid(tension~site)+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  ggtitle("#f7cb44ff, #de7065ff, #403891ff")+
+  theme_kp()
+
+
 ```
 
 
@@ -440,7 +477,7 @@ aromatic peaks -- Van Krevelen
 ```{r}
 pore_aromatic_vk = 
   pore_long %>% 
-  left_join(dplyr::select(fticr_pore_meta, Mass, AImod), by = "Mass") %>% 
+  left_join(dplyr::select(pore_meta, Mass, AImod), by = "Mass") %>% 
   dplyr::mutate(aromatic = case_when(AImod>0.5 ~ "aromatic")) 
 
 gg_vankrev(pore_aromatic_vk[pore_aromatic_vk$aromatic=="aromatic",], aes(x = OC, y = HC))+
@@ -513,6 +550,7 @@ pore_peaks %>%
                 val = paste(peaks_count)) %>% 
   dplyr::select(site,Class,sp, val) %>% 
   spread(sp, val) %>% 
+  filter(Class=="total") %>% 
   knitr::kable(align = "r")
 ```
 
@@ -583,13 +621,13 @@ total = 100%
 ## aromatic peaks
 ```{r}
 
-  pore_aromatic_summary %>% 
-  ungroup %>% 
-  dplyr::mutate(counts = paste(counts_mean,dunnett),
-                var = paste(tension,site)) %>% 
-  dplyr::select(treatment, var, counts) %>% 
-  spread(var, counts) %>% 
-  knitr::kable()
+# pore_aromatic_summary %>% 
+# ungroup %>% 
+# dplyr::mutate(counts = paste(counts_mean,dunnett),
+#               var = paste(tension,site)) %>% 
+# dplyr::select(treatment, var, counts) %>% 
+# spread(var, counts) %>% 
+# knitr::kable()
 ```
 ## Shannon diversity
 ```{r}
@@ -870,12 +908,12 @@ soil_unique_counts%>%
 ## aromatic peaks
 
 ```{r}
-soil_aromatic_summary %>% 
-  ungroup %>% 
-  dplyr::mutate(counts = paste(counts_mean,dunnett)) %>% 
-  dplyr::select(treatment, site, counts) %>% 
-  spread(site, counts) %>% 
-  knitr::kable()
+# soil_aromatic_summary %>% 
+#   ungroup %>% 
+#   dplyr::mutate(counts = paste(counts_mean,dunnett)) %>% 
+#   dplyr::select(treatment, site, counts) %>% 
+#   spread(site, counts) %>% 
+#   knitr::kable()
 ```
 
 ## Shannon diversity

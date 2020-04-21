@@ -1,25 +1,25 @@
 site,treatment,tension,counts_mean,counts_se,dunnett
-CPCRW,time zero saturation,1.5 kPa,1,0,NA
-CPCRW,time zero saturation,50 kPa,1,0,NA
-CPCRW,field moist,1.5 kPa,1,0,
-CPCRW,field moist,50 kPa,1,0,
-CPCRW,saturation,1.5 kPa,1,0,
-CPCRW,saturation,50 kPa,1,0,
-CPCRW,drought,1.5 kPa,1,0,
-CPCRW,drought,50 kPa,1,0,*
-DWP,time zero saturation,1.5 kPa,1,0,NA
-DWP,time zero saturation,50 kPa,1,0,NA
-DWP,field moist,1.5 kPa,1,0,*
-DWP,field moist,50 kPa,1,0,
-DWP,saturation,1.5 kPa,1,0,*
-DWP,saturation,50 kPa,1,0,
-DWP,drought,1.5 kPa,1,0,
-DWP,drought,50 kPa,1,0,
-SR,time zero saturation,1.5 kPa,1,0,NA
-SR,time zero saturation,50 kPa,1,0,NA
-SR,field moist,1.5 kPa,1,0,*
-SR,field moist,50 kPa,1,0,*
-SR,saturation,1.5 kPa,1,0,
-SR,saturation,50 kPa,1,0,*
-SR,drought,1.5 kPa,1,0,
-SR,drought,50 kPa,1,0,*
+CPCRW,drought,1.5 kPa,59,7.418894796396562,
+CPCRW,drought,50 kPa,164,7.463243262818116,*
+CPCRW,field moist,1.5 kPa,171,29.4057817444121,
+CPCRW,field moist,50 kPa,205,0,
+CPCRW,saturation,1.5 kPa,126,20.249444436823442,
+CPCRW,saturation,50 kPa,209,7.3824115301167,
+CPCRW,time zero saturation,1.5 kPa,153,41.3311020903145,NA
+CPCRW,time zero saturation,50 kPa,261,24.880916381837707,NA
+DWP,drought,1.5 kPa,37,9.90151503558925,
+DWP,drought,50 kPa,131,13.75605927097825,
+DWP,field moist,1.5 kPa,166,29.508473359359,*
+DWP,field moist,50 kPa,178,0,
+DWP,saturation,1.5 kPa,155,22.156263222845137,*
+DWP,saturation,50 kPa,207,17.805617091243988,
+DWP,time zero saturation,1.5 kPa,56,16.232683080747925,NA
+DWP,time zero saturation,50 kPa,175,8.626509529738357,NA
+SR,drought,1.5 kPa,30,11.555950847939775,
+SR,drought,50 kPa,8,2,*
+SR,field moist,1.5 kPa,9,1.5362291495737215,
+SR,field moist,50 kPa,17,1.5491933384829666,*
+SR,saturation,1.5 kPa,38,8.759518632131943,
+SR,saturation,50 kPa,14,0.8539125638299665,*
+SR,time zero saturation,1.5 kPa,36,3.497022543059548,NA
+SR,time zero saturation,50 kPa,62,15.394804318340652,NA

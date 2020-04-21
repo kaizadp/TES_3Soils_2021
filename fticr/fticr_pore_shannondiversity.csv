@@ -1,109 +1,109 @@
 "","tension","site","treatment","core","H"
-"1","1.5 kPa","CPCRW","drought","C21",1.44
-"2","1.5 kPa","CPCRW","drought","C22",1.36
-"3","1.5 kPa","CPCRW","drought","C23",1.39
-"4","1.5 kPa","CPCRW","drought","C24",1.37
-"5","1.5 kPa","CPCRW","drought","C25",1.39
-"6","1.5 kPa","CPCRW","field moist","C16",1.09
-"7","1.5 kPa","CPCRW","field moist","C17",1.11
-"8","1.5 kPa","CPCRW","field moist","C18",1.06
-"9","1.5 kPa","CPCRW","field moist","C19",1.14
-"10","1.5 kPa","CPCRW","field moist","C20",1.06
-"11","1.5 kPa","CPCRW","saturation","C11",1.18
-"12","1.5 kPa","CPCRW","saturation","C12",1.16
-"13","1.5 kPa","CPCRW","saturation","C13",1.2
-"14","1.5 kPa","CPCRW","saturation","C14",1.16
-"15","1.5 kPa","CPCRW","saturation","C15",1.13
-"16","1.5 kPa","CPCRW","time zero saturation","C10",1.07
-"17","1.5 kPa","CPCRW","time zero saturation","C6",1.24
-"18","1.5 kPa","CPCRW","time zero saturation","C7",1.12
-"19","1.5 kPa","CPCRW","time zero saturation","C8",1.2
-"20","1.5 kPa","CPCRW","time zero saturation","C9",1.06
-"21","1.5 kPa","DWP","drought","D21",1.19
-"22","1.5 kPa","DWP","drought","D22",1.08
-"23","1.5 kPa","DWP","drought","D23",1.1
-"24","1.5 kPa","DWP","drought","D24",1.15
-"25","1.5 kPa","DWP","drought","D25",1.11
-"26","1.5 kPa","DWP","field moist","D17",0.99
-"27","1.5 kPa","DWP","field moist","D18",1.1
-"28","1.5 kPa","DWP","field moist","D19",1
-"29","1.5 kPa","DWP","field moist","D20",1.1
-"30","1.5 kPa","DWP","saturation","D11",0.89
-"31","1.5 kPa","DWP","saturation","D12",1.15
-"32","1.5 kPa","DWP","saturation","D13",1.01
-"33","1.5 kPa","DWP","saturation","D14",0.91
-"34","1.5 kPa","DWP","saturation","D15",0.97
-"35","1.5 kPa","DWP","time zero saturation","D10",1.62
-"36","1.5 kPa","DWP","time zero saturation","D6",1.61
-"37","1.5 kPa","DWP","time zero saturation","D7",1.59
-"38","1.5 kPa","DWP","time zero saturation","D8",1.45
-"39","1.5 kPa","DWP","time zero saturation","D9",1.35
-"40","1.5 kPa","SR","drought","S10",1.06
-"41","1.5 kPa","SR","drought","S14",1.16
-"42","1.5 kPa","SR","drought","S25",0.79
-"43","1.5 kPa","SR","drought","S4",1.11
-"44","1.5 kPa","SR","drought","S5",1.13
-"45","1.5 kPa","SR","field moist","S1",1.18
-"46","1.5 kPa","SR","field moist","S13",1.22
-"47","1.5 kPa","SR","field moist","S15",1.17
-"48","1.5 kPa","SR","field moist","S19",1.04
-"49","1.5 kPa","SR","field moist","S21",1.18
-"50","1.5 kPa","SR","saturation","S18",1.03
-"51","1.5 kPa","SR","saturation","S2",1.13
-"52","1.5 kPa","SR","saturation","S3",0.96
-"53","1.5 kPa","SR","saturation","S7",1.08
-"54","1.5 kPa","SR","time zero saturation","S16",1.28
-"55","1.5 kPa","SR","time zero saturation","S17",1.24
-"56","1.5 kPa","SR","time zero saturation","S23",1.24
-"57","1.5 kPa","SR","time zero saturation","S9",1.31
-"58","50 kPa","CPCRW","drought","C21",1.32
-"59","50 kPa","CPCRW","drought","C22",1.44
-"60","50 kPa","CPCRW","drought","C23",1.46
-"61","50 kPa","CPCRW","drought","C24",1.35
-"62","50 kPa","CPCRW","drought","C25",1.49
-"63","50 kPa","CPCRW","field moist","C16",0.89
-"64","50 kPa","CPCRW","field moist","C17",0.85
-"65","50 kPa","CPCRW","field moist","C20",0.81
-"66","50 kPa","CPCRW","saturation","C11",1.2
-"67","50 kPa","CPCRW","saturation","C12",1.18
-"68","50 kPa","CPCRW","saturation","C13",1.18
-"69","50 kPa","CPCRW","saturation","C14",1.07
-"70","50 kPa","CPCRW","time zero saturation","C10",1.01
-"71","50 kPa","CPCRW","time zero saturation","C6",1.06
-"72","50 kPa","CPCRW","time zero saturation","C7",0.94
-"73","50 kPa","CPCRW","time zero saturation","C8",0.92
-"74","50 kPa","CPCRW","time zero saturation","C9",0.94
-"75","50 kPa","DWP","drought","D22",1.18
-"76","50 kPa","DWP","drought","D23",1.2
-"77","50 kPa","DWP","drought","D24",1.24
-"78","50 kPa","DWP","drought","D25",1.23
-"79","50 kPa","DWP","field moist","D17",0.98
-"80","50 kPa","DWP","field moist","D19",0.97
-"81","50 kPa","DWP","field moist","D20",1.03
-"82","50 kPa","DWP","saturation","D11",1.3
-"83","50 kPa","DWP","saturation","D12",1.11
-"84","50 kPa","DWP","saturation","D13",1.12
-"85","50 kPa","DWP","saturation","D14",0.96
-"86","50 kPa","DWP","saturation","D15",1.08
-"87","50 kPa","DWP","time zero saturation","D6",1.55
-"88","50 kPa","DWP","time zero saturation","D7",1.54
-"89","50 kPa","DWP","time zero saturation","D8",1.46
-"90","50 kPa","DWP","time zero saturation","D9",1.53
-"91","50 kPa","SR","drought","S10",1
-"92","50 kPa","SR","drought","S14",1.03
-"93","50 kPa","SR","drought","S25",0.52
-"94","50 kPa","SR","drought","S5",1.02
-"95","50 kPa","SR","field moist","S1",1.07
-"96","50 kPa","SR","field moist","S13",0.91
-"97","50 kPa","SR","field moist","S15",1
-"98","50 kPa","SR","field moist","S19",0.98
-"99","50 kPa","SR","field moist","S21",1.07
-"100","50 kPa","SR","saturation","S18",1.21
-"101","50 kPa","SR","saturation","S2",1.17
-"102","50 kPa","SR","saturation","S24",1.14
-"103","50 kPa","SR","saturation","S3",1.18
-"104","50 kPa","SR","time zero saturation","S11",0.87
-"105","50 kPa","SR","time zero saturation","S16",1.21
-"106","50 kPa","SR","time zero saturation","S17",1.22
-"107","50 kPa","SR","time zero saturation","S23",1.11
-"108","50 kPa","SR","time zero saturation","S9",1.08
+"1","1.5 kPa","CPCRW","drought","C21",1.51
+"2","1.5 kPa","CPCRW","drought","C22",1.52
+"3","1.5 kPa","CPCRW","drought","C23",1.57
+"4","1.5 kPa","CPCRW","drought","C24",1.54
+"5","1.5 kPa","CPCRW","drought","C25",1.53
+"6","1.5 kPa","CPCRW","field moist","C16",1.28
+"7","1.5 kPa","CPCRW","field moist","C17",1.3
+"8","1.5 kPa","CPCRW","field moist","C18",1.29
+"9","1.5 kPa","CPCRW","field moist","C19",1.26
+"10","1.5 kPa","CPCRW","field moist","C20",1.18
+"11","1.5 kPa","CPCRW","saturation","C11",1.29
+"12","1.5 kPa","CPCRW","saturation","C12",1.32
+"13","1.5 kPa","CPCRW","saturation","C13",1.34
+"14","1.5 kPa","CPCRW","saturation","C14",1.32
+"15","1.5 kPa","CPCRW","saturation","C15",1.2
+"16","1.5 kPa","CPCRW","time zero saturation","C10",1.21
+"17","1.5 kPa","CPCRW","time zero saturation","C6",1.41
+"18","1.5 kPa","CPCRW","time zero saturation","C7",1.29
+"19","1.5 kPa","CPCRW","time zero saturation","C8",1.39
+"20","1.5 kPa","CPCRW","time zero saturation","C9",1.24
+"21","1.5 kPa","DWP","drought","D21",1.32
+"22","1.5 kPa","DWP","drought","D22",1.24
+"23","1.5 kPa","DWP","drought","D23",1.24
+"24","1.5 kPa","DWP","drought","D24",1.29
+"25","1.5 kPa","DWP","drought","D25",1.26
+"26","1.5 kPa","DWP","field moist","D17",1.15
+"27","1.5 kPa","DWP","field moist","D18",1.25
+"28","1.5 kPa","DWP","field moist","D19",1.18
+"29","1.5 kPa","DWP","field moist","D20",1.25
+"30","1.5 kPa","DWP","saturation","D11",1.07
+"31","1.5 kPa","DWP","saturation","D12",1.29
+"32","1.5 kPa","DWP","saturation","D13",1.19
+"33","1.5 kPa","DWP","saturation","D14",1.07
+"34","1.5 kPa","DWP","saturation","D15",1.17
+"35","1.5 kPa","DWP","time zero saturation","D10",1.7
+"36","1.5 kPa","DWP","time zero saturation","D6",1.68
+"37","1.5 kPa","DWP","time zero saturation","D7",1.68
+"38","1.5 kPa","DWP","time zero saturation","D8",1.54
+"39","1.5 kPa","DWP","time zero saturation","D9",1.41
+"40","1.5 kPa","SR","drought","S10",1.26
+"41","1.5 kPa","SR","drought","S14",1.26
+"42","1.5 kPa","SR","drought","S25",0.91
+"43","1.5 kPa","SR","drought","S4",1.2
+"44","1.5 kPa","SR","drought","S5",1.2
+"45","1.5 kPa","SR","field moist","S1",1.27
+"46","1.5 kPa","SR","field moist","S13",1.36
+"47","1.5 kPa","SR","field moist","S15",1.28
+"48","1.5 kPa","SR","field moist","S19",1.25
+"49","1.5 kPa","SR","field moist","S21",1.26
+"50","1.5 kPa","SR","saturation","S18",1.15
+"51","1.5 kPa","SR","saturation","S2",1.2
+"52","1.5 kPa","SR","saturation","S3",1.08
+"53","1.5 kPa","SR","saturation","S7",1.18
+"54","1.5 kPa","SR","time zero saturation","S16",1.35
+"55","1.5 kPa","SR","time zero saturation","S17",1.32
+"56","1.5 kPa","SR","time zero saturation","S23",1.32
+"57","1.5 kPa","SR","time zero saturation","S9",1.38
+"58","50 kPa","CPCRW","drought","C21",1.45
+"59","50 kPa","CPCRW","drought","C22",1.57
+"60","50 kPa","CPCRW","drought","C23",1.56
+"61","50 kPa","CPCRW","drought","C24",1.53
+"62","50 kPa","CPCRW","drought","C25",1.56
+"63","50 kPa","CPCRW","field moist","C16",1.01
+"64","50 kPa","CPCRW","field moist","C17",1.01
+"65","50 kPa","CPCRW","field moist","C20",1.01
+"66","50 kPa","CPCRW","saturation","C11",1.31
+"67","50 kPa","CPCRW","saturation","C12",1.29
+"68","50 kPa","CPCRW","saturation","C13",1.32
+"69","50 kPa","CPCRW","saturation","C14",1.19
+"70","50 kPa","CPCRW","time zero saturation","C10",1.17
+"71","50 kPa","CPCRW","time zero saturation","C6",1.24
+"72","50 kPa","CPCRW","time zero saturation","C7",1.14
+"73","50 kPa","CPCRW","time zero saturation","C8",1.12
+"74","50 kPa","CPCRW","time zero saturation","C9",1.08
+"75","50 kPa","DWP","drought","D22",1.31
+"76","50 kPa","DWP","drought","D23",1.33
+"77","50 kPa","DWP","drought","D24",1.33
+"78","50 kPa","DWP","drought","D25",1.35
+"79","50 kPa","DWP","field moist","D17",1.13
+"80","50 kPa","DWP","field moist","D19",1.13
+"81","50 kPa","DWP","field moist","D20",1.13
+"82","50 kPa","DWP","saturation","D11",1.4
+"83","50 kPa","DWP","saturation","D12",1.25
+"84","50 kPa","DWP","saturation","D13",1.31
+"85","50 kPa","DWP","saturation","D14",1.16
+"86","50 kPa","DWP","saturation","D15",1.27
+"87","50 kPa","DWP","time zero saturation","D6",1.63
+"88","50 kPa","DWP","time zero saturation","D7",1.67
+"89","50 kPa","DWP","time zero saturation","D8",1.6
+"90","50 kPa","DWP","time zero saturation","D9",1.66
+"91","50 kPa","SR","drought","S10",1.04
+"92","50 kPa","SR","drought","S14",1.04
+"93","50 kPa","SR","drought","S25",0.63
+"94","50 kPa","SR","drought","S5",1.05
+"95","50 kPa","SR","field moist","S1",1.2
+"96","50 kPa","SR","field moist","S13",1.06
+"97","50 kPa","SR","field moist","S15",1.15
+"98","50 kPa","SR","field moist","S19",1.16
+"99","50 kPa","SR","field moist","S21",1.19
+"100","50 kPa","SR","saturation","S18",1.29
+"101","50 kPa","SR","saturation","S2",1.27
+"102","50 kPa","SR","saturation","S24",1.24
+"103","50 kPa","SR","saturation","S3",1.28
+"104","50 kPa","SR","time zero saturation","S11",0.9
+"105","50 kPa","SR","time zero saturation","S16",1.2
+"106","50 kPa","SR","time zero saturation","S17",1.29
+"107","50 kPa","SR","time zero saturation","S23",1.16
+"108","50 kPa","SR","time zero saturation","S9",1.21
