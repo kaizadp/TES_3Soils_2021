@@ -1,151 +1,151 @@
 "site","treatment","Class","peaks_count"
-"CPCRW","baseline","AminoSugar",495
-"CPCRW","drought","AminoSugar",431
-"CPCRW","field moist","AminoSugar",523
-"CPCRW","saturation","AminoSugar",587
-"CPCRW","time zero saturation","AminoSugar",540
-"DWP","baseline","AminoSugar",742
-"DWP","drought","AminoSugar",435
-"DWP","field moist","AminoSugar",291
-"DWP","saturation","AminoSugar",448
-"DWP","time zero saturation","AminoSugar",615
-"SR","baseline","AminoSugar",247
-"SR","drought","AminoSugar",552
-"SR","field moist","AminoSugar",625
-"SR","saturation","AminoSugar",607
-"SR","time zero saturation","AminoSugar",427
-"CPCRW","baseline","Carb",554
-"CPCRW","drought","Carb",472
-"CPCRW","field moist","Carb",603
-"CPCRW","saturation","Carb",675
-"CPCRW","time zero saturation","Carb",655
-"DWP","baseline","Carb",994
-"DWP","drought","Carb",476
-"DWP","field moist","Carb",369
-"DWP","saturation","Carb",589
-"DWP","time zero saturation","Carb",774
-"SR","baseline","Carb",373
-"SR","drought","Carb",631
-"SR","field moist","Carb",776
-"SR","saturation","Carb",755
-"SR","time zero saturation","Carb",495
-"CPCRW","baseline","ConHC",1358
-"CPCRW","drought","ConHC",1684
-"CPCRW","field moist","ConHC",1711
-"CPCRW","saturation","ConHC",1379
-"CPCRW","time zero saturation","ConHC",1376
-"DWP","baseline","ConHC",1272
-"DWP","drought","ConHC",1649
-"DWP","field moist","ConHC",923
-"DWP","saturation","ConHC",1787
-"DWP","time zero saturation","ConHC",1839
-"SR","baseline","ConHC",1368
-"SR","drought","ConHC",2000
-"SR","field moist","ConHC",1503
-"SR","saturation","ConHC",1621
-"SR","time zero saturation","ConHC",1737
-"CPCRW","baseline","Lignin",3032
-"CPCRW","drought","Lignin",3414
-"CPCRW","field moist","Lignin",3596
-"CPCRW","saturation","Lignin",3237
-"CPCRW","time zero saturation","Lignin",3156
-"DWP","baseline","Lignin",3215
-"DWP","drought","Lignin",3088
-"DWP","field moist","Lignin",1868
-"DWP","saturation","Lignin",3191
-"DWP","time zero saturation","Lignin",3551
-"SR","baseline","Lignin",2111
-"SR","drought","Lignin",3758
-"SR","field moist","Lignin",3702
-"SR","saturation","Lignin",3651
-"SR","time zero saturation","Lignin",2951
-"CPCRW","baseline","Lipid",914
-"CPCRW","drought","Lipid",1056
-"CPCRW","field moist","Lipid",1304
-"CPCRW","saturation","Lipid",1353
-"CPCRW","time zero saturation","Lipid",1226
-"DWP","baseline","Lipid",990
-"DWP","drought","Lipid",1462
-"DWP","field moist","Lipid",841
-"DWP","saturation","Lipid",1555
-"DWP","time zero saturation","Lipid",1447
-"SR","baseline","Lipid",835
-"SR","drought","Lipid",1220
-"SR","field moist","Lipid",1546
-"SR","saturation","Lipid",1505
-"SR","time zero saturation","Lipid",1316
-"CPCRW","baseline","Protein",1313
-"CPCRW","drought","Protein",1366
-"CPCRW","field moist","Protein",1528
-"CPCRW","saturation","Protein",1627
-"CPCRW","time zero saturation","Protein",1527
-"DWP","baseline","Protein",1480
-"DWP","drought","Protein",1653
-"DWP","field moist","Protein",982
-"DWP","saturation","Protein",1458
-"DWP","time zero saturation","Protein",1615
-"SR","baseline","Protein",836
-"SR","drought","Protein",1618
-"SR","field moist","Protein",1725
-"SR","saturation","Protein",1782
-"SR","time zero saturation","Protein",1406
-"CPCRW","baseline","Tannin",587
-"CPCRW","drought","Tannin",603
-"CPCRW","field moist","Tannin",598
-"CPCRW","saturation","Tannin",585
-"CPCRW","time zero saturation","Tannin",563
-"DWP","baseline","Tannin",706
-"DWP","drought","Tannin",425
-"DWP","field moist","Tannin",259
-"DWP","saturation","Tannin",523
-"DWP","time zero saturation","Tannin",596
-"SR","baseline","Tannin",362
-"SR","drought","Tannin",607
-"SR","field moist","Tannin",536
-"SR","saturation","Tannin",547
-"SR","time zero saturation","Tannin",510
-"CPCRW","baseline","Unnamed",385
-"CPCRW","drought","Unnamed",428
-"CPCRW","field moist","Unnamed",463
-"CPCRW","saturation","Unnamed",436
-"CPCRW","time zero saturation","Unnamed",391
-"DWP","baseline","Unnamed",406
-"DWP","drought","Unnamed",415
-"DWP","field moist","Unnamed",223
-"DWP","saturation","Unnamed",454
-"DWP","time zero saturation","Unnamed",486
-"SR","baseline","Unnamed",252
-"SR","drought","Unnamed",504
-"SR","field moist","Unnamed",448
-"SR","saturation","Unnamed",461
-"SR","time zero saturation","Unnamed",481
-"CPCRW","baseline","UnsatHC",427
-"CPCRW","drought","UnsatHC",608
-"CPCRW","field moist","UnsatHC",618
-"CPCRW","saturation","UnsatHC",577
-"CPCRW","time zero saturation","UnsatHC",544
-"DWP","baseline","UnsatHC",461
-"DWP","drought","UnsatHC",632
-"DWP","field moist","UnsatHC",308
-"DWP","saturation","UnsatHC",716
-"DWP","time zero saturation","UnsatHC",683
-"SR","baseline","UnsatHC",410
-"SR","drought","UnsatHC",651
-"SR","field moist","UnsatHC",767
-"SR","saturation","UnsatHC",770
-"SR","time zero saturation","UnsatHC",687
-"CPCRW","baseline","total",9065
-"CPCRW","drought","total",10062
-"CPCRW","field moist","total",10944
-"CPCRW","saturation","total",10456
-"CPCRW","time zero saturation","total",9978
-"DWP","baseline","total",10266
-"DWP","drought","total",10235
-"DWP","field moist","total",6064
-"DWP","saturation","total",10721
-"DWP","time zero saturation","total",11606
-"SR","baseline","total",6794
-"SR","drought","total",11541
-"SR","field moist","total",11628
-"SR","saturation","total",11699
-"SR","time zero saturation","total",10010
+"Alaska","baseline","AminoSugar",495
+"Alaska","drought","AminoSugar",431
+"Alaska","field moist","AminoSugar",523
+"Alaska","flood","AminoSugar",587
+"Alaska","time zero saturation","AminoSugar",540
+"Florida","baseline","AminoSugar",742
+"Florida","drought","AminoSugar",435
+"Florida","field moist","AminoSugar",291
+"Florida","flood","AminoSugar",448
+"Florida","time zero saturation","AminoSugar",615
+"Washington","baseline","AminoSugar",247
+"Washington","drought","AminoSugar",552
+"Washington","field moist","AminoSugar",625
+"Washington","flood","AminoSugar",607
+"Washington","time zero saturation","AminoSugar",427
+"Alaska","baseline","Carb",554
+"Alaska","drought","Carb",472
+"Alaska","field moist","Carb",603
+"Alaska","flood","Carb",675
+"Alaska","time zero saturation","Carb",655
+"Florida","baseline","Carb",994
+"Florida","drought","Carb",476
+"Florida","field moist","Carb",369
+"Florida","flood","Carb",589
+"Florida","time zero saturation","Carb",774
+"Washington","baseline","Carb",373
+"Washington","drought","Carb",631
+"Washington","field moist","Carb",776
+"Washington","flood","Carb",755
+"Washington","time zero saturation","Carb",495
+"Alaska","baseline","ConHC",1358
+"Alaska","drought","ConHC",1684
+"Alaska","field moist","ConHC",1711
+"Alaska","flood","ConHC",1379
+"Alaska","time zero saturation","ConHC",1376
+"Florida","baseline","ConHC",1272
+"Florida","drought","ConHC",1649
+"Florida","field moist","ConHC",923
+"Florida","flood","ConHC",1787
+"Florida","time zero saturation","ConHC",1839
+"Washington","baseline","ConHC",1368
+"Washington","drought","ConHC",2000
+"Washington","field moist","ConHC",1503
+"Washington","flood","ConHC",1621
+"Washington","time zero saturation","ConHC",1737
+"Alaska","baseline","Lignin",3032
+"Alaska","drought","Lignin",3414
+"Alaska","field moist","Lignin",3596
+"Alaska","flood","Lignin",3237
+"Alaska","time zero saturation","Lignin",3156
+"Florida","baseline","Lignin",3215
+"Florida","drought","Lignin",3088
+"Florida","field moist","Lignin",1868
+"Florida","flood","Lignin",3191
+"Florida","time zero saturation","Lignin",3551
+"Washington","baseline","Lignin",2111
+"Washington","drought","Lignin",3758
+"Washington","field moist","Lignin",3702
+"Washington","flood","Lignin",3651
+"Washington","time zero saturation","Lignin",2951
+"Alaska","baseline","Lipid",914
+"Alaska","drought","Lipid",1056
+"Alaska","field moist","Lipid",1304
+"Alaska","flood","Lipid",1353
+"Alaska","time zero saturation","Lipid",1226
+"Florida","baseline","Lipid",990
+"Florida","drought","Lipid",1462
+"Florida","field moist","Lipid",841
+"Florida","flood","Lipid",1555
+"Florida","time zero saturation","Lipid",1447
+"Washington","baseline","Lipid",835
+"Washington","drought","Lipid",1220
+"Washington","field moist","Lipid",1546
+"Washington","flood","Lipid",1505
+"Washington","time zero saturation","Lipid",1316
+"Alaska","baseline","Protein",1313
+"Alaska","drought","Protein",1366
+"Alaska","field moist","Protein",1528
+"Alaska","flood","Protein",1627
+"Alaska","time zero saturation","Protein",1527
+"Florida","baseline","Protein",1480
+"Florida","drought","Protein",1653
+"Florida","field moist","Protein",982
+"Florida","flood","Protein",1458
+"Florida","time zero saturation","Protein",1615
+"Washington","baseline","Protein",836
+"Washington","drought","Protein",1618
+"Washington","field moist","Protein",1725
+"Washington","flood","Protein",1782
+"Washington","time zero saturation","Protein",1406
+"Alaska","baseline","Tannin",587
+"Alaska","drought","Tannin",603
+"Alaska","field moist","Tannin",598
+"Alaska","flood","Tannin",585
+"Alaska","time zero saturation","Tannin",563
+"Florida","baseline","Tannin",706
+"Florida","drought","Tannin",425
+"Florida","field moist","Tannin",259
+"Florida","flood","Tannin",523
+"Florida","time zero saturation","Tannin",596
+"Washington","baseline","Tannin",362
+"Washington","drought","Tannin",607
+"Washington","field moist","Tannin",536
+"Washington","flood","Tannin",547
+"Washington","time zero saturation","Tannin",510
+"Alaska","baseline","Unnamed",385
+"Alaska","drought","Unnamed",428
+"Alaska","field moist","Unnamed",463
+"Alaska","flood","Unnamed",436
+"Alaska","time zero saturation","Unnamed",391
+"Florida","baseline","Unnamed",406
+"Florida","drought","Unnamed",415
+"Florida","field moist","Unnamed",223
+"Florida","flood","Unnamed",454
+"Florida","time zero saturation","Unnamed",486
+"Washington","baseline","Unnamed",252
+"Washington","drought","Unnamed",504
+"Washington","field moist","Unnamed",448
+"Washington","flood","Unnamed",461
+"Washington","time zero saturation","Unnamed",481
+"Alaska","baseline","UnsatHC",427
+"Alaska","drought","UnsatHC",608
+"Alaska","field moist","UnsatHC",618
+"Alaska","flood","UnsatHC",577
+"Alaska","time zero saturation","UnsatHC",544
+"Florida","baseline","UnsatHC",461
+"Florida","drought","UnsatHC",632
+"Florida","field moist","UnsatHC",308
+"Florida","flood","UnsatHC",716
+"Florida","time zero saturation","UnsatHC",683
+"Washington","baseline","UnsatHC",410
+"Washington","drought","UnsatHC",651
+"Washington","field moist","UnsatHC",767
+"Washington","flood","UnsatHC",770
+"Washington","time zero saturation","UnsatHC",687
+"Alaska","baseline","total",9065
+"Alaska","drought","total",10062
+"Alaska","field moist","total",10944
+"Alaska","flood","total",10456
+"Alaska","time zero saturation","total",9978
+"Florida","baseline","total",10266
+"Florida","drought","total",10235
+"Florida","field moist","total",6064
+"Florida","flood","total",10721
+"Florida","time zero saturation","total",11606
+"Washington","baseline","total",6794
+"Washington","drought","total",11541
+"Washington","field moist","total",11628
+"Washington","flood","total",11699
+"Washington","time zero saturation","total",10010

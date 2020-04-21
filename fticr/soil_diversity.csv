@@ -1,74 +1,74 @@
 "","site","treatment","core","H"
-"1","CPCRW","baseline","C1",1.93
-"2","CPCRW","baseline","C2",1.93
-"3","CPCRW","baseline","C3",1.89
-"4","CPCRW","baseline","C4",1.93
-"5","CPCRW","baseline","C5",1.92
-"6","CPCRW","drought","C21",1.88
-"7","CPCRW","drought","C22",1.88
-"8","CPCRW","drought","C23",1.9
-"9","CPCRW","drought","C24",1.9
-"10","CPCRW","drought","C25",1.9
-"11","CPCRW","field moist","C16",1.91
-"12","CPCRW","field moist","C17",1.94
-"13","CPCRW","field moist","C18",1.92
-"14","CPCRW","field moist","C19",1.93
-"15","CPCRW","field moist","C20",1.92
-"16","CPCRW","saturation","C11",1.95
-"17","CPCRW","saturation","C12",1.95
-"18","CPCRW","saturation","C13",1.96
-"19","CPCRW","saturation","C14",1.96
-"20","CPCRW","saturation","C15",1.96
-"21","CPCRW","time zero saturation","C10",1.95
-"22","CPCRW","time zero saturation","C6",1.95
-"23","CPCRW","time zero saturation","C7",1.94
-"24","CPCRW","time zero saturation","C8",1.95
-"25","CPCRW","time zero saturation","C9",1.96
-"26","DWP","baseline","D1",1.98
-"27","DWP","baseline","D2",1.99
-"28","DWP","baseline","D3",1.99
-"29","DWP","baseline","D4",1.99
-"30","DWP","drought","D21",1.91
-"31","DWP","drought","D22",1.92
-"32","DWP","drought","D23",1.91
-"33","DWP","drought","D24",1.91
-"34","DWP","drought","D25",1.92
-"35","DWP","field moist","D17",1.93
-"36","DWP","field moist","D18",1.93
-"37","DWP","field moist","D19",1.92
-"38","DWP","field moist","D20",1.93
-"39","DWP","saturation","D11",1.95
-"40","DWP","saturation","D12",1.95
-"41","DWP","saturation","D13",1.94
-"42","DWP","saturation","D14",1.94
-"43","DWP","saturation","D15",1.95
-"44","DWP","time zero saturation","D10",1.95
-"45","DWP","time zero saturation","D6",1.95
-"46","DWP","time zero saturation","D7",1.97
-"47","DWP","time zero saturation","D8",1.96
-"48","DWP","time zero saturation","D9",1.97
-"49","SR","baseline","S12",1.91
-"50","SR","baseline","S20",1.92
-"51","SR","baseline","S22",1.91
-"52","SR","baseline","S6",1.91
-"53","SR","baseline","S8",1.87
-"54","SR","drought","S10",1.9
-"55","SR","drought","S14",1.92
-"56","SR","drought","S25",1.92
-"57","SR","drought","S4",1.92
-"58","SR","drought","S5",1.93
-"59","SR","field moist","S1",1.95
-"60","SR","field moist","S13",1.93
-"61","SR","field moist","S15",1.95
-"62","SR","field moist","S19",1.94
-"63","SR","field moist","S21",1.95
-"64","SR","saturation","S18",1.95
-"65","SR","saturation","S2",1.94
-"66","SR","saturation","S24",1.94
-"67","SR","saturation","S3",1.96
-"68","SR","saturation","S7",1.95
-"69","SR","time zero saturation","S11",1.95
-"70","SR","time zero saturation","S16",1.96
-"71","SR","time zero saturation","S17",1.94
-"72","SR","time zero saturation","S23",1.96
-"73","SR","time zero saturation","S9",1.96
+"1","Alaska","baseline","C1",1.93
+"2","Alaska","baseline","C2",1.93
+"3","Alaska","baseline","C3",1.89
+"4","Alaska","baseline","C4",1.93
+"5","Alaska","baseline","C5",1.92
+"6","Alaska","drought","C21",1.88
+"7","Alaska","drought","C22",1.88
+"8","Alaska","drought","C23",1.9
+"9","Alaska","drought","C24",1.9
+"10","Alaska","drought","C25",1.9
+"11","Alaska","field moist","C16",1.91
+"12","Alaska","field moist","C17",1.94
+"13","Alaska","field moist","C18",1.92
+"14","Alaska","field moist","C19",1.93
+"15","Alaska","field moist","C20",1.92
+"16","Alaska","flood","C11",1.95
+"17","Alaska","flood","C12",1.95
+"18","Alaska","flood","C13",1.96
+"19","Alaska","flood","C14",1.96
+"20","Alaska","flood","C15",1.96
+"21","Alaska","time zero saturation","C10",1.95
+"22","Alaska","time zero saturation","C6",1.95
+"23","Alaska","time zero saturation","C7",1.94
+"24","Alaska","time zero saturation","C8",1.95
+"25","Alaska","time zero saturation","C9",1.96
+"26","Florida","baseline","D1",1.98
+"27","Florida","baseline","D2",1.99
+"28","Florida","baseline","D3",1.99
+"29","Florida","baseline","D4",1.99
+"30","Florida","drought","D21",1.91
+"31","Florida","drought","D22",1.92
+"32","Florida","drought","D23",1.91
+"33","Florida","drought","D24",1.91
+"34","Florida","drought","D25",1.92
+"35","Florida","field moist","D17",1.93
+"36","Florida","field moist","D18",1.93
+"37","Florida","field moist","D19",1.92
+"38","Florida","field moist","D20",1.93
+"39","Florida","flood","D11",1.95
+"40","Florida","flood","D12",1.95
+"41","Florida","flood","D13",1.94
+"42","Florida","flood","D14",1.94
+"43","Florida","flood","D15",1.95
+"44","Florida","time zero saturation","D10",1.95
+"45","Florida","time zero saturation","D6",1.95
+"46","Florida","time zero saturation","D7",1.97
+"47","Florida","time zero saturation","D8",1.96
+"48","Florida","time zero saturation","D9",1.97
+"49","Washington","baseline","S12",1.91
+"50","Washington","baseline","S20",1.92
+"51","Washington","baseline","S22",1.91
+"52","Washington","baseline","S6",1.91
+"53","Washington","baseline","S8",1.87
+"54","Washington","drought","S10",1.9
+"55","Washington","drought","S14",1.92
+"56","Washington","drought","S25",1.92
+"57","Washington","drought","S4",1.92
+"58","Washington","drought","S5",1.93
+"59","Washington","field moist","S1",1.95
+"60","Washington","field moist","S13",1.93
+"61","Washington","field moist","S15",1.95
+"62","Washington","field moist","S19",1.94
+"63","Washington","field moist","S21",1.95
+"64","Washington","flood","S18",1.95
+"65","Washington","flood","S2",1.94
+"66","Washington","flood","S24",1.94
+"67","Washington","flood","S3",1.96
+"68","Washington","flood","S7",1.95
+"69","Washington","time zero saturation","S11",1.95
+"70","Washington","time zero saturation","S16",1.96
+"71","Washington","time zero saturation","S17",1.94
+"72","Washington","time zero saturation","S23",1.96
+"73","Washington","time zero saturation","S9",1.96

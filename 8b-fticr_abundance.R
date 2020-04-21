@@ -50,13 +50,13 @@ soil_long %>%
                                         is.na(drought)&!is.na(baseline) ~ "lost"),
                   fm2 = case_when(!is.na(`field moist`)&is.na(baseline) ~ "new",
                                         is.na(`field moist`)&!is.na(baseline) ~ "lost"),
-                  saturation2 = case_when(!is.na(saturation)&is.na(baseline) ~ "new",
-                                        is.na(saturation)&!is.na(baseline) ~ "lost")) %>% 
+                  flood2 = case_when(!is.na(flood)&is.na(baseline) ~ "new",
+                                        is.na(flood)&!is.na(baseline) ~ "lost")) %>% 
 # add columns for unique peaks
-  dplyr:: mutate(unique = case_when((drought2=="new" & is.na(fm2) & is.na(saturation2)) ~ "drought",
-                                    (saturation2=="new" & is.na(fm2) & is.na(drought2)) ~ "saturation",
-                                    (fm2=="new" & is.na(drought2) & is.na(saturation2)) ~ "field moist")) %>% 
-  dplyr::select(-drought, -saturation, -baseline, -`field moist`,-`time zero saturation`)-> 
+  dplyr:: mutate(unique = case_when((drought2=="new" & is.na(fm2) & is.na(flood2)) ~ "drought",
+                                    (flood2=="new" & is.na(fm2) & is.na(drought2)) ~ "flood",
+                                    (fm2=="new" & is.na(drought2) & is.na(flood2)) ~ "field moist")) %>% 
+  dplyr::select(-drought, -flood, -baseline, -`field moist`,-`time zero saturation`)-> 
   soil_unique_peaks
 
 ### OUTPUT
@@ -91,7 +91,7 @@ fit_dunnett_aromatic_soil <- function(dat) {
   #create a tibble with one column for each treatment
   # column 4 has the pvalue
   t = tibble(drought = d$`time zero saturation`["drought-time zero saturation",4], 
-             saturation = d$`time zero saturation`["saturation-time zero saturation",4],
+             flood = d$`time zero saturation`["flood-time zero saturation",4],
              `field moist` = d$`time zero saturation`["field moist-time zero saturation",4])
   # we need to convert significant p values to asterisks
   # since the values are in a single row, it is tricky
@@ -180,9 +180,9 @@ fit_dunnett_relabund <- function(dat) {
   #create a tibble with one column for each treatment
   # column 4 has the pvalue
   t = tibble(`drought` = d$`baseline`["drought-baseline",4], 
-             `saturation` = d$`baseline`["saturation-baseline",4],
+             `flood` = d$`baseline`["flood-baseline",4],
              `field moist` = d$`baseline`["field moist-baseline",4],
-             `TZsaturation` = d$baseline["time zero saturation-baseline",4])
+             `TZflood` = d$baseline["time zero saturation-baseline",4])
   # we need to convert significant p values to asterisks
   # since the values are in a single row, it is tricky
   t %>% 
@@ -245,13 +245,13 @@ pore_long %>%
                                      is.na(drought)&!is.na(`time zero saturation`) ~ "lost"),
                 fm2 = case_when(!is.na(`field moist`)&is.na(`time zero saturation`) ~ "new",
                                 is.na(`field moist`)&!is.na(`time zero saturation`) ~ "lost"),
-                saturation2 = case_when(!is.na(saturation)&is.na(`time zero saturation`) ~ "new",
-                                        is.na(saturation)&!is.na(`time zero saturation`) ~ "lost")) %>% 
+                flood2 = case_when(!is.na(flood)&is.na(`time zero saturation`) ~ "new",
+                                        is.na(flood)&!is.na(`time zero saturation`) ~ "lost")) %>% 
   # add columns for unique peaks
-  dplyr:: mutate(unique = case_when((drought2=="new" & is.na(fm2) & is.na(saturation2)) ~ "drought",
-                                    (saturation2=="new" & is.na(fm2) & is.na(drought2)) ~ "saturation",
-                                    (fm2=="new" & is.na(drought2) & is.na(saturation2)) ~ "field moist")) %>% 
-  dplyr::select(-drought, -saturation, -`field moist`,-`time zero saturation`)-> 
+  dplyr:: mutate(unique = case_when((drought2=="new" & is.na(fm2) & is.na(flood2)) ~ "drought",
+                                    (flood2=="new" & is.na(fm2) & is.na(drought2)) ~ "flood",
+                                    (fm2=="new" & is.na(drought2) & is.na(flood2)) ~ "field moist")) %>% 
+  dplyr::select(-drought, -flood, -`field moist`,-`time zero saturation`)-> 
   pore_unique_peaks
 
 ### OUTPUT
@@ -285,7 +285,7 @@ fit_dunnett_aromatic_pore <- function(dat) {
   #create a tibble with one column for each treatment
   # column 4 has the pvalue
   t = tibble(drought = d$`time zero saturation`["drought-time zero saturation",4], 
-             saturation = d$`time zero saturation`["saturation-time zero saturation",4],
+             flood = d$`time zero saturation`["flood-time zero saturation",4],
              `field moist` = d$`time zero saturation`["field moist-time zero saturation",4])
   # we need to convert significant p values to asterisks
   # since the values are in a single row, it is tricky
@@ -362,7 +362,7 @@ fit_dunnett_relabund <- function(dat) {
   #create a tibble with one column for each treatment
   # column 4 has the pvalue
   t = tibble(drought = d$`time zero saturation`["drought-time zero saturation",4], 
-             saturation = d$`time zero saturation`["saturation-time zero saturation",4],
+             flood = d$`time zero saturation`["flood-time zero saturation",4],
              `field moist` = d$`time zero saturation`["field moist-time zero saturation",4])
   # we need to convert significant p values to asterisks
   # since the values are in a single row, it is tricky
@@ -423,7 +423,7 @@ fit_dunnett_shannon_pore <- function(dat) {
   #create a tibble with one column for each treatment
   # column 4 has the pvalue
   t = tibble(drought = d$`time zero saturation`["drought-time zero saturation",4], 
-             saturation = d$`time zero saturation`["saturation-time zero saturation",4],
+             flood = d$`time zero saturation`["flood-time zero saturation",4],
              `field moist` = d$`time zero saturation`["field moist-time zero saturation",4])
   # we need to convert significant p values to asterisks
   # since the values are in a single row, it is tricky
@@ -475,7 +475,7 @@ fit_dunnett_shannon_soil <- function(dat) {
   #create a tibble with one column for each treatment
   # column 4 has the pvalue
   t = tibble(drought = d$baseline["drought-baseline",4], 
-             saturation = d$baseline["saturation-baseline",4],
+             flood = d$baseline["flood-baseline",4],
              `field moist` = d$baseline["field moist-baseline",4])
   # we need to convert significant p values to asterisks
   # since the values are in a single row, it is tricky

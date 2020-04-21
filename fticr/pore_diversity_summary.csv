@@ -1,25 +1,25 @@
 "","site","treatment","tension","H_mean","H_se","dunnett"
-"1","CPCRW","drought","1.5 kPa",1.534,0.010295630140987,"*"
-"2","CPCRW","drought","50 kPa",1.534,0.0220454076850486,"*"
-"3","CPCRW","field moist","1.5 kPa",1.262,0.021540659228538,""
-"4","CPCRW","field moist","50 kPa",1.01,0,"*"
-"5","CPCRW","saturation","1.5 kPa",1.294,0.0248193472919817,""
-"6","CPCRW","saturation","50 kPa",1.2775,0.0298258836136222,"*"
-"7","CPCRW","time zero saturation","1.5 kPa",1.308,0.0397994974842648,NA
-"8","CPCRW","time zero saturation","50 kPa",1.15,0.0268328157299975,NA
-"9","DWP","drought","1.5 kPa",1.27,0.0154919333848297,"*"
-"10","DWP","drought","50 kPa",1.33,0.00816496580927727,"*"
-"11","DWP","field moist","1.5 kPa",1.2075,0.0252899848424892,"*"
-"12","DWP","field moist","50 kPa",1.13,0,"*"
-"13","DWP","saturation","1.5 kPa",1.158,0.0412795348811006,"*"
-"14","DWP","saturation","50 kPa",1.278,0.0391663120551323,"*"
-"15","DWP","time zero saturation","1.5 kPa",1.602,0.0558927544499285,NA
-"16","DWP","time zero saturation","50 kPa",1.64,0.0158113883008419,NA
-"17","SR","drought","1.5 kPa",1.166,0.0653911308970872,"*"
-"18","SR","drought","50 kPa",0.94,0.103360211558091,""
-"19","SR","field moist","1.5 kPa",1.284,0.0196468827043885,""
-"20","SR","field moist","50 kPa",1.152,0.0247790233867277,""
-"21","SR","saturation","1.5 kPa",1.1525,0.0262599187609812,"*"
-"22","SR","saturation","50 kPa",1.27,0.0108012344973464,""
-"23","SR","time zero saturation","1.5 kPa",1.3425,0.014361406616345,NA
-"24","SR","time zero saturation","50 kPa",1.152,0.0664379409674924,NA
+"1","Alaska","drought","1.5 kPa",1.534,0.010295630140987,"*"
+"2","Alaska","drought","50 kPa",1.534,0.0220454076850486,"*"
+"3","Alaska","field moist","1.5 kPa",1.262,0.021540659228538,""
+"4","Alaska","field moist","50 kPa",1.01,0,"*"
+"5","Alaska","flood","1.5 kPa",1.294,0.0248193472919817,""
+"6","Alaska","flood","50 kPa",1.2775,0.0298258836136222,"*"
+"7","Alaska","time zero saturation","1.5 kPa",1.308,0.0397994974842648,NA
+"8","Alaska","time zero saturation","50 kPa",1.15,0.0268328157299975,NA
+"9","Florida","drought","1.5 kPa",1.27,0.0154919333848297,"*"
+"10","Florida","drought","50 kPa",1.33,0.00816496580927727,"*"
+"11","Florida","field moist","1.5 kPa",1.2075,0.0252899848424892,"*"
+"12","Florida","field moist","50 kPa",1.13,0,"*"
+"13","Florida","flood","1.5 kPa",1.158,0.0412795348811006,"*"
+"14","Florida","flood","50 kPa",1.278,0.0391663120551323,"*"
+"15","Florida","time zero saturation","1.5 kPa",1.602,0.0558927544499285,NA
+"16","Florida","time zero saturation","50 kPa",1.64,0.0158113883008419,NA
+"17","Washington","drought","1.5 kPa",1.166,0.0653911308970872,"*"
+"18","Washington","drought","50 kPa",0.94,0.103360211558091,""
+"19","Washington","field moist","1.5 kPa",1.284,0.0196468827043885,""
+"20","Washington","field moist","50 kPa",1.152,0.0247790233867277,""
+"21","Washington","flood","1.5 kPa",1.1525,0.0262599187609812,"*"
+"22","Washington","flood","50 kPa",1.27,0.0108012344973464,""
+"23","Washington","time zero saturation","1.5 kPa",1.3425,0.014361406616345,NA
+"24","Washington","time zero saturation","50 kPa",1.152,0.0664379409674924,NA

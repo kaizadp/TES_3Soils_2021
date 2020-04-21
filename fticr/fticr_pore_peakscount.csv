@@ -1,241 +1,241 @@
 tension,site,treatment,Class,peaks_count
-1.5 kPa,CPCRW,drought,AminoSugar,129
-1.5 kPa,CPCRW,field moist,AminoSugar,13
-1.5 kPa,CPCRW,saturation,AminoSugar,21
-1.5 kPa,CPCRW,time zero saturation,AminoSugar,36
-1.5 kPa,DWP,drought,AminoSugar,25
-1.5 kPa,DWP,field moist,AminoSugar,20
-1.5 kPa,DWP,saturation,AminoSugar,2
-1.5 kPa,DWP,time zero saturation,AminoSugar,265
-1.5 kPa,SR,drought,AminoSugar,20
-1.5 kPa,SR,field moist,AminoSugar,53
-1.5 kPa,SR,saturation,AminoSugar,16
-1.5 kPa,SR,time zero saturation,AminoSugar,45
-50 kPa,CPCRW,drought,AminoSugar,201
-50 kPa,CPCRW,field moist,AminoSugar,5
-50 kPa,CPCRW,saturation,AminoSugar,17
-50 kPa,CPCRW,time zero saturation,AminoSugar,10
-50 kPa,DWP,drought,AminoSugar,34
-50 kPa,DWP,field moist,AminoSugar,18
-50 kPa,DWP,saturation,AminoSugar,23
-50 kPa,DWP,time zero saturation,AminoSugar,254
-50 kPa,SR,drought,AminoSugar,6
-50 kPa,SR,field moist,AminoSugar,26
-50 kPa,SR,saturation,AminoSugar,57
-50 kPa,SR,time zero saturation,AminoSugar,34
-1.5 kPa,CPCRW,drought,Carb,181
-1.5 kPa,CPCRW,field moist,Carb,22
-1.5 kPa,CPCRW,saturation,Carb,27
-1.5 kPa,CPCRW,time zero saturation,Carb,15
-1.5 kPa,DWP,drought,Carb,75
-1.5 kPa,DWP,field moist,Carb,6
-1.5 kPa,DWP,saturation,Carb,12
-1.5 kPa,DWP,time zero saturation,Carb,310
-1.5 kPa,SR,drought,Carb,3
-1.5 kPa,SR,field moist,Carb,23
-1.5 kPa,SR,saturation,Carb,8
-1.5 kPa,SR,time zero saturation,Carb,9
-50 kPa,CPCRW,drought,Carb,255
-50 kPa,CPCRW,field moist,Carb,7
-50 kPa,CPCRW,saturation,Carb,51
-50 kPa,CPCRW,time zero saturation,Carb,15
-50 kPa,DWP,drought,Carb,68
-50 kPa,DWP,field moist,Carb,2
-50 kPa,DWP,saturation,Carb,24
-50 kPa,DWP,time zero saturation,Carb,273
-50 kPa,SR,drought,Carb,5
-50 kPa,SR,field moist,Carb,18
-50 kPa,SR,saturation,Carb,11
-50 kPa,SR,time zero saturation,Carb,2
-1.5 kPa,CPCRW,drought,ConHC,53
-1.5 kPa,CPCRW,field moist,ConHC,142
-1.5 kPa,CPCRW,saturation,ConHC,95
-1.5 kPa,CPCRW,time zero saturation,ConHC,171
-1.5 kPa,DWP,drought,ConHC,35
-1.5 kPa,DWP,field moist,ConHC,152
-1.5 kPa,DWP,saturation,ConHC,151
-1.5 kPa,DWP,time zero saturation,ConHC,55
-1.5 kPa,SR,drought,ConHC,25
-1.5 kPa,SR,field moist,ConHC,13
-1.5 kPa,SR,saturation,ConHC,26
-1.5 kPa,SR,time zero saturation,ConHC,32
-50 kPa,CPCRW,drought,ConHC,138
-50 kPa,CPCRW,field moist,ConHC,136
-50 kPa,CPCRW,saturation,ConHC,150
-50 kPa,CPCRW,time zero saturation,ConHC,247
-50 kPa,DWP,drought,ConHC,105
-50 kPa,DWP,field moist,ConHC,132
-50 kPa,DWP,saturation,ConHC,194
-50 kPa,DWP,time zero saturation,ConHC,144
-50 kPa,SR,drought,ConHC,3
-50 kPa,SR,field moist,ConHC,13
-50 kPa,SR,saturation,ConHC,15
-50 kPa,SR,time zero saturation,ConHC,61
-1.5 kPa,CPCRW,drought,Lignin,854
-1.5 kPa,CPCRW,field moist,Lignin,1034
-1.5 kPa,CPCRW,saturation,Lignin,1029
-1.5 kPa,CPCRW,time zero saturation,Lignin,981
-1.5 kPa,DWP,drought,Lignin,778
-1.5 kPa,DWP,field moist,Lignin,1029
-1.5 kPa,DWP,saturation,Lignin,744
-1.5 kPa,DWP,time zero saturation,Lignin,900
-1.5 kPa,SR,drought,Lignin,581
-1.5 kPa,SR,field moist,Lignin,617
-1.5 kPa,SR,saturation,Lignin,518
-1.5 kPa,SR,time zero saturation,Lignin,531
-50 kPa,CPCRW,drought,Lignin,1391
-50 kPa,CPCRW,field moist,Lignin,1001
-50 kPa,CPCRW,saturation,Lignin,1168
-50 kPa,CPCRW,time zero saturation,Lignin,1230
-50 kPa,DWP,drought,Lignin,1062
-50 kPa,DWP,field moist,Lignin,996
-50 kPa,DWP,saturation,Lignin,1072
-50 kPa,DWP,time zero saturation,Lignin,1243
-50 kPa,SR,drought,Lignin,593
-50 kPa,SR,field moist,Lignin,741
-50 kPa,SR,saturation,Lignin,738
-50 kPa,SR,time zero saturation,Lignin,776
-1.5 kPa,CPCRW,drought,Lipid,98
-1.5 kPa,CPCRW,field moist,Lipid,122
-1.5 kPa,CPCRW,saturation,Lipid,204
-1.5 kPa,CPCRW,time zero saturation,Lipid,142
-1.5 kPa,DWP,drought,Lipid,114
-1.5 kPa,DWP,field moist,Lipid,106
-1.5 kPa,DWP,saturation,Lipid,70
-1.5 kPa,DWP,time zero saturation,Lipid,122
-1.5 kPa,SR,drought,Lipid,188
-1.5 kPa,SR,field moist,Lipid,168
-1.5 kPa,SR,saturation,Lipid,106
-1.5 kPa,SR,time zero saturation,Lipid,135
-50 kPa,CPCRW,drought,Lipid,148
-50 kPa,CPCRW,field moist,Lipid,38
-50 kPa,CPCRW,saturation,Lipid,152
-50 kPa,CPCRW,time zero saturation,Lipid,120
-50 kPa,DWP,drought,Lipid,132
-50 kPa,DWP,field moist,Lipid,54
-50 kPa,DWP,saturation,Lipid,103
-50 kPa,DWP,time zero saturation,Lipid,146
-50 kPa,SR,drought,Lipid,133
-50 kPa,SR,field moist,Lipid,176
-50 kPa,SR,saturation,Lipid,228
-50 kPa,SR,time zero saturation,Lipid,108
-1.5 kPa,CPCRW,drought,Other,27
-1.5 kPa,CPCRW,field moist,Other,8
-1.5 kPa,CPCRW,saturation,Other,10
-1.5 kPa,CPCRW,time zero saturation,Other,6
-1.5 kPa,DWP,drought,Other,14
-1.5 kPa,DWP,field moist,Other,6
-1.5 kPa,DWP,saturation,Other,2
-1.5 kPa,DWP,time zero saturation,Other,29
-1.5 kPa,SR,drought,Other,3
-1.5 kPa,SR,field moist,Other,5
-1.5 kPa,SR,saturation,Other,NA
-1.5 kPa,SR,time zero saturation,Other,3
-50 kPa,CPCRW,drought,Other,11
-50 kPa,CPCRW,field moist,Other,8
-50 kPa,CPCRW,saturation,Other,1
-50 kPa,CPCRW,time zero saturation,Other,10
-50 kPa,DWP,drought,Other,10
-50 kPa,DWP,field moist,Other,1
-50 kPa,DWP,saturation,Other,2
-50 kPa,DWP,time zero saturation,Other,20
-50 kPa,SR,drought,Other,1
-50 kPa,SR,field moist,Other,4
-50 kPa,SR,saturation,Other,4
-50 kPa,SR,time zero saturation,Other,2
-1.5 kPa,CPCRW,drought,Protein,395
-1.5 kPa,CPCRW,field moist,Protein,270
-1.5 kPa,CPCRW,saturation,Protein,431
-1.5 kPa,CPCRW,time zero saturation,Protein,446
-1.5 kPa,DWP,drought,Protein,324
-1.5 kPa,DWP,field moist,Protein,248
-1.5 kPa,DWP,saturation,Protein,143
-1.5 kPa,DWP,time zero saturation,Protein,511
-1.5 kPa,SR,drought,Protein,301
-1.5 kPa,SR,field moist,Protein,428
-1.5 kPa,SR,saturation,Protein,115
-1.5 kPa,SR,time zero saturation,Protein,376
-50 kPa,CPCRW,drought,Protein,511
-50 kPa,CPCRW,field moist,Protein,79
-50 kPa,CPCRW,saturation,Protein,352
-50 kPa,CPCRW,time zero saturation,Protein,180
-50 kPa,DWP,drought,Protein,416
-50 kPa,DWP,field moist,Protein,188
-50 kPa,DWP,saturation,Protein,250
-50 kPa,DWP,time zero saturation,Protein,535
-50 kPa,SR,drought,Protein,245
-50 kPa,SR,field moist,Protein,250
-50 kPa,SR,saturation,Protein,490
-50 kPa,SR,time zero saturation,Protein,283
-1.5 kPa,CPCRW,drought,Tannin,98
-1.5 kPa,CPCRW,field moist,Tannin,92
-1.5 kPa,CPCRW,saturation,Tannin,62
-1.5 kPa,CPCRW,time zero saturation,Tannin,92
-1.5 kPa,DWP,drought,Tannin,18
-1.5 kPa,DWP,field moist,Tannin,97
-1.5 kPa,DWP,saturation,Tannin,41
-1.5 kPa,DWP,time zero saturation,Tannin,138
-1.5 kPa,SR,drought,Tannin,11
-1.5 kPa,SR,field moist,Tannin,10
-1.5 kPa,SR,saturation,Tannin,10
-1.5 kPa,SR,time zero saturation,Tannin,9
-50 kPa,CPCRW,drought,Tannin,229
-50 kPa,CPCRW,field moist,Tannin,93
-50 kPa,CPCRW,saturation,Tannin,118
-50 kPa,CPCRW,time zero saturation,Tannin,120
-50 kPa,DWP,drought,Tannin,78
-50 kPa,DWP,field moist,Tannin,105
-50 kPa,DWP,saturation,Tannin,150
-50 kPa,DWP,time zero saturation,Tannin,187
-50 kPa,SR,drought,Tannin,4
-50 kPa,SR,field moist,Tannin,11
-50 kPa,SR,saturation,Tannin,10
-50 kPa,SR,time zero saturation,Tannin,30
-1.5 kPa,CPCRW,drought,UnsatHC,3
-1.5 kPa,CPCRW,field moist,UnsatHC,15
-1.5 kPa,CPCRW,saturation,UnsatHC,13
-1.5 kPa,CPCRW,time zero saturation,UnsatHC,14
-1.5 kPa,DWP,drought,UnsatHC,4
-1.5 kPa,DWP,field moist,UnsatHC,8
-1.5 kPa,DWP,saturation,UnsatHC,6
-1.5 kPa,DWP,time zero saturation,UnsatHC,12
-1.5 kPa,SR,drought,UnsatHC,11
-1.5 kPa,SR,field moist,UnsatHC,11
-1.5 kPa,SR,saturation,UnsatHC,19
-1.5 kPa,SR,time zero saturation,UnsatHC,17
-50 kPa,CPCRW,drought,UnsatHC,2
-50 kPa,CPCRW,field moist,UnsatHC,8
-50 kPa,CPCRW,saturation,UnsatHC,1
-50 kPa,CPCRW,time zero saturation,UnsatHC,9
-50 kPa,DWP,drought,UnsatHC,4
-50 kPa,DWP,field moist,UnsatHC,3
-50 kPa,DWP,saturation,UnsatHC,8
-50 kPa,DWP,time zero saturation,UnsatHC,15
-50 kPa,SR,drought,UnsatHC,3
-50 kPa,SR,field moist,UnsatHC,15
-50 kPa,SR,saturation,UnsatHC,15
-50 kPa,SR,time zero saturation,UnsatHC,16
-1.5 kPa,CPCRW,drought,total,1838
-1.5 kPa,CPCRW,field moist,total,1718
-1.5 kPa,CPCRW,saturation,total,1892
-1.5 kPa,CPCRW,time zero saturation,total,1903
-1.5 kPa,DWP,drought,total,1387
-1.5 kPa,DWP,field moist,total,1672
-1.5 kPa,DWP,saturation,total,1171
-1.5 kPa,DWP,time zero saturation,total,2342
-1.5 kPa,SR,drought,total,1143
-1.5 kPa,SR,field moist,total,1328
-1.5 kPa,SR,saturation,total,818
-1.5 kPa,SR,time zero saturation,total,1157
-50 kPa,CPCRW,drought,total,2886
-50 kPa,CPCRW,field moist,total,1375
-50 kPa,CPCRW,saturation,total,2010
-50 kPa,CPCRW,time zero saturation,total,1941
-50 kPa,DWP,drought,total,1909
-50 kPa,DWP,field moist,total,1499
-50 kPa,DWP,saturation,total,1826
-50 kPa,DWP,time zero saturation,total,2817
-50 kPa,SR,drought,total,993
-50 kPa,SR,field moist,total,1254
-50 kPa,SR,saturation,total,1568
-50 kPa,SR,time zero saturation,total,1312
+1.5 kPa,Alaska,drought,AminoSugar,129
+1.5 kPa,Alaska,field moist,AminoSugar,13
+1.5 kPa,Alaska,flood,AminoSugar,21
+1.5 kPa,Alaska,time zero saturation,AminoSugar,36
+1.5 kPa,Florida,drought,AminoSugar,25
+1.5 kPa,Florida,field moist,AminoSugar,20
+1.5 kPa,Florida,flood,AminoSugar,2
+1.5 kPa,Florida,time zero saturation,AminoSugar,265
+1.5 kPa,Washington,drought,AminoSugar,20
+1.5 kPa,Washington,field moist,AminoSugar,53
+1.5 kPa,Washington,flood,AminoSugar,16
+1.5 kPa,Washington,time zero saturation,AminoSugar,45
+50 kPa,Alaska,drought,AminoSugar,201
+50 kPa,Alaska,field moist,AminoSugar,5
+50 kPa,Alaska,flood,AminoSugar,17
+50 kPa,Alaska,time zero saturation,AminoSugar,10
+50 kPa,Florida,drought,AminoSugar,34
+50 kPa,Florida,field moist,AminoSugar,18
+50 kPa,Florida,flood,AminoSugar,23
+50 kPa,Florida,time zero saturation,AminoSugar,254
+50 kPa,Washington,drought,AminoSugar,6
+50 kPa,Washington,field moist,AminoSugar,26
+50 kPa,Washington,flood,AminoSugar,57
+50 kPa,Washington,time zero saturation,AminoSugar,34
+1.5 kPa,Alaska,drought,Carb,181
+1.5 kPa,Alaska,field moist,Carb,22
+1.5 kPa,Alaska,flood,Carb,27
+1.5 kPa,Alaska,time zero saturation,Carb,15
+1.5 kPa,Florida,drought,Carb,75
+1.5 kPa,Florida,field moist,Carb,6
+1.5 kPa,Florida,flood,Carb,12
+1.5 kPa,Florida,time zero saturation,Carb,310
+1.5 kPa,Washington,drought,Carb,3
+1.5 kPa,Washington,field moist,Carb,23
+1.5 kPa,Washington,flood,Carb,8
+1.5 kPa,Washington,time zero saturation,Carb,9
+50 kPa,Alaska,drought,Carb,255
+50 kPa,Alaska,field moist,Carb,7
+50 kPa,Alaska,flood,Carb,51
+50 kPa,Alaska,time zero saturation,Carb,15
+50 kPa,Florida,drought,Carb,68
+50 kPa,Florida,field moist,Carb,2
+50 kPa,Florida,flood,Carb,24
+50 kPa,Florida,time zero saturation,Carb,273
+50 kPa,Washington,drought,Carb,5
+50 kPa,Washington,field moist,Carb,18
+50 kPa,Washington,flood,Carb,11
+50 kPa,Washington,time zero saturation,Carb,2
+1.5 kPa,Alaska,drought,ConHC,53
+1.5 kPa,Alaska,field moist,ConHC,142
+1.5 kPa,Alaska,flood,ConHC,95
+1.5 kPa,Alaska,time zero saturation,ConHC,171
+1.5 kPa,Florida,drought,ConHC,35
+1.5 kPa,Florida,field moist,ConHC,152
+1.5 kPa,Florida,flood,ConHC,151
+1.5 kPa,Florida,time zero saturation,ConHC,55
+1.5 kPa,Washington,drought,ConHC,25
+1.5 kPa,Washington,field moist,ConHC,13
+1.5 kPa,Washington,flood,ConHC,26
+1.5 kPa,Washington,time zero saturation,ConHC,32
+50 kPa,Alaska,drought,ConHC,138
+50 kPa,Alaska,field moist,ConHC,136
+50 kPa,Alaska,flood,ConHC,150
+50 kPa,Alaska,time zero saturation,ConHC,247
+50 kPa,Florida,drought,ConHC,105
+50 kPa,Florida,field moist,ConHC,132
+50 kPa,Florida,flood,ConHC,194
+50 kPa,Florida,time zero saturation,ConHC,144
+50 kPa,Washington,drought,ConHC,3
+50 kPa,Washington,field moist,ConHC,13
+50 kPa,Washington,flood,ConHC,15
+50 kPa,Washington,time zero saturation,ConHC,61
+1.5 kPa,Alaska,drought,Lignin,854
+1.5 kPa,Alaska,field moist,Lignin,1034
+1.5 kPa,Alaska,flood,Lignin,1029
+1.5 kPa,Alaska,time zero saturation,Lignin,981
+1.5 kPa,Florida,drought,Lignin,778
+1.5 kPa,Florida,field moist,Lignin,1029
+1.5 kPa,Florida,flood,Lignin,744
+1.5 kPa,Florida,time zero saturation,Lignin,900
+1.5 kPa,Washington,drought,Lignin,581
+1.5 kPa,Washington,field moist,Lignin,617
+1.5 kPa,Washington,flood,Lignin,518
+1.5 kPa,Washington,time zero saturation,Lignin,531
+50 kPa,Alaska,drought,Lignin,1391
+50 kPa,Alaska,field moist,Lignin,1001
+50 kPa,Alaska,flood,Lignin,1168
+50 kPa,Alaska,time zero saturation,Lignin,1230
+50 kPa,Florida,drought,Lignin,1062
+50 kPa,Florida,field moist,Lignin,996
+50 kPa,Florida,flood,Lignin,1072
+50 kPa,Florida,time zero saturation,Lignin,1243
+50 kPa,Washington,drought,Lignin,593
+50 kPa,Washington,field moist,Lignin,741
+50 kPa,Washington,flood,Lignin,738
+50 kPa,Washington,time zero saturation,Lignin,776
+1.5 kPa,Alaska,drought,Lipid,98
+1.5 kPa,Alaska,field moist,Lipid,122
+1.5 kPa,Alaska,flood,Lipid,204
+1.5 kPa,Alaska,time zero saturation,Lipid,142
+1.5 kPa,Florida,drought,Lipid,114
+1.5 kPa,Florida,field moist,Lipid,106
+1.5 kPa,Florida,flood,Lipid,70
+1.5 kPa,Florida,time zero saturation,Lipid,122
+1.5 kPa,Washington,drought,Lipid,188
+1.5 kPa,Washington,field moist,Lipid,168
+1.5 kPa,Washington,flood,Lipid,106
+1.5 kPa,Washington,time zero saturation,Lipid,135
+50 kPa,Alaska,drought,Lipid,148
+50 kPa,Alaska,field moist,Lipid,38
+50 kPa,Alaska,flood,Lipid,152
+50 kPa,Alaska,time zero saturation,Lipid,120
+50 kPa,Florida,drought,Lipid,132
+50 kPa,Florida,field moist,Lipid,54
+50 kPa,Florida,flood,Lipid,103
+50 kPa,Florida,time zero saturation,Lipid,146
+50 kPa,Washington,drought,Lipid,133
+50 kPa,Washington,field moist,Lipid,176
+50 kPa,Washington,flood,Lipid,228
+50 kPa,Washington,time zero saturation,Lipid,108
+1.5 kPa,Alaska,drought,Other,27
+1.5 kPa,Alaska,field moist,Other,8
+1.5 kPa,Alaska,flood,Other,10
+1.5 kPa,Alaska,time zero saturation,Other,6
+1.5 kPa,Florida,drought,Other,14
+1.5 kPa,Florida,field moist,Other,6
+1.5 kPa,Florida,flood,Other,2
+1.5 kPa,Florida,time zero saturation,Other,29
+1.5 kPa,Washington,drought,Other,3
+1.5 kPa,Washington,field moist,Other,5
+1.5 kPa,Washington,flood,Other,NA
+1.5 kPa,Washington,time zero saturation,Other,3
+50 kPa,Alaska,drought,Other,11
+50 kPa,Alaska,field moist,Other,8
+50 kPa,Alaska,flood,Other,1
+50 kPa,Alaska,time zero saturation,Other,10
+50 kPa,Florida,drought,Other,10
+50 kPa,Florida,field moist,Other,1
+50 kPa,Florida,flood,Other,2
+50 kPa,Florida,time zero saturation,Other,20
+50 kPa,Washington,drought,Other,1
+50 kPa,Washington,field moist,Other,4
+50 kPa,Washington,flood,Other,4
+50 kPa,Washington,time zero saturation,Other,2
+1.5 kPa,Alaska,drought,Protein,395
+1.5 kPa,Alaska,field moist,Protein,270
+1.5 kPa,Alaska,flood,Protein,431
+1.5 kPa,Alaska,time zero saturation,Protein,446
+1.5 kPa,Florida,drought,Protein,324
+1.5 kPa,Florida,field moist,Protein,248
+1.5 kPa,Florida,flood,Protein,143
+1.5 kPa,Florida,time zero saturation,Protein,511
+1.5 kPa,Washington,drought,Protein,301
+1.5 kPa,Washington,field moist,Protein,428
+1.5 kPa,Washington,flood,Protein,115
+1.5 kPa,Washington,time zero saturation,Protein,376
+50 kPa,Alaska,drought,Protein,511
+50 kPa,Alaska,field moist,Protein,79
+50 kPa,Alaska,flood,Protein,352
+50 kPa,Alaska,time zero saturation,Protein,180
+50 kPa,Florida,drought,Protein,416
+50 kPa,Florida,field moist,Protein,188
+50 kPa,Florida,flood,Protein,250
+50 kPa,Florida,time zero saturation,Protein,535
+50 kPa,Washington,drought,Protein,245
+50 kPa,Washington,field moist,Protein,250
+50 kPa,Washington,flood,Protein,490
+50 kPa,Washington,time zero saturation,Protein,283
+1.5 kPa,Alaska,drought,Tannin,98
+1.5 kPa,Alaska,field moist,Tannin,92
+1.5 kPa,Alaska,flood,Tannin,62
+1.5 kPa,Alaska,time zero saturation,Tannin,92
+1.5 kPa,Florida,drought,Tannin,18
+1.5 kPa,Florida,field moist,Tannin,97
+1.5 kPa,Florida,flood,Tannin,41
+1.5 kPa,Florida,time zero saturation,Tannin,138
+1.5 kPa,Washington,drought,Tannin,11
+1.5 kPa,Washington,field moist,Tannin,10
+1.5 kPa,Washington,flood,Tannin,10
+1.5 kPa,Washington,time zero saturation,Tannin,9
+50 kPa,Alaska,drought,Tannin,229
+50 kPa,Alaska,field moist,Tannin,93
+50 kPa,Alaska,flood,Tannin,118
+50 kPa,Alaska,time zero saturation,Tannin,120
+50 kPa,Florida,drought,Tannin,78
+50 kPa,Florida,field moist,Tannin,105
+50 kPa,Florida,flood,Tannin,150
+50 kPa,Florida,time zero saturation,Tannin,187
+50 kPa,Washington,drought,Tannin,4
+50 kPa,Washington,field moist,Tannin,11
+50 kPa,Washington,flood,Tannin,10
+50 kPa,Washington,time zero saturation,Tannin,30
+1.5 kPa,Alaska,drought,UnsatHC,3
+1.5 kPa,Alaska,field moist,UnsatHC,15
+1.5 kPa,Alaska,flood,UnsatHC,13
+1.5 kPa,Alaska,time zero saturation,UnsatHC,14
+1.5 kPa,Florida,drought,UnsatHC,4
+1.5 kPa,Florida,field moist,UnsatHC,8
+1.5 kPa,Florida,flood,UnsatHC,6
+1.5 kPa,Florida,time zero saturation,UnsatHC,12
+1.5 kPa,Washington,drought,UnsatHC,11
+1.5 kPa,Washington,field moist,UnsatHC,11
+1.5 kPa,Washington,flood,UnsatHC,19
+1.5 kPa,Washington,time zero saturation,UnsatHC,17
+50 kPa,Alaska,drought,UnsatHC,2
+50 kPa,Alaska,field moist,UnsatHC,8
+50 kPa,Alaska,flood,UnsatHC,1
+50 kPa,Alaska,time zero saturation,UnsatHC,9
+50 kPa,Florida,drought,UnsatHC,4
+50 kPa,Florida,field moist,UnsatHC,3
+50 kPa,Florida,flood,UnsatHC,8
+50 kPa,Florida,time zero saturation,UnsatHC,15
+50 kPa,Washington,drought,UnsatHC,3
+50 kPa,Washington,field moist,UnsatHC,15
+50 kPa,Washington,flood,UnsatHC,15
+50 kPa,Washington,time zero saturation,UnsatHC,16
+1.5 kPa,Alaska,drought,total,1838
+1.5 kPa,Alaska,field moist,total,1718
+1.5 kPa,Alaska,flood,total,1892
+1.5 kPa,Alaska,time zero saturation,total,1903
+1.5 kPa,Florida,drought,total,1387
+1.5 kPa,Florida,field moist,total,1672
+1.5 kPa,Florida,flood,total,1171
+1.5 kPa,Florida,time zero saturation,total,2342
+1.5 kPa,Washington,drought,total,1143
+1.5 kPa,Washington,field moist,total,1328
+1.5 kPa,Washington,flood,total,818
+1.5 kPa,Washington,time zero saturation,total,1157
+50 kPa,Alaska,drought,total,2886
+50 kPa,Alaska,field moist,total,1375
+50 kPa,Alaska,flood,total,2010
+50 kPa,Alaska,time zero saturation,total,1941
+50 kPa,Florida,drought,total,1909
+50 kPa,Florida,field moist,total,1499
+50 kPa,Florida,flood,total,1826
+50 kPa,Florida,time zero saturation,total,2817
+50 kPa,Washington,drought,total,993
+50 kPa,Washington,field moist,total,1254
+50 kPa,Washington,flood,total,1568
+50 kPa,Washington,time zero saturation,total,1312

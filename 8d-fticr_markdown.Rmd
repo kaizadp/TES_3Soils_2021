@@ -64,9 +64,9 @@ Color palette used:
 treatments == viridis
 |  |  |  |
 |-----|-----|-----|
-|field moist | #35b779ff| green
-|drought |#fde725ff | yellow
-|flood | #443a83ff | blue
+|field moist | #35b779ff| green |
+|drought |#fde725ff | yellow |
+|flood | #443a83ff | blue |
 
 
 
@@ -89,7 +89,7 @@ gg_vankrev(pore_long, aes(x=OC,y=HC,color=Class))+
 
 domains with NOSC
 
-```{r}
+```{r nosc, fig.height=7,fig.width=7}
 library(viridis)
 gg_vankrev(pore_meta, aes(x=OC,y=HC,color=(NOSC)))+
   #geom_point(alpha = 0.7)+
@@ -103,7 +103,7 @@ gg_vankrev(pore_meta, aes(x=OC,y=HC,color=(NOSC)))+
 
 # FTICR Pores -- figures
 ## native SOM
-```{r vk_baseline, fig.width=10, fig.height=7}
+```{r vk_baseline, include=FALSE, fig.width=10, fig.height=7}
 
 gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=HC, color=site))+
   scale_color_brewer(palette = "Set1")+
@@ -117,7 +117,7 @@ gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=H
 ```{r vk_treatments, fig.width=10, fig.height=7}
 pore_long %>% 
   dplyr::mutate(treatment = factor(treatment, 
-                                   levels = c("time zero saturation","drought","field moist","saturation")))->
+                                   levels = c("time zero saturation","drought","field moist","flood")))->
            pore_long
 
 vk1 = 
@@ -137,22 +137,22 @@ vk2 =
   theme_kp()
 ```
 
-```{r combined treatments}
+```{r combined treatments, fig.height=10, fig.width=9}
 library(patchwork)
 combined = vk1/vk2 + plot_layout(heights = c(1,2))
-save_plot("images/vankrev.png", combined ,base_height = 10, base_width = 9)
-
+#save_plot("images/vankrev.png", combined ,base_height = 10, base_width = 9)
+combined
 ```
 
 
 ## treatment effect -- unique peaks
-unique in each treatment compared to all, including TZsaturation
+unique in each treatment compared to all, including TZflood
 these are peaks that were uniquely **added** during a given treatment
 
 ```{r vk_unique, fig.width=10, fig.height=7}
 # set level of factors
 pore_unique %>% 
-  dplyr::mutate(unique = factor(unique, levels = c("drought","field moist","saturation")))->
+  dplyr::mutate(unique = factor(unique, levels = c("drought","field moist","flood")))->
            pore_unique
 
 gg_vankrev(pore_unique,aes(x = OC, y = HC, color = unique))+
@@ -167,7 +167,7 @@ peaks lost and gained
 ```{r}
 pore_lost = 
   pore_unique %>% 
-  gather(treatment,loss, drought2:saturation2)
+  gather(treatment,loss, drought2:flood2)
 
 gg_vankrev(pore_lost,aes(x = OC, y = HC, color = loss))+
   scale_color_brewer(palette = "Dark2")+
@@ -221,7 +221,7 @@ ggplot(pore_relabund, aes(x = treatment, y = relabund2, fill = Class))+
 ```{r NOSC_c, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for CPCRW",fig.width=11, fig.height=18,fig.path = "images/"}
 pore_nosc %>% 
   mutate(treatment = factor(treatment,
-                            levels = c("baseline","time zero saturation", "field moist","drought","saturation")))->
+                            levels = c("baseline","time zero saturation", "field moist","drought","flood")))->
   pore_nosc
 
 ggplot(pore_nosc[!pore_nosc$treatment=="baseline",], 
@@ -280,7 +280,7 @@ gg_vankrev(pore_aromatic_vk[pore_aromatic_vk$aromatic=="aromatic",], aes(x = OC,
 ```{r shannon, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="aromatic peaks", fig.width=12, fig.height=7,fig.path = "images/"}
 pore_shannon %>% 
   dplyr::mutate(treatment = factor(treatment,
-                            levels = c("baseline","time zero saturation", "field moist","saturation","drought"))) ->
+                            levels = c("baseline","time zero saturation", "field moist","flood","drought"))) ->
   pore_shannon
 
 
@@ -445,12 +445,12 @@ gg_vankrev(soil_long[soil_long$treatment=="baseline",],
 ```{r soil_vk_treatments, fig.width=12, fig.height=5}
 soil_long %>% 
   dplyr::mutate(treatment = factor(treatment, 
-                                   levels = c("baseline","time zero saturation","field moist","drought","saturation")))->
+                                   levels = c("baseline","time zero saturation","field moist","drought","flood")))->
            soil_long
 
 gg_vankrev(soil_long[soil_long$treatment=="field moist"|
                     soil_long$treatment=="drought"|
-                     soil_long$treatment=="saturation",], # remove baselines 
+                     soil_long$treatment=="flood",], # remove baselines 
          aes(x = OC, y = HC, color = treatment))+
   scale_color_brewer(palette = "Dark2")+
   facet_grid(~site)+
@@ -464,7 +464,7 @@ gg_vankrev(soil_long[soil_long$treatment=="field moist"|
 ```{r soil_vk_unique, fig.width=12, fig.height=5}
 # set level of factors
 soil_unique %>% 
-  dplyr::mutate(unique = factor(unique, levels = c("field moist","drought","saturation")))->
+  dplyr::mutate(unique = factor(unique, levels = c("field moist","drought","flood")))->
            soil_unique
 
 gg_vankrev(soil_unique,
@@ -481,7 +481,7 @@ peaks lost and gained
 ```{r}
 soil_lost = 
   soil_unique %>% 
-  gather(treatment,loss, drought2:saturation2)
+  gather(treatment,loss, drought2:flood2)
 
 gg_vankrev(soil_lost,aes(x = OC, y = HC, color = loss))+
     scale_color_brewer(palette = "Dark2")+
@@ -530,7 +530,7 @@ ggplot(soil_relabund, aes(x = treatment, y = relabund2, fill = Class))+
 ```{r soil_NOSC_c,  fig.height=6, fig.width=11}
 soil_nosc %>% 
   mutate(treatment = factor(treatment,
-                            levels = c("baseline","time zero saturation", "field moist","drought","saturation")))->
+                            levels = c("baseline","time zero saturation", "field moist","drought","flood")))->
   soil_nosc
 
 ggplot(soil_nosc, 
@@ -602,7 +602,7 @@ ggplot(gained,
 ```{r soil_aromatic, fig.width=12, fig.height=7}
 soil_aromatic %>% 
   mutate(treatment = factor(treatment,
-                            levels = c("baseline","time zero saturation", "field moist","saturation","drought")))->
+                            levels = c("baseline","time zero saturation", "field moist","flood","drought")))->
   soil_aromatic
 
 ggplot(soil_aromatic[soil_aromatic$aromatic=="aromatic",], 
