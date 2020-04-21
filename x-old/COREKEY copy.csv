@@ -1,0 +1,76 @@
+core,treatment,site
+S6,baseline,SR
+S8,baseline,SR
+S22,baseline,SR
+S12,baseline,SR
+S20,baseline,SR
+S21,field moist,SR
+S13,field moist,SR
+S19,field moist,SR
+S15,field moist,SR
+S1,field moist,SR
+S9,time zero saturation,SR
+S16,time zero saturation,SR
+S17,time zero saturation,SR
+S23,time zero saturation,SR
+S11,time zero saturation,SR
+S7,saturation,SR
+S3,saturation,SR
+S2,saturation,SR
+S24,saturation,SR
+S18,saturation,SR
+S4,drought,SR
+S5,drought,SR
+S25,drought,SR
+S10,drought,SR
+S14,drought,SR
+C1,baseline,CPCRW
+C2,baseline,CPCRW
+C3,baseline,CPCRW
+C4,baseline,CPCRW
+C5,baseline,CPCRW
+C6,time zero saturation,CPCRW
+C7,time zero saturation,CPCRW
+C8,time zero saturation,CPCRW
+C9,time zero saturation,CPCRW
+C10,time zero saturation,CPCRW
+C11,saturation,CPCRW
+C12,saturation,CPCRW
+C13,saturation,CPCRW
+C14,saturation,CPCRW
+C15,saturation,CPCRW
+C16,field moist,CPCRW
+C17,field moist,CPCRW
+C18,field moist,CPCRW
+C19,field moist,CPCRW
+C20,field moist,CPCRW
+C21,drought,CPCRW
+C22,drought,CPCRW
+C23,drought,CPCRW
+C24,drought,CPCRW
+C25,drought,CPCRW
+D1,baseline,DWP
+D2,baseline,DWP
+D3,baseline,DWP
+D4,baseline,DWP
+D5,baseline,DWP
+D6,time zero saturation,DWP
+D7,time zero saturation,DWP
+D8,time zero saturation,DWP
+D9,time zero saturation,DWP
+D10,time zero saturation,DWP
+D11,saturation,DWP
+D12,saturation,DWP
+D13,saturation,DWP
+D14,saturation,DWP
+D15,saturation,DWP
+D16,field moist,DWP
+D17,field moist,DWP
+D18,field moist,DWP
+D19,field moist,DWP
+D20,field moist,DWP
+D21,drought,DWP
+D22,drought,DWP
+D23,drought,DWP
+D24,drought,DWP
+D25,drought,DWP
