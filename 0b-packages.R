@@ -129,8 +129,3 @@ FTICR_SOIL_NOSC <- "fticr/fticr_soil_nosc.csv"
 FTICR_SOIL_AROMATIC <- "fticr/fticr_soil_aromatic_counts.csv"
 FTICR_SOIL_PEAKS <- "fticr/fticr_soil_peakscount.csv"
 FTICR_SOIL_UNIQUE_PEAKS <- "fticr/fticr_soil_unique_peakscount.csv"
-
-
-
-
-
