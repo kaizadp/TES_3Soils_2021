@@ -72,32 +72,41 @@ treatments == viridis
 
 # FTICR domains 
 
-```{r vk_domains, fig.height=7,fig.width=7}
+```{r vk_domains, fig.height=7,fig.width=15}
 pore_long %>% 
   dplyr::mutate(Class = factor(Class, levels = 
                           c("AminoSugar", "Carb","Lipid","Protein","UnsatHC",
                             "ConHC","Lignin","Tannin","Other")))->
            pore_long
 
-gg_vankrev(pore_long, aes(x=OC,y=HC,color=Class))+
+gg_domains = 
+  gg_vankrev(pore_long, aes(x=OC,y=HC,color=Class))+
   scale_color_viridis_d(option = "inferno")+
   theme_kp()+  
 #  geom_segment(x = 0.0, y = 0.8, xend = 1.2, yend = 0.8,color="black",linetype="longdash")+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))
 
-```
 
-domains with NOSC
-
-```{r nosc, fig.height=7,fig.width=7}
-library(viridis)
-gg_vankrev(pore_meta, aes(x=OC,y=HC,color=(NOSC)))+
+gg_nosc = 
+  gg_vankrev(pore_meta, aes(x=OC,y=HC,color=(NOSC)))+
   #geom_point(alpha = 0.7)+
 #  scale_color_gradient2()+  
-  theme_kp() +
   labs (color = "NOSC")+
   theme(legend.position = "right")+
-  scale_color_viridis(option = "cividis", direction = -1, name = "NOSC")
+  scale_color_viridis(option = "cividis", direction = -1, name = "NOSC") +
+  theme_bw()+
+  theme(legend.position = "top",
+          legend.key=element_blank(),
+          legend.text = element_text(size = 12),
+          legend.key.size = unit(1.5, 'lines'),
+          panel.border = element_rect(color="black",size=1.5, fill = NA),
+          
+          plot.title = element_text(hjust = 0.05, size = 14),
+          axis.text = element_text(size = 14, color = "black"),
+          axis.title = element_text(size = 14, face = "bold", color = "black"))
+
+gg_domains+gg_nosc
+
 ```
 
 
