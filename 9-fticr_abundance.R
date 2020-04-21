@@ -152,7 +152,7 @@ soil_relabund_temp%>%
   dplyr::select(-se) -> 
   soil_relabund
 
-relabund_temp%>% 
+soil_relabund_temp%>% 
 # now summarize by treatment. combine cores
   ungroup %>% 
   dplyr::group_by(site, treatment, Class) %>% 
@@ -197,7 +197,7 @@ fit_dunnett_relabund <- function(dat) {
     t
 }
 
-relabund_temp[!relabund_temp$Class=="total",] %>% 
+soil_relabund_temp[!soil_relabund_temp$Class=="total",] %>% 
   group_by(site, Class) %>% 
   do(fit_dunnett_relabund(.)) %>% 
   melt(id = c("site","Class"), value.name = "dunnett", variable.name = "treatment")-> #gather columns 4-7 (treatment levels)
