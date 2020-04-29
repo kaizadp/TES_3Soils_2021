@@ -159,106 +159,11 @@ ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site))
   labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
 
 
-## treatment PCA: all pores
 
-pore_relabund_pca=
-  relabund_temp %>% 
-  ungroup %>% 
-  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
-  #filter(treatment=="time zero saturation") %>% 
-  spread(Class, relabund) %>% 
-  replace(.,is.na(.),0) %>% 
-  dplyr::select(-1)
 
-pore_relabund_pca_num = 
-  pore_relabund_pca %>% 
-  dplyr::select(.,-(1:3))
-
-pore_relabund_pca_grp = 
-  pore_relabund_pca %>% 
-  dplyr::select(.,(1:3)) %>% 
-  dplyr::mutate(row = row_number())
-
-pca = prcomp(pore_relabund_pca_num, scale. = T)
-summary(pca)
-
-ggbiplot(pca, obs.scale = 1, var.scale = 1, 
-         groups = pore_relabund_pca_grp$site, ellipse = F, circle = F,
-         var.axes = TRUE)+
-  geom_point(size=2,stroke=2, aes(shape = pore_relabund_pca_grp$tension, color = pore_relabund_pca_grp$treatment))+
-  scale_shape_manual(values = c(19,4))+
-  facet_wrap(~groups)
 
 adonis(pore_relabund_pca_num ~ pore_relabund_pca$site+pore_relabund_pca$treatment+pore_relabund_pca$site:pore_relabund_pca$treatment, 
        method="bray", permutations=999)
-
-## treatment PCA: fine pores
-
-pore_relabund_pca=
-  relabund_temp %>% 
-  ungroup %>% 
-  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
-  #filter(treatment=="time zero saturation") %>% 
-  filter(tension=="50 kPa") %>% 
-  spread(Class, relabund) %>% 
-  replace(.,is.na(.),0) 
-
-pore_relabund_pca_num = 
-  pore_relabund_pca %>% 
-  dplyr::select(.,-(1:4))
-
-pore_relabund_pca_grp = 
-  pore_relabund_pca %>% 
-  dplyr::select(.,(1:4)) %>% 
-  dplyr::mutate(row = row_number())
-
-pca = prcomp(pore_relabund_pca_num, scale. = T)
-summary(pca)
-
-ggbiplot(pca, obs.scale = 1, var.scale = 1, 
-         groups = pore_relabund_pca_grp$site, ellipse = F, circle = F,
-         var.axes = TRUE)+
-  geom_point(size=2,stroke=2, aes(color = pore_relabund_pca_grp$treatment, shape = pore_relabund_pca_grp$site))+
-  geom_text(label = pore_relabund_pca_grp$core)+
-  scale_shape_manual(values = c(19,4,7))+
-  #facet_wrap(~groups)+
-  ggtitle("fine pores")
-
-adonis(pore_relabund_pca_num ~ pore_relabund_pca$site+pore_relabund_pca$treatment+pore_relabund_pca$site:pore_relabund_pca$treatment, 
-       method="bray", permutations=999)
-
-
-## treatment PCA: coarse pores
-
-pore_relabund_pca=
-  relabund_temp %>% 
-  ungroup %>% 
-  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
-  #filter(treatment=="time zero saturation") %>% 
-  filter(tension=="1.5 kPa") %>% 
-  spread(Class, relabund) %>% 
-  replace(.,is.na(.),0) 
-
-pore_relabund_pca_num = 
-  pore_relabund_pca %>% 
-  dplyr::select(.,-(1:4))
-
-pore_relabund_pca_grp = 
-  pore_relabund_pca %>% 
-  dplyr::select(.,(1:4)) %>% 
-  dplyr::mutate(row = row_number())
-
-pca = prcomp(pore_relabund_pca_num, scale. = T)
-summary(pca)
-
-ggbiplot(pca, obs.scale = 1, var.scale = 1, 
-         groups = pore_relabund_pca_grp$site, ellipse = F, circle = F,
-         var.axes = TRUE)+
-  geom_point(size=2,stroke=2, aes(color = pore_relabund_pca_grp$treatment, shape = pore_relabund_pca_grp$site))+
-  scale_shape_manual(values = c(19,4,7))+
-  geom_text(label = pore_relabund_pca_grp$core)+
-  #facet_wrap(~groups)+
-  ggtitle("coarse pores")
 
 
 

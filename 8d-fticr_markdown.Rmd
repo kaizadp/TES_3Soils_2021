@@ -68,7 +68,7 @@ treatments == viridis
 |field moist | #35b779ff| green |
 |drought |#fde725ff | yellow |
 |flood | #443a83ff | blue |
-|baseline | #30688E | blue |
+|baseline | black | black |
 
 sites  
 
@@ -119,6 +119,105 @@ gg_domains+gg_nosc
 ```
 
 
+# FTICR pores - PCA figures
+```{r}
+# pore_raw = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_raw_longform.csv"
+
+relabund_temp = 
+  pore_raw %>% 
+  group_by(tension,site, treatment,Class,core) %>% 
+  dplyr::summarize(compounds = n()) %>% # sum all COUNTS for each Class
+  # now calculate relative abundance for each Class for each core
+  group_by(tension,site, treatment, core) %>% 
+  dplyr::mutate(total = sum(compounds),
+                relabund = (compounds/total)*100)
+
+
+## fine pores 
+
+pore_relabund_pca_fine=
+  relabund_temp %>% 
+  ungroup %>% 
+  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
+  #filter(treatment=="time zero saturation") %>% 
+  filter(tension=="50 kPa") %>% 
+  spread(Class, relabund) %>% 
+  replace(.,is.na(.),0) 
+
+pore_relabund_pca_num_fine = 
+  pore_relabund_pca_fine %>% 
+  dplyr::select(.,-(1:4))
+
+pore_relabund_pca_grp_fine = 
+  pore_relabund_pca_fine %>% 
+  dplyr::select(.,(1:4)) %>% 
+  dplyr::mutate(row = row_number())
+
+pca_fine = prcomp(pore_relabund_pca_num_fine, scale. = T)
+#summary(pca_fine)
+
+# biplot
+ggbp_fine = 
+  ggbiplot(pca_fine, obs.scale = 1, var.scale = 1, 
+         #groups = pore_relabund_pca_grp$treatment, ellipse = F, circle = F,
+         var.axes = TRUE)+
+  geom_point(size=4,stroke=1, aes(fill = pore_relabund_pca_grp_fine$treatment, 
+                                  shape = pore_relabund_pca_grp_fine$site), color = "black"
+             )+
+  scale_shape_manual(values = c(21,22,24))+
+  
+  scale_fill_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff", "grey70"))+
+  ggtitle("50 kPa")+
+  theme_kp()+
+  theme(legend.position = "right",
+        plot.title = element_text(hjust = 0.5, face="bold"))+
+  guides(fill=guide_legend(override.aes=list(shape=21)))
+
+
+## coarse pores
+
+pore_relabund_pca_coarse=
+  relabund_temp %>% 
+  ungroup %>% 
+  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
+  #filter(treatment=="time zero saturation") %>% 
+  filter(tension=="1.5 kPa") %>% 
+  spread(Class, relabund) %>% 
+  replace(.,is.na(.),0) 
+
+pore_relabund_pca_num_coarse = 
+  pore_relabund_pca_coarse %>% 
+  dplyr::select(.,-(1:4))
+
+pore_relabund_pca_grp_coarse = 
+  pore_relabund_pca_coarse %>% 
+  dplyr::select(.,(1:4)) %>% 
+  dplyr::mutate(row = row_number())
+
+pca_coarse = prcomp(pore_relabund_pca_num_coarse, scale. = T)
+#summary(pca_coarse)
+
+# biplot
+ggbp_coarse = 
+  ggbiplot(pca_coarse, obs.scale = 1, var.scale = 1, 
+         groups = pore_relabund_pca_grp_coarse$treatment, ellipse = F, circle = F,
+         var.axes = TRUE)+
+  geom_point(size=4,stroke=1, aes(fill = pore_relabund_pca_grp_coarse$treatment, 
+                                  shape = pore_relabund_pca_grp_coarse$site), color = "black"
+             )+
+  scale_shape_manual(values = c(21,22,24))+
+  
+  scale_fill_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff", "grey70"))+
+  ggtitle("1.5 kPa")+
+  theme_kp()+
+  theme(legend.position = "none",
+        plot.title = element_text(hjust = 0.5, face="bold"))+
+  guides(fill=guide_legend(override.aes=list(shape=21)))
+
+# combined biplot
+ggbp_coarse+ggbp_fine
+```
+
 # FTICR Pores -- figures
 ## native SOM
 ```{r vk_baseline, include=FALSE, fig.width=10, fig.height=7}
@@ -146,10 +245,11 @@ vk1 =
   theme_bw()+
   theme_kp()
 
-vk2 = 
+vk2 
   gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
-  scale_color_manual(values = c("#fde725ff", "#35b779ff","#443a83ff"))+
-  facet_grid(tension~site)+
+  #scale_color_manual(values = c("#fde725ff", "#35b779ff","#443a83ff"))+
+    scale_color_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff"))+
+facet_grid(tension~site)+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
   theme_bw()+
   theme_kp()
