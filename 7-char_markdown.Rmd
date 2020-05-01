@@ -1,0 +1,197 @@
+---
+title: "3soils_markdown"
+author: "Kaizad Patel"
+output: html_document
+---
+
+This is the RMarkdown file for the 3Soils experiment. Tables and figures for molecular results.
+
+Run: `r Sys.Date()`
+
+
+```{r setup, include=FALSE, echo=FALSE}
+source("0b-packages.R")
+
+# input files
+#   CHARAC
+charac = read.csv(CHARACTERIZATION)# <- "processed/soil_characterization.csv"
+pore = read.csv(PORE_DISTRIBUTION)# <- "processed/pore_distribution.csv"
+
+# WSOC
+wsoc_pore = read.csv(WSOC_PORE)# <- "processed/wsoc_pore_summary.csv"
+wsoc_soil = read.csv(WSOC_SOIL)# <- "processed/wsoc_soils_summary.csv"
+
+# FTICR -- longform files
+soil_raw = read.csv(FTICR_SOIL_RAW_LONG)# <- "fticr/fticr_soil_raw_longform.csv"
+soil_long = read.csv(FTICR_SOIL_LONG)# <- "fticr/fticr_soil_longform.csv"
+pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
+pore_raw = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_raw_longform.csv"
+
+# FTICR -- relative abundance files
+pore_relabund = read.csv(FTICR_PORE_RELABUND)# <- "fticr/fticr_pore_relabundance_groups2_hsd.csv"
+soil_relabund = read.csv(FTICR_SOIL_RELABUND)# <- "fticr/fticr_soil_relabundance_hsd.csv"
+
+# FTICR -- peaks files
+pore_unique = read.csv(FTICR_PORE_UNIQUE)# <- "fticr/fticr_pore_uniquemolecules.csv"
+soil_unique = read.csv(FTICR_SOIL_UNIQUE)# <- "fticr/fticr_soil_uniquemolecules.csv" 
+
+pore_peaks = read.csv(FTICR_PORE_PEAKS)# <- "fticr/fticr_pore_peakscount.csv"
+soil_peaks = read.csv(FTICR_SOIL_PEAKS)# <- "fticr/fticr_soil_peakscount.csv"
+
+
+# FTICR_PORE
+pore_aromatic = read.csv(FTICR_PORE_AROMATIC)# <- "fticr/fticr_pore_aromatic_counts.csv"
+pore_meta = read.csv(FTICR_PORE_META)# <- "fticr/fticr_pore_meta.csv"
+pore_long = read.csv(FTICR_PORE_LONG)# <- "fticr/fticr_pore_longform.csv"
+pore_unique_peaks = read.csv(FTICR_PORE_UNIQUE_PEAKS)# <- "fticr/fticr_pore_unique_peakscount.csv"
+pore_hcoc = read.csv(FTICR_PORE_HCOC)# <- "fticr/fticr_pore_hcoc.csv"
+pore_nosc = read.csv(FTICR_PORE_NOSC)# <- "fticr/fticr_pore_nosc.csv"
+pore_shannon = read.csv(FTICR_PORE_DIVERSITY)# <- "fticr/fticr_pore_shannondiversity.csv"
+
+pore_shannon_summary = read.csv("fticr/pore_diversity_summary.csv")
+soil_shannon_summary = read.csv("fticr/soil_diversity_summary.csv")
+
+  
+  
+#FTICR_SOIL
+soil_aromatic = read.csv(FTICR_SOIL_AROMATIC)# <- "fticr/fticr_soil_aromatic_counts.csv"
+soil_nosc = read.csv(FTICR_SOIL_NOSC)# <- "fticr/fticr_soil_nosc.csv"
+soil_hcoc = read.csv(FTICR_SOIL_HCOC)# <- "fticr/fticr_soil_hcoc.csv"
+soil_unique_peaks = read.csv(FTICR_SOIL_UNIQUE_PEAKS)# <- "fticr/fticr_soil_unique_peakscount.csv"
+
+
+# RESPIRATION
+flux_data = read.csv(FLUX_DATA)
+flux_summary = read.csv(FLUX_SUMMARY)
+```
+# Soil characterization
+## summary table
+```{r charac, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
+charac %>% 
+  dplyr::mutate(variable = factor(variable, levels = c("TC_perc", "TN_perc", "TOC_perc", "WSOC_mg_g",
+                                                "Ca_meq100g", "Mg_meq100g",
+                                                "pH", "EC_dS_m", 
+                                                "Sand_perc", "Silt_perc", "Clay_perc"))) %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(site),
+                val = paste(summary_hsd)) %>% 
+  dplyr::select(variable,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+---
+## pore distribution
+```{r pores, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="pore size distribution",fig.path = "images/"}
+ ggplot(pore,aes(x = pore_size, y=freq,color = site))+
+  geom_line(size = 1)+
+  scale_color_brewer(palette = "Set2")+
+  #geom_density(adjust=0.5)+
+  
+  labs (y = expression (bold ("distribution, %"),
+                        x = expression (bold ("pore size" ))))+
+  theme_bw()+
+  theme_kp()
+```
+
+summary
+```{r}
+pore_size = read.csv("processed/pore_size_perc_freq2.csv")
+
+pore_size_summary = 
+  pore_size %>% 
+# make new bins
+  dplyr::mutate(bins_um = case_when(pore_size==0 ~ "<100",
+                                    pore_size>0&pore_size<1000~as.character(pore_size+100),
+                                    pore_size>=1000&pore_size<2000 ~ "1000-2000",
+                                    pore_size>=2000&pore_size<3000 ~ "2000-3000",
+                                    pore_size>=3000&pore_size<4000 ~ "3000-4000")) %>% 
+  group_by(bins_um) %>% 
+  dplyr::summarise(CPCRW = round(sum(cpcrw),2),
+                   DWP = round(sum(dwp),2),
+                   SR = round(sum(sr),2)) %>% 
+  knitr::kable()
+  
+
+
+
+
+
+```
+
+---
+## water retention curves
+
+```{r wrc, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="water retention curve", fig.width=5, fig.height=5,,fig.path = "images/"}
+
+water_retention = read_excel("data/water_retention.xlsx")
+
+# van genuchten plots
+ggplot()+
+  geom_line(data = water_retention,aes(x = Tension_c, y = CPCRW_water_VG*100), color = "#950000", size=1)+
+  geom_line(data = water_retention,aes(x = Tension_d, y = DWP_water_VG*100), color = "#e6ab00", size=1)+
+  geom_line(data = water_retention,aes(x = Tension_s, y = SR_water_VG*100), color = "#008cff", size=1)+
+  
+  annotate("text", label = "Alaska \n (silt loam)", x = 30, y = 20,size=4)+ 
+  annotate("text", label = "Florida \n (fine sand)", x = 15, y = 4, size=4)+ 
+  annotate("text", label = "Washington \n(silty clay loam)", x = 40, y = 35,size=4)+ 
+  
+  labs (y = expression (bold ("moisture (% v/v)")),
+        x = expression (bold ("tension, kPa" )))+
+  ylim(0,60)+
+  theme_bw()+
+  theme_kp()+
+  theme (legend.position = "none")
+
+```
+
+---
+
+# WSOC tables  
+## soils
+mg/g soil
+```{r wsoc_soil, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+wsoc_soil %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(Site),
+                val = paste(wsoc_dunnett)) %>% 
+  dplyr::select(Treatment,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+  
+```
+
+## pores
+mg/L
+```{r wsoc_pore_mgL, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+wsoc_pore %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(Suction, Site),
+                val = paste(wsoc_mgL)) %>% 
+  dplyr::select(Treatment,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+figure
+```{r}
+wsoc = read.csv("processed/wsoc_pores_longform.csv")
+
+ggplot(wsoc, aes(y = as.numeric(wsoc_mg_L), x = Site, color = Treatment))+
+geom_point(position = position_dodge(width =0.5))+
+facet_wrap(~Suction)
+```
+
+
+## pores
+mg/g
+```{r wsoc_pore_mgg, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+wsoc_pore %>% 
+  ungroup %>% 
+  dplyr::mutate(sp = paste(Suction, Site),
+                val = paste(wsoc_mgg)) %>% 
+  dplyr::select(Treatment,sp, val) %>% 
+  spread(sp, val) %>% 
+  knitr::kable(align = "r")
+```
+
+
