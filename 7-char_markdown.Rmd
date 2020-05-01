@@ -8,8 +8,16 @@ This is the RMarkdown file for the 3Soils experiment. Tables and figures for mol
 
 Run: `r Sys.Date()`
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE,message=FALSE,warning=FALSE,
+                      collapse = TRUE,
+                      comment = "#>", 
+                      fig.path = "images/markdown-char/"
+                      )
+```
 
-```{r setup, include=FALSE, echo=FALSE}
+
+```{r files, include=FALSE, echo=FALSE}
 source("0b-packages.R")
 
 # input files
@@ -66,7 +74,7 @@ flux_summary = read.csv(FLUX_SUMMARY)
 ```
 # Soil characterization
 ## summary table
-```{r charac, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
+```{r charac"}
 charac %>% 
   dplyr::mutate(variable = factor(variable, levels = c("TC_perc", "TN_perc", "TOC_perc", "WSOC_mg_g",
                                                 "Ca_meq100g", "Mg_meq100g",
@@ -81,7 +89,7 @@ charac %>%
 ```
 ---
 ## pore distribution
-```{r pores, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="pore size distribution",fig.path = "images/"}
+```{r pores}
  ggplot(pore,aes(x = pore_size, y=freq,color = site))+
   geom_line(size = 1)+
   scale_color_brewer(palette = "Set2")+
@@ -95,11 +103,12 @@ charac %>%
 
 summary
 ```{r}
-pore_size = read.csv("processed/pore_size_perc_freq2.csv")
+pore_size = read.csv(PORE_DISTRIBUTION)
 
 pore_size_summary = 
   pore_size %>% 
 # make new bins
+  spread(site, freq) %>% 
   dplyr::mutate(bins_um = case_when(pore_size==0 ~ "<100",
                                     pore_size>0&pore_size<1000~as.character(pore_size+100),
                                     pore_size>=1000&pore_size<2000 ~ "1000-2000",
@@ -110,18 +119,12 @@ pore_size_summary =
                    DWP = round(sum(dwp),2),
                    SR = round(sum(sr),2)) %>% 
   knitr::kable()
-  
-
-
-
-
-
 ```
 
 ---
 ## water retention curves
 
-```{r wrc, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="water retention curve", fig.width=5, fig.height=5,,fig.path = "images/"}
+```{r wrc, fig.width=5, fig.height=5}
 
 water_retention = read_excel("data/water_retention.xlsx")
 
@@ -149,7 +152,7 @@ ggplot()+
 # WSOC tables  
 ## soils
 mg/g soil
-```{r wsoc_soil, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+```{r wsoc_soil}
 wsoc_soil %>% 
   ungroup %>% 
   dplyr::mutate(sp = paste(Site),
@@ -162,7 +165,7 @@ wsoc_soil %>%
 
 ## pores
 mg/L
-```{r wsoc_pore_mgL, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+```{r wsoc_pore_mgL}
 wsoc_pore %>% 
   ungroup %>% 
   dplyr::mutate(sp = paste(Suction, Site),
@@ -183,12 +186,12 @@ facet_wrap(~Suction)
 
 
 ## pores
-mg/g
-```{r wsoc_pore_mgg, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="wsoc pore"}
+mg/L
+```{r wsoc_pore_mgL2}
 wsoc_pore %>% 
   ungroup %>% 
   dplyr::mutate(sp = paste(Suction, Site),
-                val = paste(wsoc_mgg)) %>% 
+                val = paste(wsoc_mgL)) %>% 
   dplyr::select(Treatment,sp, val) %>% 
   spread(sp, val) %>% 
   knitr::kable(align = "r")
