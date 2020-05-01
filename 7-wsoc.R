@@ -157,3 +157,17 @@ write.csv(wsoc_pores, "processed/wsoc_pores_longform.csv", row.names = FALSE)
 
 ##
 #
+
+## computing effect size for CPCRW drought soils ----
+cpcrw_drt_coarse = 
+  wsoc_pores %>% 
+  filter(Site %in% "CPCRW",
+         Treatment %in% c("Time Zero", "Drought"),
+         Suction %in% "1.5 kPa")
+
+drt_aov = aov(data = cpcrw_drt, wsoc_mg_L ~ Treatment*Suction)
+EtaSq(drt_aov1)
+
+library(sjstats); library(pwr)
+anova_stats(drt_aov)
+summary(drt_aov)
