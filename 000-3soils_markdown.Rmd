@@ -128,17 +128,17 @@ water_retention = read_excel("data/water_retention.xlsx")
 
 # van genuchten plots
 ggplot()+
-  geom_line(data = water_retention,aes(x = Tension_c, y = CPCRW_water_VG, color = "CPCRW"), size=1)+
-  geom_line(data = water_retention,aes(x = Tension_d, y = DWP_water_VG,color = "DWP"), size=1)+
-  geom_line(data = water_retention,aes(x = Tension_s, y = SR_water_VG,color = "SR"), size=1)+
+  geom_line(data = water_retention,aes(x = Tension_c, y = CPCRW_water_VG*100), color = "#950000", size=1)+
+  geom_line(data = water_retention,aes(x = Tension_d, y = DWP_water_VG*100), color = "#e6ab00", size=1)+
+  geom_line(data = water_retention,aes(x = Tension_s, y = SR_water_VG*100), color = "#008cff", size=1)+
   
-  annotate("text", label = "DWP, fine sand", x = 25, y = 0.03,size=4,fontface="bold")+ 
-  annotate("text", label = "CPCRW, silt loam", x = 75, y = 0.13,size=4,fontface="bold")+ 
-  annotate("text", label = "SR, silty clay loam", x = 55, y = 0.3,size=4,fontface="bold")+ 
+  annotate("text", label = "Alaska \n (silt loam)", x = 30, y = 20,size=4)+ 
+  annotate("text", label = "Florida \n (fine sand)", x = 15, y = 4, size=4)+ 
+  annotate("text", label = "Washington \n(silty clay loam)", x = 40, y = 35,size=4)+ 
   
-  labs (y = expression (bold ("volumetric moisture content")),
+  labs (y = expression (bold ("moisture (% v/v)")),
         x = expression (bold ("tension, kPa" )))+
-  ylim(0,0.6)+
+  ylim(0,60)+
   theme_bw()+
   theme_kp()+
   theme (legend.position = "none")
