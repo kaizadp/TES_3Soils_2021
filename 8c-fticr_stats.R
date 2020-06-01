@@ -101,7 +101,7 @@ summary(soil_man)
 
 #
   
-# PART VI: RELATIVE ABUNDANCE PCA ----
+# PART 4: PCA/Bray Curtis distances ----
 
 ## a. pores ----
 ## native SOM pca
@@ -126,43 +126,30 @@ pore_relabund_pca_grp =
 pca = prcomp(pore_relabund_pca_num, scale. = T)
 summary(pca)
 
-library(ggbiplot)
-ggbiplot(pca, obs.scale = 1, var.scale = 1, 
-         groups = pore_relabund_pca_grp$site, ellipse = TRUE, circle = F,
-         var.axes = TRUE)+
-  geom_point(size=2,stroke=2, aes(shape = pore_relabund_pca_grp$tension, color = groups))+
-  scale_shape_manual(values = c(1,4))
-
-
-#
-### tpc method ----
-bray_distance = vegdist(pore_relabund_pca_num, method="euclidean")
-principal_coordinates = pcoa(bray_distance)
-
-pcoa_plot = data.frame(principal_coordinates$vectors[,])
-pcoa_plot_merged = merge(pcoa_plot, pore_relabund_pca_grp, by="row.names")
-
-####### Calculate percent variation explained by PC1, PC2
-
-PC1 <- 100*(principal_coordinates$values$Eigenvalues[1]/sum(principal_coordinates$values$Eigenvalues))
-PC2 <- 100*(principal_coordinates$values$Eigenvalues[2]/sum(principal_coordinates$values$Eigenvalues))
-PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinates$values$Eigenvalues))
-
-###### Plot PCoA
-
-ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2,color=treatment, shape=site)) + 
-  geom_point(size=4)+
-  facet_grid(tension~site)+
-  stat_ellipse()+
-  theme_kp()+
-  theme(legend.position = "right")+
-  labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))
+adonis(pore_relabund_pca_num ~ 
+         pore_relabund_pca$site*pore_relabund_pca$tension, 
+       method="bray", permutations=999)
 
 
 
+pore_relabund_pca=
+  relabund_temp %>% 
+  ungroup %>% 
+  dplyr::select(core,tension, site, treatment, Class, relabund) %>% 
+  #filter(!treatment=="time zero saturation") %>% 
+  spread(Class, relabund) %>% 
+  replace(.,is.na(.),0) %>% 
+  dplyr::select(-1)
+
+pore_relabund_pca_num = 
+  pore_relabund_pca %>% 
+  dplyr::select(.,-(1:3))
 
 
-adonis(pore_relabund_pca_num ~ pore_relabund_pca$site+pore_relabund_pca$treatment+pore_relabund_pca$site:pore_relabund_pca$treatment, 
+
+#library(vegan)
+adonis(pore_relabund_pca_num ~ 
+         pore_relabund_pca$site*pore_relabund_pca$treatment*pore_relabund_pca$tension, 
        method="bray", permutations=999)
 
 
