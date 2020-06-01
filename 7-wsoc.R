@@ -149,7 +149,21 @@ wsoc_pores %>%
    dplyr::select(-dunnett, -wsoc_mgL_mean_se) ->
    wsoc_pores_summary
  
-### OUTPUT ---- 
+## 2e. ANOVA on SR treatments ----
+ wsoc_pores_sr = 
+   wsoc_pores %>% 
+   filter(Site %in% "SR",
+          !Treatment %in% "Time Zero")
+ 
+ a_fine = aov(wsoc_mg_L~Treatment, data = wsoc_pores_sr[wsoc_pores_sr$Suction=="50 kPa",])
+ a_coarse = aov(wsoc_mg_L~Treatment, data = wsoc_pores_sr[wsoc_pores_sr$Suction=="1.5 kPa",])
+ a_all = aov(wsoc_mg_L~Treatment, data = wsoc_pores_sr)
+ 
+ summary(a_fine)
+ summary(a_coarse)
+ summary(a_all)
+ 
+ ### OUTPUT ---- 
 
 write.csv(wsoc_pores_summary, WSOC_PORE, row.names = FALSE)
 write.csv(wsoc_pores, "processed/wsoc_pores_longform.csv", row.names = FALSE)
