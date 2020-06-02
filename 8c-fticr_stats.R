@@ -90,6 +90,18 @@ library(compositions)
 pore_man = manova(ilr(clo(DV)) ~ site*tension*treatment, data = relabund_pore)
 summary(pore_man)
 
+## time zero pores ----
+relabund_pore_tz = 
+  relabund_pore %>% 
+  filter(treatment %in% "time zero saturation")
+
+pore_tz_man = manova(ilr(clo(DV)) ~ site*tension, data = relabund_pore_tz)
+summary(pore_tz_man)
+
+#              Df   Pillai    approx F  num Df den Df   Pr(>F)    
+# site          2   1.76068   14.7144   16     32       1.878e-10 ***
+
+
 ## soils ----
 relabund_soil$DV = as.matrix(relabund_soil[,4:12])
 soil_man = manova(ilr(clo(DV)) ~ site*treatment, data = relabund_soil)
@@ -97,6 +109,9 @@ summary(soil_man)
 
 soil_man = manova(ilr(clo(DV)) ~ treatment, data = relabund_soil[relabund_soil$site=="SR",])
 summary(soil_man)
+
+
+
 
 
 #
