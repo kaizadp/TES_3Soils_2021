@@ -31,6 +31,7 @@ library(DescTools)
 library(dplyr)         # 0.5.0
 library(viridis)
 library(patchwork)
+library(ggbiplot)
 
 # create a custom ggplot theme
 theme_kp <- function() {  # this for all the elements common across plots
