@@ -237,10 +237,17 @@ pore_long %>%
                                    levels = c("time zero saturation","drought","field moist","flood")))->
            pore_long
 
+label = tribble(
+  ~site, ~treatment, ~label, ~HC,  ~OC, 
+  "Alaska", "time zero saturation", "aliphatic", 2.2, 1.1,
+  "Alaska", "time zero saturation", "unsaturated \n polyphenolic", 1.2, 1.1,
+  "Alaska", "time zero saturation", "aromatic", 0.5, 1.1
+)
 
 vk1 =
   gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=HC, color=tension))+
   scale_color_brewer(palette = "Set1")+
+  geom_text(data = label, aes(label = label), color = "black", size=3)+
   facet_grid(~site)+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
   theme_bw()+
