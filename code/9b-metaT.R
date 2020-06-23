@@ -1,17 +1,55 @@
+## metaT
+## TPC
+## 3Soils
 
-########################################
-#######baseline vs drought MetaT #######
-########################################
-rm(list=ls())
+# 0. load packages ----------------------------------------------
 
+library("funrar")
+library("vegan")
+library("ape")
+library("reshape2")
+library("DESeq2")
+library("preprocessCore")
+library("ggplot2")
+library("dplyr")
+library(pheatmap)
+library(tidyverse)
+library(grid.text)
+library("ggbiplot")
+
+
+# set ggplot theme 
+theme_kp <- function() {  # this for all the elements common across plots
+  theme_bw() %+replace%
+    theme(
+      legend.key=element_blank(),
+      legend.title = element_blank(),
+      legend.text = element_text(size = 12),
+      legend.key.size = unit(1.5, 'lines'),
+      panel.border = element_rect(color="black",size=1.5, fill = NA),
+      
+      plot.title = element_text(hjust = 0.05, size = 14),
+      axis.text = element_text(size = 14,  color = "black"),
+      axis.title = element_text(size = 14, face = "bold", color = "black"),
+      
+      # formatting for facets
+      panel.background = element_blank(),
+      strip.background = element_rect(colour="white", fill="white"), #facet formatting
+      panel.spacing.x = unit(1.5, "lines"), #facet spacing for x axis
+      panel.spacing.y = unit(1.5, "lines"), #facet spacing for x axis
+      strip.text.x = element_text(size=12, face="bold"), #facet labels
+      strip.text.y = element_text(size=12, face="bold", angle = 270) #facet labels
+    )
+}
+
+#
+
+
+# BASELINE VS. DROUGHT ----------------------------------------------------
 g_tab_bld = read.table("metaT_combined_0.001perc_bld.txt",sep="\t",header=TRUE,row.names=1)
 
-#####Convert all the na's to zeros
+# Convert all the na's to zeros
 g_tab_bld[is.na(g_tab_bld)] = 0
-
-
-
-
 
 g_tab_bld = subset(g_tab_bld, select = -c(TIGR00001,	TIGR00002,	TIGR00009,	TIGR00012,	TIGR00029,
                                           TIGR00030,	TIGR00059,	TIGR00060,	TIGR00061,	TIGR00062,	TIGR00105,	TIGR00158,	
@@ -26,7 +64,7 @@ g_tab_bld = subset(g_tab_bld, select = -c(TIGR00001,	TIGR00002,	TIGR00009,	TIGR0
                                           TIGR03635,	TIGR03654,	TIGR03953))
 
 
-#####Make a matrix that excludes all the metadata and is just numbers with the sample numbers as the row names
+# Make a matrix that excludes all the metadata and is just numbers with the sample numbers as the row names
 NAMES = rownames(g_tab_bld)
 g_matrix_bld = g_tab_bld[,7:1146]
 rownames(g_matrix_bld) = NAMES
@@ -37,9 +75,8 @@ NAMES = rownames(g_tab_bld)
 g_sample_bld = g_tab_bld[,1:2]
 rownames(g_sample_bld) = NAMES
 
-############################
-###########################
-#####relative abundance normalization
+
+## RELATIVE ABUNDANCE normalization ----------------------------------------
 
 g_rel_bld = make_relative(g_matrix_bld)
 merged = merge(g_sample_bld, g_rel_bld, by="row.names")
@@ -56,13 +93,11 @@ res_bld = results(dds_bld)
 resultsNames(dds_bld)
 
 
-############Coloring and normalization
-library("viridis")
-library("pheatmap")
+# Coloring and normalization
 npgpal=viridis_pal(option="viridis")(85)
 ntd_bld = normTransform(dds_bld)
 
-#########LDA heatmap based on all treatments
+# LDA heatmap based on all treatments
 long_combined_bld = c("TIGR02907",	"TIGR01925",	"TIGR02844",	"TIGR01442",	"TIGR02836",	"TIGR03417",	"TIGR02886",	"TIGR03414",	"TIGR00117",	"TIGR01837",	"TIGR03824",	"TIGR02851",	"TIGR01433",	"TIGR01345",	"TIGR01320",	"TIGR01879",	"TIGR01096",	"TIGR01108",	"TIGR02136",	"TIGR00741",	"TIGR02061",	"TIGR02176",	"TIGR03478",	"TIGR04246",	"TIGR03513",	"TIGR01580",	"TIGR03404",	"TIGR02376",	"TIGR03078",	"TIGR03544",	"TIGR01660",	"TIGR02943",	"TIGR00538",	"TIGR02162",	"TIGR03508",	"TIGR02161",	"TIGR02260",	"TIGR01152",	"TIGR03080",	"TIGR01151")
 
 kd_3soil_colors = list(
@@ -94,59 +129,17 @@ pheatmap(assay(ntd_bld)[long_combined_bld,],cluster_cols=FALSE,cluster_rows=FALS
                         "TIGR01152 Photosystem II","TIGR03080 Methane Monooxygenase","TIGR01151 Photosystem II"))
 
 
-##########
-##########
-####MetaT PCA
-
-rm(list=ls())
-library("devtools")
-library("ggplot2")
-library("funrar")
-library("vegan")
-library("ape")
-library("reshape2")
-library("DESeq2")
-library("preprocessCore")
-library("ggbiplot")
-
-theme_kp <- function() {  # this for all the elements common across plots
-  theme_bw() %+replace%
-    theme(
-      legend.key=element_blank(),
-      legend.title = element_blank(),
-      legend.text = element_text(size = 12),
-      legend.key.size = unit(1.5, 'lines'),
-      panel.border = element_rect(color="black",size=1.5, fill = NA),
-      
-      plot.title = element_text(hjust = 0.05, size = 14),
-      axis.text = element_text(size = 14,  color = "black"),
-      axis.title = element_text(size = 14, face = "bold", color = "black"),
-      
-      # formatting for facets
-      panel.background = element_blank(),
-      strip.background = element_rect(colour="white", fill="white"), #facet formatting
-      panel.spacing.x = unit(1.5, "lines"), #facet spacing for x axis
-      panel.spacing.y = unit(1.5, "lines"), #facet spacing for x axis
-      strip.text.x = element_text(size=12, face="bold"), #facet labels
-      strip.text.y = element_text(size=12, face="bold", angle = 270) #facet labels
-    )
-}
-
-
-###################
-######PCOA Analysis
-###################
-###################
-setwd("~/Documents/3_soils/metaT_drought_analysis/")
+#
+# PCA ---------------------------------------------------------------------
 g_tab = read.table("metaT_combined_0.001perc_removed.txt", sep="\t", header=TRUE, row.names=1)
 
-#####Convert all the na's to zeros
+# Convert all the na's to zeros
 g_tab[is.na(g_tab)] = 0
 
-###Remove base_line samples
+# Remove base_line samples
 g_tab = subset(g_tab, Treatment!="Base_Line")
 
-###Remove ribosomal genes
+# Remove ribosomal genes
 g_tab = subset(g_tab, select = -c(TIGR00001,	TIGR00002,	TIGR00009,	TIGR00012,	TIGR00029,
                                   TIGR00030,	TIGR00059,	TIGR00060,	TIGR00061,	TIGR00062,	TIGR00105,	TIGR00158,	
                                   TIGR00165,	TIGR00166,	TIGR00279,	TIGR00717,	
@@ -159,7 +152,7 @@ g_tab = subset(g_tab, select = -c(TIGR00001,	TIGR00002,	TIGR00009,	TIGR00012,	TI
                                   TIGR03626,	TIGR03627,	TIGR03628,	TIGR03629,TIGR03631,	TIGR03632,	
                                   TIGR03635,	TIGR03654,	TIGR03953,  TIGR03673))
 
-#####Make a matrix that excludes all the metadata and is just numbers with the sample numbers as the row names
+# Make a matrix that excludes all the metadata and is just numbers with the sample numbers as the row names
 NAMES = rownames(g_tab)
 g_matrix = g_tab[,7:1145]
 rownames(g_matrix) = NAMES
@@ -170,15 +163,15 @@ NAMES = rownames(g_tab)
 g_sample = g_tab[,1:6]
 rownames(g_sample) = NAMES
 
-############################
-###########################
-#####relative abundance normalization
+
+
+#
+## RELATIVE ABUNDANCE normalization ----------------------------------------
+
 g_rel = make_relative(g_matrix)
 merged = merge(g_sample, g_rel, by="row.names")
 
-###########################
-###########################
-###########################
+#
 
 e_distance = vegdist(g_rel, method="euclidean")
 principal_coordinates = pcoa(e_distance)
@@ -186,13 +179,13 @@ principal_coordinates = pcoa(e_distance)
 pcoa_plot = data.frame(principal_coordinates$vectors[,])
 pcoa_plot_merged = merge(pcoa_plot, g_sample, by="row.names")
 
-# 3. Calculate percent variation explained by PC1, PC2
+# Calculate percent variation explained by PC1, PC2
 
 PC1 <- 100*(principal_coordinates$values$Eigenvalues[1]/sum(principal_coordinates$values$Eigenvalues))
 PC2 <- 100*(principal_coordinates$values$Eigenvalues[2]/sum(principal_coordinates$values$Eigenvalues))
 PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinates$values$Eigenvalues))
 
-# 4. Plot PCoA
+# Plot PCoA
 pcoa_plot_merged$Treatment = factor(pcoa_plot_merged$Treatment, levels = c("Drought","Field_Moist","Sat_II","Sat_I"))
 ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2)) + geom_point(aes(fill=factor(Treatment),shape=factor(Site)),size=6,alpha=0.95) + theme_bw()  +
   theme_kp() + 
@@ -207,11 +200,11 @@ ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2)) + geom_point(aes(fill=facto
 
 adonis(g_matrix ~ g_tab$Site+g_tab$Treatment+g_tab$Site*g_tab$Treatment, method="euclidean", permutations=999)
 
-#############
-###MetaT distance boxplot
-#############
+#
 
-#####Create distance matrix
+# DISTANCE BOXPLOT --------------------------------------------------------
+
+# Create distance matrix
 names = rownames(g_sample)
 rownames(g_sample) = NULL
 g_sample = cbind(names,g_sample)
@@ -261,12 +254,8 @@ View(output[[3]])
 melted = melt(output[[3]])
 
 
-##############################
-##############################
-##############################
-# e Distance Boxplots #####
-##############################
-##############################
+#
+# e DISTANCE BOXPLOTS -----------------------------------------------------
 
 e_matrix = as.matrix(e_distance)
 
@@ -277,7 +266,6 @@ e_summary = na.omit(e_summary)
 e_summary = e_summary %>%
   filter(as.character(Var1) != as.character(Var2)) %>%
   mutate_if(is.factor,as.character)
-
 
 
 sd = g_sample %>%
@@ -312,33 +300,16 @@ ggplot(e_summarySD, aes(comparison, value,fill=comparison)) +
   scale_x_discrete(labels=c("Drought_Drought"="drought","Field_Moist_Field_Moist"="field moist","Sat_II_Sat_II"="flood","Sat_I_Sat_I"="time zero saturation"))
 
 
+#
+# TOP 10 GENES PER SITE -- HEATMAP ----------------------------------------
 
-
-
-################
-####### metaT top ten genes per site heatmap
-################
-rm(list=ls())
-library("ggplot2")
-library("funrar")
-library("vegan")
-library("ape")
-library("reshape2")
-library("DESeq2")
-library("preprocessCore")
-library("pheatmap")
-library("dplyr")
-
-
-
-setwd("~/Documents/3_soils/metaT_drought_analysis/")
 g_tab = read.table("metaT_combined_0.001perc_removed.txt",sep="\t",header=TRUE,row.names=1)
 
 
-#####Convert all the na's to zeros
+# Convert all the na's to zeros
 g_tab[is.na(g_tab)] = 0
 
-#####Remove ribosome genes
+# Remove ribosome genes
 
 g_tab = subset(g_tab, select = -c(TIGR00001,	TIGR00002,	TIGR00009,	TIGR00012,	TIGR00029,
                                   TIGR00030,	TIGR00059,	TIGR00060,	TIGR00061,	TIGR00062,	TIGR00105,	TIGR00158,	
@@ -352,7 +323,7 @@ g_tab = subset(g_tab, select = -c(TIGR00001,	TIGR00002,	TIGR00009,	TIGR00012,	TI
                                   TIGR03626,	TIGR03627,	TIGR03628,	TIGR03629,	TIGR03631,	TIGR03632,	
                                   TIGR03635,	TIGR03654,	TIGR03953))
 
-#####Make a matrix that excludes all the metadata and is just numbers with the sample numbers as the row names
+# Make a matrix that excludes all the metadata and is just numbers with the sample numbers as the row names
 NAMES = rownames(g_tab)
 g_matrix = g_tab[,7:1146]
 rownames(g_matrix) = NAMES
@@ -364,13 +335,11 @@ g_sample = g_tab[,1:2]
 rownames(g_sample) = NAMES
 
 
-############################
-###########################
-#####relative abundance normalization
+#
+
+## RELATIVE ABUNDANCE normalization ----------------------------------------
 
 g_rel = make_relative(g_matrix)
-
-
 
 transposed_g_matrix = t(g_matrix)
 dds = DESeqDataSetFromMatrix(countData = transposed_g_matrix,
@@ -382,13 +351,12 @@ res = results(dds)
 resultsNames(dds)
 
 
-############Coloring
-library("viridis")
-library("pheatmap")
+# Coloring
+
 npgpal=viridis_pal(option="viridis")(85)
 ntd = normTransform(dds)
 
-#########LDA heatmap based on all treatments
+# LDA heatmap based on all treatments
 
 site_combined=c("TIGR03319","TIGR01703","TIGR04246","TIGR02339","TIGR02225","TIGR02224","TIGR01580","TIGR04244","TIGR03648","TIGR02376",
                 "TIGR02891","TIGR03544","TIGR03450","TIGR02843","TIGR01974","TIGR00691","TIGR02947","TIGR02456","TIGR03619","TIGR02753",
@@ -419,25 +387,16 @@ pheatmap(assay(ntd)[site_combined,],cluster_cols=FALSE,cluster_rows=FALSE,annota
                         "TIGR03525 Gliding Associated Lipoprotein"))
 
 
-###############
+#
 
-######################################
-#                                    #
-#                                    #
-#    base line vs sat II (flood)     #
-#                                    #
-#                                    #
-#                                    #
-######################################
-
-rm(list=ls())
+# BASELINE VS FLOOD -------------------------------------------------------
 
 g_tab_blsat2 = read.table("metaT_combined_0.001perc_removed_blsat2.txt",sep="\t",header=TRUE,row.names=1)
 
-#####Convert all the na's to zeros
+# Convert all the na's to zeros
 g_tab_blsat2[is.na(g_tab_blsat2)] = 0
 
-#####Remove ribosome genes
+# Remove ribosome genes
 
 g_tab_blsat2 = subset(g_tab_blsat2, select = -c(TIGR00001,	TIGR00002,	TIGR00009,	TIGR00012,	TIGR00029,
                                                 TIGR00030,	TIGR00059,	TIGR00060,	TIGR00061,	TIGR00062,	TIGR00105,	TIGR00158,	
@@ -451,7 +410,7 @@ g_tab_blsat2 = subset(g_tab_blsat2, select = -c(TIGR00001,	TIGR00002,	TIGR00009,
                                                 TIGR03626,	TIGR03627,	TIGR03628,	TIGR03629,	TIGR03631,	TIGR03632,	
                                                 TIGR03635,	TIGR03654,	TIGR03953))
 
-#####Make a matrix that excludes all the metadata and is just numbers with the sample numbers as the row names
+# Make a matrix that excludes all the metadata and is just numbers with the sample numbers as the row names
 NAMES = rownames(g_tab_blsat2)
 g_matrix_blsat2 = g_tab_blsat2[,7:1146]
 rownames(g_matrix_blsat2) = NAMES
@@ -462,10 +421,9 @@ NAMES = rownames(g_tab_blsat2)
 g_sample_blsat2 = g_tab_blsat2[,1:2]
 rownames(g_sample_blsat2) = NAMES
 
+#
 
-############################
-###########################
-#####relative abundance normalization
+## RELATIVE ABUNDANCE normalization ----------------------------------------
 
 g_rel_blsat2 = make_relative(g_matrix_blsat2)
 
@@ -481,15 +439,23 @@ res_blsat2 = results(dds_blsat2)
 resultsNames(dds_blsat2)
 #write.table(res,file="log2fold_change_combined_0.001_bld.txt",sep="\t")
 
-############Coloring
-library("viridis")
-library("pheatmap")
+# Coloring
+
 npgpal=viridis_pal(option="viridis")(85)
 ntd_blsat2 = normTransform(dds_blsat2)
 
-#########LDA heatmap based on all treatments
+# LDA heatmap based on all treatments
 
-site_combined_blsat2=c("TIGR02006",	"TIGR03402",	"TIGR03235",	"TIGR02383",	"TIGR02638",	"TIGR02851",	"TIGR01139",	"TIGR01978",	"TIGR01136",	"TIGR00975",	"TIGR03458",	"TIGR00437",	"TIGR02729",	"TIGR03412",	"TIGR01361",	"TIGR01745",	"TIGR03904",	"TIGR00244",	"TIGR03997",	"TIGR02414",	"TIGR00198",	"TIGR01034",	"TIGR01963",	"TIGR01812",	"TIGR00089",	"TIGR00979",	"TIGR01971",	"TIGR03358",	"TIGR00505",	"TIGR02033",	"TIGR03181",	"TIGR02440",	"TIGR00132",	"TIGR02418",	"TIGR02441",	"TIGR02303",	"TIGR02169",	"TIGR01216",	"TIGR00680",	"TIGR02965")
+site_combined_blsat2=c("TIGR02006",	"TIGR03402",	"TIGR03235",	"TIGR02383",	
+                       "TIGR02638",	"TIGR02851",	"TIGR01139",	"TIGR01978",	
+                       "TIGR01136",	"TIGR00975",	"TIGR03458",	"TIGR00437",	
+                       "TIGR02729",	"TIGR03412",	"TIGR01361",	"TIGR01745",	
+                       "TIGR03904",	"TIGR00244",	"TIGR03997",	"TIGR02414",	
+                       "TIGR00198",	"TIGR01034",	"TIGR01963",	"TIGR01812",	
+                       "TIGR00089",	"TIGR00979",	"TIGR01971",	"TIGR03358",	
+                       "TIGR00505",	"TIGR02033",	"TIGR03181",	"TIGR02440",	
+                       "TIGR00132",	"TIGR02418",	"TIGR02441",	"TIGR02303",	
+                       "TIGR02169",	"TIGR01216",	"TIGR00680",	"TIGR02965")
 
 levels(g_sample_blsat2$Treatment)
 levels(g_sample_blsat2$Treatment) = c("base line","flood")
