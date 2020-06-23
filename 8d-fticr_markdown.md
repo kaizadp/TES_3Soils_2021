@@ -5,7 +5,7 @@ Kaizad Patel
 This is the RMarkdown file for the FTICR results from the 3Soils
 experiment. Tables and figures for molecular results.
 
-Run: 2020-04-21
+Run: 2020-06-23
 
 Color palette used:  
 treatments == viridis
@@ -15,7 +15,7 @@ treatments == viridis
 | field moist | \#35b779ff | green  |
 | drought     | \#fde725ff | yellow |
 | flood       | \#443a83ff | blue   |
-| baseline    | \#30688E   | blue   |
+| baseline    | black      | black  |
 
 sites
 
@@ -28,6 +28,10 @@ sites
 # FTICR domains
 
 ![](images/markdown-fticr/vk_domains-1.png)<!-- -->
+
+# FTICR pores - PCA figures
+
+![](images/markdown-fticr/unnamed-chunk-1-1.png)<!-- -->
 
 # FTICR Pores – figures
 
@@ -46,7 +50,7 @@ peaks that were uniquely **added** during a given treatment
 
 peaks lost and gained
 
-![](images/markdown-fticr/unnamed-chunk-1-1.png)<!-- -->
+![](images/markdown-fticr/unnamed-chunk-2-1.png)<!-- -->
 
 ## treatment effect – relative abundance
 
@@ -54,8 +58,7 @@ peaks lost and gained
 
 ## treatment effect – NOSC
 
-![NOSC for
-CPCRW](images/NOSC_c-1.png)
+![NOSC for CPCRW](images/NOSC_c-1.png)
 
 ## NOSC table
 
@@ -73,12 +76,11 @@ CPCRW](images/NOSC_c-1.png)
 not doing much with aromatic peaks, because it excludes many lignins and
 tannins that contain aromatic groups
 
-![](images/markdown-fticr/unnamed-chunk-2-1.png)<!-- -->
+![](images/markdown-fticr/unnamed-chunk-3-1.png)<!-- -->
 
 ## shannon diversity index –
 
-![aromatic
-peaks](images/shannon-1.png)
+![aromatic peaks](images/shannon-1.png)
 
 # unique peaks per site
 
@@ -258,8 +260,7 @@ peaks](images/shannon-1.png)
 | Washington |     Tannin |  0.37 ± 0.03 \* |  0.72 ± 0.14 \* |   0.56 ± 0.1 \* |           1.99 ± 0.4 |
 | Washington |      Other |     0.13 ± 0.02 |     0.25 ± 0.04 |     0.22 ± 0.05 |          0.16 ± 0.02 |
 
-total =
-100%
+total = 100%
 
     #> [1] "1.5 kPa"
 
@@ -293,8 +294,7 @@ total =
 | Washington |     Tannin |     1.18 ± 0.21 |     0.69 ± 0.17 |     1.02 ± 0.13 |           0.8 ± 0.09 |
 | Washington |      Other |     0.34 ± 0.14 |     0.34 ± 0.07 |              NA |          0.27 ± 0.04 |
 
-total = 100% \#\# aromatic
-peaks
+total = 100% \#\# aromatic peaks
 
 ## Shannon diversity
 
@@ -319,10 +319,9 @@ peaks
 
 ![](images/markdown-fticr/soil_vk_unique-1.png)<!-- -->
 
-peaks lost and
-gained
+peaks lost and gained
 
-![](images/markdown-fticr/unnamed-chunk-5-1.png)<!-- -->
+![](images/markdown-fticr/unnamed-chunk-6-1.png)<!-- -->
 
 ## treatment effect – relative abundance
 
@@ -342,7 +341,7 @@ gained
 
 ## lost/gained NOSC
 
-![](images/markdown-fticr/unnamed-chunk-6-1.png)<!-- -->![](images/markdown-fticr/unnamed-chunk-6-2.png)<!-- -->
+![](images/markdown-fticr/unnamed-chunk-7-1.png)<!-- -->![](images/markdown-fticr/unnamed-chunk-7-2.png)<!-- -->
 
 -----
 

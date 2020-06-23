@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo=FALSE,message=FALSE,warning=FALSE,
 
 
 ```{r inputs, include=FALSE, echo=FALSE}
-source("0b-packages.R")
+source("code/0b-packages.R")
 
 # input files
 # FTICR -- longform files
@@ -237,7 +237,8 @@ pore_long %>%
                                    levels = c("time zero saturation","drought","field moist","flood")))->
            pore_long
 
-vk1 = 
+
+vk1 =
   gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=HC, color=tension))+
   scale_color_brewer(palette = "Set1")+
   facet_grid(~site)+
@@ -245,7 +246,7 @@ vk1 =
   theme_bw()+
   theme_kp()
 
-vk2 
+vk2 =
   gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
   #scale_color_manual(values = c("#fde725ff", "#35b779ff","#443a83ff"))+
     scale_color_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff"))+
