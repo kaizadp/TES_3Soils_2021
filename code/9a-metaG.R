@@ -92,6 +92,7 @@ adonis(g_matrix ~ g_tab$Site+g_tab$Treatment+g_tab$Site*g_tab$Treatment, method=
 #                                         #
 ###########################################
 
+rm(list=ls())
 
 
 library("funrar")
@@ -149,9 +150,119 @@ g_rel = make_relative(g_matrix)
 ###########################
 ###########################
 
+    ##     transposed_g_matrix = t(g_matrix)
+    ##     dds = DESeqDataSetFromMatrix(countData = transposed_g_matrix,
+    ##                                  colData = g_sample,
+    ##                                  design = ~Site)
+    ##     dds = estimateSizeFactors(dds)
+    ##     dds = DESeq(dds)
+    ##     res = results(dds)
+    ##     resultsNames(dds)
+    ##     res
+
+
+    ##     ############Coloring
+    ##     library("viridis")
+    ##     library("pheatmap")
+    ##     npgpal=viridis_pal(option="viridis")(85)
+    ##     ntd = normTransform(dds)
+
+    ##     #########LDA heatmap based on all treatments --- Top ten genes per site
+    ##     draw_colnames_90 <- function (coln, gaps, ...){
+    ##       coord = pheatmap:::find_coordinates(length(coln), gaps)
+    ##       x = coord$coord - 0.5 * coord$size
+    ##       res = textGrob(coln, x=x, y = unit(1, "npc") - unit(3,"bigpts"), vjust = 0.5, hjust = 1, rot =90, gp=gpar(...))
+    ##       return(res)}
+
+    ##     assignInNamespace(x="draw_colnames", value="draw_colnames_90",
+    ##                       ns=asNamespace("pheatmap"))
+
+
+    ##     map_colors = colorRampPalette(cividis(99))
+
+    ##     ####
+    ##     combined_site = c("TIGR01818",	"TIGR01817",	"TIGR02915",	"TIGR02329",	"TIGR02974",	"TIGR02533",	"TIGR02538",	"TIGR01420",	"TIGR00786",	"TIGR02348",	"TIGR01804",	"TIGR00711",	"TIGR02299",	"TIGR02100",	"TIGR01780",	"TIGR03971",	"TIGR04284",	"TIGR03216",	"TIGR02891",	"TIGR02882",	"TIGR02956",	"TIGR03265",	"TIGR01187",	"TIGR04056",	"TIGR01184",	"TIGR02142",	"TIGR02314",	"TIGR02966",	"TIGR02073",	"TIGR02211")
+
+
+    ##     levels(g_sample$Treatment)
+    ##     levels(g_sample$Treatment) = c("drought", "field moist", "time zero saturation","flood")
+    ##     levels(g_sample$Site)
+    ##     levels(g_sample$Site) = c("Alaska","Florida","Washington")
+
+
+    ##     kd_3soil_colors = list(
+    ##       Treatment = c("drought"="#fde725ff","field moist"="#35b779ff","flood"="#443a83ff","time zero saturation"="grey70"),
+    ##       Site = c("Alaska" = "#b84634","Florida"="#e6ab00","Washington"="#008cff"))
+
+    ##     kd_3soil_colors = list(
+    ##       Treatment = c("Drought"="#fde725ff","Field_Moist"="#35b779ff","Sat_II"="#443a83ff","Sat_I"="grey70"),
+    ##       Site = c("CPCRW" = "#b84634","DWP"="#e6ab00","SR"="#008cff"))
+
+
+    ##     library(grid.text)
+    ##     pheatmap(assay(ntd)[combined_site,],cluster_cols=FALSE,cluster_rows=FALSE,annotation_col = g_sample, color=cividis(99),
+    ##              annotation_colors=kd_3soil_colors, show_colnames = FALSE,
+    ##              labels_row = c("TIGR01818 Glutamine Synthase Regulator",	"TIGR01817 Nitrogen Fixation Regulation",	"TIGR02915 Transcription Factor",	
+    ##                             "TIGR02329 Propionate Catabolism",	"TIGR02974 Phage Shock Protein Activator",	"TIGR02533 Type II Secretion System",	
+    ##                             "TIGR02538 Type IV-A Pilus",	"TIGR01420 Pilus Retraction Protein PilT",	"TIGR00786 TRAP Transporter",	"TIGR02348 Chaperonin GroL",	
+    ##                             "TIGR01804 Betaine-Aldehyde Dehydrogenase",	"TIGR00711 EmrB Efflux Transporter",	
+    ##                             "TIGR02299 5-carboxymethyl-2-hydroxymuconate semialdehyde dehyrogenase",
+    ##                             "TIGR02100 Glycogen Debranching Enzyme",	"TIGR01780 Succinate-Semialdehyde Dehydrogenase",	"TIGR03971 Mycofactocin-Dependent Oxidoreductase",	
+    ##                             "TIGR04284 Aldehyde Dehydrogenase",	"TIGR03216 2-Hydroxymuconic Semialdehyde Dehydrogenase",	"TIGR02891 Cytochrome C oxidase",	
+    ##                             "TIGR02882 Cytochrome aa3 Quinol Oxidase",	"TIGR02956 TMAO Reductase System Sensor TorS",	"TIGR03265 2-Aminoethylphosphonate ABC Transporter",	
+    ##                             "TIGR01187 Spermidine/Putrescine ABC Transporter",	"TIGR04056 Outer Member Protein",	"TIGR01184 Nitrate Transporter",	
+    ##                             "TIGR02142 Molybdenum ABC Transporter",	"TIGR02314 D-methionine ABC Transporter",	"TIGR02966 Phosphate Regulon Sensor Kinase PhoR",	
+    ##                             "TIGR02073 Penicillin-Binding Protein 1C",	
+    ##                             "TIGR02211 Lipoprotein Releasing System"))   ##     
+
+##########
+## OUTPUT ----
+
+
+library(pheatmap)   
+set.seed(123)
+df<-data.frame( matrix(sample(30), ncol = 5))
+colnames(df)<-LETTERS[1:5]
+subj<-c("P1", "P2","P3", "T1", "T2","T3")
+rownames(df)<-subj
+aka2 = data.frame(ID = factor(rep(c("Pat","Trea"), each=3)))
+rownames(aka2)<-subj
+aka3 = list(ID = c(Pat = "white", Trea="blue"))
+pheatmap(t(scale(df)),
+         annotation_col = aka2, 
+         annotation_colors = aka3[1],
+         annotation_legend = FALSE,
+         gaps_col =  3,
+         show_colnames = T, show_rownames = T, cluster_rows = F, 
+         cluster_cols = F, legend = TRUE, 
+         clustering_distance_rows = "euclidean", border_color = FALSE)
+
+
+############# KP ##########
+
+library(tidyverse)
+
+g_sample2 = 
+  g_sample %>% 
+  rownames_to_column('new_column') %>% 
+  dplyr::mutate(
+    Site = case_when(Site=="CPCRW"~"Alaska",
+                     Site=="DWP"~"Florida",
+                     Site=="SR"~"Washington"),
+    Treatment = case_when(Treatment=="Drought"~"drought",
+                          Treatment=="Field_Moist"~"field moist",
+                          Treatment=="Sat_I"~"time zero saturation",
+                          Treatment=="Sat_II"~"flood"),
+    Treatment = factor(Treatment, levels = c("drought", "field moist", "time zero saturation","flood")),
+    Site = factor(Site, levels = c("Alaska","Florida","Washington"))
+  ) %>% 
+  arrange(Treatment) %>% 
+  column_to_rownames('new_column')
+
+
 transposed_g_matrix = t(g_matrix)
 dds = DESeqDataSetFromMatrix(countData = transposed_g_matrix,
-                             colData = g_sample,
+                             colData = g_sample2,
                              design = ~Site)
 dds = estimateSizeFactors(dds)
 dds = DESeq(dds)
@@ -193,15 +304,23 @@ kd_3soil_colors = list(
   Treatment = c("drought"="#fde725ff","field moist"="#35b779ff","flood"="#443a83ff","time zero saturation"="grey70"),
   Site = c("Alaska" = "#b84634","Florida"="#e6ab00","Washington"="#008cff"))
 
+kd_3soil_colors = list(
+  Treatment = c("Drought"="#fde725ff","Field_Moist"="#35b779ff","Sat_II"="#443a83ff","Sat_I"="grey70"),
+  Site = c("CPCRW" = "#b84634","DWP"="#e6ab00","SR"="#008cff"))
 
-pheatmap(assay(ntd)[combined_site,],cluster_cols=FALSE,cluster_rows=FALSE,annotation_col = g_sample, color=cividis(99),
+
+library(grid.text)
+pheatmap(assay(ntd)[combined_site,],cluster_cols=FALSE,cluster_rows=FALSE,annotation_col = g_sample2, color=cividis(99),
          annotation_colors=kd_3soil_colors, show_colnames = FALSE,
-         labels_row = c("TIGR01818 Glutamine Synthase Regulator",	"TIGR01817 Nitrogen Fixation Regulation",	"TIGR02915 Transcription Factor",	"TIGR02329 Propionate Catabolism",	"TIGR02974 Phage Shock Protein Activator",	"TIGR02533 Type II Secretion System",	
-                        "TIGR02538 Type IV-A Pilus",	"TIGR01420 Pilus Retraction Protein PilT",	"TIGR00786 TRAP Transporter",	"TIGR02348 Chaperonin GroL",	"TIGR01804 Betaine-Aldehyde Dehydrogenase",	"TIGR00711 EmrB Efflux Transporter",	"TIGR02299 5-carboxymethyl-2-hydroxymuconate semialdehyde dehyrogenase",
-                        "TIGR02100 Glycogen Debranching Enzyme",	"TIGR01780 Succinate-Semialdehyde Dehydrogenase",	"TIGR03971 Mycofactocin-Dependent Oxidoreductase",	"TIGR04284 Aldehyde Dehydrogenase",	"TIGR03216 2-Hydroxymuconic Semialdehyde Dehydrogenase",	"TIGR02891 Cytochrome C oxidase",	
-                        "TIGR02882 Cytochrome aa3 Quinol Oxidase",	"TIGR02956 TMAO Reductase System Sensor TorS",	"TIGR03265 2-Aminoethylphosphonate ABC Transporter",	"TIGR01187 Spermidine/Putrescine ABC Transporter",	"TIGR04056 Outer Member Protein",	"TIGR01184 Nitrate Transporter",	"TIGR02142 Molybdenum ABC Transporter",	
-                        "TIGR02314 D-methionine ABC Transporter",	"TIGR02966 Phosphate Regulon Sensor Kinase PhoR",	"TIGR02073 Penicillin-Binding Protein 1C",	"TIGR02211 Lipoprotein Releasing System"))
-
-##########
-## OUTPUT ----
-
+         labels_row = c("TIGR01818 Glutamine Synthase Regulator",	"TIGR01817 Nitrogen Fixation Regulation",	"TIGR02915 Transcription Factor",	
+                        "TIGR02329 Propionate Catabolism",	"TIGR02974 Phage Shock Protein Activator",	"TIGR02533 Type II Secretion System",	
+                        "TIGR02538 Type IV-A Pilus",	"TIGR01420 Pilus Retraction Protein PilT",	"TIGR00786 TRAP Transporter",	"TIGR02348 Chaperonin GroL",	
+                        "TIGR01804 Betaine-Aldehyde Dehydrogenase",	"TIGR00711 EmrB Efflux Transporter",	
+                        "TIGR02299 5-carboxymethyl-2-hydroxymuconate semialdehyde dehyrogenase",
+                        "TIGR02100 Glycogen Debranching Enzyme",	"TIGR01780 Succinate-Semialdehyde Dehydrogenase",	"TIGR03971 Mycofactocin-Dependent Oxidoreductase",	
+                        "TIGR04284 Aldehyde Dehydrogenase",	"TIGR03216 2-Hydroxymuconic Semialdehyde Dehydrogenase",	"TIGR02891 Cytochrome C oxidase",	
+                        "TIGR02882 Cytochrome aa3 Quinol Oxidase",	"TIGR02956 TMAO Reductase System Sensor TorS",	"TIGR03265 2-Aminoethylphosphonate ABC Transporter",	
+                        "TIGR01187 Spermidine/Putrescine ABC Transporter",	"TIGR04056 Outer Member Protein",	"TIGR01184 Nitrate Transporter",	
+                        "TIGR02142 Molybdenum ABC Transporter",	"TIGR02314 D-methionine ABC Transporter",	"TIGR02966 Phosphate Regulon Sensor Kinase PhoR",	
+                        "TIGR02073 Penicillin-Binding Protein 1C",	
+                        "TIGR02211 Lipoprotein Releasing System"))
