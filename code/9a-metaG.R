@@ -14,7 +14,8 @@ library("ggplot2")
 library("dplyr")
 library(pheatmap)
 library(tidyverse)
-library(grid.text)
+library(grid)
+library(viridis)
 
 # set ggplot theme 
 theme_kp <- function() {  # this for all the elements common across plots
@@ -95,7 +96,9 @@ PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinate
 # Plot PCoA
 
 pcoa_plot_merged$Treatment = factor(pcoa_plot_merged$Treatment, levels = c("Drought","Field_Moist","Sat_II","Sat_I"))
-ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2)) + geom_point(aes(fill=factor(Treatment),shape=factor(Site)),  size=6,alpha=0.95) + theme_bw()  +
+
+gg_metag_pca = 
+  ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2)) + geom_point(aes(fill=factor(Treatment),shape=factor(Site)),  size=6,alpha=0.95) + theme_bw()  +
   theme_kp() + 
   labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%")) +
   scale_fill_manual(values=c("Sat_II"= "#443a83ff","Field_Moist"="#35b779ff","Drought"="#fde725ff","Sat_I"="grey70"),
@@ -164,7 +167,6 @@ g_sample2 =
     Treatment = factor(Treatment, levels = c("drought", "field moist", "time zero saturation","flood")),
     Site = factor(Site, levels = c("Alaska","Florida","Washington"))
   ) %>% 
-  arrange(Treatment) %>% 
   column_to_rownames('new_column')
 
 
@@ -198,13 +200,6 @@ map_colors = colorRampPalette(cividis(99))
 
 ####
 combined_site = c("TIGR01818",	"TIGR01817",	"TIGR02915",	"TIGR02329",	"TIGR02974",	"TIGR02533",	"TIGR02538",	"TIGR01420",	"TIGR00786",	"TIGR02348",	"TIGR01804",	"TIGR00711",	"TIGR02299",	"TIGR02100",	"TIGR01780",	"TIGR03971",	"TIGR04284",	"TIGR03216",	"TIGR02891",	"TIGR02882",	"TIGR02956",	"TIGR03265",	"TIGR01187",	"TIGR04056",	"TIGR01184",	"TIGR02142",	"TIGR02314",	"TIGR02966",	"TIGR02073",	"TIGR02211")
-
-
-levels(g_sample$Treatment)
-levels(g_sample$Treatment) = c("drought", "field moist", "time zero saturation","flood")
-levels(g_sample$Site)
-levels(g_sample$Site) = c("Alaska","Florida","Washington")
-
 
 kd_3soil_colors = list(
   Treatment = c("drought"="#fde725ff","field moist"="#35b779ff","flood"="#443a83ff","time zero saturation"="grey70"),

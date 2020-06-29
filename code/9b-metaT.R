@@ -14,8 +14,9 @@ library("ggplot2")
 library("dplyr")
 library(pheatmap)
 library(tidyverse)
-library(grid.text)
+library(grid)
 library("ggbiplot")
+library(viridis)
 
 
 # set ggplot theme 
@@ -46,7 +47,7 @@ theme_kp <- function() {  # this for all the elements common across plots
 
 
 # BASELINE VS. DROUGHT ----------------------------------------------------
-g_tab_bld = read.table("metaT_combined_0.001perc_bld.txt",sep="\t",header=TRUE,row.names=1)
+g_tab_bld = read.table("data/metagt/metaT_combined_0.001perc_bld.txt",sep="\t",header=TRUE,row.names=1)
 
 # Convert all the na's to zeros
 g_tab_bld[is.na(g_tab_bld)] = 0
@@ -82,10 +83,27 @@ g_rel_bld = make_relative(g_matrix_bld)
 merged = merge(g_sample_bld, g_rel_bld, by="row.names")
 merged =merge(g_sample_bld,g_matrix_bld,by="row.names")
 
+g_sample_bld2 = 
+  g_sample_bld %>% 
+  rownames_to_column('new_column') %>% 
+  dplyr::mutate(
+    Site = case_when(Site=="CPCRW"~"Alaska",
+                     Site=="DWP"~"Florida",
+                     Site=="SR"~"Washington"),
+    Treatment = recode(Treatment,
+                       "Drought"="drought",
+                       "Base_Line"="baseline"),
+    Treatment = factor(Treatment, levels = c("baseline", "drought")),
+    Site = factor(Site, levels = c("Alaska","Florida","Washington"))
+  ) %>% 
+  column_to_rownames('new_column')
+
+
+
 
 transposed_g_matrix_bld = t(g_matrix_bld)
 dds_bld = DESeqDataSetFromMatrix(countData = transposed_g_matrix_bld,
-                                 colData = g_sample_bld,
+                                 colData = g_sample_bld2,
                                  design = ~Treatment)
 dds_bld = estimateSizeFactors(dds_bld)
 dds_bld = DESeq(dds_bld)
@@ -101,7 +119,7 @@ ntd_bld = normTransform(dds_bld)
 long_combined_bld = c("TIGR02907",	"TIGR01925",	"TIGR02844",	"TIGR01442",	"TIGR02836",	"TIGR03417",	"TIGR02886",	"TIGR03414",	"TIGR00117",	"TIGR01837",	"TIGR03824",	"TIGR02851",	"TIGR01433",	"TIGR01345",	"TIGR01320",	"TIGR01879",	"TIGR01096",	"TIGR01108",	"TIGR02136",	"TIGR00741",	"TIGR02061",	"TIGR02176",	"TIGR03478",	"TIGR04246",	"TIGR03513",	"TIGR01580",	"TIGR03404",	"TIGR02376",	"TIGR03078",	"TIGR03544",	"TIGR01660",	"TIGR02943",	"TIGR00538",	"TIGR02162",	"TIGR03508",	"TIGR02161",	"TIGR02260",	"TIGR01152",	"TIGR03080",	"TIGR01151")
 
 kd_3soil_colors = list(
-  Treatment = c("base line"="grey70","drought"="#fde725ff"),
+  Treatment = c("baseline"="grey70","drought"="#fde725ff"),
   Site = c("Alaska" = "#b84634","Florida"="#e6ab00","Washington"="#008cff"))
 
 levels(g_sample_bld$Treatment)
@@ -110,7 +128,8 @@ levels(g_sample_bld$Site)
 levels(g_sample_bld$Site) = c("Alaska","Florida","Washington")
 
 
-pheatmap(assay(ntd_bld)[long_combined_bld,],cluster_cols=FALSE,cluster_rows=FALSE,annotation_col = g_sample_bld,show_colnames=FALSE,color=cividis(99),
+gg_metat_heatmap_drought =
+  pheatmap(assay(ntd_bld)[long_combined_bld,],cluster_cols=FALSE,cluster_rows=FALSE,annotation_col = g_sample_bld2,show_colnames=FALSE,color=cividis(99),
          annotation_colors=kd_3soil_colors,
          labels_row = c("TIGR02907 spoVID",	"TIGR01925 spoIIAB",	"TIGR02844 spoIIID",	"TIGR01442 Spore Protein",	
                         "TIGR02836 spoIVA",	"TIGR03417 Choline Sulfatase",	"TIGR02886 spoIIAA",	
@@ -131,7 +150,7 @@ pheatmap(assay(ntd_bld)[long_combined_bld,],cluster_cols=FALSE,cluster_rows=FALS
 
 #
 # PCA ---------------------------------------------------------------------
-g_tab = read.table("metaT_combined_0.001perc_removed.txt", sep="\t", header=TRUE, row.names=1)
+g_tab = read.table("data/metagt/metaT_combined_0.001perc_removed.txt", sep="\t", header=TRUE, row.names=1)
 
 # Convert all the na's to zeros
 g_tab[is.na(g_tab)] = 0
@@ -187,7 +206,9 @@ PC3 <- 100*(principal_coordinates$values$Eigenvalues[3]/sum(principal_coordinate
 
 # Plot PCoA
 pcoa_plot_merged$Treatment = factor(pcoa_plot_merged$Treatment, levels = c("Drought","Field_Moist","Sat_II","Sat_I"))
-ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2)) + geom_point(aes(fill=factor(Treatment),shape=factor(Site)),size=6,alpha=0.95) + theme_bw()  +
+
+gg_metat_pca = 
+  ggplot(data=pcoa_plot_merged,aes(x=Axis.1,y=Axis.2)) + geom_point(aes(fill=factor(Treatment),shape=factor(Site)),size=6,alpha=0.95) + theme_bw()  +
   theme_kp() + 
   stat_ellipse(aes(color=Treatment),size=1.5)+
   labs(x = paste("PC1 - Variation Explained", round(PC1,2),"%"), y = paste("PC2 - Variation Explained", round(PC2,2),"%"))+
@@ -249,7 +270,7 @@ kruskal.test(value~comparison, data=e_summarySD)
 
 pairwise.wilcox.test(e_summarySD$value, e_summarySD$comparison, p.adjust.method="BH")
 output = pairwise.wilcox.test(e_summarySD$value, e_summarySD$comparison, p.adjust.method="BH")
-View(output[[3]])
+#View(output[[3]])
 
 melted = melt(output[[3]])
 
@@ -303,7 +324,7 @@ ggplot(e_summarySD, aes(comparison, value,fill=comparison)) +
 #
 # TOP 10 GENES PER SITE -- HEATMAP ----------------------------------------
 
-g_tab = read.table("metaT_combined_0.001perc_removed.txt",sep="\t",header=TRUE,row.names=1)
+g_tab = read.table("data/metagt/metaT_combined_0.001perc_removed.txt",sep="\t",header=TRUE,row.names=1)
 
 
 # Convert all the na's to zeros
@@ -341,9 +362,26 @@ rownames(g_sample) = NAMES
 
 g_rel = make_relative(g_matrix)
 
+g_sample2 = 
+  g_sample %>% 
+  rownames_to_column('new_column') %>% 
+  dplyr::mutate(
+    Site = case_when(Site=="CPCRW"~"Alaska",
+                     Site=="DWP"~"Florida",
+                     Site=="SR"~"Washington"),
+    Treatment = case_when(Treatment=="Drought"~"drought",
+                          Treatment=="Field_Moist"~"field moist",
+                          Treatment=="Sat_I"~"time zero saturation",
+                          Treatment=="Sat_II"~"flood",
+                          Treatment=="Base_Line"~"baseline"),
+    Treatment = factor(Treatment, levels = c("drought", "field moist", "time zero saturation","flood", "baseline")),
+    Site = factor(Site, levels = c("Alaska","Florida","Washington"))
+  ) %>% 
+  column_to_rownames('new_column')
+
 transposed_g_matrix = t(g_matrix)
 dds = DESeqDataSetFromMatrix(countData = transposed_g_matrix,
-                             colData = g_sample,
+                             colData = g_sample2,
                              design = ~Treatment)
 dds = estimateSizeFactors(dds)
 dds = DESeq(dds)
@@ -362,18 +400,15 @@ site_combined=c("TIGR03319","TIGR01703","TIGR04246","TIGR02339","TIGR02225","TIG
                 "TIGR02891","TIGR03544","TIGR03450","TIGR02843","TIGR01974","TIGR00691","TIGR02947","TIGR02456","TIGR03619","TIGR02753",
                 "TIGR02027","TIGR00915","TIGR03470","TIGR00239","TIGR02154","TIGR00998","TIGR02415","TIGR00127","TIGR03524","TIGR03525")
 
-levels(g_sample$Treatment)
-levels(g_sample$Treatment) = c("base line","drought","field moist","time zero saturation","flood")
-levels(g_sample$Site)
-levels(g_sample$Site) = c("Alaska","Florida","Washington")
-
 kd_3soil_colors = list(
   Treatment = c("base line"="black","drought"="#fde725ff","field moist"="#35b779ff","flood"="#443a83ff",
-                "time zero saturation"="grey70"),
+                "time zero saturation"="grey70", "baseline" = "black"),
   Site = c("Alaska" = "#b84634","Florida"="#e6ab00","Washington"="#008cff"))
 
 
-pheatmap(assay(ntd)[site_combined,],cluster_cols=FALSE,cluster_rows=FALSE,annotation_col = g_sample,show_colnames=FALSE,color=cividis(99),
+gg_metat_heatmap = 
+  pheatmap(assay(ntd)[site_combined,],cluster_cols=FALSE,cluster_rows=FALSE,
+         annotation_col = g_sample2,show_colnames=FALSE,color=cividis(99),
          annotation_colors=kd_3soil_colors,
          labels_row = c("TIGR03319 Endoribonuclease Y","TIGR01703 Hydroxylamine Reductase","TIGR04246 Nitrous-Oxide Reductase","TIGR02339 Archaeal Thermosome",
                         "TIGR02225 Tyrosine Recombinase XerD","TIGR02224 Tyrosine Recombinase XerC","TIGR01580 Respiratory Nitrate Reductase",
@@ -391,7 +426,7 @@ pheatmap(assay(ntd)[site_combined,],cluster_cols=FALSE,cluster_rows=FALSE,annota
 
 # BASELINE VS FLOOD -------------------------------------------------------
 
-g_tab_blsat2 = read.table("metaT_combined_0.001perc_removed_blsat2.txt",sep="\t",header=TRUE,row.names=1)
+g_tab_blsat2 = read.table("data/metagt/metaT_combined_0.001perc_removed_blsat2.txt",sep="\t",header=TRUE,row.names=1)
 
 # Convert all the na's to zeros
 g_tab_blsat2[is.na(g_tab_blsat2)] = 0
