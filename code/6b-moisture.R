@@ -116,7 +116,21 @@ valve3 %>%
   
 view(valve3[valve3$Site=="CPCRW",])  
 
+moisture_summary = 
+  valve3 %>% 
+  #filter(Treatment == "field_moist") %>% 
+  group_by(Site, Treatment) %>% 
+  dplyr::summarise(moisture_grav_perc = mean(moisture_grav_perc, na.rm = T),
+                   moisture_vol_perc = mean(moisture_vol_perc, na.rm = T),
+                   bd = mean(bd)) %>% 
+  group_by(Site) %>% 
+  dplyr::mutate(moisture_grav_perc = if_else(moisture_grav_perc<0, 0, moisture_grav_perc),
+                perc_saturation = (moisture_grav_perc/max(moisture_grav_perc))*100,
+                perc_saturation = round(perc_saturation,2))
 
+moisture_summary %>% 
+  ggplot(aes(x = Site, y = perc_saturation, color = Treatment))+
+  geom_point(size = 3)
 
 ##################
 
