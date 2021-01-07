@@ -5,7 +5,7 @@ Kaizad Patel
 This is the RMarkdown file for the FTICR results from the 3Soils
 experiment. Tables and figures for molecular results.
 
-Run: 2020-06-23
+Run: 2021-01-06
 
 Color palette used:  
 treatments == viridis
@@ -40,6 +40,12 @@ sites
 ## treatment effect – all peaks
 
 ![](images/markdown-fticr/combined%20treatments-1.png)<!-- -->
+
+**individual panels**
+
+![](images/markdown-fticr/vk_panels_tz-1.png)<!-- -->
+
+![](images/markdown-fticr/vk_panels_sites-1.png)<!-- -->![](images/markdown-fticr/vk_panels_sites-2.png)<!-- -->![](images/markdown-fticr/vk_panels_sites-3.png)<!-- -->
 
 ## treatment effect – unique peaks
 
@@ -309,11 +315,7 @@ total = 100% \#\# aromatic peaks
 
 ## native SOM
 
-![](images/markdown-fticr/soil_vk_baseline-1.png)<!-- -->
-
 ## treatment effect – all peaks
-
-![](images/markdown-fticr/soil_vk_treatments-1.png)<!-- -->
 
 ## treatment effect – unique peaks
 
@@ -387,39 +389,40 @@ peaks lost and gained
 
 ## peaks
 
-|            site |      Class | baseline | drought | field moist | flood | time zero saturation |
-| --------------: | ---------: | -------: | ------: | ----------: | ----: | -------------------: |
-|          Alaska | AminoSugar |      495 |     431 |         523 |   587 |                  540 |
-|          Alaska |       Carb |      554 |     472 |         603 |   675 |                  655 |
-|          Alaska |      Lipid |      914 |    1056 |        1304 |  1353 |                 1226 |
-|          Alaska |    Protein |     1313 |    1366 |        1528 |  1627 |                 1527 |
-|          Alaska |    UnsatHC |      427 |     608 |         618 |   577 |                  544 |
-|          Alaska |      ConHC |     1358 |    1684 |        1711 |  1379 |                 1376 |
-|          Alaska |     Lignin |     3032 |    3414 |        3596 |  3237 |                 3156 |
-|          Alaska |     Tannin |      587 |     603 |         598 |   585 |                  563 |
-|          Alaska |    Unnamed |      385 |     428 |         463 |   436 |                  391 |
-|          Alaska |      total |     9065 |   10062 |       10944 | 10456 |                 9978 |
-|         Florida | AminoSugar |      742 |     435 |         291 |   448 |                  615 |
-|         Florida |       Carb |      994 |     476 |         369 |   589 |                  774 |
-|         Florida |      Lipid |      990 |    1462 |         841 |  1555 |                 1447 |
-|         Florida |    Protein |     1480 |    1653 |         982 |  1458 |                 1615 |
-|         Florida |    UnsatHC |      461 |     632 |         308 |   716 |                  683 |
-|         Florida |      ConHC |     1272 |    1649 |         923 |  1787 |                 1839 |
-|         Florida |     Lignin |     3215 |    3088 |        1868 |  3191 |                 3551 |
-|         Florida |     Tannin |      706 |     425 |         259 |   523 |                  596 |
-|         Florida |    Unnamed |      406 |     415 |         223 |   454 |                  486 |
-|         Florida |      total |    10266 |   10235 |        6064 | 10721 |                11606 |
-|      Washington | AminoSugar |      247 |     552 |         625 |   607 |                  427 |
-|      Washington |       Carb |      373 |     631 |         776 |   755 |                  495 |
-|      Washington |      Lipid |      835 |    1220 |        1546 |  1505 |                 1316 |
-|      Washington |    Protein |      836 |    1618 |        1725 |  1782 |                 1406 |
-|      Washington |    UnsatHC |      410 |     651 |         767 |   770 |                  687 |
-|      Washington |      ConHC |     1368 |    2000 |        1503 |  1621 |                 1737 |
-|      Washington |     Lignin |     2111 |    3758 |        3702 |  3651 |                 2951 |
-|      Washington |     Tannin |      362 |     607 |         536 |   547 |                  510 |
-|      Washington |    Unnamed |      252 |     504 |         448 |   461 |                  481 |
-|      Washington |      total |     6794 |   11541 |       11628 | 11699 |                10010 |
-| \#\# unique pea |         ks |          |         |             |       |                      |
+|       site |      Class | baseline | drought | field moist | flood | time zero saturation |
+| ---------: | ---------: | -------: | ------: | ----------: | ----: | -------------------: |
+|     Alaska | AminoSugar |      495 |     431 |         523 |   587 |                  540 |
+|     Alaska |       Carb |      554 |     472 |         603 |   675 |                  655 |
+|     Alaska |      Lipid |      914 |    1056 |        1304 |  1353 |                 1226 |
+|     Alaska |    Protein |     1313 |    1366 |        1528 |  1627 |                 1527 |
+|     Alaska |    UnsatHC |      427 |     608 |         618 |   577 |                  544 |
+|     Alaska |      ConHC |     1358 |    1684 |        1711 |  1379 |                 1376 |
+|     Alaska |     Lignin |     3032 |    3414 |        3596 |  3237 |                 3156 |
+|     Alaska |     Tannin |      587 |     603 |         598 |   585 |                  563 |
+|     Alaska |    Unnamed |      385 |     428 |         463 |   436 |                  391 |
+|     Alaska |      total |     9065 |   10062 |       10944 | 10456 |                 9978 |
+|    Florida | AminoSugar |      742 |     435 |         291 |   448 |                  615 |
+|    Florida |       Carb |      994 |     476 |         369 |   589 |                  774 |
+|    Florida |      Lipid |      990 |    1462 |         841 |  1555 |                 1447 |
+|    Florida |    Protein |     1480 |    1653 |         982 |  1458 |                 1615 |
+|    Florida |    UnsatHC |      461 |     632 |         308 |   716 |                  683 |
+|    Florida |      ConHC |     1272 |    1649 |         923 |  1787 |                 1839 |
+|    Florida |     Lignin |     3215 |    3088 |        1868 |  3191 |                 3551 |
+|    Florida |     Tannin |      706 |     425 |         259 |   523 |                  596 |
+|    Florida |    Unnamed |      406 |     415 |         223 |   454 |                  486 |
+|    Florida |      total |    10266 |   10235 |        6064 | 10721 |                11606 |
+| Washington | AminoSugar |      247 |     552 |         625 |   607 |                  427 |
+| Washington |       Carb |      373 |     631 |         776 |   755 |                  495 |
+| Washington |      Lipid |      835 |    1220 |        1546 |  1505 |                 1316 |
+| Washington |    Protein |      836 |    1618 |        1725 |  1782 |                 1406 |
+| Washington |    UnsatHC |      410 |     651 |         767 |   770 |                  687 |
+| Washington |      ConHC |     1368 |    2000 |        1503 |  1621 |                 1737 |
+| Washington |     Lignin |     2111 |    3758 |        3702 |  3651 |                 2951 |
+| Washington |     Tannin |      362 |     607 |         536 |   547 |                  510 |
+| Washington |    Unnamed |      252 |     504 |         448 |   461 |                  481 |
+| Washington |      total |     6794 |   11541 |       11628 | 11699 |                10010 |
+
+## unique peaks
 
 |       site |      Class | drought | field moist | flood |
 | ---------: | ---------: | ------: | ----------: | ----: |
