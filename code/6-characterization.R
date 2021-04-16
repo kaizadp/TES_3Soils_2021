@@ -3,14 +3,14 @@
 # summary tables and graphs will be made in the Markdown script
 # Kaizad F. Patel, Aug 2019
 
-source("0b-packages.R")
+source("code/0b-packages.R")
 
 
 # 1. nutrients and soil characterization ----
 
 ## input files
 
-soil_char = read_excel("data/soil_character.xlsx")
+soil_char = read_csv("data/soil_character.csv")
 
 # convert variables to numeric form
 
@@ -92,7 +92,7 @@ write.csv(soil_character_summary2, CHARACTERIZATION, row.names = FALSE)
 ##
 
 # 2. pore size ----
-pores = read_excel("data/pore_size.xlsx")
+pores = read_csv("data/pore_size.csv")
 names(pores)
 
 # filter only pores 50-1500 um
