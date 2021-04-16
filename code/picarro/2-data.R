@@ -3,7 +3,7 @@
 # concatenating and writing to an `outputs/rawdata.csv.gz` file.
 # Ben Bond-Lamberty July 2015
 
-source("0-functions.R")
+source("code/picarro/0-functions.R")
 
 SCRIPTNAME  	<- "2-data.R"
 PROBLEM       <- FALSE

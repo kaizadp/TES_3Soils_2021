@@ -34,9 +34,9 @@ PARTICLE_DENSITY <- 2.65   # g/cm3
 
 # -----------------------------------------------------------------------------
 # Key files and directories shared between scripts
-DATA_DIR               <- "data/"
-OUTPUT_DIR		         <- "outputs/"
-DIAGNOSTICS_DIR        <- "qc_plots/"
+DATA_DIR               <- "data"
+OUTPUT_DIR		         <- "outputs"
+DIAGNOSTICS_DIR        <- "qc_plots"
 
 KEY_FILE               <- file.path(DATA_DIR, "gs_key.csv")
 VALVEMAP_FILE          <- file.path(DATA_DIR, "gs_valvemap.csv")

@@ -7,7 +7,7 @@
 # 
 # Ben Bond-Lamberty November 2017
 
-source("0-functions.R")
+source("code/picarro/0-functions.R")
 
 SCRIPTNAME  	<- "3-summarize.R"
 PROBLEM       <- FALSE

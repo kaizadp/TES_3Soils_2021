@@ -3,7 +3,7 @@
 # and (clean) summary datasets. It doesn't change anything in the data pipeline.
 # Ben Bond-Lamberty November 2016
 
-source("0-functions.R")
+source("code/picarro/0-functions.R")
 
 SCRIPTNAME  	<- "4-qc.R"
 PROBLEM       <- FALSE

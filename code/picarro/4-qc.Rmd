@@ -7,7 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE, echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-source("0-functions.R")
+source("code/picarro/0-functions.R")
 ```
 
 ```{r read_data, echo=FALSE, cache=TRUE, message=FALSE}

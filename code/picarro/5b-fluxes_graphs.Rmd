@@ -1,0 +1,133 @@
+---
+title: "5b-fluxes_graphs"
+author: "Kaizad Patel"
+date: "1/20/2020"
+output: github_document
+---
+
+```{r,echo=FALSE,message=FALSE,warning=FALSE}
+knitr::opts_chunk$set(echo=FALSE,message=FALSE,warning=FALSE,
+                      collapse = TRUE,
+                      comment = "#>",
+                      fig.path = "images/markdown-flux/")
+```
+
+```{r}
+source("code/picarro/0-functions.R")
+source("code/0b-packages.R")
+
+flux_temp = read_csv("processed/fluxdata_kp.csv")
+
+```
+
+```{r}
+# remove pre-incubation data
+flux = 
+  flux_temp %>% 
+  filter(!SampleID=="S5")  %>% 
+  filter(!Treatment=="sat_I") %>% 
+# rename the incubation and saturation phases  
+  dplyr::mutate(TREATMENT_PHASE = case_when(grepl("_INCUBATION",TREATMENT_PHASE)~"incubation",
+                                            grepl("_SATURATION",TREATMENT_PHASE)~"post-incub saturation"),
+                Treatment = case_when(Treatment=="field_moist"~ "field moist",
+                                      Treatment=="sat_II" ~ "flood",
+                                      Treatment=="drought" ~ "drought"),
+                Site = case_when(Site=="CPCRW" ~ "Alaska",
+                                 Site=="DWP" ~ "Florida",
+                                 Site=="SR" ~ "Washington")) %>% 
+  filter(!(Treatment=="flood"&TREATMENT_PHASE=="post-incub saturation"))
+```
+
+```{r, fig.width=8, fig.height=8}
+ggplot(flux, aes(x = time_hours, y = CO2_mgC_gSoil_hr*1000, color = TREATMENT_PHASE))+
+  geom_point()+
+  scale_color_manual(values = c("#f3ca40","#577590"))+
+  labs(x = "hours",
+       y = expression(bold("CO"[2]*" (" * mu *"g C g"^{-1}*"hr"^{-1}*")")))+
+  
+  facet_grid(Treatment~Site)+
+  theme_kp()
+#  scale_x_date(date_breaks = "14 days")
+
+ggplot(flux, aes(x = time_hours, y = CH4_mgC_gSoil_hr*1e6, color = TREATMENT_PHASE))+
+  geom_point()+
+  scale_color_manual(values = c("#f3ca40","#577590"))+
+  labs(x = "hours",
+       y = expression(bold("CH"[4]*" (ng C g"^{-1}*"hr"^{-1}*")")))+
+  facet_grid(Treatment~Site)+
+  theme_kp()
+```
+
+```{r birch, fig.height=5, fig.width=5}
+ggplot(flux[flux$Treatment=="drought",], 
+       aes(x = Site, y = CO2_mgC_gSoil_hr*1000,
+           fill = TREATMENT_PHASE))+
+  
+  geom_boxplot(width=0.5, alpha = 0.5)+
+  #scale_color_manual(values = c("grey40","darkblue"))+
+  scale_fill_manual(values = c("#f3ca40","#577590"))+
+  labs(x = "",
+       y = expression(bold("CO"[2]*" (" * mu *"g C g"^{-1}*"hr"^{-1}*")")))+
+
+  annotate("text", label = "*", x = 1, y = 40, size=7)+
+  annotate("text", label = "*", x = 2, y = 2, size=7)+
+  annotate("text", label = "*", x = 3, y = 50, size=7)+
+  theme_kp()+ theme(legend.position = c(0.3, 0.8))
+
+```
+
+
+```{r normalized_C, include=FALSE}
+flux = 
+  flux %>% 
+  dplyr::mutate(
+    TC = case_when(
+      Site=="Alaska" ~ 1.43,
+      Site=="Florida" ~ 0.98,
+      Site=="Washington" ~ 10.32),
+    CO2_mgC_gC_hr = CO2_mgC_gSoil_hr*100/TC
+  ) 
+
+ggplot(flux, aes(x = Site, y = CO2_mgC_gC_hr,
+                 color = TREATMENT_PHASE))+
+  geom_boxplot()+
+  facet_grid(.~Treatment)
+```
+
+
+```{r, eval=FALSE, fig.width=8, fig.height=8}
+## fluxes by core
+
+## alaska
+ggplot(flux[flux$Site=="Alaska",], aes(x = as.Date(DATETIME), y = CO2_mgC_gSoil_hr, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_wrap(Treatment~SampleID, scales = "free_x")+
+  scale_x_date(date_breaks = "7 days")
+
+ggplot(flux[flux$Site=="Alaska",], aes(x = as.Date(DATETIME), y = CH4_mgC_gSoil_hr*1000000, color = TREATMENT_PHASE))+
+  geom_point()+
+  facet_wrap(Treatment~SampleID, scales = "free_x")+
+  scale_x_date(date_breaks = "7 days")
+
+## florida
+ggplot(flux[flux$Site=="Florida",], aes(x = as.Date(DATETIME), y = CO2_mgC_gSoil_hr, color = TREATMENT_PHASE))+
+ geom_point()+
+ facet_wrap(Treatment~SampleID, scales = "free_x")+
+ scale_x_date(date_breaks = "7 days")
+
+ggplot(flux[flux$Site=="Florida",], aes(x = as.Date(DATETIME), y = CH4_mgC_gSoil_hr*1000000, color = TREATMENT_PHASE))+
+ geom_point()+
+ facet_wrap(Treatment~SampleID, scales = "free_x")+
+ scale_x_date(date_breaks = "7 days")
+
+## washington
+ggplot(flux[flux$Site=="Washington",], aes(x = as.Date(DATETIME), y = CO2_mgC_gSoil_hr, color = TREATMENT_PHASE))+
+   geom_point()+
+   facet_wrap(Treatment~SampleID, scales = "free_x")+
+   scale_x_date(date_breaks = "7 days")
+ 
+ ggplot(flux[flux$Site=="Washington",], aes(x = as.Date(DATETIME), y = CH4_mgC_gSoil_hr*1000000, color = TREATMENT_PHASE))+
+   geom_point()+
+   facet_wrap(Treatment~SampleID, scales = "free_x")+
+   scale_x_date(date_breaks = "7 days")
+```
