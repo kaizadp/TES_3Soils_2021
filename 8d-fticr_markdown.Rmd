@@ -270,6 +270,22 @@ combined = vk1/vk2 + plot_layout(heights = c(1,2))
 combined
 ```
 
+```{r}
+pore_long %>% 
+  filter(treatment !="time zero saturation") %>% 
+  ggplot(aes(x=OC, y=HC, color=treatment))+
+  geom_point(alpha = 0.4,size = 1)+
+  #scale_color_manual(values = c("#fde725ff", "#35b779ff","#443a83ff"))+
+  scale_color_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff"))+
+  facet_grid(tension~site)+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_bw()+
+  theme_kp()
+```
+
+
+
+
 **individual panels**
 
 
