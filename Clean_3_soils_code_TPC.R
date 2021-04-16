@@ -1,4 +1,10 @@
-rm(list=ls())
+rm(list=ls()) 
+
+# install packages not on CRAN
+# install.packages("BiocManager")
+# BiocManager::install("DESeq2")
+# BiocManager::install("preprocessCore")
+
 
 #legend.position = "right",
 library("funrar")
@@ -32,9 +38,6 @@ theme_kp <- function() {  # this for all the elements common across plots
       strip.text.y = element_text(size=12, face="bold", angle = 270) #facet labels
     )
 }
-
-
-
 
 ###################
 ######MetaG PCA Analysis
