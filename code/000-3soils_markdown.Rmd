@@ -96,7 +96,7 @@ charac %>%
 
 summary
 ```{r}
-pore_size = read.csv("processed/pore_size_perc_freq2.csv")
+pore_size = read.csv("data/processed/pore_size_perc_freq2.csv")
 
 pore_size_summary = 
   pore_size %>% 
@@ -175,7 +175,7 @@ wsoc_pore %>%
 
 figure
 ```{r}
-wsoc = read.csv("processed/wsoc_pores_longform.csv")
+wsoc = read.csv("data/processed/wsoc_pores_longform.csv")
 
 ggplot(wsoc, aes(y = as.numeric(wsoc_mg_L), x = Site, color = Treatment))+
 geom_point(position = position_dodge(width =0.5))+

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo=FALSE,message=FALSE,warning=FALSE,
 source("code/picarro/0-functions.R")
 source("code/0b-packages.R")
 
-flux_temp = read_csv("processed/fluxdata_kp.csv")
+flux_temp = read_csv("data/processed/fluxdata_kp.csv")
 
 ```
 

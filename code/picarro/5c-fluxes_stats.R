@@ -1,6 +1,6 @@
 
 # load file ----
-fluxdata_kp = read.csv("processed/fluxdata_kp.csv")
+fluxdata_kp = read.csv("data/processed/fluxdata_kp.csv")
 
 #
 

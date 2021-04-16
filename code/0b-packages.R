@@ -88,20 +88,20 @@ gg_vankrev <- function(data,mapping){
 
 ## CREATE OUTPUT FILES
 # CHARACTERIZATION
-CHARACTERIZATION <- "processed/soil_characterization.csv"
-PORE_DISTRIBUTION <- "processed/pore_distribution.csv"
+CHARACTERIZATION <- "data/processed/soil_characterization.csv"
+PORE_DISTRIBUTION <- "data/processed/pore_distribution.csv"
   
 
-CORE_WEIGHTS <- "processed/core_weights.csv"
+CORE_WEIGHTS <- "data/processed/core_weights.csv"
 
 # RESPIRATION
-FLUX_DATA <- "processed/flux_data.csv"
-FLUX_SUMMARY <- "processed/flux_summary.csv"
+FLUX_DATA <- "data/processed/flux_data.csv"
+FLUX_SUMMARY <- "data/processed/flux_summary.csv"
 
   
 # WSOC
-WSOC_PORE <- "processed/wsoc_pore_summary.csv"
-WSOC_SOIL <- "processed/wsoc_soils_summary.csv"
+WSOC_PORE <- "data/processed/wsoc_pore_summary.csv"
+WSOC_SOIL <- "data/processed/wsoc_soils_summary.csv"
 
 # FTICR_PORE_INITIAL FILES
 FTICR_SOIL_META <- "fticr/fticr_soil_meta.csv"

@@ -168,7 +168,7 @@ wsoc_pores %>%
  ### OUTPUT ---- 
 
 write.csv(wsoc_pores_summary, WSOC_PORE, row.names = FALSE)
-write.csv(wsoc_pores, "processed/wsoc_pores_longform.csv", row.names = FALSE)
+write.csv(wsoc_pores, "data/processed/wsoc_pores_longform.csv", row.names = FALSE)
  
 
 ##
