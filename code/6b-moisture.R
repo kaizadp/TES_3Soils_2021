@@ -8,10 +8,12 @@ source("code/0b-packages.R")
 # https://docs.google.com/spreadsheets/d/1wsI3tldbhhMDSDoRejmS2jE2c9U-75sht_Dyum3QUBY/edit#gid=0
 
 
-# STEP 1: calculate the correct core dry weights
+
+# 1. CALCULATE CORE DRY WEIGHTS ----------------------------------------------
 ## we have (a) gravimetric moisture (after porewater was pulled) and (b) core moist weight
 
-core_weights_file = read_excel("moisture/3Soils_MoistureContentRevised_20190314.xlsx", sheet = "3Soils_Moisture_Porosity_Weight") 
+#core_weights_file = read_excel("moisture/3Soils_MoistureContentRevised_20190314.xlsx", sheet = "3Soils_Moisture_Porosity_Weight") 
+core_weights_file = read_csv("data/moisture/3Soils_MoistureContentRevised_20190314-3Soils_Moisture_Porosity_Weight.csv") 
 
 core_weights = 
   core_weights_file %>% 
@@ -36,12 +38,16 @@ write.csv(core_weights,CORE_WEIGHTS, row.names = FALSE)
 # use the dry weights from this file for all calculations.
 core_weights_temp = core_weights %>% dplyr::select(SampleID,dry_g, bd)
 
-# STEP 2: retrieve mass and valve data for the cores
+#
+# 2. CALCULATE MOISTURE CONTENT BY TREATMENT ---------------------------------
+## calculating moisture content during the incubations
+
+## retrieve mass and valve data for the cores
 ## key has weights of the setup
 ## valve has total weights at different time points
 
-key = read.csv("moisture/3Soils_CPCRW_SR_DWP_PicarroLog - sampleID_key.csv")
-valve = read.csv("moisture/3Soils_CPCRW_SR_DWP_PicarroLog - valve_map.csv")
+key = read.csv("data/moisture/3Soils_CPCRW_SR_DWP_PicarroLog - sampleID_key.csv")
+valve = read.csv("data/moisture/3Soils_CPCRW_SR_DWP_PicarroLog - valve_map.csv")
 
 key %>% 
   dplyr::select(SampleID,Site,CoreNo,Treatment,DryMass_NONsoil_ALL_g, VolumeSoil_cm3, DryMass_SoilOnly_g)->
@@ -53,7 +59,7 @@ valve %>%
   valve2
 
 
-valve3 = 
+moisture_by_core = 
   valve2 %>% 
   dplyr::select(Site, Core_ID, Treatment, SampleID,
                 Total_core_mass_pot_pie_pans_g, Additional_Wt_toRemove, Start_Date_Time, Notes) %>% 
@@ -61,9 +67,6 @@ valve3 =
   mutate(Start_Date_Time = as.POSIXct(strptime(valve2$Start_Date_Time,
                                                 format = "%m/%d/%Y %H:%M", tz = "America/Los_Angeles")),
          Additional_Wt_toRemove = as.numeric(Additional_Wt_toRemove))%>% 
-  #group_by(Site, SampleID, Treatment) %>% 
-  #dplyr::filter(Start_Date_Time2 == max(Start_Date_Time2)) %>% 
-  #dplyr::select(1:6) %>% 
   left_join(key2, by = c("SampleID","Site","Treatment")) %>%
   left_join(core_weights_temp, by = "SampleID") %>% 
   replace(is.na(.),0) %>% 
@@ -73,8 +76,6 @@ valve3 =
                 nonsoil_g = if_else(Site=="SR"&Treatment=="drought", 
                                     50+Additional_Wt_toRemove+DryMass_NONsoil_ALL_g,
                                     Additional_Wt_toRemove+DryMass_NONsoil_ALL_g)) %>% 
-  #dplyr::select(1:4,total_g,drysoil_g,nonsoil_g) %>% 
-  #drop_na %>% 
   dplyr::mutate(moistsoil_g = total_g - nonsoil_g,
                 water_g = moistsoil_g - dry_g,
                 moisture_perc = (water_g/dry_g)*100,
@@ -87,16 +88,9 @@ valve3 =
   ungroup() %>% 
   mutate_at(5:7,funs(round(.,2)))
   
+names(moisture_by_core)
 
-names(valve3)
-
-
-ggplot(valve3, aes(x = (Start_Date_Time), y = moisture_perc_vol, color = SampleID))+
-  geom_point()+
-  facet_grid(Site~Treatment, scales = "free")+theme(legend.position = "none")
-  
-  
-valve3 %>% 
+moisture_by_core %>% 
   group_by(Site, Treatment) %>% 
   dplyr::summarise(moisture_grav_perc = mean(moisture_grav_perc, na.rm = T),
                    moisture_vol_perc = mean(moisture_vol_perc, na.rm = T)) %>% 
@@ -108,16 +102,14 @@ valve3 %>%
   theme_kp()+
   NULL
 
-valve3 %>% 
+moisture_by_core %>% 
   #filter(Treatment == "field_moist") %>% 
   group_by(Site, Treatment) %>% 
   dplyr::summarise(moisture_vol_perc = mean(moisture_grav_perc, na.rm = T))
   
-  
-view(valve3[valve3$Site=="CPCRW",])  
-
+# calculate summary
 moisture_summary = 
-  valve3 %>% 
+  moisture_by_core %>% 
   #filter(Treatment == "field_moist") %>% 
   group_by(Site, Treatment) %>% 
   dplyr::summarise(moisture_grav_perc = mean(moisture_grav_perc, na.rm = T),
@@ -130,11 +122,6 @@ moisture_summary =
 
 moisture_summary %>% 
   ggplot(aes(x = Site, y = perc_saturation, color = Treatment))+
-  geom_point(size = 3)
-
-##################
-
-
-
-  
-  
+  geom_point(size = 3) +
+  theme_kp()+
+  NULL
