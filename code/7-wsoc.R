@@ -3,12 +3,13 @@
 # create summary tables and graphs in Markdown
 # Kaizad F. Patel, Aug 2019
 
-source("0b-packages.R")
+source("code/0b-packages.R")
 
 #
 # 1. WSOC concentrations -- soils ---- ----
 ## 1a. load and process files ----
-wsoc_soils = read_excel("data/3Soils_WSOC_CN_PoreCore_soils.xlsx")
+# wsoc_soils = read_excel("data/3Soils_WSOC_CN_PoreCore_soils.xlsx")
+wsoc_soils = read_csv("data/wsoc_cn_soil.csv")
 wsoc_soils$wsoc_mg_g = wsoc_soils$`WSOC mgCg-1soil`
 wsoc_soils$Treatment = factor(wsoc_soils$Treatment,
                               levels = c("Time Zero Saturation",
@@ -81,7 +82,8 @@ write.csv(wsoc_soils_summary, WSOC_SOIL, row.names = FALSE)
 
 # 2.  WSOC concentrations -- pores ----
 ## 2a. concentrations as mg/L ----
-wsoc_pores_temp = read_excel("data/3Soils_WSOC_CN_PoreCore.xlsx") 
+# wsoc_pores_temp = read_excel("data/3Soils_WSOC_CN_PoreCore.xlsx") 
+wsoc_pores_temp = read_csv("data/wsoc_cn_pores.csv") 
 wsoc_pores_temp %>% 
   dplyr::rename(wsoc_mg_L = `Water Soluble Organic Carbon (mg/L)`) %>% 
   dplyr::select(-FTICR_ID, -`FT-ICRvol_ml`, -`Pore Size Domain`, -`NPOC (M/L)`,-SampleID) %>% 
@@ -171,17 +173,3 @@ write.csv(wsoc_pores, "processed/wsoc_pores_longform.csv", row.names = FALSE)
 
 ##
 #
-
-## computing effect size for CPCRW drought soils ----
-cpcrw_drt_coarse = 
-  wsoc_pores %>% 
-  filter(Site %in% "CPCRW",
-         Treatment %in% c("Time Zero", "Drought"),
-         Suction %in% "1.5 kPa")
-
-drt_aov = aov(data = cpcrw_drt, wsoc_mg_L ~ Treatment*Suction)
-EtaSq(drt_aov1)
-
-library(sjstats); library(pwr)
-anova_stats(drt_aov)
-summary(drt_aov)
