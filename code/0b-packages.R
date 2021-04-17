@@ -2,6 +2,9 @@
 # Kaizad F. Patel
 
 ## packages ####
+# devtools::install_github("miraKlein/ggbiplot")
+
+
 library(readxl)
 library(ggplot2)       # 2.1.0
 library(readr)         # 1.0.0
@@ -16,22 +19,22 @@ library(ggplot2)
 library(data.table)
 library(cowplot)
 library(qwraps2)
-library(knitr)
+#library(knitr)
 library(reshape2)
-library(ggalt)
+#library(ggalt)
 library(ggExtra)
 library(stringi)
 library(nlme)
 library(car)
 library(agricolae)
-library(googlesheets)
-library(gsheet)
+#library(googlesheets)
+#library(gsheet)
 library(multcomp)
 library(DescTools)
-library(dplyr)         # 0.5.0
 library(viridis)
 library(patchwork)
 library(ggbiplot)
+library(dplyr)         # 0.5.0
 
 # create a custom ggplot theme
 theme_kp <- function() {  # this for all the elements common across plots
