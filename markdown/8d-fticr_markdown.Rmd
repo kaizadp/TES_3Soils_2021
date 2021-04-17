@@ -223,7 +223,6 @@ ggbp_coarse+ggbp_fine
 # unique peaks per site
 
 ```{r unique_site, fig.width=8, fig.height=5}
-#pore_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_longform.csv"
 fticr_pore_meta = read.csv(FTICR_PORE_META)
 
 unique_pore_temp = 
