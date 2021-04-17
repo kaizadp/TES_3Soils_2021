@@ -78,6 +78,7 @@ sites
 |Florida |#e6ab00 | yellow |
 |Washington | #008cff | blue |
 
+---
 
 # FTICR domains 
 
@@ -118,9 +119,8 @@ gg_domains+gg_nosc
 
 ```
 
-
 # FTICR pores - PCA figures
-```{r}
+```{r, fig.height=7,fig.width=12}
 # pore_raw = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_raw_longform.csv"
 
 relabund_temp = 
@@ -219,16 +219,38 @@ ggbp_coarse+ggbp_fine
 ```
 
 # FTICR Pores -- figures
-## native SOM
-```{r vk_baseline, include=FALSE, fig.width=10, fig.height=7}
 
-gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=HC, color=site))+
-  scale_color_brewer(palette = "Set1")+
-  facet_grid(tension~site)+
-  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
-  theme_bw()+
-  theme_kp()
+# unique peaks per site
+
+```{r unique_site, fig.width=8, fig.height=5}
+#pore_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_longform.csv"
+fticr_pore_meta = read.csv(FTICR_PORE_META)
+
+unique_pore_temp = 
+  pore_long %>% 
+  #  filter(reps==5) %>% 
+  group_by(Mass, tension, site,  treatment) %>% 
+  dplyr::summarize(presence=1) %>% 
+  filter(treatment=="time zero saturation") %>% 
+  group_by(Mass,tension) %>% 
+  dplyr::mutate(reps=sum(presence)) %>% 
+  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
+
+unique_pore = 
+  unique_pore_temp %>% 
+  filter(reps==1)
+
+common_pore = 
+  unique_pore_temp %>% 
+  filter(reps>1) 
+
+gg_vankrev(unique_pore_temp[unique_pore_temp$reps==1,], aes(x = OC, y = HC, color = site))+
+  scale_color_manual(values = c('#950000', '#e6ab00','#008cff' ))+
+  facet_grid(.~tension)+
+  theme_kp()+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))
 ```
+
 
 ## treatment effect -- all peaks
 ```{r vk_treatments, fig.width=10, fig.height=7}
@@ -263,31 +285,17 @@ facet_grid(tension~site)+
   theme_kp()
 ```
 
-```{r combined treatments, fig.height=10, fig.width=9}
+```{r combined_treatments, fig.height=10, fig.width=9}
 library(patchwork)
 combined = vk1/vk2 + plot_layout(heights = c(1,2))
+#  plot_annotation(tag_levels = 'A') & 
+#  theme(plot.tag = element_text(size = 15, face = "bold"))
+
 #save_plot("images/vankrev.png", combined ,base_height = 10, base_width = 9)
 combined
 ```
 
-```{r}
-pore_long %>% 
-  filter(treatment !="time zero saturation") %>% 
-  ggplot(aes(x=OC, y=HC, color=treatment))+
-  geom_point(alpha = 0.4,size = 1)+
-  #scale_color_manual(values = c("#fde725ff", "#35b779ff","#443a83ff"))+
-  scale_color_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff"))+
-  facet_grid(tension~site)+
-  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
-  theme_bw()+
-  theme_kp()
-```
-
-
-
-
 **individual panels**
-
 
 ```{r vk_panels_tz, fig.height=7, fig.width=10}
 vk1 + facet_grid(tension~site)
@@ -347,25 +355,25 @@ these are peaks that were uniquely **added** during a given treatment
 # set level of factors
 pore_unique %>% 
   dplyr::mutate(unique = factor(unique, levels = c("drought","field moist","flood"))) %>% 
-  drop_na(unique)->
-           pore_unique
+  filter(!is.na(unique))->
+           pore_unique2
 
-gg_vankrev(pore_unique,aes(x = OC, y = HC, color = unique))+
-scale_color_manual(values = c("#fde725ff", "#35b779ff","#443a83ff"))+
-facet_grid(tension~site)+
-guides(colour = guide_legend(override.aes = list(alpha = 1)))+
-theme_kp()
+gg_vankrev(pore_unique2,aes(x = OC, y = HC, color = unique))+
+  scale_color_manual(values = c("#fde725ff", "#35b779ff","#443a83ff"))+
+  facet_grid(tension~site)+
+  guides(colour = guide_legend(override.aes = list(alpha = 1)))+
+  theme_kp()
 ```
 
 peaks lost and gained
 
-```{r}
+```{r vk_lossgain, fig.height=9}
 pore_lost = 
   pore_unique %>% 
   gather(treatment,loss, drought2:flood2)
 
 gg_vankrev(pore_lost,aes(x = OC, y = HC, color = loss))+
-  scale_color_brewer(palette = "Dark2")+
+  scale_color_brewer(palette = "Dark2", na.translate = FALSE)+
   facet_grid(treatment+tension~site)+
   
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
@@ -376,7 +384,7 @@ gg_vankrev(pore_lost,aes(x = OC, y = HC, color = loss))+
 
 ## treatment effect -- relative abundance
 
-```{r rel_abund, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="Relative abundance",fig.width=9, fig.height=9,fig.path = "images/"}
+```{r rel_abund, fig.width=9, fig.height=9}
 # use file fticr_pore_relabundance_summary
 # first, remove the `total` row
 pore_relabund2 = pore_relabund[!pore_relabund$group=="total",]
@@ -413,7 +421,7 @@ ggplot(pore_relabund, aes(x = treatment, y = relabund2, fill = Class))+
 
 ## treatment effect -- NOSC
 
-```{r NOSC_c, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for CPCRW",fig.width=11, fig.height=18,fig.path = "images/"}
+```{r NOSC_c, fig.width=11, fig.height=18}
 pore_nosc %>% 
   mutate(treatment = factor(treatment,
                             levels = c("baseline","time zero saturation", "field moist","drought","flood")))->
@@ -438,7 +446,7 @@ ggplot(pore_nosc[!pore_nosc$treatment=="baseline",],
 
 
 ## NOSC table
-```{r NOSC, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="NOSC for SR",fig.width=11, fig.height=6,fig.path = "images/"}
+```{r NOSC}
 pore_nosc %>% 
   group_by(tension,site,treatment) %>% 
   dplyr::summarise(median = median(NOSC))->
@@ -453,9 +461,10 @@ pore_nosc_median %>%
 
 ```
 
+<details>
+  <summary>aromatic vs. lignin</summary>
 ## aromatic peaks
 not doing much with aromatic peaks, because it excludes many lignins and tannins that contain aromatic groups
-
 
 ```{r}
 pore_aromatic_vk = 
@@ -465,14 +474,16 @@ pore_aromatic_vk =
 
 gg_vankrev(pore_aromatic_vk[pore_aromatic_vk$aromatic=="aromatic",], aes(x = OC, y = HC))+
   geom_point(data = pore_aromatic_vk[pore_aromatic_vk$Class=="Lignin",], color = "red", alpha = 0.1)+
-  facet_grid(site~tension)+
+  facet_grid(site~tension, drop = TRUE)+
   theme_kp()
 
 ```
 
-## shannon diversity index --
+</details>
 
-```{r shannon, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="aromatic peaks", fig.width=12, fig.height=7,fig.path = "images/"}
+## shannon diversity index
+
+```{r shannon, fig.width=12, fig.height=5}
 pore_shannon %>% 
   dplyr::mutate(treatment = factor(treatment,
                             levels = c("baseline","time zero saturation", "field moist","flood","drought"))) ->
@@ -500,40 +511,13 @@ ggplot(pore_shannon, aes(x = site, y = H, color = treatment, fill = treatment))+
 
 ```
 
-# unique peaks per site
-
-```{r unique_site, fig.width=8, fig.height=5}
-pore_long = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_longform.csv"
-fticr_pore_meta = read.csv(FTICR_PORE_META)
-
-unique_pore_temp = 
-  pore_long %>% 
-  #  filter(reps==5) %>% 
-  group_by(Mass, tension, site,  treatment) %>% 
-  dplyr::summarize(presence=1) %>% 
-  filter(treatment=="time zero saturation") %>% 
-  group_by(Mass,tension) %>% 
-  dplyr::mutate(reps=sum(presence)) %>% 
-  left_join(dplyr::select(fticr_pore_meta, Mass, HC, OC), by = "Mass")
-
-unique_pore = 
-  unique_pore_temp %>% 
-  filter(reps==1)
-
-common_pore = 
-  unique_pore_temp %>% 
-  filter(reps>1) 
-
-gg_vankrev(unique_pore_temp[unique_pore_temp$reps==1,], aes(x = OC, y = HC, color = site))+
-  scale_color_manual(values = c('#950000', '#e6ab00','#008cff' ))+
-  facet_grid(.~tension)+
-  theme_kp()+
-  guides(colour = guide_legend(override.aes = list(alpha = 1)))
-```
 
 # FTICR Pores -- tables
+
+<details>
+  <summary>Detected peaks</summary>
 ## peaks
-```{r peaks"}
+```{r peaks}
 pore_peaks %>% 
   dplyr::mutate(Class = factor(Class, levels =
                           c("AminoSugar","Carb","Lipid","Protein","UnsatHC",
@@ -551,7 +535,7 @@ pore_peaks %>%
   knitr::kable(align = "r")
 ```
 
-```{r peaks_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 1.5 kPa"}
+```{r peaks_1}
 print("1.5 kPa")
 pore_peaks %>% 
   ungroup %>% 
@@ -563,8 +547,13 @@ pore_peaks %>%
   knitr::kable(align = "r")
 ```
 
+</details>
+
+
+<details>
+  <summary>Unique peaks</summary>
 ## unique peaks
-```{r uniquepeaks, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+```{r uniquepeaks}
 pore_unique %>% 
   dplyr::select(Mass,tension,site,Class,unique) %>% 
   dplyr::mutate(Class = factor(Class, levels = 
@@ -586,7 +575,7 @@ pore_unique_counts%>%
   knitr::kable(align = "r")
 ```
 
-```{r uniquepeaks_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="peaks 50 kPa"}
+```{r uniquepeaks_1}
 print("1.5 kPa")
 pore_unique_counts%>% 
   ungroup %>%
@@ -598,9 +587,14 @@ pore_unique_counts%>%
   knitr::kable(align = "r")
 ```
 
+</details>
+
+
+<details>
+  <summary>Relative abundance</summary>
 ## relative abundance
 
-```{r relabund_50, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 50 kPa"}
+```{r relabund_50}
 print("50 kPa")
 pore_relabund%>% 
   ungroup %>% 
@@ -614,7 +608,7 @@ pore_relabund%>%
 
 total = 100%
 
-```{r relabund_1, echo=FALSE, warning=FALSE,message=FALSE,fig.cap="relabund 1.5 kPa"}
+```{r relabund_1}
 print("1.5 kPa")
 pore_relabund%>% 
   ungroup %>% 
@@ -627,17 +621,11 @@ pore_relabund%>%
 ```
 
 total = 100%
-## aromatic peaks
-```{r}
 
-# pore_aromatic_summary %>% 
-# ungroup %>% 
-# dplyr::mutate(counts = paste(counts_mean,dunnett),
-#               var = paste(tension,site)) %>% 
-# dplyr::select(treatment, var, counts) %>% 
-# spread(var, counts) %>% 
-# knitr::kable()
-```
+</details>
+
+<details>
+  <summary>Shannon diversity</summary>
 ## Shannon diversity
 ```{r}
 pore_shannon_summary %>% 
@@ -649,26 +637,26 @@ pore_shannon_summary %>%
   knitr::kable()
 ```
 
+</details>
+
 ---
+
 ---
 
 # FTICR Soil -- figures 
-## native SOM
 ```{r soil_vk_baseline, fig.width=12, fig.height=5, eval = FALSE}
-
+## native SOM
 gg_vankrev(soil_long[soil_long$treatment=="baseline",],
        aes(x = OC, y = HC, color = site))+
   scale_color_brewer(palette = "Set1")+
-  facet_grid(~site)+
+  facet_grid(~site, drop = TRUE)+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
   theme_bw()+
   theme_kp()
 ```
 
-
-
-## treatment effect -- all peaks
 ```{r soil_vk_treatments, fig.width=12, fig.height=5, eval = FALSE}
+## treatment effect -- all peaks
 soil_long %>% 
   dplyr::mutate(treatment = factor(treatment, 
                                    levels = c("baseline","time zero saturation","field moist","drought","flood")))->
@@ -704,21 +692,18 @@ gg_vankrev(soil_unique,
 
 peaks lost and gained
 
-```{r}
+```{r vk_soil_lossgain, fig.width=8, fig.height=9}
 soil_lost = 
   soil_unique %>% 
   gather(treatment,loss, drought2:flood2)
 
 gg_vankrev(soil_lost,aes(x = OC, y = HC, color = loss))+
-    scale_color_brewer(palette = "Dark2")+
+    scale_color_brewer(palette = "Dark2", na.translate = FALSE)+
   facet_grid(treatment~site)+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
   theme_bw()+
   theme_kp()
 ```
-
-
-
 
 
 ## treatment effect -- relative abundance
@@ -795,7 +780,7 @@ soil_nosc_median %>%
 
 ## lost/gained NOSC
 
-```{r}
+```{r nosc_soil_lossgain, fig.width=8, fig.height=9}
 gained = read.csv("fticr/fticr_pore_newmolecules.csv")
 
 ggplot(gained, 
@@ -815,17 +800,16 @@ ggplot(gained,
   theme_bw()+
   theme_kp()
 
-ggplot(gained, 
-       aes(y = NOSC, x = treatment, color = newmolecules))+
-  geom_boxplot(position = position_dodge(), fill = "white", lwd = 1,fatten = 1)+ # fatten changes thickness of median line, lwd changes thickness of all lines
- # geom_dotplot(binaxis = "y",position = position_dodge(0.75),                stackdir = "center", dotsize = 0.1, color = "black")
-  facet_grid(site~tension)
+# ggplot(gained, 
+#        aes(y = NOSC, x = treatment, color = newmolecules))+
+#   geom_boxplot(position = position_dodge(), fill = "white", lwd = 1,fatten = 1)+ 
+#   # fatten changes thickness of median line, lwd changes thickness of all lines
+#  # geom_dotplot(binaxis = "y",position = position_dodge(0.75), stackdir = "center", dotsize = 0.1, color = "black")
+#   facet_grid(site~tension)
 ```
 
----
-
 ## aromatic peaks
-```{r soil_aromatic, fig.width=12, fig.height=7}
+```{r soil_aromatic, fig.width=12, fig.height=5}
 soil_aromatic %>% 
   mutate(treatment = factor(treatment,
                             levels = c("baseline","time zero saturation", "field moist","flood","drought")))->
@@ -853,10 +837,13 @@ ggplot(soil_aromatic[soil_aromatic$aromatic=="aromatic",],
 
 ```
 
-
 ---
 
 # FTICR Soil -- tables 
+
+<details>
+  <summary>Relative abundance</summary>
+  
 ## relative abundance
 ```{r soil_relabund_table}
 soil_relabund%>% 
@@ -872,6 +859,11 @@ soil_relabund%>%
   knitr::kable(align = "r")
 ```
 
+</details>
+
+<details>
+  <summary>Detected peaks</summary>
+  
 ## peaks
 ```{r soil_peaks}
 soil_peaks %>% 
@@ -885,6 +877,13 @@ soil_peaks %>%
   spread(sp, val) %>% 
   knitr::kable(align = "r")
 ```
+
+</details>
+
+
+<details>
+  <summary>unique peaks</summary>
+  
 ## unique peaks
 ```{r soil_uniquepeaks}
 old.lvl = levels(factor(soil_unique_peaks$Class))
@@ -911,12 +910,11 @@ soil_unique_counts%>%
 
 ```
 
+</details>
 
-
-
-## aromatic peaks
 
 ```{r}
+## aromatic peaks
 # soil_aromatic_summary %>% 
 #   ungroup %>% 
 #   dplyr::mutate(counts = paste(counts_mean,dunnett)) %>% 
@@ -925,6 +923,9 @@ soil_unique_counts%>%
 #   knitr::kable()
 ```
 
+<details>
+  <summary>Shannon diversity</summary>
+  
 ## Shannon diversity
 ```{r}
 soil_shannon_summary %>% 
@@ -935,6 +936,15 @@ soil_shannon_summary %>%
   knitr::kable()
 ```
 
+</details>
+
+---
+
+---
+
+
+<details>
+  <summary>color palettes</summary>
 
 # testing color palettes
 ```{r palettes, fig.width=10, fig.height=7}
@@ -987,3 +997,20 @@ gg_vankrev(unique_pore_temp[unique_pore_temp$reps==1,], aes(x = OC, y = HC, colo
 
 ```
 
+</details>
+
+
+---
+
+---
+
+<details>
+  <summary>Session Info</summary>
+
+Date run: `r Sys.Date()`
+
+```{r}
+sessionInfo()
+```
+
+</details>

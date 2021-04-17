@@ -5,13 +5,13 @@ Kaizad Patel
 This is the RMarkdown file for the FTICR results from the 3Soils
 experiment. Tables and figures for molecular results.
 
-Run: 2021-01-06
+Run: 2021-04-16
 
 Color palette used:  
 treatments == viridis
 
 |             |            |        |
-| ----------- | ---------- | ------ |
+|-------------|------------|--------|
 | field moist | \#35b779ff | green  |
 | drought     | \#fde725ff | yellow |
 | flood       | \#443a83ff | blue   |
@@ -20,10 +20,12 @@ treatments == viridis
 sites
 
 |            |          |        |
-| ---------- | -------- | ------ |
+|------------|----------|--------|
 | Alaska     | \#950000 | red    |
 | Florida    | \#e6ab00 | yellow |
 | Washington | \#008cff | blue   |
+
+------------------------------------------------------------------------
 
 # FTICR domains
 
@@ -35,11 +37,13 @@ sites
 
 # FTICR Pores – figures
 
-## native SOM
+# unique peaks per site
+
+![](images/markdown-fticr/unique_site-1.png)<!-- -->
 
 ## treatment effect – all peaks
 
-![](images/markdown-fticr/combined%20treatments-1.png)<!-- -->
+![](images/markdown-fticr/combined_treatments-1.png)<!-- -->
 
 **individual panels**
 
@@ -56,50 +60,58 @@ peaks that were uniquely **added** during a given treatment
 
 peaks lost and gained
 
-![](images/markdown-fticr/unnamed-chunk-2-1.png)<!-- -->
+![](images/markdown-fticr/vk_lossgain-1.png)<!-- -->
 
 ## treatment effect – relative abundance
 
-![Relative abundance](images/rel_abund-1.png)
+![](images/markdown-fticr/rel_abund-1.png)<!-- -->
 
 ## treatment effect – NOSC
 
-![NOSC for CPCRW](images/NOSC_c-1.png)
+![](images/markdown-fticr/NOSC_c-1.png)<!-- -->
 
 ## NOSC table
 
-| tension |       site |  drought | field moist |    flood | time zero saturation |
-| ------: | ---------: | -------: | ----------: | -------: | -------------------: |
-| 1.5 kPa |     Alaska | \-0.4615 |    \-0.4545 | \-0.6207 |             \-0.5217 |
-| 1.5 kPa |    Florida | \-0.5714 |    \-0.4000 | \-0.4000 |             \-0.4000 |
-| 1.5 kPa | Washington | \-0.7333 |    \-0.7586 | \-0.6000 |             \-0.7500 |
-|  50 kPa |     Alaska | \-0.3750 |    \-0.3077 | \-0.4615 |             \-0.3333 |
-|  50 kPa |    Florida | \-0.4828 |    \-0.3478 | \-0.3333 |             \-0.3636 |
-|  50 kPa | Washington | \-0.6250 |    \-0.6667 | \-0.7826 |             \-0.5578 |
+| tension |       site | drought | field moist |   flood | time zero saturation |
+|--------:|-----------:|--------:|------------:|--------:|---------------------:|
+| 1.5 kPa |     Alaska | -0.4615 |     -0.4545 | -0.6207 |              -0.5217 |
+| 1.5 kPa |    Florida | -0.5714 |     -0.4000 | -0.4000 |              -0.4000 |
+| 1.5 kPa | Washington | -0.7333 |     -0.7586 | -0.6000 |              -0.7500 |
+|  50 kPa |     Alaska | -0.3750 |     -0.3077 | -0.4615 |              -0.3333 |
+|  50 kPa |    Florida | -0.4828 |     -0.3478 | -0.3333 |              -0.3636 |
+|  50 kPa | Washington | -0.6250 |     -0.6667 | -0.7826 |              -0.5578 |
+
+<details>
+<summary>
+aromatic vs. lignin
+</summary>
 
 ## aromatic peaks
 
 not doing much with aromatic peaks, because it excludes many lignins and
 tannins that contain aromatic groups
 
-![](images/markdown-fticr/unnamed-chunk-3-1.png)<!-- -->
+![](images/markdown-fticr/unnamed-chunk-2-1.png)<!-- -->
 
-## shannon diversity index –
+</details>
 
-![aromatic peaks](images/shannon-1.png)
+## shannon diversity index
 
-# unique peaks per site
-
-![](images/markdown-fticr/unique_site-1.png)<!-- -->
+![](images/markdown-fticr/shannon-1.png)<!-- -->
 
 # FTICR Pores – tables
+
+<details>
+<summary>
+Detected peaks
+</summary>
 
 ## peaks
 
     #> [1] "50 kPa"
 
 |       site |      Class | drought | field moist | flood | time zero saturation |
-| ---------: | ---------: | ------: | ----------: | ----: | -------------------: |
+|-----------:|-----------:|--------:|------------:|------:|---------------------:|
 |     Alaska | AminoSugar |     201 |           5 |    17 |                   10 |
 |     Alaska |       Carb |     255 |           7 |    51 |                   15 |
 |     Alaska |      Lipid |     148 |          38 |   152 |                  120 |
@@ -134,7 +146,7 @@ tannins that contain aromatic groups
     #> [1] "1.5 kPa"
 
 |       site |      Class | drought | field moist | flood | time zero saturation |
-| ---------: | ---------: | ------: | ----------: | ----: | -------------------: |
+|-----------:|-----------:|--------:|------------:|------:|---------------------:|
 |     Alaska | AminoSugar |     129 |          13 |    21 |                   36 |
 |     Alaska |       Carb |     181 |          22 |    27 |                   15 |
 |     Alaska |      Lipid |      98 |         122 |   204 |                  142 |
@@ -166,12 +178,18 @@ tannins that contain aromatic groups
 | Washington |      Other |       3 |           5 |    NA |                    3 |
 | Washington |      total |    1143 |        1328 |   818 |                 1157 |
 
+</details>
+<details>
+<summary>
+Unique peaks
+</summary>
+
 ## unique peaks
 
     #> [1] "50 kPa"
 
 |       site |      Class | drought | field moist | flood |
-| ---------: | ---------: | ------: | ----------: | ----: |
+|-----------:|-----------:|--------:|------------:|------:|
 |     Alaska | AminoSugar |     185 |          NA |     2 |
 |     Alaska |       Carb |     202 |           1 |    NA |
 |     Alaska |      Lipid |      20 |           1 |    20 |
@@ -203,7 +221,7 @@ tannins that contain aromatic groups
     #> [1] "1.5 kPa"
 
 |       site |      Class | drought | field moist | flood |
-| ---------: | ---------: | ------: | ----------: | ----: |
+|-----------:|-----------:|--------:|------------:|------:|
 |     Alaska | AminoSugar |     108 |          NA |     2 |
 |     Alaska |       Carb |     160 |           4 |     3 |
 |     Alaska |      Lipid |       8 |           5 |    65 |
@@ -232,12 +250,18 @@ tannins that contain aromatic groups
 | Washington |     Tannin |       4 |           5 |     1 |
 | Washington |      Other |       1 |           4 |    NA |
 
+</details>
+<details>
+<summary>
+Relative abundance
+</summary>
+
 ## relative abundance
 
     #> [1] "50 kPa"
 
 |       site |      Class |         drought |     field moist |           flood | time zero saturation |
-| ---------: | ---------: | --------------: | --------------: | --------------: | -------------------: |
+|-----------:|-----------:|----------------:|----------------:|----------------:|---------------------:|
 |     Alaska | AminoSugar |   5.8 ± 0.74 \* |        0.36 ± 0 |     0.77 ± 0.08 |          0.47 ± 0.06 |
 |     Alaska |       Carb |  7.97 ± 0.58 \* |        0.51 ± 0 |     1.99 ± 0.65 |          0.51 ± 0.17 |
 |     Alaska |      Lipid |     5.33 ± 0.33 |     2.76 ± 0 \* |  7.37 ± 0.26 \* |          5.53 ± 0.51 |
@@ -271,7 +295,7 @@ total = 100%
     #> [1] "1.5 kPa"
 
 |       site |      Class |         drought |     field moist |           flood | time zero saturation |
-| ---------: | ---------: | --------------: | --------------: | --------------: | -------------------: |
+|-----------:|-----------:|----------------:|----------------:|----------------:|---------------------:|
 |     Alaska | AminoSugar |  6.03 ± 0.61 \* |     0.65 ± 0.06 |     0.94 ± 0.13 |          1.72 ± 0.17 |
 |     Alaska |       Carb |   9.1 ± 0.74 \* |     0.84 ± 0.28 |     1.18 ± 0.17 |           0.7 ± 0.09 |
 |     Alaska |      Lipid |  5.37 ± 0.19 \* |     7.27 ± 0.43 | 10.88 ± 0.46 \* |          7.73 ± 0.59 |
@@ -300,22 +324,30 @@ total = 100%
 | Washington |     Tannin |     1.18 ± 0.21 |     0.69 ± 0.17 |     1.02 ± 0.13 |           0.8 ± 0.09 |
 | Washington |      Other |     0.34 ± 0.14 |     0.34 ± 0.07 |              NA |          0.27 ± 0.04 |
 
-total = 100% \#\# aromatic peaks
+total = 100%
+
+</details>
+<details>
+<summary>
+Shannon diversity
+</summary>
 
 ## Shannon diversity
 
 | treatment            | 1.5 kPa Alaska | 1.5 kPa Florida | 1.5 kPa Washington | 50 kPa Alaska  | 50 kPa Florida | 50 kPa Washington |
-| :------------------- | :------------- | :-------------- | :----------------- | :------------- | :------------- | :---------------- |
+|:---------------------|:---------------|:----------------|:-------------------|:---------------|:---------------|:------------------|
 | drought              | 1.53 ± 0.01 \* | 1.27 ± 0.02 \*  | 1.17 ± 0.07 \*     | 1.53 ± 0.02 \* | 1.33 ± 0.01 \* | 0.94 ± 0.1        |
 | field moist          | 1.26 ± 0.02    | 1.21 ± 0.03 \*  | 1.28 ± 0.02        | 1.01 ± 0 \*    | 1.13 ± 0 \*    | 1.15 ± 0.02       |
 | flood                | 1.29 ± 0.02    | 1.16 ± 0.04 \*  | 1.15 ± 0.03 \*     | 1.28 ± 0.03 \* | 1.28 ± 0.04 \* | 1.27 ± 0.01       |
 | time zero saturation | 1.31 ± 0.04    | 1.6 ± 0.06      | 1.34 ± 0.01        | 1.15 ± 0.03    | 1.64 ± 0.02    | 1.15 ± 0.07       |
 
+</details>
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
 # FTICR Soil – figures
-
-## native SOM
-
-## treatment effect – all peaks
 
 ## treatment effect – unique peaks
 
@@ -323,7 +355,7 @@ total = 100% \#\# aromatic peaks
 
 peaks lost and gained
 
-![](images/markdown-fticr/unnamed-chunk-6-1.png)<!-- -->
+![](images/markdown-fticr/vk_soil_lossgain-1.png)<!-- -->
 
 ## treatment effect – relative abundance
 
@@ -335,30 +367,33 @@ peaks lost and gained
 
 ## NOSC table
 
-|       site | baseline |  drought | field moist |    flood | time zero saturation |
-| ---------: | -------: | -------: | ----------: | -------: | -------------------: |
-|     Alaska | \-0.3636 | \-0.3529 |    \-0.3846 | \-0.4211 |             \-0.4000 |
-|    Florida | \-0.3200 | \-0.4545 |    \-0.4444 | \-0.4211 |             \-0.3871 |
-| Washington | \-0.2963 | \-0.3333 |    \-0.4444 | \-0.4286 |             \-0.3750 |
+|       site | baseline | drought | field moist |   flood | time zero saturation |
+|-----------:|---------:|--------:|------------:|--------:|---------------------:|
+|     Alaska |  -0.3636 | -0.3529 |     -0.3846 | -0.4211 |              -0.4000 |
+|    Florida |  -0.3200 | -0.4545 |     -0.4444 | -0.4211 |              -0.3871 |
+| Washington |  -0.2963 | -0.3333 |     -0.4444 | -0.4286 |              -0.3750 |
 
 ## lost/gained NOSC
 
-![](images/markdown-fticr/unnamed-chunk-7-1.png)<!-- -->![](images/markdown-fticr/unnamed-chunk-7-2.png)<!-- -->
-
------
+![](images/markdown-fticr/nosc_soil_lossgain-1.png)<!-- -->
 
 ## aromatic peaks
 
 ![](images/markdown-fticr/soil_aromatic-1.png)<!-- -->
 
------
+------------------------------------------------------------------------
 
 # FTICR Soil – tables
+
+<details>
+<summary>
+Relative abundance
+</summary>
 
 ## relative abundance
 
 |       site |      Class |     baseline |         drought |     field moist |           flood | time zero saturation |
-| ---------: | ---------: | -----------: | --------------: | --------------: | --------------: | -------------------: |
+|-----------:|-----------:|-------------:|----------------:|----------------:|----------------:|---------------------:|
 |     Alaska | AminoSugar |  5.46 ± 0.16 |  4.06 ± 0.11 \* |   4.63 ± 0.1 \* |     5.66 ± 0.11 |          5.53 ± 0.15 |
 |     Alaska |       Carb |  6.16 ± 0.16 |  4.57 ± 0.06 \* |   5.53 ± 0.1 \* |  6.64 ± 0.12 \* |          6.72 ± 0.12 |
 |     Alaska |      Lipid |   9.3 ± 0.34 |      9.8 ± 0.17 | 11.16 ± 0.23 \* |  12.22 ± 0.2 \* |         11.43 ± 0.28 |
@@ -387,10 +422,16 @@ peaks lost and gained
 | Washington |     Tannin |  5.24 ± 0.13 |     5.28 ± 0.12 |   4.7 ± 0.06 \* |  4.74 ± 0.08 \* |           5.1 ± 0.04 |
 | Washington |    Unnamed |  3.32 ± 0.06 |  4.09 ± 0.05 \* |     3.53 ± 0.08 |     3.56 ± 0.16 |          4.38 ± 0.15 |
 
+</details>
+<details>
+<summary>
+Detected peaks
+</summary>
+
 ## peaks
 
 |       site |      Class | baseline | drought | field moist | flood | time zero saturation |
-| ---------: | ---------: | -------: | ------: | ----------: | ----: | -------------------: |
+|-----------:|-----------:|---------:|--------:|------------:|------:|---------------------:|
 |     Alaska | AminoSugar |      495 |     431 |         523 |   587 |                  540 |
 |     Alaska |       Carb |      554 |     472 |         603 |   675 |                  655 |
 |     Alaska |      Lipid |      914 |    1056 |        1304 |  1353 |                 1226 |
@@ -422,10 +463,16 @@ peaks lost and gained
 | Washington |    Unnamed |      252 |     504 |         448 |   461 |                  481 |
 | Washington |      total |     6794 |   11541 |       11628 | 11699 |                10010 |
 
+</details>
+<details>
+<summary>
+unique peaks
+</summary>
+
 ## unique peaks
 
 |       site |      Class | drought | field moist | flood |
-| ---------: | ---------: | ------: | ----------: | ----: |
+|-----------:|-----------:|--------:|------------:|------:|
 |     Alaska | AminoSugar |     153 |         161 |   166 |
 |     Alaska |       Carb |     150 |         190 |   209 |
 |     Alaska |      Lipid |     513 |         659 |   674 |
@@ -454,18 +501,99 @@ peaks lost and gained
 | Washington |     Tannin |     246 |         147 |   175 |
 | Washington |    Unnamed |     253 |         211 |   221 |
 
-## aromatic peaks
+</details>
+<details>
+<summary>
+Shannon diversity
+</summary>
 
 ## Shannon diversity
 
 | treatment            | Alaska      | Florida     | Washington  |
-| :------------------- | :---------- | :---------- | :---------- |
+|:---------------------|:------------|:------------|:------------|
 | baseline             | 1.92 ± 0.01 | 1.99 ± 0    | 1.9 ± 0.01  |
 | drought              | 1.89 ± 0 \* | 1.91 ± 0 \* | 1.92 ± 0    |
 | field moist          | 1.92 ± 0.01 | 1.93 ± 0 \* | 1.94 ± 0 \* |
 | flood                | 1.96 ± 0 \* | 1.95 ± 0 \* | 1.95 ± 0 \* |
 | time zero saturation | 1.95 ± 0    | 1.96 ± 0    | 1.95 ± 0    |
 
+</details>
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+<details>
+<summary>
+color palettes
+</summary>
+
 # testing color palettes
 
 ![](images/markdown-fticr/palettes-1.png)<!-- -->![](images/markdown-fticr/palettes-2.png)<!-- -->![](images/markdown-fticr/palettes-3.png)<!-- -->![](images/markdown-fticr/palettes-4.png)<!-- -->![](images/markdown-fticr/palettes-5.png)<!-- -->
+
+</details>
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+<details>
+<summary>
+Session Info
+</summary>
+
+Date run: 2021-04-16
+
+    #> R version 4.0.2 (2020-06-22)
+    #> Platform: x86_64-apple-darwin17.0 (64-bit)
+    #> Running under: macOS Catalina 10.15.7
+    #> 
+    #> Matrix products: default
+    #> BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+    #> LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+    #> 
+    #> locale:
+    #> [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+    #> 
+    #> attached base packages:
+    #> [1] stats     graphics  grDevices utils     datasets  methods   base     
+    #> 
+    #> other attached packages:
+    #>  [1] ggbiplot_0.55     patchwork_1.1.1   viridis_0.5.1     viridisLite_0.3.0
+    #>  [5] DescTools_0.99.40 multcomp_1.4-16   TH.data_1.0-10    MASS_7.3-53      
+    #>  [9] survival_3.2-7    mvtnorm_1.1-1     agricolae_1.3-3   car_3.0-10       
+    #> [13] carData_3.0-4     nlme_3.1-152      stringi_1.5.3     ggExtra_0.9      
+    #> [17] ggalt_0.6.2       reshape2_1.4.4    knitr_1.31        qwraps2_0.5.0    
+    #> [21] cowplot_1.1.1     data.table_1.13.6 Rmisc_1.5         plyr_1.8.6       
+    #> [25] lattice_0.20-41   forcats_0.5.1     dplyr_1.0.4       purrr_0.3.4      
+    #> [29] tibble_3.0.6      tidyverse_1.3.0   tidyr_1.1.2       luzlogr_0.2.0    
+    #> [33] stringr_1.4.0     lubridate_1.7.9.2 readr_1.4.0       ggplot2_3.3.3    
+    #> [37] readxl_1.3.1     
+    #> 
+    #> loaded via a namespace (and not attached):
+    #>  [1] colorspace_2.0-0   class_7.3-18       ellipsis_0.3.1     rio_0.5.16        
+    #>  [5] fs_1.5.0           gld_2.6.2          rstudioapi_0.13    farver_2.0.3      
+    #>  [9] fansi_0.4.2        xml2_1.3.2         codetools_0.2-18   splines_4.0.2     
+    #> [13] extrafont_0.17     rootSolve_1.8.2.1  jsonlite_1.7.2     broom_0.7.4       
+    #> [17] Rttf2pt1_1.3.8     cluster_2.1.0      dbplyr_2.0.0       shiny_1.6.0       
+    #> [21] compiler_4.0.2     httr_1.4.2         backports_1.2.1    assertthat_0.2.1  
+    #> [25] Matrix_1.3-2       fastmap_1.1.0      cli_2.2.0          later_1.1.0.1     
+    #> [29] htmltools_0.5.1.1  tools_4.0.2        lmom_2.8           gtable_0.3.0      
+    #> [33] glue_1.4.2         maps_3.3.0         Rcpp_1.0.6         cellranger_1.1.0  
+    #> [37] vctrs_0.3.6        extrafontdb_1.0    xfun_0.20          openxlsx_4.2.3    
+    #> [41] rvest_0.3.6        mime_0.9           miniUI_0.1.1.1     lifecycle_0.2.0   
+    #> [45] zoo_1.8-8          scales_1.1.1       hms_1.0.0          promises_1.1.1    
+    #> [49] sandwich_3.0-0     proj4_1.0-10.1     expm_0.999-6       RColorBrewer_1.1-2
+    #> [53] Exact_2.1          yaml_2.2.1         curl_4.3           gridExtra_2.3     
+    #> [57] labelled_2.7.0     highr_0.8          klaR_0.6-15        AlgDesign_1.2.0   
+    #> [61] e1071_1.7-4        boot_1.3-26        zip_2.1.1          rlang_0.4.10      
+    #> [65] pkgconfig_2.0.3    evaluate_0.14      labeling_0.4.2     tidyselect_1.1.0  
+    #> [69] magrittr_2.0.1     R6_2.5.0           generics_0.1.0     combinat_0.0-8    
+    #> [73] DBI_1.1.1          pillar_1.4.7       haven_2.3.1        foreign_0.8-81    
+    #> [77] withr_2.4.1        abind_1.4-5        ash_1.0-15         modelr_0.1.8      
+    #> [81] crayon_1.4.0       questionr_0.7.4    KernSmooth_2.23-18 rmarkdown_2.6.6   
+    #> [85] grid_4.0.2         reprex_1.0.0       digest_0.6.27      xtable_1.8-4      
+    #> [89] httpuv_1.5.5       munsell_0.5.0
+
+</details>
