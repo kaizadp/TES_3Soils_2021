@@ -5,7 +5,7 @@ Kaizad Patel
 This is the RMarkdown file for the FTICR results from the 3Soils
 experiment. Tables and figures for molecular results.
 
-Run: 2021-04-16
+Run: 2021-04-19
 
 Color palette used:  
 treatments == viridis
@@ -33,7 +33,7 @@ sites
 
 # FTICR pores - PCA figures
 
-![](images/markdown-fticr/unnamed-chunk-1-1.png)<!-- -->
+![](images/markdown-fticr/pores_pca-1.png)<!-- -->
 
 # FTICR Pores – figures
 
@@ -91,7 +91,7 @@ aromatic vs. lignin
 not doing much with aromatic peaks, because it excludes many lignins and
 tannins that contain aromatic groups
 
-![](images/markdown-fticr/unnamed-chunk-2-1.png)<!-- -->
+![](images/markdown-fticr/unnamed-chunk-1-1.png)<!-- -->
 
 </details>
 
@@ -543,7 +543,7 @@ color palettes
 Session Info
 </summary>
 
-Date run: 2021-04-16
+Date run: 2021-04-19
 
     #> R version 4.0.2 (2020-06-22)
     #> Platform: x86_64-apple-darwin17.0 (64-bit)
@@ -564,36 +564,33 @@ Date run: 2021-04-16
     #>  [5] DescTools_0.99.40 multcomp_1.4-16   TH.data_1.0-10    MASS_7.3-53      
     #>  [9] survival_3.2-7    mvtnorm_1.1-1     agricolae_1.3-3   car_3.0-10       
     #> [13] carData_3.0-4     nlme_3.1-152      stringi_1.5.3     ggExtra_0.9      
-    #> [17] ggalt_0.6.2       reshape2_1.4.4    knitr_1.31        qwraps2_0.5.0    
-    #> [21] cowplot_1.1.1     data.table_1.13.6 Rmisc_1.5         plyr_1.8.6       
-    #> [25] lattice_0.20-41   forcats_0.5.1     dplyr_1.0.4       purrr_0.3.4      
-    #> [29] tibble_3.0.6      tidyverse_1.3.0   tidyr_1.1.2       luzlogr_0.2.0    
-    #> [33] stringr_1.4.0     lubridate_1.7.9.2 readr_1.4.0       ggplot2_3.3.3    
-    #> [37] readxl_1.3.1     
+    #> [17] reshape2_1.4.4    qwraps2_0.5.0     cowplot_1.1.1     data.table_1.13.6
+    #> [21] Rmisc_1.5         plyr_1.8.6        lattice_0.20-41   forcats_0.5.1    
+    #> [25] dplyr_1.0.4       purrr_0.3.4       tibble_3.0.6      tidyverse_1.3.0  
+    #> [29] tidyr_1.1.2       luzlogr_0.2.0     stringr_1.4.0     lubridate_1.7.9.2
+    #> [33] readr_1.4.0       ggplot2_3.3.3     readxl_1.3.1     
     #> 
     #> loaded via a namespace (and not attached):
     #>  [1] colorspace_2.0-0   class_7.3-18       ellipsis_0.3.1     rio_0.5.16        
     #>  [5] fs_1.5.0           gld_2.6.2          rstudioapi_0.13    farver_2.0.3      
     #>  [9] fansi_0.4.2        xml2_1.3.2         codetools_0.2-18   splines_4.0.2     
-    #> [13] extrafont_0.17     rootSolve_1.8.2.1  jsonlite_1.7.2     broom_0.7.4       
-    #> [17] Rttf2pt1_1.3.8     cluster_2.1.0      dbplyr_2.0.0       shiny_1.6.0       
-    #> [21] compiler_4.0.2     httr_1.4.2         backports_1.2.1    assertthat_0.2.1  
-    #> [25] Matrix_1.3-2       fastmap_1.1.0      cli_2.2.0          later_1.1.0.1     
-    #> [29] htmltools_0.5.1.1  tools_4.0.2        lmom_2.8           gtable_0.3.0      
-    #> [33] glue_1.4.2         maps_3.3.0         Rcpp_1.0.6         cellranger_1.1.0  
-    #> [37] vctrs_0.3.6        extrafontdb_1.0    xfun_0.20          openxlsx_4.2.3    
-    #> [41] rvest_0.3.6        mime_0.9           miniUI_0.1.1.1     lifecycle_0.2.0   
-    #> [45] zoo_1.8-8          scales_1.1.1       hms_1.0.0          promises_1.1.1    
-    #> [49] sandwich_3.0-0     proj4_1.0-10.1     expm_0.999-6       RColorBrewer_1.1-2
-    #> [53] Exact_2.1          yaml_2.2.1         curl_4.3           gridExtra_2.3     
-    #> [57] labelled_2.7.0     highr_0.8          klaR_0.6-15        AlgDesign_1.2.0   
-    #> [61] e1071_1.7-4        boot_1.3-26        zip_2.1.1          rlang_0.4.10      
-    #> [65] pkgconfig_2.0.3    evaluate_0.14      labeling_0.4.2     tidyselect_1.1.0  
-    #> [69] magrittr_2.0.1     R6_2.5.0           generics_0.1.0     combinat_0.0-8    
-    #> [73] DBI_1.1.1          pillar_1.4.7       haven_2.3.1        foreign_0.8-81    
-    #> [77] withr_2.4.1        abind_1.4-5        ash_1.0-15         modelr_0.1.8      
-    #> [81] crayon_1.4.0       questionr_0.7.4    KernSmooth_2.23-18 rmarkdown_2.6.6   
-    #> [85] grid_4.0.2         reprex_1.0.0       digest_0.6.27      xtable_1.8-4      
-    #> [89] httpuv_1.5.5       munsell_0.5.0
+    #> [13] rootSolve_1.8.2.1  knitr_1.31         jsonlite_1.7.2     broom_0.7.4       
+    #> [17] cluster_2.1.0      dbplyr_2.0.0       shiny_1.6.0        compiler_4.0.2    
+    #> [21] httr_1.4.2         backports_1.2.1    assertthat_0.2.1   Matrix_1.3-2      
+    #> [25] fastmap_1.1.0      cli_2.2.0          later_1.1.0.1      htmltools_0.5.1.1 
+    #> [29] tools_4.0.2        gtable_0.3.0       glue_1.4.2         lmom_2.8          
+    #> [33] Rcpp_1.0.6         cellranger_1.1.0   vctrs_0.3.6        xfun_0.20         
+    #> [37] openxlsx_4.2.3     rvest_0.3.6        mime_0.9           miniUI_0.1.1.1    
+    #> [41] lifecycle_0.2.0    zoo_1.8-8          scales_1.1.1       hms_1.0.0         
+    #> [45] promises_1.1.1     sandwich_3.0-0     expm_0.999-6       RColorBrewer_1.1-2
+    #> [49] Exact_2.1          yaml_2.2.1         curl_4.3           gridExtra_2.3     
+    #> [53] labelled_2.7.0     highr_0.8          klaR_0.6-15        AlgDesign_1.2.0   
+    #> [57] e1071_1.7-4        boot_1.3-26        zip_2.1.1          rlang_0.4.10      
+    #> [61] pkgconfig_2.0.3    evaluate_0.14      labeling_0.4.2     tidyselect_1.1.0  
+    #> [65] magrittr_2.0.1     R6_2.5.0           generics_0.1.0     combinat_0.0-8    
+    #> [69] DBI_1.1.1          pillar_1.4.7       haven_2.3.1        foreign_0.8-81    
+    #> [73] withr_2.4.1        abind_1.4-5        modelr_0.1.8       crayon_1.4.0      
+    #> [77] questionr_0.7.4    rmarkdown_2.6.6    grid_4.0.2         reprex_1.0.0      
+    #> [81] digest_0.6.27      xtable_1.8-4       httpuv_1.5.5       munsell_0.5.0
 
 </details>

@@ -82,7 +82,7 @@ sites
 
 # FTICR domains 
 
-```{r vk_domains, fig.height=7,fig.width=12}
+```{r vk_domains, fig.height=7,fig.width=13}
 pore_long %>% 
   dplyr::mutate(Class = factor(Class, levels = 
                           c("AminoSugar", "Carb","Lipid","Protein","UnsatHC",
@@ -115,12 +115,14 @@ gg_nosc =
           axis.text = element_text(size = 14, color = "black"),
           axis.title = element_text(size = 14, face = "bold", color = "black"))
 
-gg_domains+gg_nosc
+gg_domains+gg_nosc + 
+  plot_annotation(tag_levels = "A") & 
+  theme(plot.tag = element_text(size = 13, face = "bold", hjust = 1, margin = margin(0,0,0, 10)))
 
 ```
 
 # FTICR pores - PCA figures
-```{r, fig.height=7,fig.width=12}
+```{r pores_pca, fig.height=7,fig.width=12, dpi=300}
 # pore_raw = read.csv(FTICR_PORE_RAW_LONG)# <- "fticr/fticr_pore_raw_longform.csv"
 
 relabund_temp = 
@@ -166,7 +168,7 @@ ggbp_fine =
              )+
   scale_shape_manual(values = c(21,22,24))+
   
-  scale_fill_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff", "grey70"))+
+  scale_fill_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff", "#EBEBEB"))+
   ggtitle("50 kPa")+
   theme_kp()+
   theme(legend.position = "right",
@@ -207,7 +209,7 @@ ggbp_coarse =
              )+
   scale_shape_manual(values = c(21,22,24))+
   
-  scale_fill_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff", "grey70"))+
+  scale_fill_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff", "#EBEBEB"))+
   ggtitle("1.5 kPa")+
   theme_kp()+
   theme(legend.position = "none",
@@ -222,7 +224,7 @@ ggbp_coarse+ggbp_fine
 
 # unique peaks per site
 
-```{r unique_site, fig.width=8, fig.height=5}
+```{r unique_site, fig.width=8, fig.height=5, dpi=300}
 fticr_pore_meta = read.csv(FTICR_PORE_META)
 
 unique_pore_temp = 
@@ -269,26 +271,29 @@ vk1 =
   gg_vankrev(pore_long[pore_long$treatment=="time zero saturation",], aes(x=OC,y=HC, color=tension))+
   scale_color_brewer(palette = "Set1")+
   geom_text(data = label, aes(label = label), color = "black", size=3)+
+  labs(title = "A: time-zero") + 
   facet_grid(~site)+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
-  theme_bw()+
-  theme_kp()
+  theme_kp()+
+  theme(plot.title = element_text(hjust = 0, face = "bold"))
 
 vk2 =
   gg_vankrev(pore_long[!pore_long$treatment=="time zero saturation",], aes(x=OC, y=HC, color=treatment))+
   #scale_color_manual(values = c("#fde725ff", "#35b779ff","#443a83ff"))+
-    scale_color_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff"))+
-facet_grid(tension~site)+
+  scale_color_manual(values = c("#fde725ff", "#35b779ff", "#443a83ff"))+
+  labs(title = "B: treatment incubations") + 
+  facet_grid(tension~site)+
   guides(colour = guide_legend(override.aes = list(alpha = 1)))+
-  theme_bw()+
-  theme_kp()
+  theme_kp()+
+  theme(plot.title = element_text(hjust = 0, face = "bold"))
 ```
 
-```{r combined_treatments, fig.height=10, fig.width=9}
+```{r combined_treatments, fig.height=10, fig.width=9, dpi=300}
 library(patchwork)
-combined = vk1/vk2 + plot_layout(heights = c(1,2))
-#  plot_annotation(tag_levels = 'A') & 
-#  theme(plot.tag = element_text(size = 15, face = "bold"))
+combined = vk1/vk2 + plot_layout(heights = c(1,2), tag_level = "new")+
+  #plot_annotation(tag_levels = list(c("A: time-zero", "B: incubations"))) & 
+  #theme(plot.tag = element_text(size = 13, face = "bold", hjust = 1, margin = margin(0,0,0, 10)))+
+  NULL
 
 #save_plot("images/vankrev.png", combined ,base_height = 10, base_width = 9)
 combined
@@ -297,7 +302,7 @@ combined
 **individual panels**
 
 ```{r vk_panels_tz, fig.height=7, fig.width=10}
-vk1 + facet_grid(tension~site)
+vk1 + facet_grid(tension~site) + labs(title = "Time Zero")
 ```
 
 ```{r vk_panels_sites, fig.height=7, fig.width=10}
@@ -350,7 +355,7 @@ pore_long %>%
 unique in each treatment compared to all, including TZflood
 these are peaks that were uniquely **added** during a given treatment
 
-```{r vk_unique, fig.width=10, fig.height=7}
+```{r vk_unique, fig.width=10, fig.height=7, dpi=300}
 # set level of factors
 pore_unique %>% 
   dplyr::mutate(unique = factor(unique, levels = c("drought","field moist","flood"))) %>% 
