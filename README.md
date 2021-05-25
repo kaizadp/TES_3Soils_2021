@@ -1,8 +1,12 @@
+[![DOI](https://zenodo.org/badge/205486867.svg)](https://zenodo.org/badge/latestdoi/205486867)
+
+
 # Soil texture and environmental conditions influence the biogeochemical responses of soils to drought and flooding 
 
 Kaizad F. Patel et al. 2021
 
-This repository contains data and processing/analysis scripts for the PNNL-TES 3Soils Project.
+This repository contains data and processing/analysis scripts for the PNNL-TES 3Soils Project.  
+DOI: 10.5281/zenodo.4792655
 
 
 **Abstract**
