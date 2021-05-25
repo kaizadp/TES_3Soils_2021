@@ -1,4 +1,9 @@
-rm(list=ls()) 
+# 3Soils 2019
+# This script reads and processes data files for soil metagenome and mettatranscriptome
+# Kaizad F. Patel, May 2021
+
+# script by Tayte P. Campbell
+
 
 # install packages not on CRAN
 # install.packages("BiocManager")
@@ -45,7 +50,7 @@ theme_kp <- function() {  # this for all the elements common across plots
 ###################
 
 
-g_tab = read.table("metaG_combined_0.001perc.txt", sep="\t", header=TRUE, row.names=1)
+g_tab = read.table("data/metagt_new/metaG_combined_0.001perc.txt", sep="\t", header=TRUE, row.names=1)
 
 #####Convert all the na's to zeros
 g_tab[is.na(g_tab)] = 0
@@ -153,7 +158,7 @@ theme_kp <- function() {  # this for all the elements common across plots
 ###################
 ###################
 
-g_tab = read.table("metaT_combined_0.001perc_removed.txt", sep="\t", header=TRUE, row.names=1)
+g_tab = read.table("data/metagt_new/metaT_combined_0.001perc_removed.txt", sep="\t", header=TRUE, row.names=1)
 
 #####Convert all the na's to zeros
 g_tab[is.na(g_tab)] = 0
@@ -345,7 +350,7 @@ ggplot(e_summarySD, aes(comparison, value,fill=comparison)) +
 ########################################
 rm(list=ls())
 
-g_tab_bld = read.table("metaT_combined_0.001perc_bld.txt",sep="\t",header=TRUE,row.names=1)
+g_tab_bld = read.table("data/metagt_new/metaT_combined_0.001perc_bld.txt",sep="\t",header=TRUE,row.names=1)
 
 #####Convert all the na's to zeros
 g_tab_bld[is.na(g_tab_bld)] = 0
@@ -483,7 +488,7 @@ library("dplyr")
 
 
 
-g_tab = read.table("metaT_combined_0.001perc_removed.txt",sep="\t",header=TRUE,row.names=1)
+g_tab = read.table("data/metagt_new/metaT_combined_0.001perc_removed.txt",sep="\t",header=TRUE,row.names=1)
 
 
 #####Convert all the na's to zeros
@@ -595,7 +600,7 @@ library("cividis")
 
 
 
-g_tab = read.table("metaG_combined_0.001perc.txt", sep="\t", header=TRUE, row.names=1)
+g_tab = read.table("data/metagt_new/metaG_combined_0.001perc.txt", sep="\t", header=TRUE, row.names=1)
 
 
 #####Convert all the na's to zeros
@@ -705,7 +710,7 @@ pheatmap(assay(ntd)[combined_site,],cluster_cols=FALSE,cluster_rows=FALSE,annota
 
 rm(list=ls())
 
-g_tab_blsat2 = read.table("metaT_combined_0.001perc_removed_blsat2.txt",sep="\t",header=TRUE,row.names=1)
+g_tab_blsat2 = read.table("data/metagt_new/metaT_combined_0.001perc_removed_blsat2.txt",sep="\t",header=TRUE,row.names=1)
 
 #####Convert all the na's to zeros
 g_tab_blsat2[is.na(g_tab_blsat2)] = 0
@@ -808,7 +813,7 @@ pheatmap(assay(ntd_blsat2)[site_combined_blsat2,],cluster_cols=FALSE,cluster_row
 ###########
 rm(list=ls())
 
-g_tab_bld = read.table("metaT_combined_0.001perc_bld_SR.txt",sep="\t",header=TRUE,row.names=1)
+g_tab_bld = read.table("data/metagt_new/metaT_combined_0.001perc_bld_SR.txt",sep="\t",header=TRUE,row.names=1)
 
 #####Convert all the na's to zeros
 g_tab_bld[is.na(g_tab_bld)] = 0
@@ -935,7 +940,7 @@ pheatmap(assay(ntd_bld)[lefse_combined_bld,],cluster_cols=FALSE,cluster_rows=FAL
 ###########
 rm(list=ls())
 
-g_tab_bld = read.table("metaT_combined_0.001perc_bld_CPCRW.txt",sep="\t",header=TRUE,row.names=1)
+g_tab_bld = read.table("data/metagt_new/metaT_combined_0.001perc_bld_CPCRW.txt",sep="\t",header=TRUE,row.names=1)
 
 #####Convert all the na's to zeros
 g_tab_bld[is.na(g_tab_bld)] = 0
@@ -1061,7 +1066,7 @@ pheatmap(assay(ntd_bld)[lefse_combined_bld,],cluster_cols=FALSE,cluster_rows=FAL
 ###########
 rm(list=ls())
 
-g_tab_bld = read.table("metaT_combined_0.001perc_bld_DWP.txt",sep="\t",header=TRUE,row.names=1)
+g_tab_bld = read.table("data/metagt_new/metaT_combined_0.001perc_bld_DWP.txt",sep="\t",header=TRUE,row.names=1)
 
 #####Convert all the na's to zeros
 g_tab_bld[is.na(g_tab_bld)] = 0
